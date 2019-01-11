@@ -16,12 +16,12 @@ class CreateLessonsTable extends Migration
         Schema::create('lessons', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer("par");
-            $table->string("lit");
+            $table->string("group");
 
             $table->string("weekday");
             $table->integer("number");
             $table->string("lesson");
+            $table->string("cabinet");
 
             $table->time("time_from");
             $table->time("time_until");

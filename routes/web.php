@@ -32,3 +32,11 @@ Route::get("/points/{student}", "Points@of_student")
 
 Route::get("/points", "Points@mine")
     ->middleware("role:student");
+
+
+/*
+Timetable
+*/
+
+Route::get("/timetable", "Timetable@show")
+    ->middleware("role:student");

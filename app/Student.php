@@ -10,7 +10,7 @@ class Student {
     }
 
     public function get_balance() {
-        return Transaction::of_student($this->user);
+        return Transaction::get_balance($this->user);
     }
 
     public function get_classruk() {

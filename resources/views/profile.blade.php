@@ -10,7 +10,7 @@
     <div class="info">
         Имя: {{ $user->get_name() }} <br>
         @if ($user->type === "student")
-            Баланс: {{ App\Transaction::balance($user) }}<br>
+            Баланс: {{ App\Transaction::get_balance($user) }}<br>
             Класс: {{ $user->student()->get_group() }}<br>
         @endif
     </div>

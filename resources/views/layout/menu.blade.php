@@ -1,6 +1,5 @@
 <ul>
     @foreach($menu_items as $item)
-        <li>
             @if ($item['submenu'])
                 <li>
                     @foreach($item["buttons"] as $bitem)
@@ -10,19 +9,12 @@
                     @endforeach
                 </li>
             @else
-                <a href="{{ $item['url'] }}">
-                    {{ __($item["title"]) }}
-                </a>
+                <li>
+                    <a href="{{ $item['url'] }}">
+                        {{ __($item["title"]) }}
+                    </a>
+                </li>
             @endif
-        </li>
-        <li>
-            <a href="/setlocale/ru">Русский</a>
-        </li>
-        <li>
-            <a href="/setlocale/tt">Татарча</a>
-        </li>
-        <li>
-            <a href="/setlocale/en">English</a>
         </li>
         <li>
             <a href="/out">{{ __("menu.out") }}</a>

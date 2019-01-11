@@ -40,11 +40,17 @@ class User extends Authenticatable
     }
 
     public function has_role(string $role): bool {
+        if ($role === "student")
+            return $this->type === "student";
+
+        if ($role === "teacher")
+            return $this->type === "teacher";
+
         return $this->roles->where("role", $role)->count() > 0;
     }
 
     public function get_role_arg(string $role): string {
-        return $this->roles->where("role", $role)->first() ?? "";
+        return $this->roles->where("role", $role)->first()->role_arg ?? "";
     }
 
     public function add_role(string $role_name, string $role_arg = null) {
@@ -59,13 +65,7 @@ class User extends Authenticatable
         $role->save();
     }
 
-    public function get_group() {
-        if ($this->has_role("classruk"))
-            return $this->get_role_arg("classruk");
-
-        if ($this->has_role("student"))
-            return $this->get_role_arg("student");
-
-        return null;
+    public function student() {
+        return new Student($this);
     }
 }

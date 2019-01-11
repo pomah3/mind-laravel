@@ -8,12 +8,11 @@
 
 @section('content')
     <div class="info">
-        Имя: {{ $user->get_name() }}
+        Имя: {{ $user->get_name() }} <br>
         @if ($user->type === "student")
-            Баланс: баланс<br>
-            Класс: класс<br>
-            Классрук: классрук<br>
-            Воспит: воспит<br>
+            Баланс: {{ App\Transaction::balance($user) }}<br>
+            Класс: {{ $user->student()->get_group() }}<br>
+            Классрук: {{ $user->student()->get_classruk()->get_name() }}<br>
         @endif
     </div>
     <div class="timetable">

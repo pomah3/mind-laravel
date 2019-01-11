@@ -20,8 +20,19 @@ class Transaction extends Model {
             return null;
 
         $plus = Transaction::where("to_id", $user->id)->sum("points");
-        $munis = Transaction::where("from_id", $user->id)->sum("points");
+        $minus = Transaction::where("from_id", $user->id)->sum("points");
 
         return $plus - $minus;
+    }
+
+    public static function add(User $from, User $to, int $points) {
+        $tr = new Transaction;
+
+        $tr->from_id = $from->id;
+        $tr->to_id   = $to->id;
+        $tr->points  = $points;
+        $tr->cause   = "hz";
+
+        $tr->save;
     }
 }

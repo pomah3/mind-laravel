@@ -3,11 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\{Transaction, User};
+use App\{Transaction, User, Role};
 
 class Group extends Controller {
     public function get($group) {
-        $users = User::where("group", $group)->get();
+        $roles = Role::where("role", "student")->where("role_arg", $group)->get();
+        $users = [];
+        foreach($roles as $role) {
+            $users[] = User::find($role->user_id);
+        }
+
         $col = 0;
         foreach($users as $user) {
             $col += $user->student()->get_balance();

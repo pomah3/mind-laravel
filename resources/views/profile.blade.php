@@ -12,7 +12,6 @@
         @if ($user->type === "student")
             Баланс: {{ App\Transaction::balance($user) }}<br>
             Класс: {{ $user->student()->get_group() }}<br>
-            Классрук: {{ $user->student()->get_classruk()->get_name() }}<br>
         @endif
     </div>
     <div class="timetable">

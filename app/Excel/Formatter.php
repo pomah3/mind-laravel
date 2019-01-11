@@ -36,7 +36,15 @@ class Formatter {
 
 		$day = static::lower($day);
 		$day = static::upper_first($day);
-		return Utils::today_en($day);
+		return [
+			"Понедельник" => "Monday",
+			"Вторник" => "Tuesday",
+			"Среда" => "Wednesday",
+			"Четверг" => "Thursday"
+			"Пятница" => "Friday",
+			"Суббота" => "Saturday",
+			"Воскресенье" => "Sunday"
+		][$day];
 	}
 
 	public static function group(string $group): string {

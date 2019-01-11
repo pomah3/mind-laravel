@@ -58,4 +58,14 @@ class User extends Authenticatable
 
         $role->save();
     }
+
+    public function get_group() {
+        if ($this->has_role("classruk"))
+            return $this->get_role_arg("classruk");
+
+        if ($this->has_role("student"))
+            return $this->get_role_arg("student");
+
+        return null;
+    }
 }

@@ -13,7 +13,7 @@
         <table>
             <tr>
                 <th>
-                    {{ $day }}
+                    {{ __("days.".$day) }}
                 </th>
             </tr>
             @foreach($lessons[$day] as $lesson)

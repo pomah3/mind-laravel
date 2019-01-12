@@ -22,6 +22,8 @@ class AppServiceProvider extends ServiceProvider {
     public function boot() {
         Schema::defaultStringLength(191);
 
+        Blade::include('layout.user', 'user');
+
         View::composer(
             'layout.menu', 'App\Http\View\Composers\MenuComposer'
         );

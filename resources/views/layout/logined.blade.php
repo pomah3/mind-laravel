@@ -4,7 +4,7 @@
     <header>
         <div class="top-menu">
             <div class="container-menu">
-                <img src="/img/logo_animation.gif" alt="">
+                <img src="/img/logo_full.png" width="200px">
             </div>
         </div>
 

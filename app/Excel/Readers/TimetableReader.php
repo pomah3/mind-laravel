@@ -4,7 +4,7 @@
 	use App\Excel\{Reader, Formatter};
 	use App\Lesson;
 
-	class Timetable extends Reader {
+	class TimetableReader extends Reader {
 		static function get_name(): string {
 			return "Расписание";
 		}

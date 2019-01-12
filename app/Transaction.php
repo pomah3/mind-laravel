@@ -15,6 +15,10 @@ class Transaction extends Model {
             get();
     }
 
+    public function cause() {
+        return $this->hasOne(Cause::class);
+    }
+
     public static function get_balance(User $user) {
         if ($user->type !== "student")
             return null;
@@ -33,6 +37,6 @@ class Transaction extends Model {
         $tr->points  = $points;
         $tr->cause   = "hz";
 
-        $tr->save;
+        $tr->save();
     }
 }

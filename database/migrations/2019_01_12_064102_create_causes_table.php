@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTransactionsTable extends Migration
+class CreateCausesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateTransactionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('causes', function (Blueprint $table) {
             $table->increments('id');
-
-            $table->integer('from_id');
-            $table->integer('to_id');
-            $table->integer('points');
-            $table->integer('cause_id');
-
             $table->timestamps();
+
+            $table->string("title")->unique();
+            $table->integer("points");
         });
     }
 
@@ -32,6 +29,6 @@ class CreateTransactionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('causes');
     }
 }

@@ -61,6 +61,10 @@ class Formatter {
 		return intval(trim($str));
 	}
 
+    public static function string(string $str) {
+        return trim($str);
+    }
+
 	public static function upper(string $str): string {
 		return mb_strtoupper($str);
 	}

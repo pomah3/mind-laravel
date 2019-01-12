@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class Signin extends Controller
 {
     public function index() {
-        return view("signin", ["status" => "not_set"]);
+        return view("signin");
     }
 
     public function enter(Request $request) {
@@ -20,10 +20,10 @@ class Signin extends Controller
         $user = User::find($login);
 
         if ($user === null)
-            return view("signin", ["status" => "no_user"]);
+            return view("signin", ["status" => "no_user", "login" => $login]);
 
         if ($user->password !== $password)
-            return view("signin", ["status" => "$login $password ".$user->password]);
+            return view("signin", ["status" => "wrong_password", "login" => $login]);
 
         Auth::login($user);
 

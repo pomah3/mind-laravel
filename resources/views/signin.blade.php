@@ -1,17 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-<body>
-    {{ $status }}
+@extends("layout.main")
+
+@section('title')
+    {{ __("signin.title") }}
+@endsection
+
+@section("body")
+    @if (isset($status))
+        @alert(["type"=>"danger"])
+            {{ __("signin.status.".$status) }}
+        @endalert
+    @endif
 
     <form action="" method="POST">
         @csrf
-        <input type="text"     name="login"><br>
-        <input type="password" name="password"><br>
+        <input required
+            type="text"
+            name="login"
+            value="{{ $login ?? "" }}"
+        >
+        <input required
+            type="password"
+            name="password"
+        >
         <input type="submit">
     </form>
-</body>
-</html>
+
+@endsection

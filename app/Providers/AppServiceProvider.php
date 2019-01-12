@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider {
         Schema::defaultStringLength(191);
 
         Blade::include('layout.user', 'user');
+        Blade::component('layout.alert', 'alert');
 
         View::composer(
             'layout.menu', 'App\Http\View\Composers\MenuComposer'

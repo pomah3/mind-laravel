@@ -18,7 +18,7 @@ class Transaction extends Model {
     }
 
     public function cause() {
-        return $this->hasOne(Cause::class);
+        return $this->belongsTo(Cause::class);
     }
 
     public function get_to_user() {

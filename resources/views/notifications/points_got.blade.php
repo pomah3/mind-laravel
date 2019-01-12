@@ -1,3 +1,3 @@
 <div>
-    Вам перечислили {{ $notification->data['Transaction']['points'] }} балл(а, ов)
+    Вам перечислили {{ $notification->data['transaction']['points'] }} балл(а, ов)
 </div>

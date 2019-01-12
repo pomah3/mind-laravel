@@ -1,6 +1,8 @@
 @extends('layout.main')
 
 @section('body')
+    <script>window.userId = {{ Auth::user()->id }}</script>
+
     <header>
         <div class="top-menu">
             <div class="container-menu">

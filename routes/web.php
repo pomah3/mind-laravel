@@ -47,3 +47,6 @@ Groups
 
 Route::get("/group/{group}", "Group@get")
     ->middleware("auth");
+
+Route::get("/groups", "Group@all")
+    ->middleware("auth");

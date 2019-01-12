@@ -65,4 +65,14 @@ class User extends Authenticatable
     public function student() {
         return new Student($this);
     }
+
+    public static function of_group($group) {
+        $roles = Role::where("role", "student")->where("role_arg", $group)->get();
+        $users = [];
+        foreach($roles as $role) {
+            $users[] = User::find($role->user_id);
+        }
+
+        return $users;
+    }
 }

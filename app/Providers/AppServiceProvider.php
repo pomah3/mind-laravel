@@ -25,6 +25,9 @@ class AppServiceProvider extends ServiceProvider {
         View::composer(
             'layout.menu', 'App\Http\View\Composers\MenuComposer'
         );
+        View::composer(
+            'layout.banners', 'App\Http\View\Composers\BannersComposer'
+        );
     }
 
     /**

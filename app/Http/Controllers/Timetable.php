@@ -14,6 +14,6 @@ class Timetable extends Controller
 		foreach($days as $day) {
 			$lessons[$day] = Lesson::where("weekday", $day)->where("group", $group)->orderBy("number")->get();
 		}
-   		return view("timetable", ["lessons" => $lessons]);
+   		return view("timetable", ["lessons" => $lessons, "group" => $group]);
    	} 
 }

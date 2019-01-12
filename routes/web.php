@@ -40,3 +40,10 @@ Timetable
 
 Route::get("/timetable", "Timetable@show")
     ->middleware("role:student");
+
+/*
+Groups
+*/
+
+Route::get("/group/{group}", "Group@get")
+    ->middleware("auth");

@@ -40,7 +40,7 @@ class Formatter {
 			"Понедельник" => "Monday",
 			"Вторник" => "Tuesday",
 			"Среда" => "Wednesday",
-			"Четверг" => "Thursday"
+			"Четверг" => "Thursday",
 			"Пятница" => "Friday",
 			"Суббота" => "Saturday",
 			"Воскресенье" => "Sunday"

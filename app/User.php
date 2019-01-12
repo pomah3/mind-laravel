@@ -54,9 +54,6 @@ class User extends Authenticatable
     }
 
     public function add_role(string $role_name, string $role_arg = null) {
-        if ($this->has_role($role_name))
-            return;
-
         $role = new Role;
         $role->user_id = $this->id;
         $role->role = $role_name;

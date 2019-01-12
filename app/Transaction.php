@@ -15,7 +15,7 @@ class Transaction extends Model {
             get();
     }
 
-    public static function balance(User $user) {
+    public static function get_balance(User $user) {
         if ($user->type !== "student")
             return null;
 

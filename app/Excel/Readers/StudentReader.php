@@ -34,6 +34,9 @@ class StudentReader extends RowReader {
 
         $student->save();
 
+        if ($arr["group"] == null || $arr["group"] == "")
+            throw new Exception("Group is empty", 1);
+
         $student->add_role("student", $arr["group"]);
     }
 }

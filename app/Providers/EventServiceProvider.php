@@ -7,6 +7,9 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
+use App\Events\TransactionMade;
+use App\Listeners\SendPointsGotListener;
+
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -17,6 +20,9 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        TransactionMade::class => [
+            SendPointsGotListener::class
         ],
     ];
 

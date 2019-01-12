@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Events\TransactionMade;
+
 class Transaction extends Model {
     public static function of_student(User $user) {
         if ($user->type !== "student")
@@ -17,6 +19,14 @@ class Transaction extends Model {
 
     public function cause() {
         return $this->hasOne(Cause::class);
+    }
+
+    public function get_to_user() {
+        return User::find($this->to_id);
+    }
+
+    public function get_from_user() {
+        return User::find($this->from_id);
     }
 
     public static function get_balance(User $user) {
@@ -35,8 +45,10 @@ class Transaction extends Model {
         $tr->from_id = $from->id;
         $tr->to_id   = $to->id;
         $tr->points  = $points;
-        $tr->cause   = "hz";
+        $tr->cause_id   = 1;
 
         $tr->save();
+
+        event(new TransactionMade($tr));
     }
 }

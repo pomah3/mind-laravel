@@ -14,10 +14,13 @@
             Класс: {{ $user->student()->get_group() }}<br>
         @endif
     </div>
-    <div class="timetable">
-        Расписание
-    </div>
+    <hr>
     <div class="notifications">
-
+        @foreach ($user->notifications as $n)
+            @component($n->data['view'], [
+                "notification" => $n
+            ])
+            @endcomponent
+        @endforeach
     </div>
 @endsection

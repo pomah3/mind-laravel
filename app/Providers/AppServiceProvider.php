@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
-use App\Excel\ReaderProvider;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
+
+use App\Excel\ReaderProvider;
 
 class AppServiceProvider extends ServiceProvider {
     public $singletons = [
@@ -19,6 +21,7 @@ class AppServiceProvider extends ServiceProvider {
      */
     public function boot() {
         Schema::defaultStringLength(191);
+
         View::composer(
             'layout.menu', 'App\Http\View\Composers\MenuComposer'
         );

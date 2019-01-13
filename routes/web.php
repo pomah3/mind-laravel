@@ -17,36 +17,32 @@ Route::get("/out", "Signin@logout")
 Route::get("/setlocale/{locale}", "SetLocale@set")
     ->middleware("auth");
 
-/*
-Points
-*/
+Route::prefix("/points")->group(function() {
+    Route::get("add", "Points@add_index")
+        ->middleware("role:teacher");
 
-Route::get("/points/add", "Points@add_index")
-    ->middleware("role:teacher");
+    Route::post("add", "Points@add")
+        ->middleware("role:teacher");
 
-Route::post("/points/add", "Points@add")
-    ->middleware("role:teacher");
+    Route::get("{student}", "Points@of_student")
+        ->middleware("auth");
 
-Route::get("/points/{student}", "Points@of_student")
-    ->middleware("auth");
-
-Route::get("/points", "Points@mine")
-    ->middleware("role:student");
-
-
-/*
-Timetable
-*/
+    Route::get("", "Points@mine")
+        ->middleware("role:student");
+});
 
 Route::get("/timetable", "Timetable@show")
     ->middleware("role:student");
 
-/*
-Groups
-*/
+Route::prefix("/groups")->group(function() {
+    Route::get("{group}", "Group@get")
+        ->middleware("auth");
 
-Route::get("/group/{group}", "Group@get")
-    ->middleware("auth");
+    Route::get("", "Group@all")
+        ->middleware("auth");
+});
 
-Route::get("/groups", "Group@all")
-    ->middleware("auth");
+Route::prefix("/users")->group(function() {
+    Route::get("{user}", "User@show")
+        ->middleware("auth");
+});

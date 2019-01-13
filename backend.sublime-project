@@ -1,0 +1,23 @@
+{
+	"folders":
+	[
+		{
+			"name": "Mind",
+			"path": ".",
+            "file_exclude_patterns": [
+                "composer.lock",
+                "package-lock.json",
+                "server.php",
+                "artisan",
+                "phpunit.xml",
+            ],
+            "folder_exclude_patterns": [
+                "vendor",
+                "node_modules",
+                "storage",
+                "bootstrap",
+                "excel_files"
+            ]
+		}
+	]
+}

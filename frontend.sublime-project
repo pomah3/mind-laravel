@@ -1,0 +1,28 @@
+{
+    "folders": [
+        {
+            "name": "Blade",
+            "path": "resources/views"
+        },
+        {
+            "name": "JavaScript",
+            "path": "resources/js",
+        },
+        {
+            "name": "CSS",
+            "path": "resources/sass"
+        },
+        {
+            "name": "Mind (Full version)",
+            "path": "."
+        }
+    ],
+    "build_systems": [
+        {
+            "name": "Start",
+            "shell_cmd": "start cmd /c \"start npm run watch & start php artisan serve\"",
+            "encoding": "866",
+            "working_dir": "${project_path}"
+        }
+    ]
+}

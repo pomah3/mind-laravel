@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="/img/favicon.ico">
     <link rel="stylesheet" href="{{ URL::asset("css/app.css") }}">
+    <link rel="stylesheet" href="{{ URL::asset("css/lib.css") }}">
 
 </head>
 <body>

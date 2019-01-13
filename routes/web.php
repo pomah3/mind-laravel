@@ -46,3 +46,9 @@ Route::prefix("/users")->group(function() {
     Route::get("{user}", "User@show")
         ->middleware("auth");
 });
+
+Route::prefix("/question")->middleware("auth")->group(function() {
+    Route::get("show", "Question@show");
+    Route::post("store", "Question@store");
+    Route::post("answer", "Question@answer");
+});

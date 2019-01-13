@@ -1,10 +1,16 @@
 <?php
 
-return [
-    "profile" => "Profile",
-    "points" => [
-        "mine" => "My points",
-        "give" => "Give points"
-    ],
-    "out" => "Logout"
-];
+return array (
+  'profile' => 'Profile',
+  'points' => 
+  array (
+    'mine' => 'My points',
+    'give' => 'Give points',
+    'main' => 'Points',
+    'add' => 'Add points',
+  ),
+  'info' => 'Info',
+  'logout' => 'Logout',
+  'settings' => 'Settings',
+  'timetable' => 'Timetable',
+);

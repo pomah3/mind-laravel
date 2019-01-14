@@ -17,4 +17,19 @@
         @component("question.question", ["question"=>$question])
         @endcomponent
     @endforeach
+
+    @push("scripts")
+        <script>
+            $(".question-remove").click(function() {
+                let id = $(this).attr("question-id");
+                $.ajax({
+                    method: "DELETE",
+                    url: "/questions/" + id,
+                })
+                .done(function() {
+                    $(this).parent().remove();
+                });
+            });
+        </script>
+    @endpush
 @endsection

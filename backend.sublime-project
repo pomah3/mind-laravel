@@ -19,5 +19,20 @@
                 "excel_files"
             ]
 		}
-	]
+	],
+    "build_systems": [
+        {
+            "name": "Start",
+            "shell_cmd": "start php artisan serve",
+            "encoding": "866",
+            "working_dir": "${project_path}"
+        },
+        {
+            "name": "Start watch",
+            "shell_cmd": "start cmd /c \"start npm run watch & start php artisan serve\"",
+            "encoding": "866",
+            "working_dir": "${project_path}"
+        }
+    ]
+
 }

@@ -9,7 +9,7 @@ require('./bootstrap');
 
 Echo.private(`App.User.${userId}`)
     .notification((notification) => {
-        console.log(notification);
+        alert(JSON.stringify(notification));
     });
 
 // window.Vue = require('vue');

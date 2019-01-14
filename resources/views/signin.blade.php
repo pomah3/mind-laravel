@@ -25,7 +25,6 @@
         <input type="submit">
     </form>
 
-
 <i class="fas fa-space-shuttle fa-rotate"></i>
 <i class="fas fa-space-shuttle fa-rotate-90"></i><br>
 <i class="fas fa-space-shuttle fa-rotate-270"></i>

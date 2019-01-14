@@ -46489,7 +46489,7 @@ module.exports = function(module) {
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 Echo.private("App.User.".concat(userId)).notification(function (notification) {
-  console.log(notification);
+  alert(JSON.stringify(notification));
 }); // window.Vue = require('vue');
 // /**
 //  * The following block of code may be used to automatically register your

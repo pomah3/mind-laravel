@@ -46,3 +46,11 @@ Route::prefix("/users")->group(function() {
     Route::get("{user}", "User@show")
         ->middleware("auth");
 });
+
+Route::prefix("/questions")->middleware("auth")->group(function() {
+    Route::get("", "Question@show");
+    Route::post("store", "Question@store");
+    Route::post("answer", "Question@answer");
+    Route::delete("{question}", "Question@delete")
+        ->middleware("can:delete");
+});

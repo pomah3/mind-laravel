@@ -16,6 +16,7 @@
     @yield('body')
 
     <script src="{{ URL::asset("js/app.js") }}"></script>
+    @stack("scripts")
 
 </body>
 </html>

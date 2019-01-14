@@ -17,9 +17,9 @@ class CreateQuestionsTable extends Migration
             $table->increments('id');
 
             $table->integer('asker_id');
-            $table->integer('answerer_id');
             $table->text("question");
 
+            $table->integer('answerer_id')->nullable();
             $table->text("answer")->nullable();
             $table->timestamp("answered_at")->nullable();
 

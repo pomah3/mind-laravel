@@ -21,13 +21,15 @@
     @push("scripts")
         <script>
             $(".question-remove").click(function() {
-                let id = $(this).attr("question-id");
+                let that = this;
+                let id = $(that).attr("question-id");
+
                 $.ajax({
                     method: "DELETE",
                     url: "/questions/" + id,
                 })
                 .done(function() {
-                    $(this).parent().remove();
+                    $(that).parent().remove();
                 });
             });
         </script>

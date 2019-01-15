@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\{Transaction, User, Role};
 use Illuminate\Support\Facades\DB;
 
-class Group extends Controller {
+class GroupController extends Controller {
     public function get($group) {
         $users = User::of_group($group);
 

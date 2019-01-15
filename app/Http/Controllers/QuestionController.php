@@ -5,20 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-use App\Question as Question_m;
+use App\Question;
 
-class Question extends Controller
+class QuestionController extends Controller
 {
     public function show() {
         return view("question.show", [
-            "questions" => Question_m::orderBy("created_at", "desc")->get()
+            "questions" => Question::orderBy("created_at", "desc")->get()
         ]);
     }
 
     public function store(Request $request) {
         $text = $request->question;
 
-        $question = new Question_m;
+        $question = new Question;
         $question->asker_id = Auth::user()->id;
         $question->question = $text;
 

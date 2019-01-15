@@ -46510,6 +46510,12 @@ Echo.private("App.User.".concat(userId)).notification(function (notification) {
 //     el: '#app'
 // });
 
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

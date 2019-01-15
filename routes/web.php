@@ -1,56 +1,56 @@
 <?php
 
-Route::get('/', "Profile@index")
+Route::get('/', "ProfileController@index")
     ->middleware("auth")
     ->name("profile");
 
-Route::get('/signin', "Signin@index")
+Route::get('/signin', "SigninController@index")
     ->middleware("guest")
     ->name("signin");
 
-Route::post("/signin", "Signin@enter")
+Route::post("/signin", "SigninController@enter")
     ->middleware("guest");
 
-Route::get("/out", "Signin@logout")
+Route::get("/out", "SigninController@logout")
     ->middleware("auth");
 
-Route::get("/setlocale/{locale}", "SetLocale@set")
+Route::get("/setlocale/{locale}", "LocaleController@set")
     ->middleware("auth");
 
 Route::prefix("/points")->group(function() {
-    Route::get("add", "Points@add_index")
+    Route::get("add", "PointsController@add_index")
         ->middleware("role:teacher");
 
-    Route::post("add", "Points@add")
+    Route::post("add", "PointsController@add")
         ->middleware("role:teacher");
 
-    Route::get("{student}", "Points@of_student")
+    Route::get("{student}", "PointsController@of_student")
         ->middleware("auth");
 
-    Route::get("", "Points@mine")
+    Route::get("", "PointsController@mine")
         ->middleware("role:student");
 });
 
-Route::get("/timetable", "Timetable@show")
+Route::get("/timetable", "TimetableController@show")
     ->middleware("role:student");
 
 Route::prefix("/groups")->group(function() {
-    Route::get("{group}", "Group@get")
+    Route::get("{group}", "GroupController@get")
         ->middleware("auth");
 
-    Route::get("", "Group@all")
+    Route::get("", "GroupController@all")
         ->middleware("auth");
 });
 
 Route::prefix("/users")->group(function() {
-    Route::get("{user}", "User@show")
+    Route::get("{user}", "UserController@show")
         ->middleware("auth");
 });
 
 Route::prefix("/questions")->middleware("auth")->group(function() {
-    Route::get("", "Question@show");
-    Route::post("store", "Question@store");
-    Route::post("answer", "Question@answer");
-    Route::delete("{question}", "Question@delete")
-        ->middleware("can:delete");
+    Route::get("", "QuestionController@show");
+    Route::post("store", "QuestionController@store");
+    Route::post("answer", "QuestionController@answer");
+    Route::delete("{question}", "QuestionController@delete");
+        // ->middleware("can:delete");
 });

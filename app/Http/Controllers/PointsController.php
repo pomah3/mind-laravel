@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\{Transaction, User};
 use Illuminate\Support\Facades\Auth;
 
-class Points extends Controller {
+class PointsController extends Controller {
     public function of_student(User $student) {
         if ($student->type !== "student")
             abort(404);

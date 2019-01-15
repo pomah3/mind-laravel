@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class Signin extends Controller
+class SigninController extends Controller
 {
     public function index() {
         return view("signin");

@@ -47,6 +47,9 @@
                 })
                 .done(function() {
                     document.location.reload();
+                })
+                .fail(function(err) {
+                    console.log(err);
                 });
             });
         </script>

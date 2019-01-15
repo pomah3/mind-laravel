@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Question;
+use App\Events\QuestionAnswered;
 
 class QuestionController extends Controller
 {
@@ -38,5 +39,7 @@ class QuestionController extends Controller
         $question->answered_at = now();
 
         $question->save();
+
+        event(new QuestionAnswered($question));
     }
 }

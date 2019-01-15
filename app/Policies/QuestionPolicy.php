@@ -10,7 +10,7 @@ class QuestionPolicy
 {
     use HandlesAuthorization;
 
-    public function answer(User $user, Question $question) {
+    public function answer(User $user) {
         return $user->has_role("teacher");
     }
 

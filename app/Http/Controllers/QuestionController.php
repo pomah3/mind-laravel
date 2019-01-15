@@ -31,4 +31,12 @@ class QuestionController extends Controller
         $question->delete();
         return "";
     }
+
+    public function answer(Request $request, Question $question) {
+        $question->answer = $request->answer;
+        $question->answerer_id = Auth::user()->id;
+        $question->answered_at = now();
+
+        $question->save();
+    }
 }

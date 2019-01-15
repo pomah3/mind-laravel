@@ -50,7 +50,8 @@ Route::prefix("/users")->group(function() {
 Route::prefix("/questions")->middleware("auth")->group(function() {
     Route::get("", "QuestionController@show");
     Route::post("store", "QuestionController@store");
-    Route::post("answer", "QuestionController@answer");
-    Route::delete("{question}", "QuestionController@delete");
-        // ->middleware("can:delete");
+    Route::post("answer/{question}", "QuestionController@answer")
+        ->middleware("can:answer,question");
+    Route::delete("{question}", "QuestionController@delete")
+        ->middleware("can:delete,question");
 });

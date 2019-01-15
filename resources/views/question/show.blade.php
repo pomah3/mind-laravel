@@ -32,6 +32,23 @@
                     $(that).parent().remove();
                 });
             });
+            $(".question-answer").click(function() {
+                let that = this;
+
+                let id = $(that).attr("question-id");
+                let answer = $(that).parent().find(".question-answer-text").val();
+
+                $.ajax({
+                    method: "POST",
+                    data: {
+                        answer: answer
+                    },
+                    url: "/questions/answer/" + id,
+                })
+                .done(function() {
+                    document.location.reload();
+                });
+            });
         </script>
     @endpush
 @endsection

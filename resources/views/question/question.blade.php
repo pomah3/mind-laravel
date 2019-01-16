@@ -16,6 +16,6 @@
 
     @can("answer", $question)
         <textarea class="question-answer-text"></textarea>
-        <button class="question-answer" question-id="{{ $question->id }}">{{ __('answer.answer') }}</button>
+        <button class="question-answer" question-id="{{ $question->id }}">{{ __('question.answer') }}</button>
     @endcan
 </div>

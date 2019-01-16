@@ -3,7 +3,7 @@
 @php($user = Auth::user())
 
 @section('title')
-    {{ __('ask.show.title') }}
+    {{ __('question.show.title') }}
 @endsection
 
 @section('content')

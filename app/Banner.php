@@ -11,5 +11,5 @@ class Banner extends Model
         "from_date"
     ];
 
-    protected $guarded = [];
+    protected $guarded = ["img_path"];
 }

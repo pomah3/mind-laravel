@@ -4,7 +4,7 @@
             @foreach ($banners as $banner)
                 <li>
                     <a href="{{ $banner->link }}">
-                        <img src="{{ $banner->img_path }}" alt="{{ $banner->alt }}" class="banner">
+                        <img src="{{ asset("banners/".$banner->img_path) }}" alt="{{ $banner->alt }}" class="banner">
                     </a>
                 </li>
             @endforeach

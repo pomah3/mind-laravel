@@ -40,8 +40,24 @@ class BannerController extends Controller
         $this->authorize('create', Banner::class);
 
         $banner = new Banner;
-        $banner->fill($request->except("_token"));
+        $banner->fill($request->except(["_token", "img"]));
+
+        $ext = $request->file('img')->extension();
+
+        if (!in_array($ext, ["jpg", "png", "gif", "jpeg"]))
+            abort(403);
+
+        $banner->img_path = "";
+
         $banner->save();
+        $banner->refresh();
+
+        $banner->img_path = $banner->id . ".$ext";
+        $banner->save();
+
+        $request->file('img')->storeAs(
+            "banners", $banner->img_path, "public"
+        );
 
         return redirect("/banners");
     }

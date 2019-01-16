@@ -55,3 +55,7 @@ Route::prefix("/questions")->middleware("auth")->group(function() {
     Route::delete("{question}", "QuestionController@delete")
         ->middleware("can:delete,question");
 });
+
+Route::resource("banners", "BannerController")->except([
+    "show"
+]);

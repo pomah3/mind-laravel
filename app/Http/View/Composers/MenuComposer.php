@@ -16,6 +16,7 @@ class MenuComposer {
             ["menu.points.add", "/points/add", "teacher"],
         ],
         ["menu.timetable", '/timetable', "student"],
+        ["menu.questions", '/questions', "all"],
     ];
 
     public function compose(View $view) {

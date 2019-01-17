@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Banner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BannerController extends Controller
 {
@@ -15,7 +16,7 @@ class BannerController extends Controller
     public function index()
     {
         $this->authorize('view', Banner::class);
-        return view("banner.show", ["banners" => Banner::all()]);
+        return view("banner.show", ["banners" => Banner::orderBy("id", "desc")->get()]);
     }
 
     /**
@@ -101,8 +102,10 @@ class BannerController extends Controller
     {
         $this->authorize('delete', Banner::class);
 
+        Storage::disk("public")->delete("banners/".$banner->img_path);
+
         $banner->delete();
 
-        return redirect("/banners");
+        return "";
     }
 }

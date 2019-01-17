@@ -16,4 +16,21 @@
         @endcomponent
     @endforeach
 
+    @push("scripts")
+    <script>
+        $(".banner-delete").click(function() {
+            let that = this;
+            let id = $(that).attr("banner-id");
+
+            $.ajax({
+                method: "DELETE",
+                url: "/banners/" + id,
+            })
+            .done(function() {
+                $(that).parent().remove();
+            });
+        });
+    </script>
+    @endpush
+
 @endsection

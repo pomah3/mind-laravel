@@ -5,10 +5,14 @@
 @endsection
 
 @section("body")
-    @if (isset($status))
-        @alert(["type"=>"danger"])
-            {{ __("signin.status.".$status) }}
-        @endalert
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
     @endif
 
     <form action="" method="POST">

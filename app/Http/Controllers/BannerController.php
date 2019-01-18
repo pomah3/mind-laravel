@@ -39,6 +39,13 @@ class BannerController extends Controller
     public function store(Request $request)
     {
         $this->authorize('create', Banner::class);
+        $request->validate([
+            "link" => "required|url",
+            "alt" => "required",
+            "from_date" => "required|date",
+            "till_date" => "required|date",
+            "img" => "required|image"
+        ]);
 
         $banner = new Banner;
         $banner->fill($request->except(["_token", "img"]));

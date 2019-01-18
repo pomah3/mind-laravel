@@ -22,13 +22,21 @@ class PointsController extends Controller {
     }
 
     public function add_index() {
-        return view("points.add", ["status" => "not_set"]);
+        return view("points.add", [
+            "status" => "not_set",
+            "causes" => Cause::orderBy("points")->get(),
+            "students" => User::where("type", "student")->get()
+        ]);
     }
 
     public function add(Request $request) {
         $student = User::find(intval($request->student_id));
         Transaction::add(Auth::user(), $student, intval($request->points));
 
-        return view("points.add", ["status" => "ok"]);
+        return view("points.add", [
+            "status" => "ok",
+            "causes" => Cause::orderBy("points")->get(),
+            "students" => User::where("type", "student")->get()
+        ]);
     }
 }

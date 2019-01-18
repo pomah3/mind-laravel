@@ -15,9 +15,15 @@ use Illuminate\Foundation\Inspiring;
 
 Artisan::command('mind:init', function () {
     $this->call("migrate:refresh");
+
     $this->call("excel:load", [
         "reader" => "HeadTeacherReader",
         "file" => "excel_files/head_teachers.xlsx"
+    ]);
+
+    $this->call("excel:load", [
+        "reader" => "CauseReader",
+        "file" => "excel_files/causes.xlsx"
     ]);
 
     foreach (scandir("excel_files/students") as $file) {

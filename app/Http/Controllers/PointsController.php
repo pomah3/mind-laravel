@@ -3,8 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\{Transaction, User};
 use Illuminate\Support\Facades\Auth;
+
+use App\{
+    Transaction,
+    User,
+    Cause,
+};
+
+use App\Http\Resources\StudentResource;
 
 class PointsController extends Controller {
     public function of_student(User $student) {
@@ -25,7 +32,7 @@ class PointsController extends Controller {
         return view("points.add", [
             "status" => "not_set",
             "causes" => Cause::orderBy("points")->get(),
-            "students" => User::where("type", "student")->get()
+            "students" => StudentResource::collection(User::where("type", "student")->get())
         ]);
     }
 

@@ -2,20 +2,21 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use App\User;
-use App\transaction;
-use Illuminate\Support\Facades\DB;
+use App\Transaction;
+use App\Http\Resources\{UserResource, StudentResource};
 
 Route::middleware("api_token")->group(function() {
 
     Route::prefix("/users")->group(function() {
         Route::get('', function() {
-            return User::all();
+            return UserResource::collection(User::all());
         });
 
         Route::get('{user}', function (User $user) {
-            return $user;
+            return new UserResource($user);
         });
 
         Route::get("/check/{user}/{password}", function (User $user, $password) {

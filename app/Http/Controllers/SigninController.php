@@ -15,14 +15,10 @@ class SigninController extends Controller
     }
 
     public function enter(Request $request) {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             "login" => "required|integer|min:1|exists:users,id",
             "password" => "required"
         ]);
-
-        if ($validator->fails()) {
-            return view("signin", ["status" => "wrong_password"]);
-        }
 
         $login = $request->login;
         $password = $request->password;
@@ -30,7 +26,7 @@ class SigninController extends Controller
         $user = User::find($login);
 
         if ($user->password !== $password)
-            return view("signin", ["status" => "wrong_password", "login" => $login]);
+            return view("signin");
 
         Auth::login($user);
 

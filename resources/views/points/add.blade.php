@@ -11,6 +11,10 @@
 
     {{ $status }}
 
+    <script>
+        let students = @json($students);
+    </script>
+
     <form action="/points/add" method="POST">
         @csrf
 

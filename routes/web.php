@@ -59,3 +59,8 @@ Route::prefix("/questions")->middleware("auth")->group(function() {
 Route::resource("banners", "BannerController")->except([
     "show"
 ]);
+
+Route::prefix("/settings")->middleware("auth")->group(function() {
+    Route::get("", "SettingsController@index");
+    Route::post("/change_password", "SettingsController@change_password");
+});

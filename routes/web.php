@@ -60,6 +60,8 @@ Route::resource("banners", "BannerController")->except([
     "show"
 ]);
 
+Route::resource("polls", "PollController");
+
 Route::prefix("/settings")->middleware("auth")->group(function() {
     Route::get("", "SettingsController@index");
     Route::post("/change_password", "SettingsController@change_password");

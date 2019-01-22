@@ -13,8 +13,7 @@ class Transaction extends Model {
 
         return Transaction::
             where("to_id", $user->id)->
-            orWhere("from_id", $user->id)->
-            get();
+            orWhere("from_id", $user->id);
     }
 
     public function cause() {
@@ -39,8 +38,8 @@ class Transaction extends Model {
         return $plus - $minus;
     }
 
-    public static function add(User $from, User $to, Cause $cause, int $points=0) {
-        if ($points == 0) {
+    public static function add(User $from, User $to, Cause $cause, int $points=null) {
+        if ($points == null) {
             $points = $cause->points;
         }
 

@@ -24,7 +24,7 @@
                 <td>{{ $tr->points }}</td>
                 <td>@user(["user"=>$tr->get_from_user()])</td>
                 <td>@user(["user"=>$tr->get_to_user()])</td>
-                <td>{{ $tr->cause }}</td>
+                <td>{{ $tr->cause->title }}</td>
             </tr>
         @endforeach
     </table>

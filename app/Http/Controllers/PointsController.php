@@ -20,7 +20,7 @@ class PointsController extends Controller {
 
         return view("points.show", [
             "student" => $student,
-            "transactions" => Transaction::of_student($student)
+            "transactions" => Transaction::of_student($student)->orderBy("created_at", "desc")->get()
         ]);
     }
 
@@ -30,20 +30,22 @@ class PointsController extends Controller {
 
     public function add_index() {
         return view("points.add", [
-            "status" => "not_set",
             "causes" => Cause::orderBy("points")->get(),
             "students" => StudentResource::collection(User::where("type", "student")->get())
         ]);
     }
 
     public function add(Request $request) {
-        $student = User::find(intval($request->student_id));
-        Transaction::add(Auth::user(), $student, intval($request->points));
-
-        return view("points.add", [
-            "status" => "ok",
-            "causes" => Cause::orderBy("points")->get(),
-            "students" => User::where("type", "student")->get()
+        $data = $request->validate([
+            "student_id" => "required|exists:users,id",
+            "cause_id" => "required|exists:causes,id"
         ]);
+
+        $student = User::find($data["student_id"]);
+        $cause   = Cause::find($data["cause_id"]);
+        Transaction::add(Auth::user(), $student, $cause);
+
+        return redirect("/points/add")->with("status", "ok");
     }
 }
+

@@ -6,7 +6,7 @@
     @foreach($users as $user)
         <tr>
             <td>
-                {{ $user->get_name() }}
+                @user(["user" => $user])
             </td>
 
             <td>

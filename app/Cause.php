@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cause extends Model
 {
-    //
+    protected $hidden = [
+        "created_at", "updated_at"
+    ];
 }

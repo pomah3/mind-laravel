@@ -16,6 +16,8 @@ Route::middleware("api_token")->group(function() {
         });
 
         Route::get('{user}', function (User $user) {
+            if ($user->type == "student")
+                return new StudentResource($user);
             return new UserResource($user);
         });
 

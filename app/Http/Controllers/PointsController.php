@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\{
     Transaction,
     User,
-    Cause,
+    Cause
 };
 
 use App\Http\Resources\StudentResource;

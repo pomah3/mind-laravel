@@ -5,15 +5,13 @@
 @endsection
 
 @section('content')
-    @can('create', App\Poll::class)
-        <a href="/polls/create">Создать</a>
-    @endcan
+    <form action="/polls" method="POST">
+        @csrf
 
-    <ul>
-        @foreach ($polls as $poll)
-            <li>
-                <a href="/polls/{{ $poll->id }}">{{ $poll->title }}</a>
-            </li>
-        @endforeach
-    </ul>
+        <input type="text" name="title"   placeholder="title">
+        <input type="text" name="content" placeholder="content">
+        <input type="text" name="variants" placeholder="variants splitted by comma (,)">
+
+        <input type="submit">
+    </form>
 @endsection

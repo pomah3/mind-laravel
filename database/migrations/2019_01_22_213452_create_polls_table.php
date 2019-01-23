@@ -21,7 +21,7 @@ class CreatePollsTable extends Migration
 
             $table->string('title');
             $table->text('content');
-            $table->json('variants');
+            $table->text('variants');
         });
     }
 

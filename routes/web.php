@@ -62,6 +62,10 @@ Route::resource("banners", "BannerController")->except([
 
 Route::resource("polls", "PollController");
 
+Route::prefix("/polls")->group(function() {
+    Route::post("{poll}/vote/{variant_id}", "PollController@vote");
+});
+
 Route::prefix("/settings")->middleware("auth")->group(function() {
     Route::get("", "SettingsController@index");
     Route::post("/change_password", "SettingsController@change_password");

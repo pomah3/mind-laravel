@@ -56,4 +56,12 @@ class PollPolicy
     {
         return true;
     }
+
+    public function vote(User $user, Poll $poll) {
+        return true;
+    }
+
+    public function see_result(User $user, Poll $poll) {
+        return true;
+    }
 }

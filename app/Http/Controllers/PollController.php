@@ -70,6 +70,17 @@ class PollController extends Controller
         return view("poll.show", ["poll" => $poll]);
     }
 
+    public function vote(Poll $poll, $var_id)
+    {
+        $var_id = intval($var_id);
+
+        if (!isset($poll->variants[$var_id]))
+            abort(404);
+
+        $poll->vote(Auth::user(), $var_id);
+        return "";
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

@@ -17,9 +17,13 @@ class PollPolicy
      * @param  \App\Poll  $poll
      * @return mixed
      */
-    public function view(User $user)
+    public function view(User $user, Poll $poll)
     {
         return true;
+    }
+
+    public function view_index(User $user) {
+        return $user->has_role("teacher");
     }
 
     /**
@@ -30,7 +34,7 @@ class PollPolicy
      */
     public function create(User $user)
     {
-        return true;
+        return $user->has_role("teacher");
     }
 
     /**
@@ -42,7 +46,7 @@ class PollPolicy
      */
     public function update(User $user, Poll $poll)
     {
-        return true;
+        return $user->has_role("teacher");
     }
 
     /**
@@ -54,7 +58,7 @@ class PollPolicy
      */
     public function delete(User $user, Poll $poll)
     {
-        return true;
+        return $user->has_role("teacher");
     }
 
     public function vote(User $user, Poll $poll) {

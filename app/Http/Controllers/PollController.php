@@ -16,7 +16,7 @@ class PollController extends Controller
      */
     public function index()
     {
-        $this->authorize('view', Poll::class);
+        $this->authorize('view_index', Poll::class);
         return view("poll.index", ["polls" => Poll::all()]);
     }
 
@@ -72,6 +72,8 @@ class PollController extends Controller
 
     public function vote(Poll $poll, $var_id)
     {
+        $this->authorize("vote", $poll);
+
         $var_id = intval($var_id);
 
         if (!isset($poll->variants[$var_id]))
@@ -89,7 +91,7 @@ class PollController extends Controller
      */
     public function edit(Poll $poll)
     {
-        $this->authorize('update', Poll::class);
+        $this->authorize('update', $poll);
     }
 
     /**
@@ -101,7 +103,7 @@ class PollController extends Controller
      */
     public function update(Request $request, Poll $poll)
     {
-        $this->authorize('update', Poll::class);
+        $this->authorize('update', $poll);
     }
 
     /**
@@ -112,7 +114,9 @@ class PollController extends Controller
      */
     public function destroy(Poll $poll)
     {
-        $this->authorize('delete', Poll::class);
-        //
+        $this->authorize('delete', $poll);
+        $poll->votes()->delete();
+        $poll->delete();
+        return "";
     }
 }

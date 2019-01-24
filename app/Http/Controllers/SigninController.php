@@ -15,18 +15,17 @@ class SigninController extends Controller
     }
 
     public function enter(Request $request) {
-        $request->validate([
-            "login" => "required|integer|min:1|exists:users,id",
+        $data = $request->validate([
+            "login" => "required",
             "password" => "required"
         ]);
 
-        $login = $request->login;
-        $password = $request->password;
+        $user = User::find($data["login"]);
 
-        $user = User::find($login);
-
-        if ($user->password !== $password)
-            return view("signin");
+        if (!$user || $data["password"] !== $user->password)
+            return redirect()->back()
+                             ->withErrors(trans("signin.wrong"))
+                             ->withInput();
 
         Auth::login($user);
 

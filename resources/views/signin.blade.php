@@ -20,7 +20,7 @@
         <input required
             type="text"
             name="login"
-            value="{{ $login ?? "" }}"
+            value="{{ old("login") }}"
         >
         <input required
             type="password"

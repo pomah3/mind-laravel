@@ -20,11 +20,11 @@ class Transaction extends Model {
         return $this->belongsTo(Cause::class);
     }
 
-    public function get_to_user() {
+    public function getToUserAttribute() {
         return User::find($this->to_id);
     }
 
-    public function get_from_user() {
+    public function getFromUserAttribute() {
         return User::find($this->from_id);
     }
 
@@ -38,14 +38,14 @@ class Transaction extends Model {
         return $plus - $minus;
     }
 
-    public static function add(User $from, User $to, Cause $cause, int $points=null) {
+    public static function add(?User $from, User $to, Cause $cause, int $points=null) {
         if ($points == null) {
             $points = $cause->points;
         }
 
         $tr = new Transaction;
 
-        $tr->from_id = $from->id;
+        $tr->from_id = $from ? $from->id : null;
         $tr->to_id   = $to->id;
         $tr->points  = $points;
         $tr->cause_id = $cause->id;

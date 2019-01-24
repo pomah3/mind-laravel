@@ -7,8 +7,9 @@
 @endsection
 
 @section('content')
-    <h1>add points</h1>
-     @if ($errors->any())
+    <h1>give points</h1>
+
+    @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
                 @foreach ($errors->all() as $error)
@@ -26,14 +27,14 @@
 
     <script>
         let students = @json($students);
-        let causes = @json($causes);
     </script>
 
-    <form action="/points/add" method="POST">
+    <form action="/points/give" method="POST">
         @csrf
 
         <select required name="student_id" id="select-student"></select>
-        <select required name="cause_id" id="select-cause"></select>
+        <input required name="points" type="text" placeholder="баллы">
+
         <input type="submit">
 
     </form>
@@ -48,14 +49,6 @@
                 students.forEach(function(student) {
                     $("#select-student").append(
                         `<option value="${student.id}">${student_name(student)}</option>`
-                    );
-                });
-
-                causes.forEach(function(cause) {
-                    let ct = cause.title + ' (' + (cause.points > 0 ? '+' : '') + cause.points + ')';
-
-                    $("#select-cause").append(
-                        `<option value="${cause.id}">${ct}</option>`
                     );
                 });
             })();

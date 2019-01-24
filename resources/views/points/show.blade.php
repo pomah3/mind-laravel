@@ -9,6 +9,8 @@
 @section('content')
     <h1>{{ $student->get_name() }}</h1>
 
+    Баланс: {{ $student->student()->get_balance() }}
+
     <table>
         <tr>
             <th>{{ __("points.show.time") }}</th>
@@ -22,8 +24,12 @@
             <tr>
                 <td>{{ $tr->created_at }}</td>
                 <td>{{ $tr->points }}</td>
-                <td>@user(["user"=>$tr->get_from_user()])</td>
-                <td>@user(["user"=>$tr->get_to_user()])</td>
+                @if ($tr->from_user)
+                    <td>@user(["user"=>$tr->from_user])</td>
+                @else
+                    <td></td>
+                @endif
+                <td>@user(["user"=>$tr->to_user])</td>
                 <td>{{ $tr->cause->title }}</td>
             </tr>
         @endforeach

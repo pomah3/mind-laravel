@@ -24,11 +24,14 @@ Route::prefix("/points")->group(function() {
     Route::post("add", "PointsController@add")
         ->middleware("role:teacher");
 
-    Route::get("{student}", "PointsController@of_student")
-        ->middleware("auth");
-
     Route::get("", "PointsController@mine")
         ->middleware("role:student");
+
+    Route::get("give", "PointsController@give_index");
+    Route::post("give", "PointsController@give");
+
+    Route::get("{student}", "PointsController@of_student")
+        ->middleware("auth");
 });
 
 Route::get("/timetable", "TimetableController@show")

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
+use Illuminate\Http\Resources\Json\Resource;
 use App\Excel\ReaderProvider;
 
 class AppServiceProvider extends ServiceProvider {
@@ -20,6 +21,7 @@ class AppServiceProvider extends ServiceProvider {
      * @return void
      */
     public function boot() {
+        Resource::withoutWrapping();
         Schema::defaultStringLength(191);
 
         Blade::include('layout.user', 'user');

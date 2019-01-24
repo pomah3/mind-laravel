@@ -28,6 +28,8 @@ class SendPointsGotListener
      */
     public function handle(TransactionMade $event)
     {
-        $event->transaction->get_to_user()->notify(new PointsGot($event->transaction));
+        if ($event->transaction->title=="Передача баллов" && $event->transaction->points < 0)
+            return;
+        $event->transaction->to_user->notify(new PointsGot($event->transaction));
     }
 }

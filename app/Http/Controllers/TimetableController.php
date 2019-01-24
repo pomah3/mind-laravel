@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Lesson;
 use Illuminate\Http\Request;
 
-class Timetable extends Controller
+class TimetableController extends Controller
 {
     public function show(Request $request) {
         $group = $request->user()->student()->get_group();

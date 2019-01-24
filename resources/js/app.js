@@ -9,7 +9,7 @@ require('./bootstrap');
 
 Echo.private(`App.User.${userId}`)
     .notification((notification) => {
-        console.log(notification);
+        alert(JSON.stringify(notification));
     });
 
 // window.Vue = require('vue');
@@ -36,3 +36,9 @@ Echo.private(`App.User.${userId}`)
 // const app = new Vue({
 //     el: '#app'
 // });
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});

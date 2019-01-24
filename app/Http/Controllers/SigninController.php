@@ -6,24 +6,26 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
-class Signin extends Controller
+class SigninController extends Controller
 {
     public function index() {
         return view("signin");
     }
 
     public function enter(Request $request) {
-        $login = intval($request->login);
-        $password = $request->password;
+        $data = $request->validate([
+            "login" => "required",
+            "password" => "required"
+        ]);
 
-        $user = User::find($login);
+        $user = User::find($data["login"]);
 
-        if ($user === null)
-            return view("signin", ["status" => "no_user", "login" => $login]);
-
-        if ($user->password !== $password)
-            return view("signin", ["status" => "wrong_password", "login" => $login]);
+        if (!$user || $data["password"] !== $user->password)
+            return redirect()->back()
+                             ->withErrors(trans("signin.wrong"))
+                             ->withInput();
 
         Auth::login($user);
 

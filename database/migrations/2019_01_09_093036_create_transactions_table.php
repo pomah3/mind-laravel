@@ -16,7 +16,7 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('from_id');
+            $table->integer('from_id')->nullable();
             $table->integer('to_id');
             $table->integer('points');
             $table->integer('cause_id');

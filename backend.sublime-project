@@ -1,0 +1,38 @@
+{
+	"folders":
+	[
+		{
+			"name": "Mind",
+			"path": ".",
+            "file_exclude_patterns": [
+                "composer.lock",
+                "package-lock.json",
+                "server.php",
+                "artisan",
+                "phpunit.xml",
+            ],
+            "folder_exclude_patterns": [
+                "vendor",
+                "node_modules",
+                "storage",
+                "bootstrap",
+                "excel_files"
+            ]
+		}
+	],
+    "build_systems": [
+        {
+            "name": "Start",
+            "shell_cmd": "start php artisan serve",
+            "encoding": "866",
+            "working_dir": "${project_path}"
+        },
+        {
+            "name": "Start watch",
+            "shell_cmd": "start cmd /c \"start npm run watch & start php artisan serve\"",
+            "encoding": "866",
+            "working_dir": "${project_path}"
+        }
+    ]
+
+}

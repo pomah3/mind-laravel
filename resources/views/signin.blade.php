@@ -5,10 +5,14 @@
 @endsection
 
 @section("body")
-    @if (isset($status))
-        @alert(["type"=>"danger"])
-            {{ __("signin.status.".$status) }}
-        @endalert
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
     @endif
 
     <form action="" method="POST">
@@ -16,7 +20,7 @@
         <input required
             type="text"
             name="login"
-            value="{{ $login ?? "" }}"
+            value="{{ old("login") }}"
         >
         <input required
             type="password"
@@ -24,5 +28,11 @@
         >
         <input type="submit">
     </form>
+
+<i class="fas fa-space-shuttle fa-rotate"></i>
+<i class="fas fa-space-shuttle fa-rotate-90"></i><br>
+<i class="fas fa-space-shuttle fa-rotate-270"></i>
+<i class="fas fa-space-shuttle fa-rotate-180"></i>
+
 
 @endsection

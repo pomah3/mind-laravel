@@ -11,6 +11,8 @@ class Event extends Model
         "from_date"
     ];
 
+    protected $guarded = [];
+
     public function author() {
         return $this->belongsTo(User::class, "author_id");
     }

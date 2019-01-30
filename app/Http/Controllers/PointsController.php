@@ -41,7 +41,11 @@ class PointsController extends Controller {
     public function add_index() {
         return view("points.add", [
             "causes" => Cause::orderBy("points")->get(),
-            "students" => StudentResource::collection(User::where("type", "student")->get())
+             "students" => StudentResource::collection(
+                User::where("type", "student")
+                ->get()
+                ->sort(\App\Utils::get_student_cmp())
+            )
         ]);
     }
 
@@ -60,7 +64,11 @@ class PointsController extends Controller {
 
     public function give_index() {
         return view("points.give", [
-            "students" => StudentResource::collection(User::where("type", "student")->get())
+            "students" => StudentResource::collection(
+                User::where("type", "student")
+                ->get()
+                ->sort(\App\Utils::get_student_cmp())
+            )
         ]);
     }
 

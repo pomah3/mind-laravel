@@ -29,10 +29,11 @@ class GroupController extends Controller {
             ->where('role', 'student')
             ->groupBy('role_arg')
             ->orderBy('role_arg')
-            ->get();
+            ->get()
+            ->map(function($a) {return $a->role_arg;})
+            ->sort(\App\Utils::get_group_cmp());
 
         foreach ($groups as $group) {
-            $group = $group->role_arg;
 
             $users = User::of_group($group);
             $balance = 0;

@@ -54,7 +54,7 @@ class DocumentController extends Controller
         $doc = new Document;
 
         $doc->title = $data["title"];
-        $doc->access = $data["access"];
+        $doc->access = json_decode($data["access"]);
         $doc->link = "";
         $doc->author_id = Auth::user()->id;
 
@@ -74,17 +74,6 @@ class DocumentController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Document  $document
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Document $document)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Document  $document
@@ -92,7 +81,10 @@ class DocumentController extends Controller
      */
     public function edit(Document $document)
     {
-        //
+        $this->authorize("update", $document);
+        return view("document.edit", [
+            "document" => $document
+        ]);
     }
 
     /**
@@ -104,7 +96,18 @@ class DocumentController extends Controller
      */
     public function update(Request $request, Document $document)
     {
-        //
+        $this->authorize("update", $document);
+
+        $data = $request->validate([
+            "title" => "required",
+            "access" => "required|json",
+        ]);
+
+        $document->title = $data["title"];
+        $document->access = json_decode($data["title"]);
+        $document->save();
+
+        return redirect("/documents");
     }
 
     /**
@@ -115,6 +118,8 @@ class DocumentController extends Controller
      */
     public function destroy(Document $document)
     {
-        //
+        $this->authorize("delete", $document);
+        $document->delete();
+        return "";
     }
 }

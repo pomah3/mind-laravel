@@ -65,6 +65,7 @@ Route::resource("banners", "BannerController")->except([
 
 Route::resource("polls", "PollController");
 Route::resource("events", "EventController");
+Route::resource("documents", "DocumentController");
 
 Route::prefix("/polls")->group(function() {
     Route::post("{poll}/vote/{variant_id}", "PollController@vote");

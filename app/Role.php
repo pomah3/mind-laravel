@@ -16,6 +16,9 @@ class Role extends Model {
             return $user !== null && $user->has_role($complex_role);
 
         if (is_array($complex_role)) {
+            if (count($complex_role) == 1)
+                return static::has_complex_role($user, $complex_role[0]);
+
             if ($complex_role[0] === "not")
                 return !static::has_complex_role($user, $complex_role[1]);
 

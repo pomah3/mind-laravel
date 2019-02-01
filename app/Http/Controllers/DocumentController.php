@@ -6,6 +6,7 @@ use App\Document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class DocumentController extends Controller
 {
@@ -82,7 +83,7 @@ class DocumentController extends Controller
     public function edit(Document $document)
     {
         $this->authorize("update", $document);
-        return view("document.edit", [
+            return view("document.edit", [
             "document" => $document
         ]);
     }
@@ -104,9 +105,8 @@ class DocumentController extends Controller
         ]);
 
         $document->title = $data["title"];
-        $document->access = json_decode($data["title"]);
+        $document->access = json_decode($data["access"]);
         $document->save();
-
         return redirect("/documents");
     }
 
@@ -119,6 +119,9 @@ class DocumentController extends Controller
     public function destroy(Document $document)
     {
         $this->authorize("delete", $document);
+
+        Storage::disk("public")->delete("documents/" . $document->link);
+
         $document->delete();
         return "";
     }

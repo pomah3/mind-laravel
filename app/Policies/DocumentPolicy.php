@@ -20,7 +20,7 @@ class DocumentPolicy
      */
     public function view(User $user, Document $document)
     {
-        return Role::has_complex_role($user, $document->access);
+        return $user->id == $document->author_id || Role::has_complex_role($user, $document->access);
     }
 
     /**
@@ -43,7 +43,7 @@ class DocumentPolicy
      */
     public function update(User $user, Document $document)
     {
-        return false;
+        return $document->author_id == $user->id;
     }
 
     /**

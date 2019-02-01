@@ -14,7 +14,7 @@
     <ul>
         @foreach ($documents as $document)
             <li>
-                <a href="{{asset("storage/documents/".$document->link)}}">
+                <a href="/documents/{{ $document->id }}">
                     {{ $document->title }}
                 </a>
                 @can('update', $document)

@@ -22,7 +22,7 @@ abstract class Reader {
 
 				if ($cell === null)
 					return "";
-				
+
 				return $cell->getValue() ?? "";
 			}
 
@@ -39,9 +39,13 @@ abstract class Reader {
 	public static function load_assoc(string $file_name): array {
 		$assoc = static::process(static::get_get($file_name));
 		return $assoc;
-	} 
+	}
 
 	abstract protected static function handle(\Closure $get);
 	abstract protected static function process(\Closure $get): array;
 	abstract public static function get_name(): string;
+
+    public function get_value() {
+        return (new \ReflectionClass($this))->getShortName();
+    }
 }

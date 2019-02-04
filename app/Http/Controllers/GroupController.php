@@ -34,8 +34,7 @@ class GroupController extends Controller {
             ->sort(\App\Utils::get_group_cmp());
 
         foreach ($groups as $group) {
-
-            $users = User::of_group($group);
+            $users = collect(User::of_group($group))->sort(\App\Utils::get_student_cmp());
             $balance = 0;
             foreach($users as $user) {
                 $balance += $user->student()->get_balance();

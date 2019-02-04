@@ -38,5 +38,10 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define("view-data", function(User $user) {
             return $user->has_role("teacher");
         });
+
+        Gate::before(function ($user, $ability) {
+            if ($user->has_role("admin"))
+                return true;
+        });
     }
 }

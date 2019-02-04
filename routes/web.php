@@ -48,6 +48,7 @@ Route::prefix("/groups")->group(function() {
 Route::prefix("/users")->group(function() {
     Route::get("{user}", "UserController@show")
         ->middleware("auth");
+    Route::get("", "UserController@index");
 });
 
 Route::prefix("/questions")->middleware("auth")->group(function() {

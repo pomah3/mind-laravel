@@ -12,4 +12,8 @@ class UserPolicy
     public function view_password(User $user, User $user1) {
         return $user->has_role("teacher");
     }
+
+    public function view(User $user) {
+        return $user->has_role("admin");
+    }
 }

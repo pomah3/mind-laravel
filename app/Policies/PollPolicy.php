@@ -22,10 +22,6 @@ class PollPolicy
         return true;
     }
 
-    public function view_index(User $user) {
-        return $user->has_role("teacher");
-    }
-
     /**
      * Determine whether the user can create polls.
      *

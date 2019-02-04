@@ -15,8 +15,15 @@ class MenuComposer {
             ["menu.points.give", "/points/give", "student"],
             ["menu.points.add", "/points/add", "teacher"],
         ],
+        ["menu.groups", "/groups", "all"],
+        ["menu.users", "/users", "admin"],
+        ["menu.banners", "/banners", "teacher"],
+        ["menu.polls", "/polls", "all"],
+        ["menu.events", "/events", "all"],
+        ["menu.data", "/data", "admin"],
         ["menu.timetable", '/timetable', "student"],
         ["menu.questions", '/questions', "all"],
+        ["menu.documents", "/documents", "all"],
     ];
 
     public function compose(View $view) {

@@ -16,8 +16,12 @@ class PollController extends Controller
      */
     public function index()
     {
-        $this->authorize('view_index', Poll::class);
-        return view("poll.index", ["polls" => Poll::all()]);
+        // $this->authorize('view_index', Poll::class);
+        return view("poll.index", [
+            "polls" => Poll::all()->filter(function($poll) {
+                return Auth::user()->can("view", $poll);
+            })
+        ]);
     }
 
     /**

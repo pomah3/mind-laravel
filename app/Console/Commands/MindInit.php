@@ -29,7 +29,7 @@ class MindInit extends Command
     {
         $pass = $this->argument("admin password");
 
-        $this->call("migrate:refresh");
+        $this->call("migrate:fresh");
 
         $admin = new User;
         $admin->given_name = "Admin";

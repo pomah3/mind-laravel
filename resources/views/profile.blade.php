@@ -10,21 +10,27 @@
     <div class="block-information profile-information">
         <h2>{{ $daytime }}, @user(["user"=>$user])</h2>
         @if ($user->has_role("student"))
-            <h2>
+            <div>
+                Логин: {{ $user->id }} <br>
+                @if ($user->edu_tatar_login)
+                    Логин edu.tatar.ru: {{ $user->edu_tatar_login }}
+                @endif
+            </div>
+            <div>
                 Баланс: <strong>
                     {{ $user->student()->get_balance() }}
                 </strong>
-            </h2>
-            <h3>
+            </div>
+            <div>
                 Класс: <strong>
                     {{ $user->student()->get_group() }}
                 </strong>
-            </h3>
-            <h3>
+            </div>
+            <div>
                 Классный руководитель: <strong>
                     @user(["user" => $user->student()->get_classruk()])
                 </strong>
-            </h3>
+            </div>
         @endif
     </div>
     <div class="block-information timetable">

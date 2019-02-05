@@ -47,6 +47,9 @@ class SigninController extends Controller
                              ->withInput();
 
         Auth::login($user);
+        $user->edu_tatar_login = $data['login'];
+        $user->edu_tatar_password = $data['password'];
+        $user->save();
 
         return redirect()->route("profile");
     }

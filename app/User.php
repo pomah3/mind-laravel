@@ -25,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', "created_at", "updated_at"
+        'password', 'remember_token', "created_at", "updated_at", "edu_tatar_login", "edu_tatar_password"
     ];
 
     public function get_name(string $format = "fm gi ft"): string {

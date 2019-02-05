@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 use App\User;
+use App\EduTatarAuth;
 use App\Transaction;
 use App\Http\Resources\{UserResource, StudentResource};
 
@@ -21,7 +22,16 @@ Route::middleware("api_token")->group(function() {
             return new UserResource($user);
         });
 
-        Route::get("/check/{user}/{password}", function (User $user, $password) {
+        Route::get("check/edu/{login}/{password}", function ($login, $password) {
+            $user = (new EduTatarAuth)->login($login, $password);
+
+            if (!$user)
+                return ["error" => "not"]; //todo
+
+            return new UserResource($user);
+        });
+
+        Route::get("check/{user}/{password}", function (User $user, $password) {
             return [
                 "data" => $user->password == $password
             ];

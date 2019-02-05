@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\EduTatarAuth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +24,24 @@ class SigninController extends Controller
         $user = User::find($data["login"]);
 
         if (!$user || $data["password"] !== $user->password)
+            return redirect()->back()
+                             ->withErrors(trans("signin.wrong"))
+                             ->withInput();
+
+        Auth::login($user);
+
+        return redirect()->route("profile");
+    }
+
+    public function eduEnter(Request $request) {
+        $data = $request->validate([
+            "login" => "required",
+            "password" => "required"
+        ]);
+
+        $user = (new EduTatarAuth)->login($data['login'], $data['password']);
+
+        if (!$user)
             return redirect()->back()
                              ->withErrors(trans("signin.wrong"))
                              ->withInput();

@@ -15,7 +15,22 @@
         </div>
     @endif
 
-    <form action="" method="POST">
+    <form action="/signin" method="POST">
+        @csrf
+        <input required
+            type="text"
+            name="login"
+            value="{{ old("login") }}"
+        >
+        <input required
+            type="password"
+            name="password"
+        >
+        <input type="submit">
+    </form>
+
+    <h1>Via edu tatar:</h1>
+    <form action="/signin/edu" method="POST">
         @csrf
         <input required
             type="text"

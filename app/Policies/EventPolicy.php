@@ -30,7 +30,7 @@ class EventPolicy
      */
     public function create(User $user)
     {
-        return true;
+        return $user->has_role("teacher");
     }
 
     /**

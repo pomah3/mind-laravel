@@ -39,8 +39,10 @@ class UserResource extends JsonResource
             ];
         }
 
-        if ($this->type == "student")
+        if ($this->type == "student") {
             $arr["group"] = $this->roles->where("role", "student")->first()->role_arg;
+            $arr["points"] = User::find($this->id)->student()->get_balance();
+        }
 
         return $arr;
     }

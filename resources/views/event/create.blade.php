@@ -25,8 +25,36 @@
         <input type="date" name="from_date"> <br>
         <input type="date" name="till_date"> <br>
 
+        <div class="users-block">
+            <div>
+                <input type="text" name="users[]">
+                <span class="delete-user">&times;</span>
+            </div>
+        </div>
+
+        <div class="add-user">add</div>
+
         <input type="submit">
 
     </form>
+
+    @push('scripts')
+        <script>
+            $(".add-user").click(function() {
+                $(".users-block").append(
+                    `<div>
+                        <input type="text" name="users[]">
+                        <span class="delete-user">&times;</span>
+                    </div>`
+                );
+                $(".delete-user").click(function() {
+                    $(this).parent().remove();
+                });
+            });
+            $(".delete-user").click(function() {
+                $(this).parent().remove();
+            });
+        </script>
+    @endpush
 
 @endsection

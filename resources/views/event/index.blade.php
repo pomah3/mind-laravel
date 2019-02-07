@@ -14,9 +14,10 @@
     @foreach ($events as $event)
         <div class="event">
             <h1>{{ $event->title }}</h1>
+            <button class="event-remove" event-id="{{ $event->id }}">remove</button>
             author: @user(["user" => $event->author]) <br>
-            from_date: {{ $event->from_date }}
-            till_date: {{ $event->till_date }}
+            from_date: {{ $event->from_date }} <br>
+            till_date: {{ $event->till_date }} <br>
             <div class="event-description">
                 {{ $event->description }}
             </div>
@@ -31,5 +32,20 @@
 
         </div>
     @endforeach
+
+    @push('scripts')
+        <script>
+            $(".event-remove").click(function() {
+                let that = this;
+                let id = $(that).attr("event-id");
+                $.ajax({
+                    "method": "DELETE",
+                    "url": "/events/" + id
+                }).done(function() {
+                    $(that).parent().remove();
+                })
+            })
+        </script>
+    @endpush
 
 @endsection

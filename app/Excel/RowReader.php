@@ -2,39 +2,42 @@
 
 namespace App\Excel;
 
+use \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use \PhpOffice\PhpSpreadsheet\Cell\Coordinate;
+
 abstract class RowReader extends Reader {
-	abstract public static function getColumns(): array;
-	abstract public static function register(array $arr): void;
+    abstract public function getColumns(): array;
 
-	public static function handle(\Closure $f) {
-		foreach (static::process($f) as $arr) {
-			static::register($arr);
-		}
-	}
+    public function read(Worksheet $sheet): array {
+        $arr = [];
 
-	public static function process(\Closure $f): array {
-		$i = 1;
+        $last_row = $sheet->getHighestRow();
+        $last_row = intval($last_row);
 
-		$arr = [];
 
-		while($f(0, $i) != "") {
-			$obj = [];
+        for ($i=2; $i <= $last_row; $i++) {
+            $obj = [];
+            $j = 1;
 
-			$j = 0;
-			foreach (static::getColumns() as $column) {
-				$val = $f($j, $i);
+            if (($sheet->getCellByColumnAndRow($j, $i)->getValue() ?? "") == "")
+                break;
 
-				if (isset($column[1]))
-					$val = call_user_func(Formatter::class."::".$column[1], $val);
+            foreach ($this->getColumns() as $column) {
+                $column = explode(":", $column);
 
-				$obj[$column[0]] = $val;
-				$j++;
-			}
+                $val = $sheet->getCellByColumnAndRow($j, $i)->getValue();
+                $val = $val ?? "";
 
-			$arr[] = $obj;
-			$i++;
-		}
+                if (isset($column[1]))
+                    $val = call_user_func(Formatter::class."::".$column[1], $val);
 
-		return $arr;
-	}
+                $obj[$column[0]] = $val;
+                $j++;
+            }
+
+            $arr[] = $obj;
+        }
+
+        return $arr;
+    }
 }

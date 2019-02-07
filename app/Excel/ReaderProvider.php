@@ -2,7 +2,7 @@
 
 namespace App\Excel;
 
-class ReaderProvider implements ReaderProviderInterface {
+class ReaderProvider {
 	const READER_NAMESPACE = 'App\Excel\Readers';
 	const READER_PATH = __DIR__.'/Readers';
 

@@ -38,6 +38,19 @@ Route::middleware("api_token")->group(function() {
         });
     });
 
+    Route::prefix("students")->group(function() {
+        Route::get("", function() {
+            return StudentResource::collection(User::where("type", "student")->get());
+        });
+
+        Route::get("{user}", function(User $user) {
+            if ($user->type != "student")
+                return response()->json(['error'=>"no student"], 404);
+            return new StudentResource($user);
+        });
+    });
+
+
     Route::prefix("/transactions")->group(function() {
         Route::get('', function() {
             return Transaction::all();

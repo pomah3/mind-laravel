@@ -22,6 +22,8 @@ class UserResource extends JsonResource
     {
         $arr = parent::toArray($request);
 
+        $arr["id"] = (string)$arr["id"];
+
         foreach ($this->except as $key) {
             unset($arr[$key]);
         }
@@ -35,6 +37,11 @@ class UserResource extends JsonResource
                 "role" => $role->role,
                 "role_arg" => $role->role_arg
             ];
+        }
+
+        if ($this->type == "student") {
+            $arr["group"] = $this->roles->where("role", "student")->first()->role_arg;
+            $arr["points"] = User::find($this->id)->student()->get_balance();
         }
 
         return $arr;

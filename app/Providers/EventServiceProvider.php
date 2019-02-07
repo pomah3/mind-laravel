@@ -7,8 +7,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
-use App\Events\{TransactionMade, QuestionAnswered};
-use App\Listeners\{SendPointsGotListener, SendQuestionAnsweredListener};
+use App\Events\{TransactionMade, QuestionAnswered, EventMade};
+use App\Listeners\{SendPointsGotListener, SendQuestionAnsweredListener, SendEventMadeListener};
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -26,6 +26,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         QuestionAnswered::class => [
             SendQuestionAnsweredListener::class
+        ],
+        EventMade::class => [
+            SendEventMadeListener::class
         ]
     ];
 

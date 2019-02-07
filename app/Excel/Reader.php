@@ -1,51 +1,25 @@
 <?php
 namespace App\Excel;
 
-use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
+// use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
+use \PhpOffice\PhpSpreadsheet\IOFactory;
+use \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 abstract class Reader {
-	private static function get_get(string $file_name): \Closure {
-		$x = \PhpOffice\PhpSpreadsheet\IOFactory::load($file_name);
+    public function load(string $file_name): void {
+        $spreadsheet = IOFactory::load($file_name);
+        $sheet = $spreadsheet->getSheet(0);
 
-		$x->setActiveSheetIndex(0);
-		$sheet = $x->getActiveSheet();
+        foreach ($this->read($sheet) as $item) {
+            $this->save($item);
+        }
+    }
 
-		$get = function(int $x, int $y) use ($sheet): string {
-			$cell = $sheet->getCellByColumnAndRow($x+1, $y+1);
+    abstract public function read(Worksheet $w): array;
+    abstract public function save(array $w): void;
 
-			if (!$cell)
-				return "";
-
-			if ($range = $cell->getMergeRange()) {
-				$range = Coordinate::splitRange($range)[0][0];
-				$cell = $sheet->getCell($range);
-
-				if ($cell === null)
-					return "";
-
-				return $cell->getValue() ?? "";
-			}
-
-			return $cell->getValue() ?? "";
-		};
-
-		return $get;
-	}
-
-	public static function load(string $file_name): void {
-		static::handle(static::get_get($file_name));
-	}
-
-	public static function load_assoc(string $file_name): array {
-		$assoc = static::process(static::get_get($file_name));
-		return $assoc;
-	}
-
-	abstract protected static function handle(\Closure $get);
-	abstract protected static function process(\Closure $get): array;
-	abstract public static function get_name(): string;
-
-    public function get_value() {
+    abstract public function get_title(): string;
+    public function get_name() {
         return (new \ReflectionClass($this))->getShortName();
     }
 }

@@ -7,10 +7,12 @@
 
 require('./bootstrap');
 
-Echo.private(`App.User.${userId}`)
-    .notification((notification) => {
-        alert(JSON.stringify(notification));
-    });
+if (userId) {
+    Echo.private(`App.User.${userId}`)
+        .notification((notification) => {
+            alert(JSON.stringify(notification));
+        });
+}
 
 // window.Vue = require('vue');
 

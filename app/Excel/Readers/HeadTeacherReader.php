@@ -8,21 +8,21 @@ use App\Role;
 use Illuminate\Support\Facades\Hash;
 
 class HeadTeacherReader extends RowReader {
-    public static function get_name(): string {
+    public function get_title(): string {
         return "Классные руководители";
     }
 
-    public static function getColumns(): array {
+    public function getColumns(): array {
         return [
-            ["num"],
-            ["family_name", "name"],
-            ["given_name", "name"],
-            ["father_name", "name"],
-            ["group", "group"]
+            "num",
+            "family_name:name",
+            "given_name:name",
+            "father_name:name",
+            "group:group"
         ];
     }
 
-    public static function register(array $arr): void {
+    public function save(array $arr): void {
         $teacher = new User;
 
         $teacher->given_name = $arr["given_name"];
@@ -30,7 +30,7 @@ class HeadTeacherReader extends RowReader {
         $teacher->father_name = $arr["father_name"];
 
         $teacher->type = "teacher";
-        $teacher->password = "123456789";
+        $teacher->password = str_random(10);
         $teacher->save();
 
         $teacher->add_role("classruk", $arr["group"]);

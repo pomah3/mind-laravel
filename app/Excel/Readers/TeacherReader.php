@@ -7,20 +7,20 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 
 class TeacherReader extends RowReader {
-    public static function get_name(): string {
+    public function get_title(): string {
         return "Учителя";
     }
 
-    public static function getColumns(): array {
+    public function getColumns(): array {
         return [
-            ["num"],
-            ["family_name", "name"],
-            ["given_name", "name"],
-            ["father_name", "name"],
+            "num",
+            "family_name:name",
+            "given_name:name",
+            "father_name:name",
         ];
     }
 
-    public static function register(array $arr): void {
+    public function save(array $arr): void {
         $teacher = new User;
 
         $teacher->given_name = $arr["given_name"];
@@ -29,7 +29,7 @@ class TeacherReader extends RowReader {
 
         $teacher->type = "teacher";
 
-        $teacher->password = "123456789";
+        $teacher->password = str_random(10);
 
         $teacher->save();
     }

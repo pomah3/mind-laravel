@@ -44,7 +44,8 @@ class LoadExcel extends Command {
 		}
 
 		$reader = $readers->get_reader($reader);
-		$reader->load($file);
+		$this->info("Loading file " . $file);
+        $reader->load($file);
 		$this->info("Successful!");
 	}
 }

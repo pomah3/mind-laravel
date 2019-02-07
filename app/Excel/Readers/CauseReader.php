@@ -6,19 +6,17 @@ use App\Excel\RowReader;
 use App\{Cause};
 
 class CauseReader extends RowReader {
-    public static function get_name(): string {
+    public function get_title(): string {
         return "Причины начисления баллов";
     }
 
-    public static function getColumns(): array {
+    public function getColumns(): array {
         return [
-            ["num"],
-            ["title", "string"],
-            ["points", "int"],
+            "num", "title:string", "points:int"
         ];
     }
 
-    public static function register(array $arr): void {
+    public function save(array $arr): void {
         $cause = new Cause;
 
         $cause->title = $arr["title"];

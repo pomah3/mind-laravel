@@ -28,7 +28,7 @@
 
         <select name="data-type" value="{{ old("data-type") }}">
             @foreach ($readers as $reader)
-                <option value="{{ $reader->get_value() }}">{{ $reader->get_name() }}</option>
+                <option value="{{ $reader->get_name() }}">{{ $reader->get_title() }}</option>
             @endforeach
         </select>
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Events\EventMade;
 
 class EventController extends Controller
 {
@@ -53,6 +54,8 @@ class EventController extends Controller
         foreach ($data["users"] as $user_id) {
             $event->users()->attach($user_id);
         }
+
+        event(new EventMade($event));
 
         return redirect("/events");
     }

@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     <link rel="stylesheet" href="{{ URL::asset("css/lib.css") }}">
     <link rel="stylesheet" href="{{ URL::asset("css/app.css") }}">
-
+     <script>window.userId = null</script>
 </head>
 <body>
 

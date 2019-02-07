@@ -8,7 +8,7 @@ use \PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 abstract class RowReader extends Reader {
     abstract public function getColumns(): array;
 
-    public function read($sheet): array {
+    public function read(Worksheet $sheet): array {
         $arr = [];
 
         $last_row = $sheet->getHighestRow();

@@ -15,13 +15,11 @@
 
     <div class="signin-card">
         @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
+            <h5 class="mb2">
+                @foreach ($errors->all() as $error)
+                    {{ $error }}
+                @endforeach
+            </h5>
         @endif
 
         <form action="/signin" method="POST">

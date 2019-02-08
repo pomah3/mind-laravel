@@ -7,6 +7,7 @@
 }
 body {
 	background: $light-blue;
+	font-family: 'Open Sans', arial;
 }
 li.not-list-style { 
 	list-style: none; 
@@ -23,6 +24,12 @@ h2 {
 h3 {
 	font-size: 1.17em;
 	font-weight: normal;
+}
+.container-points h2 {
+	margin-bottom: 15px;
+}
+.container-points h3 {
+	margin-bottom: 10px;
 }
 /* containers */
 .container-menu,
@@ -266,6 +273,17 @@ ul.dropdown-menu li:hover {
 .submit:hover {
 	background: #77a5f8;
 }
+.big-submit {
+	font-size: 20px;
+}
+.sm-submit {
+	margin: 0;
+	font-size: 14px;
+}
+.points-submit {
+	margin-left: 10px;
+	margin-top: -10px;
+}
 /* loader */
 .loader :first-child {
 	background:rgb(0, 75, 126);
@@ -441,4 +459,51 @@ tr.lesson-now {
 }
 .day .bad-points {
 	color: red;
+}
+/* формы */
+.form-control {
+	display: block;
+	width: 100%;
+	height: 34px;
+	padding: 6px 12px;
+	margin-bottom: 20px;
+	font-size: 14px;
+	color: #555555;
+	background-color: #ffffff;
+	background-image: none;
+	border-radius: 0;
+	border: 1px solid rgb(169, 169, 169);;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.sm-form-control {
+	margin: 0;
+	margin-bottom: 10px;
+	padding: 3px 6px;
+	height: 28px;
+}
+input[type="file"].form-control {
+	background-color: #CCDFEC;
+	padding: 0;
+	margin-bottom: 10px;
+}
+textarea.form-control {
+	resize: vertical;
+	min-height: 40px;
+}
+.form {
+	flex-basis: 60%;
+	width: 60%;
+}
+.form-50 {
+	flex-basis: 50%;
+	width: 50%;
+}
+.form-40 {
+	flex-basis: 40%;
+	margin-right: 10%;
+	width: 40%;
+}
+.form-40-marg-all {
+	margin-right: 60%;
+	margin-bottom: 20px;
 }

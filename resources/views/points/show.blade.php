@@ -9,6 +9,7 @@
 @section('content')
     <div class="container container-points">
         <h2>Баланс: <strong>{{ $student->student()->get_balance() }}</strong> баллов</h2>
+        
         @foreach ($transactions as $tr)
             <div class="day">
                 <h3 class="date">

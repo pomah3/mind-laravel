@@ -407,3 +407,38 @@ tr.lesson-now {
 .notifications .bad-points {
 	color: #EF1919;
 }
+/* points page */
+.day .transaction {
+	padding: 10px;
+	margin-right: 15px;
+	width: 50%;
+	margin-bottom: 20px;
+	background: #B3C8E6;
+	border-radius: 5px;
+	box-shadow: 2px 2px 3px #888;
+}
+.day .from-name {
+	color: #4D4D4D;
+	font: 15px/1.5 "Open Sans", arial;
+}
+.day .transaction-time {
+	color: #4D4D4D;
+	font: 15px/1.5 "Open Sans", arial;
+}
+.day .cause {
+	color: #000;
+	font: 500 17px/1.5 "Open Sans", arial;
+}
+.day .points {
+	font: 700 27px/1.5 "Open Sans", arial;
+	float: right;
+	align-self: center;
+	margin-top: -15px;
+	margin-left: 10px;
+}
+.day .good-points {
+	color: #007800;
+}
+.day .bad-points {
+	color: red;
+}

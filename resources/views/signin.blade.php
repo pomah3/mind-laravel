@@ -34,7 +34,7 @@
                     type="text"
                     name="login"
                     class="form-control"
-                    placeholder="Логин" 
+                    placeholder="Логин"
                     value="{{ old("login") }}"
                 >
             </div>
@@ -46,12 +46,12 @@
                     type="password"
                     name="password"
                     class="form-control"
-                    placeholder="Пароль" 
+                    placeholder="Пароль"
                 >
             </div>
             <input type="submit" class="submit" value="Войти">
             <div class="check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <input type="checkbox" class="form-check-input" name="is_edu">
                 <label class="form-check-label" for="exampleCheck1">Вход через edu.tatar</label>
             </div>
         </form>

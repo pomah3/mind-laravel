@@ -11,9 +11,6 @@ Route::get('/signin', "SigninController@index")
 Route::post("/signin", "SigninController@enter")
     ->middleware("guest");
 
-Route::post("/signin/edu", "SigninController@eduEnter")
-    ->middleware("guest");
-
 Route::get("/out", "SigninController@logout")
     ->middleware("auth");
 

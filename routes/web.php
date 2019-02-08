@@ -2,10 +2,6 @@
 
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', "ProfileController@index")
-    ->middleware("auth")
-    ->name("profile");
-
 Route::get('/signin', "SigninController@index")
     ->middleware("guest")
     ->name("signin");
@@ -16,78 +12,78 @@ Route::post("/signin", "SigninController@enter")
 Route::get("/out", "SigninController@logout")
     ->middleware("auth");
 
-Route::get("/setlocale/{locale}", "LocaleController@set")
-    ->middleware("auth");
+Route::middleware("auth")->group(function() {
+    Route::get('/', "ProfileController@index")
+        ->name("profile");
 
-Route::prefix("/points")->group(function() {
-    Route::get("add", "PointsController@add_index")
-        ->middleware("role:teacher");
+    Route::get("/setlocale/{locale}", "LocaleController@set");
 
-    Route::post("add", "PointsController@add")
-        ->middleware("role:teacher");
+    Route::prefix("/points")->group(function() {
+        Route::get("add", "PointsController@add_index")
+            ->middleware("role:teacher");
 
-    Route::get("", "PointsController@mine")
+        Route::post("add", "PointsController@add")
+            ->middleware("role:teacher");
+
+        Route::get("", "PointsController@mine")
+            ->middleware("role:student");
+
+        Route::get("give", "PointsController@give_index");
+        Route::post("give", "PointsController@give");
+
+        Route::get("{student}", "PointsController@of_student")
+            ->middleware("auth");
+    });
+
+    Route::get("/timetable", "TimetableController@show")
         ->middleware("role:student");
 
-    Route::get("give", "PointsController@give_index");
-    Route::post("give", "PointsController@give");
+    Route::prefix("/groups")->group(function() {
+        Route::get("{group}", "GroupController@get");
+        Route::get("", "GroupController@all");
+    });
 
-    Route::get("{student}", "PointsController@of_student")
-        ->middleware("auth");
-});
+    Route::prefix("/users")->group(function() {
+        Route::get("{user}", "UserController@show");
+        Route::get("", "UserController@index");
+    });
 
-Route::get("/timetable", "TimetableController@show")
-    ->middleware("role:student");
+    Route::prefix("/questions")->middleware("auth")->group(function() {
+        Route::get("", "QuestionController@show");
+        Route::post("store", "QuestionController@store");
+        Route::post("answer/{question}", "QuestionController@answer")
+            ->middleware("can:answer,question");
+        Route::delete("{question}", "QuestionController@delete")
+            ->middleware("can:delete,question");
+    });
 
-Route::prefix("/groups")->group(function() {
-    Route::get("{group}", "GroupController@get")
-        ->middleware("auth");
+    Route::resource("banners", "BannerController")->except([
+        "show"
+    ]);
 
-    Route::get("", "GroupController@all")
-        ->middleware("auth");
-});
+    Route::resource("polls", "PollController");
+    Route::resource("events", "EventController");
+    Route::resource("documents", "DocumentController");
 
-Route::prefix("/users")->group(function() {
-    Route::get("{user}", "UserController@show")
-        ->middleware("auth");
-    Route::get("", "UserController@index");
-});
+    Route::prefix("/polls")->group(function() {
+        Route::post("{poll}/vote/{variant_id}", "PollController@vote");
+    });
 
-Route::prefix("/questions")->middleware("auth")->group(function() {
-    Route::get("", "QuestionController@show");
-    Route::post("store", "QuestionController@store");
-    Route::post("answer/{question}", "QuestionController@answer")
-        ->middleware("can:answer,question");
-    Route::delete("{question}", "QuestionController@delete")
-        ->middleware("can:delete,question");
-});
+    Route::prefix("/settings")->middleware("auth")->group(function() {
+        Route::get("", "SettingsController@index");
+        Route::post("/change_password", "SettingsController@change_password");
+    });
 
-Route::resource("banners", "BannerController")->except([
-    "show"
-]);
+    Route::prefix("/data")->group(function() {
+        Route::get("", "DataController@index");
+        Route::post("", "DataController@upload");
+    });
 
-Route::resource("polls", "PollController");
-Route::resource("events", "EventController");
-Route::resource("documents", "DocumentController");
+    Route::put("/notifications/{notif}/read", function($notif) {
+        $notif = Auth::user()->notifications()->find($notif);
+        if ($notif)
+            $notif->markAsRead();
 
-Route::prefix("/polls")->group(function() {
-    Route::post("{poll}/vote/{variant_id}", "PollController@vote");
-});
-
-Route::prefix("/settings")->middleware("auth")->group(function() {
-    Route::get("", "SettingsController@index");
-    Route::post("/change_password", "SettingsController@change_password");
-});
-
-Route::prefix("/data")->group(function() {
-    Route::get("", "DataController@index");
-    Route::post("", "DataController@upload");
-});
-
-Route::put("/notifications/{notif}/read", function($notif) {
-    $notif = Auth::user()->notifications()->find($notif);
-    if ($notif)
-        $notif->markAsRead();
-
-    return "";
+        return "";
+    });
 });

@@ -7,7 +7,7 @@
 
 require('./bootstrap');
 
-if (userId) {
+if (window.userId) {
     Echo.private(`App.User.${userId}`)
         .notification((notification) => {
             alert(JSON.stringify(notification));

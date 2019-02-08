@@ -16,6 +16,9 @@ class SigninController extends Controller
     }
 
     public function enter(Request $request) {
+        if ($request->is_edu)
+            return $this->eduEnter($request);
+
         $data = $request->validate([
             "login" => "required",
             "password" => "required"

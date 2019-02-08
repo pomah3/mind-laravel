@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+
 Route::get('/', "ProfileController@index")
     ->middleware("auth")
     ->name("profile");
@@ -80,4 +82,12 @@ Route::prefix("/settings")->middleware("auth")->group(function() {
 Route::prefix("/data")->group(function() {
     Route::get("", "DataController@index");
     Route::post("", "DataController@upload");
+});
+
+Route::put("/notifications/{notif}/read", function($notif) {
+    $notif = Auth::user()->notifications()->find($notif);
+    if ($notif)
+        $notif->markAsRead();
+
+    return "";
 });

@@ -3,38 +3,40 @@
 <ul class="main-menu">
     @foreach($menu_items as $item)
             @if (!$item['submenu'])
-                 <li>
+                 <li class="menu">
                     <a href="{{ $item['url'] }}">
                         {{ __($item["title"]) }}
                     </a>
                 </li>
             @else
-               <li><div class="btn-group">
-                    <a type="button" class="dropdown-toggle" data-toggle="dropdown">
+               <li class="menu-drop"><div class="btn-group">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
                         {{ __($item["title"]) }}
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         @foreach($item["buttons"] as $bitem)
-                            <a href="{{ $bitem['url'] }}">
-                                {{ __($bitem["title"]) }}
-                            </a>
+                            <li class="not-list-style">
+                                <a href="{{ $bitem['url'] }}">
+                                    {{ __($bitem["title"]) }}
+                                </a>
+                            </li>
                         @endforeach
                     </ul>
                 </div></li>
             @endif
         </li>
     @endforeach
-    <li class="right-menu"><div class="btn-group">
-        <a type="button" class="dropdown-toggle" data-toggle="dropdown">
+    <li class="right-menu menu-drop"><div class="btn-group">
+        <a class="dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-cog" aria-hidden="true"></i>
             <span class="caret"></span>
         </a>
         <ul class="right-dropdown-menu dropdown-menu" role="menu">
-            <li><a href="/info">{{ __("menu.info") }}</a></li>
-            <li><a href="/settings">{{ __("menu.settings") }}</a></li>
+            <li class="menu"><a href="/info">{{ __("menu.info") }}</a></li>
+            <li class="menu"><a href="/settings">{{ __("menu.settings") }}</a></li>
             <hr>
-            <li><a href="/out">{{ __("menu.logout") }}</a></li>
+            <li class="menu"><a href="/out">{{ __("menu.logout") }}</a></li>
         </ul>
     </div></li>
 </ul>

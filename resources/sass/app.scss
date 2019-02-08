@@ -22,6 +22,7 @@ h2 {
 }
 h3 {
 	font-size: 1.17em;
+	font-weight: normal;
 }
 /* containers */
 .container-menu,
@@ -398,11 +399,11 @@ tr.lesson-now {
 	font: 700 27px/1.5 "Open Sans", arial;
 	float: right;
 	align-self: center;
-	margin-top: -15px;
+	margin-top: -30px;
 }
 .notifications .good-points {
 	color: #007800;
 }
 .notifications .bad-points {
-	color: red;
+	color: #EF1919;
 }

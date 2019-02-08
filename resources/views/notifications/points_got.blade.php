@@ -1,18 +1,27 @@
-<div class="one-notif">
+<div class="one-notif {{ $notification->read() ? "read-notification" : "unread-notification" }}">
+    @php
+        $from_id = $notification->data["transaction"]["from_id"];
+        $time = $notification->data["transaction"]["created_at"];
+        $cause = $notification->data["transaction"]["cause_id"];
+        $points = $notification->data["transaction"]["points"];
+    @endphp
     <div class="from-name">
-        @php
-            $points = $notification->data["transaction"]["points"];
-        @endphp
+        {{ $from_id }}, {{ $time }}
     </div>
-    <div class="cause">
-        @if ($points > 0)
-            <span class="points good-points">
-                {{ trans_choice("notifications.points_got.plus", $points) }}
-            </span>
-        @else
-            <span class="points bad-points">
-                {{ trans_choice("notifications.points_got.minus", -$points) }}
-            </span>
-        @endif
-    </div>
+    @if ($points > 0)
+        <div class="cause">
+            {{ $cause }}
+        </div>
+        <span class="points good-points">
+            +{{ $points }}
+        </span>
+    @else
+        <div class="cause">
+            {{ $cause }}
+        </div>
+        <span class="points bad-points">
+            {{ $points }}
+        </span>
+    @endif
+    {{-- {{ var_dump($notification->data) }} --}}
 </div>

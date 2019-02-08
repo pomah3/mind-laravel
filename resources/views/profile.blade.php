@@ -59,11 +59,29 @@
         </div>
         <div class="notifications">
             @foreach ($user->notifications as $n)
-                @component($n->data['view'], [
-                    "notification" => $n
-                ])
-                @endcomponent
+                @notification(["notification" => $n])
             @endforeach
         </div>
     </div>
+
+    @push('scripts')
+        <script>
+            $(".unread-notification").mouseover(function() {
+                let that = this;
+
+                if ($(that).hasClass("read-notification"))
+                    return;
+
+                let id = $(that).attr("notif-id");
+                $.ajax({
+                    "url": "/notifications/" + id + '/read',
+                    "method": "PUT"
+                }).done(function() {
+                    $(that).removeClass("unread-notification");
+                    $(that).addClass("read-notification");
+                });
+            });
+        </script>
+    @endpush
+
 @endsection

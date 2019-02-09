@@ -24,11 +24,11 @@
 
             <label for="link">Ссылка на пост:</label>
             <input type="text" name="link" placeholder="Введите ссылку" class="form-control">
-            <label for="link">Замещающая запись:</label>
+            <label for="alt">Замещающая запись:</label>
             <input type="text" name="alt" placeholder="Введите описание" class="form-control">
-            <label for="link">Начало показа:</label>
+            <label for="from_date">Начало показа:</label>
             <input type="date" name="from_date" class="form-control">
-            <label for="link">Конец показа:</label>
+            <label for="till_date">Конец показа:</label>
             <input type="date" name="till_date" class="form-control">
 
             <input type="file" name="img" class="form-control">

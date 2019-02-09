@@ -45,16 +45,18 @@ class PollController extends Controller
     {
         $this->authorize('create', Poll::class);
 
+        $data = $request->validate([
+            "title" => "required",
+            "content" => "required",
+            "variants" => "required|array"
+        ]);
+
         $poll = new Poll;
         $poll->creator_id = Auth::user()->id;
-        $poll->title = $request->title;
-        $poll->content = $request->content;
+        $poll->title = $data["title"];
+        $poll->content = $data["content"];
 
-        $variants = $request->variants;
-        $variants = explode(',', $variants);
-        foreach ($variants as &$variant) {
-            $variant = trim($variant);
-        }
+        $variants = $data["variants"];
 
         $poll->variants = $variants;
         $poll->save();

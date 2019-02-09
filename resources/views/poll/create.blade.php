@@ -19,8 +19,11 @@
 		        <div class="vars_container">
 					<div class="vars">
 						<div class="variant">
-							<input type="text" placeholder="Введите вариант" required class="variants wout-remove">
-						</div>
+                            <input type="text" placeholder="Введите вариант" required class="variants wout-remove" name="variants[]">
+                        </div>
+                        <div class="variant">
+                            <input type="text" placeholder="Введите вариант" required class="variants wout-remove" name="variants[]">
+                        </div>
 					</div>
 					<div class="add-var">+ Добавить вариант</div>
 				</div>
@@ -29,4 +32,25 @@
 		    </form>
 		</div>
 	</div>
+
+    @push('scripts')
+        <script>
+            $(".add-var").click(function() {
+                let el = $(
+                    `<div class="variant">
+                        <input type="text" placeholder="Введите вариант" required class="variants" name="variants[]">
+                    </div>`
+                );
+
+                let but = $(`<div class="removalArea"><div class="removeX"></div></div>`);
+                $(but).click(function() {
+                    $(this.closest(".variant")).remove();
+                });
+
+                el.append(but);
+                $(".vars").append(el);
+            });
+        </script>
+    @endpush
+
 @endsection

@@ -7,7 +7,6 @@
 
 require('./bootstrap');
 require('./banner');
-require('./create_poll');
 
 if (window.userId) {
     Echo.private(`App.User.${userId}`)

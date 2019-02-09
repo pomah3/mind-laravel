@@ -11,14 +11,15 @@
         @can('create', App\Poll::class)
             <a href="/polls/create" class="add-poll">+</a>
         @endcan
-
+    
         <ol class="ol">
             @foreach ($polls as $poll)
                 <li class="not-list-style poll-elem">
                     <a href="/polls/{{ $poll->id }}">{{ $poll->title }}</a>
                     @can("delete", $poll)
-                    <button poll-id="{{ $poll->id }}" class="poll-delete">&times;</button>
+                        <button poll-id="{{ $poll->id }}" class="poll-delete">&times;</button>
                     @endcan
+                    <div class="banner-label">Доступно до: <span>09.02.2019</span></div>                   
                 </li>
             @endforeach
         </ol>

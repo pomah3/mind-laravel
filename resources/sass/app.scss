@@ -264,32 +264,6 @@ ul.dropdown-menu li:hover {
     right: 0 !important;
     // top: 18px !important;
 }
-/* submit */
-.submit {
-	font-family: 'Courier New', arial;
-	background: #466cb2;
-	padding: 5px 15px;
-	margin-bottom: 10px;
-	border: 0;
-	color: #bed5ff;
-	font-size: 16px;
-	transition: .5s;
-	cursor: pointer;
-}
-.submit:hover {
-	background: #77a5f8;
-}
-.big-submit {
-	font-size: 20px;
-}
-.sm-submit {
-	margin: 0;
-	font-size: 14px;
-}
-.points-submit {
-	margin-left: 10px;
-	margin-top: -10px;
-}
 /* loader */
 .loader :first-child {
 	background:rgb(0, 75, 126);
@@ -477,7 +451,7 @@ tr.lesson-now {
 	background-color: #ffffff;
 	background-image: none;
 	border-radius: 0;
-	border: 1px solid rgb(169, 169, 169);;
+	border: 1px solid rgb(169, 169, 169);
 	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 .sm-form-control {
@@ -532,11 +506,31 @@ textarea.form-control {
 	color: #bed5ff;
 }
 .poll-elem {
-	margin-bottom: 5px;
+	width: 40%;
+	padding: 10px;
+	box-shadow: 2px 2px 4px #777;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	background: #B3C8E6;
 }
 .poll-elem a {
+	font-size: 20px;
 	color: rgb(0, 75, 126);
 	text-decoration: underline;
+}
+.poll-delete {
+	float: right;
+	border: 0;
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	font-size: 20px;
+	font-weight: bold;
+	transition: .5s;
+	text-align: center;
+	cursor: pointer;
+	color: #7F2200;
+	background: #E26638;
 }
 /* banners */
 .container-banner { 
@@ -645,4 +639,148 @@ textarea.form-control {
 .edit-img img {
 	width: 100%;
 	height: auto;
+}
+/* create poll */
+
+.voting_container input {
+	height: 38px;
+	margin-bottom: 5px;
+	-webkit-appearance: none;
+	border-radius: 0px;
+	line-height: 15px;
+}
+.voting_container form {
+	position: relative;
+}
+.voting_container input[type="date"] {
+	width: 40%;
+	float: right;
+}
+
+.variant input[type="text"] {
+	width: 95%;
+	border-right: none;
+}
+
+.variant .removalArea {
+	width: 5%;
+	height: 38px;
+	margin-left: 0px;
+	background-color: white;
+	border: 1px solid rgb(169, 169, 169);
+	border-left: none;
+	float: right;
+	margin-top: 0px;
+	position: relative;
+}
+.variant:hover > .removalArea > .removeX::before {
+	opacity: 1;
+}
+.variant:hover > .removalArea > .removeX::after {
+	opacity: 1;
+}
+.removalArea .removeX {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	cursor: pointer;
+}
+
+.removalArea .removeX::before,
+.removalArea .removeX::after {
+	content: "";
+	width: 50%;
+	height: 2px;
+	background: #ccc;
+	display: block;
+	position: absolute;
+	opacity: 0.6;
+	transition: .2s ease-in-out ;
+}
+
+.removalArea .removeX::before {
+	top: 50%;
+    transform: rotate(45deg);
+    left: 20%;
+}
+
+.removalArea .removeX::after {
+	bottom: 42%;
+    transform: rotate(-45deg);
+    left: 20%;
+}
+
+.removalArea:hover > .removeX::before {
+	background: black;
+}
+
+.removalArea:hover > .removeX::after {
+	background: black;
+}
+
+:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+.add-var {
+	width: 100%;
+	height: 30px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	cursor: pointer;
+	padding-left: 3%;
+	color: #00407E;
+	transition: 0.5s;
+}
+
+.add-var:hover {
+	color: #005687;
+}
+.add-var:active {
+	color: #004167;
+}
+.variants {
+	width: 100%;
+	padding: 6px 12px;
+	margin: 0;
+	font-size: 14px;
+	color: #555555;
+	background-color: #ffffff;
+	background-image: none;
+	border-radius: 0;
+	border: 1px solid rgb(169, 169, 169);
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.variants-label {
+	margin-top: 15px;
+}
+.vars .variant .wout-remove {
+	width: 100%;
+	border: 1px solid rgb(169, 169, 169);
+}
+/* submit */
+.submit {
+	font-family: 'Courier New', arial;
+	background: #466cb2;
+	padding: 5px 15px;
+	margin-bottom: 10px;
+	border: 0;
+	color: #bed5ff;
+	font-size: 16px;
+	transition: .5s;
+	cursor: pointer;
+}
+.submit:hover {
+	background: #77a5f8;
+}
+.big-submit {
+	font-size: 20px;
+}
+.sm-submit {
+	margin: 0;
+	font-size: 14px;
+}
+.points-submit {
+	margin-left: 10px;
+	margin-top: -10px;
 }

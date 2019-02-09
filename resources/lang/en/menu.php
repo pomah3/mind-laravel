@@ -13,4 +13,12 @@ return array (
   'logout' => 'Logout',
   'settings' => 'Settings',
   'timetable' => 'Timetable',
+  'banners' => 'Banners',
+  'data' => 'Load data',
+  'documents' => 'Documents',
+  'events' => 'Events',
+  'groups' => 'All groups',
+  'polls' => 'Polls',
+  'questions' => 'Questions',
+  'users' => 'All users',
 );

@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+require('./banner');
 
 if (window.userId) {
     Echo.private(`App.User.${userId}`)

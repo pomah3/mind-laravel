@@ -1,15 +1,22 @@
-<div>
-    <div>id: {{ $banner->id}} </div>
+<div class="one-banner">
+    {{-- <div>id: {{ $banner->id}} </div> --}}
     <img src="{{ asset("storage/banners/".$banner->img_path) }}" alt="{{ $banner->alt }}">
-    <div>link: {{ $banner->link}} </div>
-    <div>alt: {{ $banner->alt}} </div>
-    <div>from_date: {{ $banner->from_date}} </div>
-    <div>till_date: {{ $banner->till_date}} </div>
+    <div class="banner-buttons">
+        @can("delete", $banner)
+            <button class="banner-button banner-delete" banner-id="{{$banner->id}}">&times;</button>
+        @endcan
+        @can("update", $banner)
+            <a href="/banners/{{$banner->id}}/edit" class="edit-banner banner-button">
+                {{-- <i class="fa fa-pencil" aria-hidden="true"></i> --}}
+                &#9998;
+            </a>
+        @endcan
+    </div>
+    <div class="banner-description">
+        <div class="banner-label">Ссылка: <a href="{{ $banner->link}}">{{ $banner->link}}</a> </div>
+        <div class="banner-label">Описание: <span>{{ $banner->alt}}</span> </div>
+        <div class="banner-label">Начало показа: <span>{{ $banner->from_date}}</span> </div>
+        <div class="banner-label">Конец показа: <span>{{ $banner->till_date}}</span> </div>
+    </div>
 
-    @can("update", $banner)
-        <a href="/banners/{{$banner->id}}/edit">редачить</a>
-    @endcan
-    @can("delete", $banner)
-        <button class="banner-delete" banner-id="{{$banner->id}}">удалити</button>
-    @endcan
 </div>

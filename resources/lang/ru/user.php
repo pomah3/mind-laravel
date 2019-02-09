@@ -1,10 +1,13 @@
 <?php
 
-return [
-    "show" => [
-        "title" => "Пользователь",
-        "name" => "Имя",
-        "balance" => "Баллы",
-        "group" => "Класс"
-    ],
-];
+return array (
+  'show' => 
+  array (
+    'title' => 'Пользователь',
+    'name' => 'Имя',
+    'balance' => 'Баланс',
+    'group' => 'Класс',
+    'login' => 'Логин',
+    'password' => 'Пароль',
+  ),
+);

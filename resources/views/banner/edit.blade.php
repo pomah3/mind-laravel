@@ -30,6 +30,9 @@
             <input type="submit" class="submit" value="Сохранить">
 
         </form>
+        <div class="edit-img">
+            <img src="{{ asset("storage/banners/".$banner->img_path) }}" alt="{{ $banner->alt }}">
+        </div>
     </div>
 
 @endsection

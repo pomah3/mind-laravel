@@ -31,7 +31,7 @@
                     url: "/banners/" + id,
                 })
                 .done(function() {
-                    $(that).parent().remove();
+                    $(that).parent().parent().remove();
                 });
             });
         </script>

@@ -7,7 +7,7 @@ function theRotator() {
 	.addClass('show');
  
 	// Вызываем функцию rotate для запуска слайдшоу, 7000 = смена картинок происходит раз в 7 секунд
-	setInterval('rotate()', 7000);
+	setInterval(rotate, 7000);
 }
  
 function rotate() {	

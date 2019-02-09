@@ -577,24 +577,67 @@ textarea.form-control {
 	background: #77a5f8;
 	color: #bed5ff;
 }
-.remove-banner {
-	padding: 10px;
-	margin-right: 5px;
-	border: 0;
-	font-size: 30px;
-	transition: .5s;
-	color: #7F2200;
-	background: #E26638;
-}
 .one-banner {
 	margin-bottom: 20px;
 	box-shadow: 2px 2px 4px #777;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	background: #B3C8E6;
 }
 .one-banner img {
 	width: 95%;
-	float: right;
 	clear: both;
 }
-.a-banner {
+.banner-description {
+	padding: 5px 10px;
+}
+.banner-buttons {
+	width: 5%;
+}
+.banner-button {
+	float: right;
+	border: 0;
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	font-size: 20px;
+	font-weight: bold;
+	transition: .5s;
+	text-align: center;
+	cursor: pointer;
+}
+.banner-button:first-child {
+	margin-bottom: 14px;
+}
+.banner-delete {
+	// padding: 0 8px;
+	color: #7F2200;
+	background: #E26638;
+}
+.edit-banner {
+	// padding: 0 4px;
 	background: #77a5f8;
-} 
+	color: #000;
+}
+.banner-label {
+	width: 100%;
+	margin-bottom: 5px;
+	color: #4D4D4D;
+	font: 16px/1.5 "Open Sans", arial;
+}
+.banner-label a {
+	color: rgb(0, 75, 126);
+	text-decoration: underline;
+}
+.banner-label span {
+	color: #000;
+	font: 400 18px/1.5 "Open Sans", arial;
+}
+.edit-img {
+	width: 40%;
+}
+.edit-img img {
+	width: 100%;
+	height: auto;
+}

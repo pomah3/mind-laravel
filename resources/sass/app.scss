@@ -31,6 +31,9 @@ h3 {
 .container-points h3 {
 	margin-bottom: 10px;
 }
+ol.ol {
+	font-size: 20px;
+}
 /* containers */
 .container-menu,
 .container-banner { 
@@ -40,7 +43,7 @@ h3 {
 	margin: auto; 
 }
 header > .container-menu {
-	margin-top: 120px;
+	margin-top: 130px;
 }
 .top-menu .container-menu {
 	background: inherit;
@@ -162,6 +165,9 @@ nav > ul > li {
 nav > ul > li.menu-drop {
 	padding: 0;
 	cursor: pointer;
+}
+nav > ul > li .btn-group {
+	transition: .5s;
 }
 nav > ul > li .btn-group:hover { 
 	background: rgba(0, 55, 106, .9);
@@ -464,7 +470,6 @@ tr.lesson-now {
 .form-control {
 	display: block;
 	width: 100%;
-	height: 34px;
 	padding: 6px 12px;
 	margin-bottom: 20px;
 	font-size: 14px;
@@ -507,3 +512,89 @@ textarea.form-control {
 	margin-right: 60%;
 	margin-bottom: 20px;
 }
+/* polls */
+.add-poll {
+	font-size: 25px;
+	padding: 0 10px;
+	// background: linear-gradient(rgba(56, 223, 100, 0.6), rgba(100, 223, 133, 0.6));
+	background: #466cb2;
+	color: #bed5ff;
+	margin-left: 15px;
+	transition: .5s;
+	cursor: pointer;
+}
+.add-poll:hover {
+	background: #77a5f8;
+	color: #bed5ff;
+}
+.poll-elem {
+	margin-bottom: 5px;
+}
+.poll-elem a {
+	color: rgb(0, 75, 126);
+	text-decoration: underline;
+}
+/* banners */
+.container-banner { 
+	width: 100%; 
+	max-width: 1080px; 
+	padding: 0; 
+	margin: auto; 
+}
+#rotator {
+	position: relative; 
+}
+#rotator ul li {
+	float: left; 
+	position: absolute; 
+	list-style: none;
+	max-height: 80px;
+	overflow: hidden;
+	top: 10px;
+}
+#rotator ul li a {
+	height: 80px;
+    display: inline-block;
+}
+.banner {
+	width: 100%;
+	height: auto;
+}
+#rotator ul li.show {
+	z-index: 500;
+}
+.add-banner {
+	font-size: 25px;
+	padding: 0 10px;
+	// background: linear-gradient(rgba(56, 223, 100, 0.6), rgba(100, 223, 133, 0.6));
+	background: #466cb2;
+	color: #bed5ff;
+	margin-left: 15px;
+	transition: .5s;
+	cursor: pointer;
+}
+.add-banner:hover {
+	background: #77a5f8;
+	color: #bed5ff;
+}
+.remove-banner {
+	padding: 10px;
+	margin-right: 5px;
+	border: 0;
+	font-size: 30px;
+	transition: .5s;
+	color: #7F2200;
+	background: #E26638;
+}
+.one-banner {
+	margin-bottom: 20px;
+	box-shadow: 2px 2px 4px #777;
+}
+.one-banner img {
+	width: 95%;
+	float: right;
+	clear: both;
+}
+.a-banner {
+	background: #77a5f8;
+} 

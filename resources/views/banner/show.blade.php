@@ -7,30 +7,35 @@
 @endsection
 
 @section('content')
-    @can('create', App\Banner::class)
-        <a href="/banners/create">создать</a>
-    @endcan
 
-    @foreach ($banners as $banner)
-        @component("banner.banner", ["banner"=>$banner])
-        @endcomponent
-    @endforeach
+    <div class="container container-points">
+        <h2>Баннеры</h2>
 
-    @push("scripts")
-    <script>
-        $(".banner-delete").click(function() {
-            let that = this;
-            let id = $(that).attr("banner-id");
+        @can('create', App\Banner::class)
+            <a href="/banners/create" class="add-banner">+</a>
+        @endcan
 
-            $.ajax({
-                method: "DELETE",
-                url: "/banners/" + id,
-            })
-            .done(function() {
-                $(that).parent().remove();
+        @foreach ($banners as $banner)
+            @component("banner.banner", ["banner"=>$banner])
+            @endcomponent
+        @endforeach
+
+        @push("scripts")
+        <script>
+            $(".banner-delete").click(function() {
+                let that = this;
+                let id = $(that).attr("banner-id");
+
+                $.ajax({
+                    method: "DELETE",
+                    url: "/banners/" + id,
+                })
+                .done(function() {
+                    $(that).parent().remove();
+                });
             });
-        });
-    </script>
-    @endpush
+        </script>
+        @endpush
+    </div>
 
 @endsection

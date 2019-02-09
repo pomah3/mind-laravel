@@ -1,5 +1,6 @@
 <?php
 
-return [
-    "wrong" => "Wrong login or password"
-];
+return array (
+  'wrong' => 'Wrong login or password',
+  'title' => 'Enter',
+);

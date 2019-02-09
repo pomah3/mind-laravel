@@ -15,10 +15,12 @@
             <a href="/banners/create" class="add-banner">+</a>
         @endcan
 
-        @foreach ($banners as $banner)
+        @forelse ($banners as $banner)
             @component("banner.banner", ["banner"=>$banner])
             @endcomponent
-        @endforeach
+        @empty
+            <p>Нет загруженных баннеров</p>
+        @endforelse
 
         @push("scripts")
         <script>

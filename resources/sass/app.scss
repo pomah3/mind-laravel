@@ -471,7 +471,7 @@ tr.lesson-now {
 	display: block;
 	width: 100%;
 	padding: 6px 12px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	font-size: 14px;
 	color: #555555;
 	background-color: #ffffff;
@@ -489,7 +489,8 @@ tr.lesson-now {
 input[type="file"].form-control {
 	background-color: #CCDFEC;
 	padding: 0;
-	margin-bottom: 10px;
+	margin: 20px 0 10px;
+	border: 0;
 }
 textarea.form-control {
 	resize: vertical;
@@ -502,6 +503,9 @@ textarea.form-control {
 .form-50 {
 	flex-basis: 50%;
 	width: 50%;
+}
+.form-50 label {
+	margin-bottom: 5px;
 }
 .form-40 {
 	flex-basis: 40%;
@@ -635,7 +639,8 @@ textarea.form-control {
 	font: 400 18px/1.5 "Open Sans", arial;
 }
 .edit-img {
-	width: 40%;
+	width: 80%;
+	margin-bottom: 10px;
 }
 .edit-img img {
 	width: 100%;

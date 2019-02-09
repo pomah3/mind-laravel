@@ -22,10 +22,14 @@
         <form action="/banners" method="POST" enctype="multipart/form-data" class="form-50">
             @csrf
 
+            <label for="link">Ссылка на пост:</label>
             <input type="text" name="link" placeholder="Введите ссылку" class="form-control">
+            <label for="link">Замещающая запись:</label>
             <input type="text" name="alt" placeholder="Введите описание" class="form-control">
-            <input type="date" name="from_date" placeholder="from_date" class="form-control">
-            <input type="date" name="till_date" placeholder="till_date" class="form-control">
+            <label for="link">Начало показа:</label>
+            <input type="date" name="from_date" class="form-control">
+            <label for="link">Конец показа:</label>
+            <input type="date" name="till_date" class="form-control">
 
             <input type="file" name="img" class="form-control">
 

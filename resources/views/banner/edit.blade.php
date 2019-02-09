@@ -18,21 +18,26 @@
             </div>
         @endif
 
+        <div class="edit-img">
+            <img src="{{ asset("storage/banners/".$banner->img_path) }}" alt="{{ $banner->alt }}">
+        </div>
+
         <form action="/banners/{{$banner->id}}" method="POST" class="form-50">
             @csrf
             @method("PUT")
 
+            <label for="link">Ссылка на пост:</label>
             <input type="text" name="link" value="{{ $banner->link }}" class="form-control">
+            <label for="link">Замещающая запись:</label>
             <input type="text" name="alt" value="{{ $banner->alt }}" class="form-control">
+            <label for="link">Начало показа:</label>
             <input type="date" name="from_date" value="{{ $banner->from_date->format("Y-m-d") }}" class="form-control">
+            <label for="link">Конец показа:</label>
             <input type="date" name="till_date" value="{{ $banner->till_date->format("Y-m-d") }}" class="form-control">
 
             <input type="submit" class="submit" value="Сохранить">
 
         </form>
-        <div class="edit-img">
-            <img src="{{ asset("storage/banners/".$banner->img_path) }}" alt="{{ $banner->alt }}">
-        </div>
     </div>
 
 @endsection

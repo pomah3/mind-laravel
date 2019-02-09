@@ -1,7 +1,7 @@
 @extends('layout.logined')
 
 @php($user = Auth::user())
-@php($days = ["Monday", "Tuesday", "Wednesday", "Thirsday", "Friday", "Saturday"])
+@php($days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
 
 @section('title')
     Timetable
@@ -23,9 +23,6 @@
                     </td>
                     <td>
                         {{ $lesson->lesson }}
-                    </td>
-                    <td>
-                        {{ $lesson->cabinet }}
                     </td>
                     <td>
                         {{ $lesson->time_from }}

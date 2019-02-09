@@ -4,7 +4,7 @@ return [
     "Monday" => "Понедельник",
     "Tuesday" => "Вторник",
     "Wednesday" => "Среда",
-    "Thirsday" => "Четверг",
+    "Thursday" => "Четверг",
     "Friday" => "Пятница",
     "Saturday" => "Суббота"
 ];

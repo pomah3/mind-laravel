@@ -30,7 +30,7 @@ class HeadTeacherReader extends RowReader {
         $teacher->father_name = $arr["father_name"];
 
         $teacher->type = "teacher";
-        $teacher->password = str_random(10);
+        $teacher->password = str_random(4);
         $teacher->save();
 
         $teacher->add_role("classruk", $arr["group"]);

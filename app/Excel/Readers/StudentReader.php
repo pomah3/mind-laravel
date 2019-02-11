@@ -30,7 +30,7 @@ class StudentReader extends RowReader {
         $student->father_name = $arr["father_name"];
 
         $student->type = "student";
-        $student->password = str_random(10);
+        $student->password = str_random(4);
 
         $student->save();
 

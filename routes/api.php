@@ -65,7 +65,7 @@ Route::middleware("api_token")->group(function() {
         });
         Route::post("/add/{from}/{to}/{cause}/{points?}",
             function(User $from, User $to, Cause $cause, ?int $points=null) {
-                if ($points !== null) {
+                if ($points === null) {
                     if (!Gate::forUser($from)->allows("add-points", $to, $cause))
                         return response()->json(['error'=>"not allowed"], 403);
                 } else {

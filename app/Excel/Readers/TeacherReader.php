@@ -29,7 +29,7 @@ class TeacherReader extends RowReader {
 
         $teacher->type = "teacher";
 
-        $teacher->password = str_random(10);
+        $teacher->password = str_random(4);
 
         $teacher->save();
     }

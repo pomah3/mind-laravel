@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Lesson;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -37,10 +39,20 @@ class ProfileController extends Controller
             return new \Carbon\Carbon("tomorrow");
     }
 
+    private function get_timetable() {
+        if (Auth::user()->type != "student")
+            return null;
+
+        return Lesson::where("weekday", \date('l'))
+                     ->where("group", Auth::user()->student()->get_group())
+                     ->get();
+    }
+
     public function index() {
         return view("profile", [
             "daytime" => $this->get_daytime(),
-            "date" => $this->get_timetable_date()
+            "date" => $this->get_timetable_date(),
+            "timetable" => $this->get_timetable()
         ]);
     }
 }

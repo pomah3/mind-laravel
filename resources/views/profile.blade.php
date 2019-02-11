@@ -1,6 +1,8 @@
 @extends('layout.logined')
 
-@php($user = Auth::user())
+@php
+    $user = Auth::user();
+@endphp
 
 @section('title')
     Профиль
@@ -45,14 +47,20 @@
                     <tr>
                         <th></th>
                         <th>Предмет</th>
-                        <th>Каб.</th>
+                        <th>Время</th>
                     </tr>
+                    @php
+                        $last = -1;
+                    @endphp
                     @foreach ($timetable as $lesson)
                         <tr class="{{ $lesson->is_now ? "lesson-now" : ""}}">
-                            <td>{{ $lesson->number  }}</td>
+                            <td>{{ $last == $lesson->number ? "" : $lesson->number  }}</td>
                             <td>{{ $lesson->lesson  }}</td>
-                            <td>{{ $lesson->cabinet }}</td>
+                            <td>{{ $lesson->time_from }} - {{ $lesson->time_until }}</td>
                         </tr>
+                        @php
+                            $last = $lesson->number;
+                        @endphp
                     @endforeach
                 </table>
             @endif

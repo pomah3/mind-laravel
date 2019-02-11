@@ -34,6 +34,9 @@ h3 {
 ol.ol {
 	font-size: 20px;
 }
+.not-found {
+	font-size: 20px;
+}
 /* containers */
 .container-menu,
 .container-banner { 
@@ -397,7 +400,7 @@ tr.lesson-now {
 	font: 700 27px/1.5 "Open Sans", arial;
 	float: right;
 	align-self: center;
-	margin-top: -30px;
+	margin-top: -15px;
 }
 .notifications .good-points {
 	color: #007800;

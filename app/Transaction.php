@@ -8,9 +8,6 @@ use App\Events\TransactionMade;
 
 class Transaction extends Model {
     public static function of_student(User $user) {
-        if ($user->type !== "student")
-            return null;
-
         return Transaction::
             where("to_id", $user->id)->
             orWhere("from_id", $user->id);

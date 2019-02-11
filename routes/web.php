@@ -19,20 +19,16 @@ Route::middleware("auth")->group(function() {
     Route::get("/setlocale/{locale}", "LocaleController@set");
 
     Route::prefix("/points")->group(function() {
-        Route::get("add", "PointsController@add_index")
-            ->middleware("role:teacher");
+        Route::get("add", "PointsController@add_index");
+        Route::post("add", "PointsController@add");
 
-        Route::post("add", "PointsController@add")
-            ->middleware("role:teacher");
-
-        Route::get("", "PointsController@mine")
-            ->middleware("role:student");
+        Route::get("", "PointsController@mine");
 
         Route::get("give", "PointsController@give_index");
         Route::post("give", "PointsController@give");
 
-        Route::get("{student}", "PointsController@of_student")
-            ->middleware("auth");
+        Route::get("{student}", "PointsController@of_student");
+
     });
 
     Route::get("/timetable", "TimetableController@show")

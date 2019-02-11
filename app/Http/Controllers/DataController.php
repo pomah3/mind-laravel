@@ -36,11 +36,11 @@ class DataController extends Controller {
             }]
         ]);
 
-        $this->readers->get_reader(
-            $data["data-type"]
-        )->load(
-            $request->file("file")->getPathName()
-        );
+        $reader = $this->readers->get_reader($data["data-type"]);
+        $request->authorize("upload-data", $reader);
+
+        $reader->load($request->file("file")->getPathName());
+
         return redirect("/data")->with("status", "ok")->withInput();
     }
 }

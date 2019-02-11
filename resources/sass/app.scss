@@ -609,14 +609,15 @@ textarea.form-control {
 	margin-bottom: 14px;
 }
 .banner-delete {
-	// padding: 0 8px;
 	color: #7F2200;
 	background: #E26638;
 }
 .edit-banner {
-	// padding: 0 4px;
 	background: #77a5f8;
 	color: #000;
+}
+.edit-banner:hover {
+	background: #99BDFF;
 }
 .banner-label {
 	width: 100%;
@@ -641,7 +642,6 @@ textarea.form-control {
 	height: auto;
 }
 /* create poll */
-
 .voting_container input {
 	height: 38px;
 	margin-bottom: 5px;
@@ -652,16 +652,11 @@ textarea.form-control {
 .voting_container form {
 	position: relative;
 }
-.voting_container input[type="date"] {
-	width: 40%;
-	float: right;
-}
-
 .variant input[type="text"] {
 	width: 95%;
+	height: 38px;
 	border-right: none;
 }
-
 .variant .removalArea {
 	width: 5%;
 	height: 38px;
@@ -685,7 +680,6 @@ textarea.form-control {
 	position: relative;
 	cursor: pointer;
 }
-
 .removalArea .removeX::before,
 .removalArea .removeX::after {
 	content: "";
@@ -697,27 +691,22 @@ textarea.form-control {
 	opacity: 0.6;
 	transition: .2s ease-in-out ;
 }
-
 .removalArea .removeX::before {
 	top: 50%;
     transform: rotate(45deg);
     left: 20%;
 }
-
 .removalArea .removeX::after {
 	bottom: 42%;
     transform: rotate(-45deg);
     left: 20%;
 }
-
 .removalArea:hover > .removeX::before {
 	background: black;
 }
-
 .removalArea:hover > .removeX::after {
 	background: black;
 }
-
 :active, :hover, :focus {
     outline: 0;
     outline-offset: 0;
@@ -732,7 +721,6 @@ textarea.form-control {
 	color: #00407E;
 	transition: 0.5s;
 }
-
 .add-var:hover {
 	color: #005687;
 }
@@ -757,6 +745,109 @@ textarea.form-control {
 .vars .variant .wout-remove {
 	width: 100%;
 	border: 1px solid rgb(169, 169, 169);
+}
+/* polls */
+.one-poll {
+	background: #93BAC8;
+	padding: 20px;
+	margin-bottom: 10px;
+}
+.vote-not-this {
+	transition: 2s;
+}
+.vote-this {
+	background: #306B82;
+	clip-path: circle(700px at 95% 50%);
+	color: #fff;
+	transition: 2s;
+}
+.vote-this span {
+	color: #fff;
+}
+.vote-info {
+	display: inline-block;
+	float: right;
+	margin-left: 15px;
+	margin-top: -25px;
+}
+.vote-count {
+	font-size: 17px;
+	font-weight: 700;
+}
+.poll-vote {
+	height: 30px;
+	width: 30px;
+	margin-left: 5px;
+	background: #CCDFEC;
+	border: 0;
+	font-size: 20px;
+	transition: .5s;
+	color: #004B7E;
+}
+.voted-for-this {
+	padding: 3px 7px;
+	margin-left: 5px;
+	border: 0;
+	font-size: 20px;
+	transition: .5s;
+	color: #CCDFEC;
+	background: #004B7E;
+}
+.song-singer {
+	font-size: 17px;
+	font-weight: 500;
+}
+/* events */
+.add-event {
+	font-size: 25px;
+	padding: 0 10px;
+	// background: linear-gradient(rgba(56, 223, 100, 0.6), rgba(100, 223, 133, 0.6));
+	background: #466cb2;
+	color: #bed5ff;
+	margin-left: 15px;
+	transition: .5s;
+	cursor: pointer;
+}
+.add-event:hover {
+	background: #77a5f8;
+	color: #bed5ff;
+}
+.users-block {
+	margin-top: 20px;
+}
+.user-delete {
+	float: right;
+	border: 0;
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	font-size: 20px;
+	font-weight: bold;
+	transition: .5s;
+	text-align: center;
+	cursor: pointer;
+	color: #7F2200;
+	background: #E26638;
+}
+.add-user {
+	border: 0;
+	display: inline-block;
+	margin-right: 10px;
+	width: 30px;
+	height: 30px;
+	font-size: 20px;
+	font-weight: bold;
+	transition: .5s;
+	text-align: center;
+	cursor: pointer;
+	background: #77a5f8;
+	color: #000;
+}
+.add-user:hover {
+	background: #99BDFF;
+}
+.variant {
+	margin-bottom: 10px;
 }
 /* submit */
 .submit {

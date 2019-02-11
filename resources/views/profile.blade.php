@@ -17,9 +17,9 @@
                     </strong>
                 </h2>
                 <h3>
-                    Логин: <strong>{{ $user->id }}</strong> <br>
+                    Логин: <strong>{{ $user->id }}</strong>
                     @if ($user->edu_tatar_login)
-                        Логин edu.tatar.ru: <strong>{{ $user->edu_tatar_login }}</strong>
+                        <h3>Логин edu.tatar.ru: <strong>{{ $user->edu_tatar_login }}</strong></h3>
                     @endif
                 </h3>
                 <h3>

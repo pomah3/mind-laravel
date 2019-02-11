@@ -15,6 +15,8 @@
 				<input type="text" class="form-control" placeholder="Введите заголовок голосования" name="title" required>
 		        <label for="content">Описание голосования:</label>
 		        <input type="text" class="form-control" placeholder="Введите описание голосования" name="content" required>
+				<label for="date">Доступно до:</label>
+		        <input type="date" class="form-control" placeholder="Введите описание голосования" name="date" required>
 		        <label class="variants-label">Варианты ответов:</label>
 		        <div class="vars_container">
 					<div class="vars">

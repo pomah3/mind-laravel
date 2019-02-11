@@ -39,6 +39,12 @@ class AuthServiceProvider extends ServiceProvider
             return $user->has_role("teacher");
         });
 
+        Gate::define("receive-points", "App\Policies\PointsPolicy@receivePoints");
+        Gate::define("add-points", "App\Policies\PointsPolicy@addPoints");
+        Gate::define("add-points-index", "App\Policies\PointsPolicy@addPointsIndex");
+        Gate::define("give-points", "App\Policies\PointsPolicy@givePoints");
+        Gate::define("give-points-index", "App\Policies\PointsPolicy@givePointsIndex");
+
         Gate::before(function ($user, $ability) {
             if ($user->has_role("admin"))
                 return true;

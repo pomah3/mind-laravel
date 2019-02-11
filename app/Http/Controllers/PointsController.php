@@ -14,19 +14,8 @@ use App\{
 use App\Http\Resources\StudentResource;
 
 class PointsController extends Controller {
-    public function __construct() {
-        $this->middleware('role:teacher')->only([
-            "add_index", "add"
-        ]);
-
-        $this->middleware('role:student')->only([
-            "give_index", "give"
-        ]);
-    }
-
     public function of_student(User $student) {
-        if ($student->type !== "student")
-            abort(404);
+        $this->authorize("receive-points");
 
         return view("points.show", [
             "student" => $student,
@@ -39,6 +28,8 @@ class PointsController extends Controller {
     }
 
     public function add_index() {
+        $this->authorize("add-points-index");
+
         return view("points.add", [
             "causes" => Cause::orderBy("points")->get(),
              "students" => StudentResource::collection(
@@ -57,12 +48,17 @@ class PointsController extends Controller {
 
         $student = User::find($data["student_id"]);
         $cause   = Cause::find($data["cause_id"]);
+
+        $this->authorize("add-points", $student, $cause);
+
         Transaction::add(Auth::user(), $student, $cause);
 
         return redirect("/points/add")->with("status", "ok");
     }
 
     public function give_index() {
+        $this->authorize("give-points-index");
+
         return view("points.give", [
             "students" => StudentResource::collection(
                 User::where("type", "student")
@@ -79,11 +75,8 @@ class PointsController extends Controller {
         ]);
 
         $student = User::find($data["student_id"]);
-        if ($student->type != "student")
-            return redirect("/points/give")->withErrors("Баллы только студенту");
 
-        if ($student->id == Auth::user()->id)
-            return redirect("/points/give")->withErrors("Самому себе нельзя");
+        $this->authorize("give-points", $student);
 
         $points = intval($data['points']);
 

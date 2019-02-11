@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Gate;
 
 class Role extends Model {
 	public static function has_complex_role(?User $user, $complex_role) {
@@ -38,6 +39,10 @@ class Role extends Model {
                 }
 
                 return false;
+            }
+
+            if ($complex_role[0] === "can") {
+                return Gate::forUser($user)->allows(...array_slice($complex_role, 1));
             }
         }
 

@@ -43,7 +43,7 @@ class ProfileController extends Controller
         if (Auth::user()->type != "student")
             return null;
 
-        return Lesson::where("weekday", \date('l'))
+        return Lesson::where("weekday", $this->get_timetable_date()->format('l'))
                      ->where("group", Auth::user()->student()->get_group())
                      ->get();
     }

@@ -39,7 +39,7 @@
         <div class="block-information timetable">
             <h2>
                 {{ Carbon\Carbon::now()->format("l") == $date->format("l") ? "Сегодня" : "Завтра"}}:
-                <strong>{{ $date->format("l") }}</strong>,
+                <strong>{{ __("days.".$date->format('l')) }}</strong>,
                 {{ $date->format("d.m.Y") }}
             </h2>
             @if (isset($timetable))

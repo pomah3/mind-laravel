@@ -13,7 +13,7 @@
             <a href="/events/create" class="add-event">+</a>
         @endcan
 
-        @foreach ($events as $event)
+        @forelse ($events as $event)
             <div class="event">
                 <h1>{{ $event->title }}</h1>
                 <button class="event-remove" event-id="{{ $event->id }}">remove</button>
@@ -32,7 +32,11 @@
                     @endforeach
                 </ul>
             </div>
-        @endforeach
+        @empty
+            <div class="not-found">
+                Нет активных мероприятий
+            </div>
+        @endforelse
     </div>
     @push('scripts')
         <script>

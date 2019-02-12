@@ -22,7 +22,9 @@
                     <div class="banner-label">Доступно до: <span>09.02.2019</span></div>
                 </li>
             @empty
-                Нет доступных голосований
+                <div class="not-found">
+                    Нет доступных голосований
+                </div>
             @endforelse
         </ol>
 

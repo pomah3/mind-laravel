@@ -19,7 +19,9 @@
             @component("banner.banner", ["banner"=>$banner])
             @endcomponent
         @empty
-            <p>Нет загруженных баннеров</p>
+            <div class="not-found">
+                Нет загруженных баннеров
+            </div>
         @endforelse
 
         @push("scripts")

@@ -23,8 +23,8 @@ class CreateLessonsTable extends Migration
             $table->string("lesson");
             $table->string("cabinet");
 
-            $table->time("time_from");
-            $table->time("time_until");
+            $table->datetime("time_from");
+            $table->datetime("time_until");
 
             $table->timestamps();
         });

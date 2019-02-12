@@ -56,7 +56,7 @@
                         <tr class="{{ $lesson->is_now ? "lesson-now" : ""}}">
                             <td>{{ $last == $lesson->number ? "" : $lesson->number  }}</td>
                             <td>{{ $lesson->lesson  }}</td>
-                            <td>{{ $lesson->time_from }} - {{ $lesson->time_until }}</td>
+                            <td>{{ $lesson->time_from->format("H:i") }} - {{ $lesson->time_until->format("H:i") }}</td>
                         </tr>
                         @php
                             $last = $lesson->number;

@@ -1,15 +1,13 @@
 @extends('layout.logined')
 
-@php($user = Auth::user())
-
 @section('title')
-    title
+    Загрузить данные
 @endsection
 
 @section('content')
     @if (session("status"))
         @if (session("status") == "ok")
-            Success!
+            Успешно!
         @endif
     @endif
 

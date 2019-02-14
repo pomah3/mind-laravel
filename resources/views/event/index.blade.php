@@ -1,9 +1,7 @@
 @extends('layout.logined')
 
-@php($user = Auth::user())
-
 @section('title')
-    title
+    Мероприятия
 @endsection
 
 @section('content')

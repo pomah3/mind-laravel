@@ -1,7 +1,7 @@
 @extends('layout.logined')
 
 @section('title')
-    title
+    Голосования
 @endsection
 
 @section('content')
@@ -19,7 +19,7 @@
                     @can("delete", $poll)
                         <button poll-id="{{ $poll->id }}" class="poll-delete">&times;</button>
                     @endcan
-                    <div class="banner-label">Доступно до: <span>09.02.2019</span></div>
+                    <div class="banner-label">Доступно до: <span>{{ $poll->till_date->format("d.m.Y") }}</span></div>
                 </li>
             @empty
                 <div class="not-found">

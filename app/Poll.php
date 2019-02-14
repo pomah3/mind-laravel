@@ -6,8 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Poll extends Model
 {
+    protected $dates = [
+        "till_date"
+    ];
+
     protected $casts = [
-        "variants" => "array"
+        "variants" => "array",
+        "access_vote" => "array",
+        "access_see_result" => "array",
     ];
 
     public function votes() {

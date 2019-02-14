@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class PollController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         // $this->authorize('view_index', Poll::class);
@@ -24,37 +19,31 @@ class PollController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $this->authorize('create', Poll::class);
         return view("poll.create");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->authorize('create', Poll::class);
 
         $data = $request->validate([
-            "title" => "required",
-            "content" => "required",
-            "variants" => "required|array"
+            "title"    => "required",
+            "content"  => "required",
+            "variants" => "required|array",
+            "date"     => "required|date"
         ]);
 
         $poll = new Poll;
         $poll->creator_id = Auth::user()->id;
         $poll->title = $data["title"];
         $poll->content = $data["content"];
+        $poll->till_date = $data["date"];
+
+        $poll->access_vote = ["all"];
+        $poll->access_see_result = ["all"];
 
         $variants = $data["variants"];
 
@@ -64,12 +53,6 @@ class PollController extends Controller
         return redirect("/polls");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Poll  $poll
-     * @return \Illuminate\Http\Response
-     */
     public function show(Poll $poll)
     {
         $this->authorize('view', $poll);
@@ -89,35 +72,16 @@ class PollController extends Controller
         return "";
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Poll  $poll
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Poll $poll)
     {
         $this->authorize('update', $poll);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Poll  $poll
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Poll $poll)
     {
         $this->authorize('update', $poll);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Poll  $poll
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Poll $poll)
     {
         $this->authorize('delete', $poll);

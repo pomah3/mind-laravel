@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\User;
 use App\Poll;
+use App\Role;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PollPolicy
@@ -19,7 +20,8 @@ class PollPolicy
      */
     public function view(User $user, Poll $poll)
     {
-        return true;
+        return $this->vote($user, $poll)
+            || $this->see_result($user, $poll);
     }
 
     /**
@@ -58,10 +60,12 @@ class PollPolicy
     }
 
     public function vote(User $user, Poll $poll) {
-        return true;
+        return Role::has_complex_role($user, $poll->access_vote)
+            && $poll->till_date >= \Carbon\Carbon::now();
     }
 
     public function see_result(User $user, Poll $poll) {
-        return true;
+        return Role::has_complex_role($user, $poll->access_see_result)
+            || $poll->creator_id == $user->id;
     }
 }

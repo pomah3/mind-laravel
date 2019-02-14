@@ -22,6 +22,10 @@ class CreatePollsTable extends Migration
             $table->string('title');
             $table->text('content');
             $table->text('variants');
+
+            $table->date('till_date');
+            $table->string("access_vote");
+            $table->string("access_see_result");
         });
     }
 

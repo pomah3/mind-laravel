@@ -5,6 +5,7 @@ namespace App\Excel\Readers;
 use App\Excel\RowReader;
 use App\User;
 use App\Role;
+use App\Utils;
 use Illuminate\Support\Facades\Hash;
 
 class HeadTeacherReader extends RowReader {
@@ -30,7 +31,7 @@ class HeadTeacherReader extends RowReader {
         $teacher->father_name = $arr["father_name"];
 
         $teacher->type = "teacher";
-        $teacher->password = str_random(4);
+        $teacher->password = Utils::generate_password();
         $teacher->save();
 
         $teacher->add_role("classruk", $arr["group"]);

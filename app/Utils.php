@@ -49,4 +49,11 @@ class Utils {
 
         return $today;
     }
+
+    public static function generate_password(): string {
+        if (config("app.password.is_default"))
+            return config("app.password.default", "123");
+
+        return str_random(config("app.password.length", 4));
+    }
 }

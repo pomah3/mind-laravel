@@ -24,7 +24,6 @@ class PointsPolicy
 
     public function givePoints(User $user, User $to_user) {
         return $user->type == "student" && $to_user->type == "student" &&
-               $user->student()->get_group() == $to_user->student()->get_group() &&
                $user->id != $to_user->id;
     }
 

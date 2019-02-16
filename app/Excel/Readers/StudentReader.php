@@ -5,6 +5,7 @@ namespace App\Excel\Readers;
 use App\Excel\RowReader;
 use App\User;
 use App\Role;
+use App\Utils;
 use Illuminate\Support\Facades\Hash;
 
 class StudentReader extends RowReader {
@@ -30,7 +31,7 @@ class StudentReader extends RowReader {
         $student->father_name = $arr["father_name"];
 
         $student->type = "student";
-        $student->password = str_random(10);
+        $student->password = Utils::generate_password();
 
         $student->save();
 

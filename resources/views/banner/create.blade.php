@@ -1,9 +1,7 @@
 @extends('layout.logined')
 
-@php($user = Auth::user())
-
 @section('title')
-    title
+    Создать баннер
 @endsection
 
 @section('content')

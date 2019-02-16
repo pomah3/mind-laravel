@@ -37,7 +37,7 @@ class DataController extends Controller {
         ]);
 
         $reader = $this->readers->get_reader($data["data-type"]);
-        $request->authorize("upload-data", $reader);
+        $this->authorize("upload-data", $reader);
 
         $reader->load($request->file("file")->getPathName());
 

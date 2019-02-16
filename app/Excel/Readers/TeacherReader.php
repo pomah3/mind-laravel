@@ -4,6 +4,7 @@ namespace App\Excel\Readers;
 
 use App\Excel\RowReader;
 use App\User;
+use App\Utils;
 use Illuminate\Support\Facades\Hash;
 
 class TeacherReader extends RowReader {
@@ -29,7 +30,7 @@ class TeacherReader extends RowReader {
 
         $teacher->type = "teacher";
 
-        $teacher->password = str_random(10);
+        $teacher->password = Utils::generate_password();
 
         $teacher->save();
     }

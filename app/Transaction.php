@@ -35,7 +35,7 @@ class Transaction extends Model {
         return $plus - $minus;
     }
 
-    public static function add(?User $from, User $to, Cause $cause, int $points=null) {
+    public static function add(?User $from, User $to, Cause $cause, int $points=null): Transaction {
         if ($points == null) {
             $points = $cause->points;
         }
@@ -50,5 +50,7 @@ class Transaction extends Model {
         $tr->save();
 
         event(new TransactionMade($tr));
+
+        return $tr;
     }
 }

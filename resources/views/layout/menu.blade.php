@@ -33,7 +33,7 @@
             <span class="caret"></span>
         </a>
         <ul class="right-dropdown-menu dropdown-menu" role="menu">
-            <li class="menu"><a href="/info">{{ __("menu.info") }}</a></li>
+            <li class="menu"><a href="/doc/user">{{ __("menu.info") }}</a></li>
             <li class="menu"><a href="/settings">{{ __("menu.settings") }}</a></li>
             <hr>
             <li class="menu"><a href="/out">{{ __("menu.logout") }}</a></li>

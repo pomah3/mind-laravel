@@ -1,6 +1,8 @@
 @extends('layout.logined')
 
-@php($user = Auth::user())
+@php
+    $user = Auth::user();
+@endphp
 
 @section('title')
     Профиль
@@ -37,7 +39,7 @@
         <div class="block-information timetable">
             <h2>
                 {{ Carbon\Carbon::now()->format("l") == $date->format("l") ? "Сегодня" : "Завтра"}}:
-                <strong>{{ $date->format("l") }}</strong>,
+                <strong>{{ __("days.".$date->format('l')) }}</strong>,
                 {{ $date->format("d.m.Y") }}
             </h2>
             @if (isset($timetable))
@@ -45,14 +47,20 @@
                     <tr>
                         <th></th>
                         <th>Предмет</th>
-                        <th>Каб.</th>
+                        <th>Время</th>
                     </tr>
+                    @php
+                        $last = -1;
+                    @endphp
                     @foreach ($timetable as $lesson)
                         <tr class="{{ $lesson->is_now ? "lesson-now" : ""}}">
-                            <td>{{ $lesson->number  }}</td>
+                            <td>{{ $last == $lesson->number ? "" : $lesson->number  }}</td>
                             <td>{{ $lesson->lesson  }}</td>
-                            <td>{{ $lesson->cabinet }}</td>
+                            <td>{{ $lesson->time_from->format("H:i") }} - {{ $lesson->time_until->format("H:i") }}</td>
                         </tr>
+                        @php
+                            $last = $lesson->number;
+                        @endphp
                     @endforeach
                 </table>
             @endif

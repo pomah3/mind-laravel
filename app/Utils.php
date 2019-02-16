@@ -38,4 +38,22 @@ class Utils {
             return 0;
         };
     }
+
+    public static function get_today_date(\DateTime $date) {
+        $today = \Carbon\Carbon::today();
+        $h = intval($date->format("H"));
+        $m = intval($date->format("i"));
+        $s = intval($date->format("s"));
+
+        $today->setTime($h, $m, $s);
+
+        return $today;
+    }
+
+    public static function generate_password(): string {
+        if (config("app.password.is_default"))
+            return config("app.password.default", "123");
+
+        return str_random(config("app.password.length", 4));
+    }
 }

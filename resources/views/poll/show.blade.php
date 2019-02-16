@@ -2,12 +2,12 @@
 @extends('layout.logined')
 
 @section('title')
-    title
+    {{ $poll->title }}
 @endsection
 
 @section('content')
     <div class="container container-points">
-        <h2><strong>{{ $poll->title}}</strong></h2>
+        <h2><strong>{{ $poll->title }}</strong></h2>
         <p>
             {{ $poll->content }}
         </p>

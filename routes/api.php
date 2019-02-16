@@ -2,11 +2,13 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\DB;
 
 use App\User;
 use App\EduTatarAuth;
 use App\Transaction;
+use App\Cause;
 use App\Http\Resources\{UserResource, StudentResource};
 
 Route::middleware("api_token")->group(function() {
@@ -59,10 +61,26 @@ Route::middleware("api_token")->group(function() {
             return $tr;
         });
         Route::get('of_user/{user}', function(User $user) {
-            return Transaction::of_student($user);
+            return Transaction::of_student($user)->get();
         });
-        Route::post("/add", function(Request $request) {
-            //todo
+        Route::post("/add/{from}/{to}/{cause}/{points?}",
+            function(User $from, User $to, Cause $cause, ?int $points=null) {
+                if ($points === null) {
+                    if (!Gate::forUser($from)->allows("add-points", $to, $cause))
+                        return response()->json(['error'=>"not allowed"], 403);
+                } else {
+                    if (!Gate::forUser($from)->allows("give-points", $to))
+                        return response()->json(['error'=>"not allowed"], 403);
+                }
+
+                return Transaction::add($from, $to, $cause, $points);
+            }
+        );
+    });
+
+    Route::prefix("/causes")->group(function() {
+        Route::get('', function() {
+            return Cause::all();
         });
     });
 

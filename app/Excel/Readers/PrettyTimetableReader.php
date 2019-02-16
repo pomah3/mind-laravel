@@ -45,7 +45,7 @@
 				if (strlen($str) > 5 && mb_substr($str, 0, 5) == "Класс")
 					$group = $str;
 
-				if ($w->getCellByColumnAndRow($col_ind, $row_ind)->getValue() == "#") { 	
+				if ($w->getCellByColumnAndRow($col_ind, $row_ind)->getValue() == "#") {
 					$row_ind = $row_ind + ($w->getCellByColumnAndRow($col_ind, $row_ind)->isInMergeRange() == true ? $this->get_range($w->getCellByColumnAndRow($col_ind, $row_ind)->getMergeRange()) : 1);
 					continue;
 				}
@@ -73,7 +73,7 @@
 						$arr[] = $name;
 						$lesson["class"] = $group;
 						$lesson["num"] = $w->getCellByColumnAndRow(1, $row_ind)->getValue();
-						$lesson["day"] = $this->weekdays[$j]; 
+						$lesson["day"] = $this->weekdays[$j];
 						$lesson["name"] = $name;
 						$lesson["place"] = "";
 						$lesson["time_from"] = $this->t_from[intval($w->getCellByColumnAndRow(1, $row_ind)->getValue()) - 1];
@@ -94,12 +94,12 @@
 		function save(array $lesson): void {
 			$lesson_ = new Lesson;
 			$lesson_->group = Formatter::group($lesson["class"]); // normal string
-			$lesson_->number = intval($lesson["num"]); // int 
+			$lesson_->number = intval($lesson["num"]); // int
 			$lesson_->weekday = Formatter::day($lesson["day"]); // string in engl
 			$lesson_->lesson = Formatter::string($lesson["name"]); // string
 			$lesson_->cabinet = Formatter::string($lesson["place"]); // string
-			$lesson_->time_from = Formatter::time($lesson["time_from"]); // string
-			$lesson_->time_until = Formatter::time($lesson["time_until"]); // string
+			$lesson_->time_from = date("Y-m-d ").Formatter::time($lesson["time_from"]).":00"; // string
+			$lesson_->time_until = date("Y-m-d ").Formatter::time($lesson["time_until"]).":00"; // string
 
 			$lesson_->save();
 		}

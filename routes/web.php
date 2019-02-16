@@ -9,10 +9,11 @@ Route::get('/signin', "SigninController@index")
 Route::post("/signin", "SigninController@enter")
     ->middleware("guest");
 
-Route::get("/out", "SigninController@logout")
-    ->middleware("auth");
+Route::get("/doc/{page?}", "DocController")->where("page",".*");
 
 Route::middleware("auth")->group(function() {
+    Route::get("/out", "SigninController@logout");
+
     Route::get('/', "ProfileController@index")
         ->name("profile");
 
@@ -44,7 +45,7 @@ Route::middleware("auth")->group(function() {
         Route::get("", "UserController@index");
     });
 
-    Route::prefix("/questions")->middleware("auth")->group(function() {
+    Route::prefix("/questions")->group(function() {
         Route::get("", "QuestionController@show");
         Route::post("store", "QuestionController@store");
         Route::post("answer/{question}", "QuestionController@answer")
@@ -65,7 +66,7 @@ Route::middleware("auth")->group(function() {
         Route::post("{poll}/vote/{variant_id}", "PollController@vote");
     });
 
-    Route::prefix("/settings")->middleware("auth")->group(function() {
+    Route::prefix("/settings")->group(function() {
         Route::get("", "SettingsController@index");
         Route::post("/change_password", "SettingsController@change_password");
     });

@@ -755,6 +755,9 @@ textarea.form-control {
 	padding: 20px;
 	margin-bottom: 10px;
 }
+.one-poll li {
+
+}
 .vote-not-this {
 	transition: 2s;
 }
@@ -851,6 +854,16 @@ textarea.form-control {
 }
 .variant {
 	margin-bottom: 10px;
+}
+/* documents */
+.add-document {
+	font-size: 25px;
+	padding: 0 10px;
+	background: #466cb2;
+	color: #bed5ff;
+	margin-left: 15px;
+	transition: .5s;
+	cursor: pointer;
 }
 /* submit */
 .submit {

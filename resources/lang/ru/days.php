@@ -6,5 +6,6 @@ return [
     "Wednesday" => "Среда",
     "Thursday" => "Четверг",
     "Friday" => "Пятница",
-    "Saturday" => "Суббота"
+    "Saturday" => "Суббота",
+    "Sunday" => "Воскресенье"
 ];

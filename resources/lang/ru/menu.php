@@ -21,4 +21,5 @@ return array (
   'questions' => 'Вопросы',
   'documents' => 'Документы',
   'banners' => 'Баннеры',
+  'admin' => 'Администрирование',
 );

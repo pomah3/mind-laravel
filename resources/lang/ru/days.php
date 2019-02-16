@@ -1,10 +1,10 @@
 <?php
 
-return [
-    "Monday" => "Понедельник",
-    "Tuesday" => "Вторник",
-    "Wednesday" => "Среда",
-    "Thursday" => "Четверг",
-    "Friday" => "Пятница",
-    "Saturday" => "Суббота"
-];
+return array (
+  'Monday' => 'Понедельник',
+  'Tuesday' => 'Вторник',
+  'Wednesday' => 'Среда',
+  'Friday' => 'Пятница',
+  'Saturday' => 'Суббота',
+  'Thursday' => 'Четверг',
+);

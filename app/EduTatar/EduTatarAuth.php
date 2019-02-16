@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\EduTatar;
 
 class EduTatarAuth {
     private function etap1($login, $password) {

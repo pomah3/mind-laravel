@@ -19,7 +19,7 @@ class BannerPolicy
      */
     public function view(User $user)
     {
-        return $user->has_role("teacher");
+        return $user->has_role("moderator");
     }
 
     /**
@@ -30,7 +30,7 @@ class BannerPolicy
      */
     public function create(User $user)
     {
-        return $user->has_role("teacher");
+        return $user->has_role("moderator");
     }
 
     /**
@@ -42,7 +42,7 @@ class BannerPolicy
      */
     public function update(User $user)
     {
-        return $user->has_role("teacher");
+        return $user->has_role("moderator");
     }
 
     /**
@@ -54,6 +54,6 @@ class BannerPolicy
      */
     public function delete(User $user)
     {
-        return $user->has_role("teacher");
+        return $user->has_role("moderator");
     }
 }

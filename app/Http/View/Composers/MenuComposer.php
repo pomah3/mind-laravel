@@ -20,7 +20,7 @@ class MenuComposer {
             ["menu.data", "/data", ["can", "view-data"]],
             ["menu.users", "/users", ["can", "view", \App\User::class]],
             ["menu.banners", "/banners", ["can", "View", \App\Banner::class]],
-            ["menu.groups", "/groups", "teacher"],
+            ["menu.groups", "/groups", ["or", "zam", "moderator"]],
         ],
         ["menu.polls", "/polls", "all"],
         ["menu.events", "/events", "all"],

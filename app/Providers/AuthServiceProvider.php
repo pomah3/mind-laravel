@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use App\Excel\Reader;
 use App\User;
 
 class AuthServiceProvider extends ServiceProvider
@@ -32,12 +31,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define("upload-data", function(User $user, Reader $reader) {
-            return $user->has_role("teacher");
-        });
-        Gate::define("view-data", function(User $user) {
-            return $user->has_role("teacher");
-        });
+        Gate::define("view-data", "App\Policies\DataPolicy@viewData");
+        Gate::define("upload-data", "App\Policies\DataPolicy@uploadData");
 
         Gate::define("receive-points", "App\Policies\PointsPolicy@receivePoints");
         Gate::define("add-points", "App\Policies\PointsPolicy@addPoints");

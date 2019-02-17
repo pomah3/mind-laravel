@@ -24,7 +24,7 @@ class EduTatarAuth {
         $response = curl_exec($ch);
 
         if ($response === false) {
-            echo curl_error($ch);
+            dd(curl_error($ch));
         }
 
         // close the connection, release resources used
@@ -56,7 +56,7 @@ class EduTatarAuth {
         $response = curl_exec($ch);
 
         if ($response === false) {
-            echo curl_error($ch);
+            dd(curl_error($ch));
         }
 
         // close the connection, release resources used
@@ -95,6 +95,13 @@ class EduTatarAuth {
         return $matches1[1][0];
     }
 
+    public function auth($login, $password) {
+        $a = $this->etap1($login, $password);
+        $a = $this->etap2($a);
+
+        return $a;
+    }
+
     public function login($login, $password) {
         $a = $this->etap1($login, $password);
         $a = $this->etap2($a);
@@ -105,9 +112,26 @@ class EduTatarAuth {
             return $a;
 
         $a = explode(' ', $a);
-        return User::where("family_name", $a[0])
+        return \App\User::where("family_name", $a[0])
                    ->where("given_name", $a[1])
                    ->where("father_name", $a[2])
                    ->first();
+    }
+
+    public function get_page($url, $login, $password) {
+        $key = $this->auth($login, $password);
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36",
+            "Referer: https://edu.tatar.ru/",
+            "Cookie: DNSID=$key"
+        ));
+
+        return curl_exec($ch);
     }
 }

@@ -3,7 +3,10 @@
 @endphp
 
 <div class="from-name">
-    @user(["user"=>$tr->from_user]), {{ $tr->created_at }}
+    @if ($tr->from_user)
+        @user(["user"=>$tr->from_user]),
+    @endif
+    {{ $tr->created_at }}
 </div>
 
 @if ($tr->points > 0)

@@ -12,8 +12,12 @@ class CauseReader extends RowReader {
 
     public function getColumns(): array {
         return [
-            "num", "title:string", "points:int"
+            "num:int", "title:string", "points:int"
         ];
+    }
+
+    public function before(): void {
+        Cause::query()->delete();
     }
 
     public function save(array $arr): void {
@@ -21,6 +25,7 @@ class CauseReader extends RowReader {
 
         $cause->title = $arr["title"];
         $cause->points = $arr["points"];
+        $cause->id = $arr["num"];
 
         $cause->save();
     }

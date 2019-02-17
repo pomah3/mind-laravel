@@ -67,6 +67,6 @@ class EduTatarProcessMarks extends Command
             return;
 
         $points = $cause->points * $cnt;
-        Transaction::add(null, $student, $cause, $points);
+        Transaction::add(null, $student, $cause, $points, false);
     }
 }

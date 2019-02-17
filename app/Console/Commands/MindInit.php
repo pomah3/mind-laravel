@@ -58,5 +58,9 @@ class MindInit extends Command
                 "file" => "excel_files/students/$file"
             ]);
         }
+
+        foreach (User::where("type", "student")->get() as $student) {
+            \App\Transaction::add(null, $student, \App\Cause::find(1), null, false);
+        }
     }
 }

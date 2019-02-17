@@ -1,1 +1,1 @@
-php artisan schedule:run >> /dev/null 2>&1
+cd ITLKPFU && php artisan schedule:run >> /dev/null 2>&1

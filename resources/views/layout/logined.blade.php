@@ -8,12 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="/img/favicon.ico">
-    <link rel="stylesheet" href="{{ URL::asset("css/lib.css") }}">
-    <link rel="stylesheet" href="{{ URL::asset("css/app.css") }}">
+    <link rel="stylesheet" href="{{ mix("css/lib.css") }}">
+    <link rel="stylesheet" href="{{ mix("css/app.css") }}">
     <script>window.userId = null</script>
 </head>
 <body>
-    
+
     <div class="main_container">
     <script>window.userId = {{ Auth::user()->id }}</script>
 

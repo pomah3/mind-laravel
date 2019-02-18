@@ -1,7 +1,6 @@
-<a class="userlink" href="/users/{{ $user->id }}">
-    @if ($user->type === "student")
-        {{ $user->get_name("fm gi") }}
-    @else
-        {{ $user->get_name("gi ft")}}
-    @endif
-</a>
+@php
+    $name = $user->type === "student" ? "fm gi" : "gi ft";
+    $name = $user->get_name($name);
+@endphp
+
+<a class="userlink" href="/users/{{ $user->id }}">{{ $name }}</a>

@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\User;
 use App\Cause;
+use App\Role;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PointsPolicy
@@ -15,7 +16,9 @@ class PointsPolicy
     }
 
     public function addPoints(User $user, User $to_user, Cause $cause) {
-        return $user->type == "teacher" && $this->receivePoints($to_user);
+        return $user->type == "teacher"
+            && $this->receivePoints($to_user)
+            && Role::has_complex_role($user, $cause->access);
     }
 
     public function addPointsIndex(User $user) {

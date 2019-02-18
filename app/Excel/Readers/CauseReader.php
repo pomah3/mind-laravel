@@ -12,7 +12,7 @@ class CauseReader extends RowReader {
 
     public function getColumns(): array {
         return [
-            "num:int", "title:string", "points:int"
+            "num:int", "title:string", "points:int", "access:string"
         ];
     }
 
@@ -26,6 +26,7 @@ class CauseReader extends RowReader {
         $cause->title = $arr["title"];
         $cause->points = $arr["points"];
         $cause->id = $arr["num"];
+        $cause->access = json_decode($arr["access"]);
 
         $cause->save();
     }

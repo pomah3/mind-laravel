@@ -30,13 +30,22 @@ class PointsController extends Controller {
     public function add_index() {
         $this->authorize("add-points-index");
 
+        $students = StudentResource::collection(
+            User::where("type", "student")
+            ->get()
+            ->sort(\App\Utils::get_student_cmp())
+        );
+
+        $causes = Cause::orderBy("points")
+            ->get()
+            ->filter(function($cause) {
+                return \App\Role::has_complex_role(Auth::user(), $cause->access);
+            })
+            ->values();
+
         return view("points.add", [
-            "causes" => Cause::orderBy("points")->get(),
-             "students" => StudentResource::collection(
-                User::where("type", "student")
-                ->get()
-                ->sort(\App\Utils::get_student_cmp())
-            )
+            "causes" => $causes,
+            "students" => $students
         ]);
     }
 

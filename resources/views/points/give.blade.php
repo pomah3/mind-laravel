@@ -3,12 +3,12 @@
 @php($user = Auth::user())
 
 @section('title')
-    {{ __("points.add.title") }}
+    {{ __("points.give.title") }}
 @endsection
 
 @section('content')
     <div class="container container-points">
-        <h2>Баланс: <strong>300</strong> баллов</h2>
+        <h2>Баланс: <strong>{{ Auth::user()->student()->get_balance() }}</strong> баллов</h2>
 
         @if ($errors->any())
             <div class="alert alert-danger">

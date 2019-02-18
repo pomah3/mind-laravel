@@ -8,7 +8,7 @@
     @if ($tr["from_id"])
         @user(["user"=>\App\User::find($tr["from_id"])]),
     @endif
-    {{ $tr["created_at"] }}
+    {{ (new \Carbon\Carbon($tr["created_at"]))->format("d.m.Y H:i") }}
 </div>
 
 @if ($tr["points"] > 0)

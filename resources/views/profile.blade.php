@@ -11,7 +11,11 @@
 @section('content')
     <div class="container">
         <div class="block-information profile-information">
-            <h2>{{ $daytime }}, @user(["user"=>$user])</h2>
+            @php
+                $name = $user->type === "student" ? "gi" : "gi ft";
+                $name = $user->get_name($name);
+            @endphp
+            <h2>{{ $daytime }}, {{ $name }}</h2>
             @if ($user->has_role("student"))
                 <h2>
                     Баланс: <strong>
@@ -39,10 +43,9 @@
         <div class="block-information timetable">
             <h2>
                 {{ Carbon\Carbon::now()->format("l") == $date->format("l") ? "Сегодня" : "Завтра"}}:
-                <strong>{{ __("days.".$date->format('l')) }}</strong>,
-                {{ $date->format("d.m.Y") }}
+                <strong>{{ __("days.".$date->format('l')) }}</strong>
             </h2>
-            @if (isset($timetable))
+            @if (filled($timetable))
                 <table class="timetable-table">
                     <tr>
                         <th></th>

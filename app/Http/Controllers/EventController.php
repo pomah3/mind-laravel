@@ -18,8 +18,7 @@ class EventController extends Controller
     {
         return view("event.index", [
             "events" => Event::all()->filter(function ($e) {
-                return $e->author_id == Auth::user()->id ||
-                      $e->users->contains(Auth::user());
+                return Auth::user()->can("view", $e);
             })
         ]);
     }

@@ -11,14 +11,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $cnt = 50;
+
         App\Question::query()->delete();
-        factory(App\Question::class, 10)->create();
+        factory(App\Question::class, $cnt)->create();
 
         App\Poll::query()->delete();
-        factory(App\Poll::class, 10)->create();
+        factory(App\Poll::class, $cnt)->create();
 
         App\Banner::query()->delete();
-        factory(App\Banner::class, 10)->create();
+        factory(App\Banner::class, $cnt)->create();
 
+        App\Event::query()->delete();
+        factory(App\Event::class, $cnt)->create();
     }
 }

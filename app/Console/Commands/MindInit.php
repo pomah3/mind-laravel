@@ -7,29 +7,24 @@ use App\User;
 
 class MindInit extends Command
 {
-    protected $signature = 'mind:init {admin password}';
+    protected $signature = 'mind:init {admin password} {--seed}';
     protected $description = 'Load excel files and create admin\'s account with login "1" and given password';
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
+    public function handle() {
+        $this->call("migrate:fresh");
+
+        $this->info("Creating admin account..");
+        $this->create_admin();
+        $this->info("Admin account has been created successful");
+
+        $this->load_excel();
+
+        if ($this->option("seed"))
+            $this->call("db:seed");
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
-    public function handle()
-    {
+    private function create_admin() {
         $pass = $this->argument("admin password");
-
-        $this->call("migrate:fresh");
 
         $admin = new User;
         $admin->given_name = "Admin";
@@ -39,7 +34,9 @@ class MindInit extends Command
         $admin->password = $pass;
         $admin->save();
         $admin->add_role("admin");
+    }
 
+    private function load_excel() {
         $this->call("excel:load", [
             "reader" => "HeadTeacherReader",
             "file" => "excel_files/head_teachers.xlsx"

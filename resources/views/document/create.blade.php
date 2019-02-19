@@ -19,7 +19,8 @@
         @csrf
 
         <input type="text" name="title" placeholder="title"><br>
-        <input type="text" name="access" placeholder="access"><br>
+
+        Имеют доступ: @access(["attr"=>"name=\"access\""])
 
         <input type="file" name="file"><br>
 

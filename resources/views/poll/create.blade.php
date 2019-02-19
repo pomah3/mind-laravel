@@ -7,6 +7,17 @@
 @section('content')
 	<div class="container container-points">
 		<h2>Создать голосование</h2>
+
+       @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
 		<div class="voting_container">
 		    <form action="/polls" method="POST" class="form-50">
 		        @csrf
@@ -29,6 +40,9 @@
 					</div>
 					<div class="add-var">+ Добавить вариант</div>
 				</div>
+
+                Кто может голосовать: @access(["attr"=>"name=\"access_vote\""])
+                Кто может смотреть результаты: @access(["attr"=>"name=\"access_see_result\""])
 
 		        <button type="submit" class="submit">Отправить</button>
 		    </form>

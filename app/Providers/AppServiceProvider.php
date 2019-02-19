@@ -25,6 +25,7 @@ class AppServiceProvider extends ServiceProvider {
         Schema::defaultStringLength(191);
 
         Blade::include('layout.user', 'user');
+        Blade::include('layout.access', 'access');
         Blade::include('notifications.base', 'notification');
         Blade::component('layout.alert', 'alert');
 

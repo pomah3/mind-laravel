@@ -30,10 +30,12 @@ class PollController extends Controller
         $this->authorize('create', Poll::class);
 
         $data = $request->validate([
-            "title"    => "required",
-            "content"  => "required",
-            "variants" => "required|array",
-            "date"     => "required|date"
+            "title"             => "required",
+            "content"           => "required",
+            "variants"          => "required|array",
+            "date"              => "required|date",
+            "access_vote"       => "required|json",
+            "access_see_result" => "required|json"
         ]);
 
         $poll = new Poll;
@@ -42,8 +44,8 @@ class PollController extends Controller
         $poll->content = $data["content"];
         $poll->till_date = $data["date"];
 
-        $poll->access_vote = ["all"];
-        $poll->access_see_result = ["all"];
+        $poll->access_vote = json_decode($data["access_vote"]);
+        $poll->access_see_result = json_decode($data["access_see_result"]);
 
         $variants = $data["variants"];
 

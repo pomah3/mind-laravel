@@ -24,6 +24,7 @@ class PointsController extends Controller {
     }
 
     public function mine() {
+        $this->authorize("receive-points");
         return $this->of_student(Auth::user());
     }
 

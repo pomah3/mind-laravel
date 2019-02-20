@@ -21,4 +21,5 @@ return array (
   'polls' => 'Polls',
   'questions' => 'Questions',
   'users' => 'All users',
+  'admin' => 'Adminning',
 );

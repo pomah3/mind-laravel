@@ -5,27 +5,28 @@
 @endsection
 
 @section('content')
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    <div class="container container-points">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-    <form action="/documents" method="POST" enctype="multipart/form-data">
-        @csrf
+        <form action="/documents" method="POST" enctype="multipart/form-data" class="form-50">
+            @csrf
 
-        <input type="text" name="title" placeholder="title"><br>
 
-        Имеют доступ: @access(["attr"=>"name=\"access\""])
+            <input type="text" name="title" placeholder="title" class="form-control">
 
-        <input type="file" name="file"><br>
+            Имеют доступ: @access(["attr"=>"name=\"access\""])
 
-        <input type="submit">
+            <input type="file" name="file" class="form-control">
+            <input type="submit" class="submit">
 
-    </form>
-
+        </form>
+    </div>
 @endsection

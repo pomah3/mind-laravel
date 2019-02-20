@@ -755,6 +755,9 @@ textarea.form-control {
 	padding: 20px;
 	margin-bottom: 10px;
 }
+.one-poll li {
+
+}
 .vote-not-this {
 	transition: 2s;
 }
@@ -852,6 +855,16 @@ textarea.form-control {
 .variant {
 	margin-bottom: 10px;
 }
+/* documents */
+.add-document {
+	font-size: 25px;
+	padding: 0 10px;
+	background: #466cb2;
+	color: #bed5ff;
+	margin-left: 15px;
+	transition: .5s;
+	cursor: pointer;
+}
 /* submit */
 .submit {
 	font-family: 'Courier New', arial;
@@ -877,4 +890,65 @@ textarea.form-control {
 .points-submit {
 	margin-left: 10px;
 	margin-top: -10px;
+}
+/* questions */
+.one-question {
+    width: 48%;
+    padding: 10px;
+    background-color: #93BAC8;
+    margin-bottom: 20px;
+}
+.question-text {
+	font-size: 24px;
+	margin-bottom: 10px;
+}
+.question-remove {
+	margin-right: 5px;
+	float: right;
+	border: 0;
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	font-size: 20px;
+	font-weight: bold;
+	transition: .5s;
+	text-align: center;
+	cursor: pointer;
+	color: #7F2200;
+	background: #E26638;
+}
+.question-text,
+.from {
+	display: inline-block;
+	margin-right: 8px;
+}
+.from {
+	margin-top: -10px;
+	padding-top: 0;
+}
+.question .userlink {
+	font-size: 16px;
+	color: #4d4d4d;
+}
+.question-answer {
+	font-family: 'Courier New', arial;
+	background: #466cb2;
+	padding: 5px 15px;
+	margin-bottom: 10px;
+	border: 0;
+	color: #bed5ff;
+	font-size: 16px;
+	transition: .5s;
+	cursor: pointer;
+}
+.question-answer-send-text {
+	width: 80%;
+	margin-right: 20%;
+	min-height: 60px;
+	resize: vertical;
+	padding: 5px 10px;
+}
+.question-answer {
+	margin-top: 10px;
+	position: relative;
 }

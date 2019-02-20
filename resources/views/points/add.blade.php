@@ -7,58 +7,67 @@
 @endsection
 
 @section('content')
-    <h1>add points</h1>
-     @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    <div class="container container-points">
+        <h2>Начислить баллы:</h2>
+         @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-    @if (session('status'))
-        @alert(["type"=>"success"])
-            {{ session('status') }}
-        @endalert
-    @endif
+        @if (session('status'))
+            @alert(["type"=>"success"])
+                {{ session('status') }}
+            @endalert
+        @endif
 
-    <script>
-        let students = @json($students);
-        let causes = @json($causes);
-    </script>
+        <form action="/points/add" method="POST" class="form-50">
+            @csrf
 
-    <form action="/points/add" method="POST">
-        @csrf
+            <input type="text" v-model="input" class="form-control" placeholder="Начать поиск">
+            <select required name="student_id" id="select-student" class="form-control">
+                <option v-for="student in students_list | filterBy input" :value="student.id">@{{ student.family_name }} @{{ student.given_name }} @{{ student.father_name }}, @{{ student.group }}</option>
+            </select>
+            <select required name="cause_id" id="select-cause" class="form-control"></select>
+            <input type="submit" class="submit">
 
-        <select required name="student_id" id="select-student"></select>
-        <select required name="cause_id" id="select-cause"></select>
-        <input type="submit">
-
-    </form>
-
+        </form>
+    </div>
     @push('scripts')
         <script>
-            (function() {
-                const student_name = function(student) {
-                    return `${student.family_name} ${student.given_name} ${student.father_name}, ${student.group}`;
-                };
+            var students = @json($students);
+            var causes = @json($causes);
+            console.log(students);
+            var filter = new Vue ({
+                el: '.form-50',
+                data: {
+                    input: '',
+                    students_list: students
+                }
+            });
+            // (function() {
+            //     const student_name = function(student) {
+            //         return `${student.family_name} ${student.given_name} ${student.father_name}, ${student.group}`;
+            //     };
 
-                students.forEach(function(student) {
-                    $("#select-student").append(
-                        `<option value="${student.id}">${student_name(student)}</option>`
-                    );
-                });
+            //     students.forEach(function(student) {
+            //         $("#select-student").append(
+            //             `<option value="${student.id}">${student_name(student)}</option>`
+            //         );
+            //     });
 
-                causes.forEach(function(cause) {
-                    let ct = cause.title + ' (' + (cause.points > 0 ? '+' : '') + cause.points + ')';
+            //     causes.forEach(function(cause) {
+            //         let ct = cause.title + ' (' + (cause.points > 0 ? '+' : '') + cause.points + ')';
 
-                    $("#select-cause").append(
-                        `<option value="${cause.id}">${ct}</option>`
-                    );
-                });
-            })();
+            //         $("#select-cause").append(
+            //             `<option value="${cause.id}">${ct}</option>`
+            //         );
+            //     });
+            // })();
         </script>
     @endpush
 

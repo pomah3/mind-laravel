@@ -6,7 +6,7 @@ return array (
     'password' => 'Пароле',
     'title' => 'Кулланучы',
     'name' => 'Исеме',
-    'login' => 'Логгины',
+    'login' => 'Логины',
     'group' => 'Сыйныфы',
     'balance' => 'Баланс',
   ),

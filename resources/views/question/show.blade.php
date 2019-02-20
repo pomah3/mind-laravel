@@ -7,17 +7,18 @@
 @endsection
 
 @section('content')
-    <form action="questions/store" method="POST">
-        @csrf
-        <textarea name="question"></textarea>
-        <input type="submit" value="{{ __('question.ask') }}">
-    </form>
+    <div class="container">
+        <form action="questions/store" method="POST" class="form-40-marg-all">
+            @csrf
+            <textarea name="question" class="form-control" placeholder="Введите вопрос"></textarea>
+            <input type="submit" value="{{ __('question.ask') }}" class="submit">
+        </form>
 
-    @foreach ($questions as $question)
-        @component("question.question", ["question"=>$question])
-        @endcomponent
-    @endforeach
-
+        @foreach ($questions as $question)
+            @component("question.question", ["question"=>$question])
+            @endcomponent
+        @endforeach
+    </div>
     @push("scripts")
         <script>
             $(".question-remove").click(function() {

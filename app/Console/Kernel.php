@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('edutatar:marks')
-                 ->daily();
+                 ->daily()->at("21:00");
     }
 
     /**

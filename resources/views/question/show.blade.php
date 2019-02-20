@@ -37,7 +37,7 @@
                 let that = this;
 
                 let id = $(that).attr("question-id");
-                let answer = $(that).parent().find(".question-answer-text").val();
+                let answer = $(that).parent().find(".question-answer-send-text").val();
 
                 $.ajax({
                     method: "POST",

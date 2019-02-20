@@ -17,4 +17,22 @@
         @endif
     @endcan
 
+    @can("delete", $user)
+        <button class="delete-user" user-id="{{ $user->id }}">remove</button>
+        @push('scripts')
+            <script>
+                $(".delete-user").click(function() {
+                    let id = $(this).attr("user-id");
+
+                    $.ajax({
+                        method: "DELETE",
+                        url: "/users/" + id
+                    }).done(function() {
+                        window.location = "/users";
+                    });
+                });
+            </script>
+        @endpush
+    @endcan
+
 @endsection

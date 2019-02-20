@@ -41,11 +41,6 @@ Route::middleware("auth")->group(function() {
         Route::get("", "GroupController@all");
     });
 
-    Route::prefix("/users")->group(function() {
-        Route::get("{user}", "UserController@show");
-        Route::get("", "UserController@index");
-    });
-
     Route::prefix("/questions")->group(function() {
         Route::get("", "QuestionController@show");
         Route::post("store", "QuestionController@store");
@@ -59,6 +54,7 @@ Route::middleware("auth")->group(function() {
         "show"
     ]);
 
+    Route::resource("users", "UserController");
     Route::resource("polls", "PollController");
     Route::resource("events", "EventController");
     Route::resource("documents", "DocumentController");

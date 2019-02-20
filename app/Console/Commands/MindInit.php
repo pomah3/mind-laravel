@@ -56,8 +56,6 @@ class MindInit extends Command
             ]);
         }
 
-        foreach (User::where("type", "student")->get() as $student) {
-            \App\Transaction::add(null, $student, \App\Cause::find(1), null, false);
-        }
+        $this->call("mind:points-reset");
     }
 }

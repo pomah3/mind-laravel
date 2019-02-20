@@ -36,6 +36,7 @@ Route::middleware("auth")->group(function() {
         ->middleware("role:student");
 
     Route::prefix("/groups")->group(function() {
+        Route::get("mine", "GroupController@get_default");
         Route::get("{group}", "GroupController@get");
         Route::get("", "GroupController@all");
     });

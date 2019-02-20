@@ -35,6 +35,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define("upload-data", "App\Policies\DataPolicy@uploadData");
 
         Gate::define("receive-points", "App\Policies\PointsPolicy@receivePoints");
+        Gate::define("see-points", "App\Policies\PointsPolicy@seePoints");
         Gate::define("add-points", "App\Policies\PointsPolicy@addPoints");
         Gate::define("add-points-index", "App\Policies\PointsPolicy@addPointsIndex");
         Gate::define("give-points", "App\Policies\PointsPolicy@givePoints");

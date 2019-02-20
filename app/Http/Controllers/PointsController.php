@@ -15,7 +15,7 @@ use App\Http\Resources\StudentResource;
 
 class PointsController extends Controller {
     public function of_student(User $student) {
-        $this->authorize("receive-points");
+        $this->authorize("see-points", $student);
 
         return view("points.show", [
             "student" => $student,

@@ -5,35 +5,36 @@
 @endsection
 
 @section('content')
-    @if (session("status"))
-        @if (session("status") == "ok")
-            Успешно!
+    <div class="container container-points">
+        @if (session("status"))
+            @if (session("status") == "ok")
+                Успешно!
+            @endif
         @endif
-    @endif
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form action="/data" method="POST" enctype="multipart/form-data" class="form-50">
+            @csrf
+
+            <select name="data-type" value="{{ old("data-type") }}" class="form-control">
+                @foreach ($readers as $reader)
+                    <option value="{{ $reader->get_name() }}">{{ $reader->get_title() }}</option>
                 @endforeach
-            </ul>
-        </div>
-    @endif
+            </select>
 
-    <form action="/data" method="POST" enctype="multipart/form-data">
-        @csrf
+            <input type="file" name="file" class="form-control">
 
-        <select name="data-type" value="{{ old("data-type") }}">
-            @foreach ($readers as $reader)
-                <option value="{{ $reader->get_name() }}">{{ $reader->get_title() }}</option>
-            @endforeach
-        </select>
+            <input type="submit" class="submit">
 
-        <input type="file" name="file"><br>
-
-        <input type="submit">
-
-    </form>
-
+        </form>
+    </div>
 @endsection

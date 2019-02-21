@@ -30,8 +30,8 @@ class GroupController extends Controller {
             "users" => $users,
             "balance" => $col
         ]);
-    }
 
+}
     public function all() {
         $groups_ret = [];
 
@@ -58,8 +58,15 @@ class GroupController extends Controller {
             ];
         }
 
+        $pars = $groups
+              ->map(function($a) {
+                  return explode('-', $a)[0];
+              })
+              ->unique()->values();
+
         return view("group.all", [
-            "groups" => $groups_ret
+            "groups" => $groups_ret,
+            "pars" => $pars
         ]);
     }
 }

@@ -81,4 +81,9 @@ Route::middleware("auth")->group(function() {
 
         return "";
     });
+
+    Route::prefix("/email")->group(function() {
+        Route::get("", "EmailController@index");
+        Route::post("send", "EmailController@send");
+    });
 });

@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddEmail extends Migration {
     public function up() {
         Schema::table('users', function (Blueprint $table) {
-            $table->string("email")->nullabe();
+            $table->string("email")->nullable();
         });
     }
 

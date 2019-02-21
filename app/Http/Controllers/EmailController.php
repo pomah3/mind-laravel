@@ -20,7 +20,8 @@ class EmailController extends Controller
 
         $data = $request->validate([
             "access" => "required|json",
-            "text" => "required"
+            "text" => "required",
+            "title" => "required"
         ]);
 
         $role = json_decode($data["access"]);
@@ -31,16 +32,21 @@ class EmailController extends Controller
                          return Role::has_complex_role($a, $role);
                      });
 
-        Mail::to($users)->send(new CustomMail($data["text"]));
+        Mail::to($users)->send(
+            new CustomMail($data["title"], $data["text"])
+        );
+
+        return redirect("/email/send")->with("status", "ok");
     }
 
     public function preview(Request $request) {
         $this->authorize("send-email");
 
         $data = $request->validate([
-            "text" => "required"
+            "text" => "required",
+            "title" => "required"
         ]);
 
-        return new CustomMail($data["text"]);
+        return new CustomMail($data["title"], $data["text"]);
     }
 }

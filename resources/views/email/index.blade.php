@@ -9,6 +9,7 @@
     <form action="/email/send" method="POST">
         @csrf
 
+        <input type="text" name="title" placeholder="Тема"><br>
         <textarea name="text"></textarea> <br>
         Кому: @access(["attr"=>"name=\"access\""]) <br>
 

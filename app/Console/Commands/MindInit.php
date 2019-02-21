@@ -56,6 +56,6 @@ class MindInit extends Command
             ]);
         }
 
-        $this->call("mind:points-reset");
+        $this->call("mind:reset-points");
     }
 }

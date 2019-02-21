@@ -24,6 +24,19 @@ class SettingsController extends Controller
         $user->password = $data["new_password"];
         $user->save();
 
-        return view("settings", ["status" => "successful"]);
+        return redirect("/settings")->with("status", "ok");
+    }
+
+    public function change_email(Request $request) {
+        $data = $request->validate([
+            "email" => "required|email"
+        ]);
+
+        $user = Auth::user();
+
+        $user->email = $data["email"];
+        $user->save();
+
+        return redirect("/settings")->with("status", "ok");
     }
 }

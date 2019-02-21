@@ -66,6 +66,7 @@ Route::middleware("auth")->group(function() {
     Route::prefix("/settings")->group(function() {
         Route::get("", "SettingsController@index");
         Route::post("/change_password", "SettingsController@change_password");
+        Route::post("/change_email", "SettingsController@change_email");
     });
 
     Route::prefix("/data")->group(function() {

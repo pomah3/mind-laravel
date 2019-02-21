@@ -1,7 +1,5 @@
 @extends('layout.logined')
 
-@php($user = Auth::user())
-
 @section('title')
     {{ __("profile.title") }}
 @endsection
@@ -40,5 +38,15 @@
 
         <input type="submit">
 
+    </form>
+
+    <h2>Поменять почту</h2>
+
+    <form action="/settings/change_email" method="POST">
+        @csrf
+
+        <input type="email" name="email" value="{{ Auth::user()->email }}">
+
+        <input type="submit">
     </form>
 @endsection

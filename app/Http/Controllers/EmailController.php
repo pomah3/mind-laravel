@@ -36,7 +36,7 @@ class EmailController extends Controller
             new CustomMail($data["title"], $data["text"])
         );
 
-        return redirect("/email/send")->with("status", "ok");
+        return redirect("/email")->with("status", "ok");
     }
 
     public function preview(Request $request) {

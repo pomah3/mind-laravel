@@ -9,7 +9,7 @@ use App\User;
 use App\EduTatarAuth;
 use App\Transaction;
 use App\Cause;
-use App\Http\Resources\{UserResource, StudentResource};
+use App\Http\Resources\{UserResource, StudentResource, TransactionResource};
 
 Route::middleware("api_token")->group(function() {
 
@@ -55,14 +55,19 @@ Route::middleware("api_token")->group(function() {
 
     Route::prefix("/transactions")->group(function() {
         Route::get('', function() {
-            return Transaction::all();
+            return TransactionResource::collection(Transaction::all());
         });
+
         Route::get('{tr}', function(Transaction $tr) {
-            return $tr;
+            return new TransactionResource($tr);
         });
+
         Route::get('of_user/{user}', function(User $user) {
-            return Transaction::of_student($user)->get();
+            return TransactionResource::collection(
+                Transaction::of_student($user)->get()
+            );
         });
+
         Route::post("/add/{from}/{to}/{cause}/{points?}",
             function(User $from, User $to, Cause $cause, ?int $points=null) {
                 if ($points === null) {

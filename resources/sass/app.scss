@@ -37,6 +37,39 @@ ol.ol {
 .not-found {
 	font-size: 20px;
 }
+a.a-designed {
+	font-size: 20px;
+	color: rgb(0, 75, 126);
+	text-decoration: underline;
+}
+a.a-small {
+	font-size: 16px;
+}
+.w-50 {
+	width: 50%;
+}
+.b-10 {
+	margin-bottom: 10px;
+}
+.table td {
+	border: 0;
+}
+.buttons {
+	display: flex;
+	margin-bottom: 10px;
+}
+.button-filter {
+	background: rgba(0,75,126,.4);
+	border-radius: 15px;
+	color: #fff;
+	text-align: center;
+	cursor: pointer;
+	padding: 5px 10px;
+	margin-right: 10px;
+}
+.button-filter:hover {
+	background: rgba(0,75,126,.6);
+}
 /* containers */
 .container-menu,
 .container-banner { 
@@ -951,4 +984,7 @@ textarea.form-control {
 .question-answer {
 	margin-top: 10px;
 	position: relative;
+}
+.table-sm td {
+	padding-left: 0;
 }

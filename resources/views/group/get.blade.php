@@ -5,10 +5,12 @@
 @endsection
 
 @section('content')
-    @component('group.table', [
-        "balance" => $balance,
-        "group" => $group,
-        "users" => $users
-    ])
-    @endcomponent
+	<div class="container">
+	    @component('group.table', [
+	        "balance" => $balance,
+	        "group" => $group,
+	        "users" => $users
+	    ])
+	    @endcomponent
+	</div>
 @endsection

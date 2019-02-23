@@ -7,6 +7,10 @@ use Carbon\Carbon;
 
 class Lesson extends Model
 {
+	protected $casts = [
+		"number" => "integer"
+	];
+
     public function getTimeFromAttribute() {
         return \App\Utils::get_today_date(new Carbon($this->attributes["time_from"]));
     }

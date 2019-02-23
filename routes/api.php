@@ -9,7 +9,7 @@ use App\User;
 use App\EduTatarAuth;
 use App\Transaction;
 use App\Cause;
-use App\Http\Resources\{UserResource, StudentResource, TransactionResource};
+use App\Http\Resources\{UserResource, StudentResource, TransactionResource, LessonResource};
 
 Route::middleware("api_token")->group(function() {
 
@@ -97,6 +97,25 @@ Route::middleware("api_token")->group(function() {
                 ->groupBy('role_arg')
                 ->orderBy('role_arg')
                 ->get();
+        });
+    });
+
+    Route::prefix("/timetable")->group(function() {
+        Route::get("{user}", function(User $user) {
+            $group = $user->student()->get_group();
+            $lessons = [];
+            $days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+            foreach($days as $day) {
+                $lessons[$day] = App\Lesson::where("weekday", $day)
+                                           ->where("group", $group)
+                                           ->orderBy("number")
+                                           ->get();
+
+                $lessons[$day] = LessonResource::collection($lessons[$day]);
+            }
+
+            return $lessons;
         });
     });
 });

@@ -6,8 +6,9 @@
     @endcan
 
     @if ($question->answered_at != null)
-        <div>
-            <div>
+        <div class="question-answer-field">
+            <img src="img/arrow.png" alt="" class="answer">
+            <div class="answer-text">
                 {{ $question->answer }}
             </div>
             @component('layout.user', ["user" => $question->answerer])@endcomponent

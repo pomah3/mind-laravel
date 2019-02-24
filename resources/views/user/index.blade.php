@@ -5,11 +5,13 @@
 @endsection
 
 @section('content')
-    <ul>
-        @foreach ($users as $user)
-            <li>
-                @user(["user" => $user])
-            </li>
-        @endforeach
-    </ul>
+	<div class="container container-points">
+	    <ul>
+	        @foreach ($users as $user)
+	            <li class="not-list-style">
+	                @user(["user" => $user])
+	            </li>
+	        @endforeach
+	    </ul>
+   </div>
 @endsection

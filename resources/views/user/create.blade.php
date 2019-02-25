@@ -14,7 +14,7 @@
             <input type="text" name="given_name"  placeholder="Введите имя" class="form-control">
             <input type="text" name="father_name" placeholder="Введите отчество" class="form-control">
             
-            <label for=""></label>
+            <label for="type"></label>
             <select class="type_select form-control" name="type" id="type">
                 <option value="student">Ученик</option>
                 <option value="teacher">Не ученик</option>

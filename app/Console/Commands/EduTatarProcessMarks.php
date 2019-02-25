@@ -30,7 +30,7 @@ class EduTatarProcessMarks extends Command
         }
     }
 
-    private function get_marks(string $login, string $password) {
+    public function get_marks(string $login, string $password) {
         $page = (new EduTatarAuth)->get_page(
             "https://edu.tatar.ru/user/diary/term",
             $login,
@@ -40,7 +40,7 @@ class EduTatarProcessMarks extends Command
         preg_match_all("#<td>(\d)</td>#", $page, $marks);
 
         $marks = collect($marks[1])
-                 ->map("intval")
+                 ->map(function($a) {return intval($a);})
                  ->filter(function($a) {return $a>=2 && $a<=5;});
 
         return $marks;
@@ -69,4 +69,5 @@ class EduTatarProcessMarks extends Command
         $points = $cause->points * $cnt;
         Transaction::add(null, $student, $cause, $points, false);
     }
+
 }

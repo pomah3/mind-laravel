@@ -15,10 +15,10 @@
         <ol class="ol">
             @forelse ($polls as $poll)
                 <li class="not-list-style poll-elem">
-                    <a href="/polls/{{ $poll->id }}">{{ $poll->title }}</a>
                     @can("delete", $poll)
                         <button poll-id="{{ $poll->id }}" class="poll-delete">&times;</button>
                     @endcan
+                    <a href="/polls/{{ $poll->id }}">{{ $poll->title }}</a>
                     <div class="banner-label">Доступно до: <span>{{ $poll->till_date->format("d.m.Y") }}</span></div>
                 </li>
             @empty

@@ -48,11 +48,14 @@ a.a-designed {
 a.a-small {
 	font-size: 16px;
 }
-.w-50 {
-	width: 50%;
+.w-45 {
+	width: 45%;
 }
 .b-10 {
 	margin-bottom: 10px;
+}
+.pl-10 {
+	padding-left: 10px;
 }
 .table td {
 	border: 0;
@@ -1006,10 +1009,17 @@ img.answer {
 	position: absolute;
 	top: 5px;
 }
-.table-sm td {
-	padding-left: 0;
-}
 /* settings */
 .change {
 	width: 50%;
+}
+/* group */
+.table-sm {
+	border-radius: 5px;
+	background: rgba(0, 75, 126, .1);
+	box-shadow: 2px 2px 4px #777;
+}
+/* user */
+.role_select {
+	height: auto;
 }

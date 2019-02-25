@@ -2,13 +2,13 @@
     $par = explode('-', $group)[0];
 @endphp
 
-<div class="w-50 b-10 one-class {{ $par }}-par">
+<div class="w-45 b-10 one-group {{ $par }}-par">
     <h2>Класс: <strong>{{ $group }}</strong></h2>
     <h3>Баланс: <strong>{{ $balance }}</strong> баллов</h3>
     <table class="table table-sm">
         @foreach($users as $user)
             <tr>
-                <td>
+                <td class="pl-10">
                     @user(["user" => $user])
                 </td>
 

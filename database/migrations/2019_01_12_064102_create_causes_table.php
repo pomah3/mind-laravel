@@ -20,6 +20,7 @@ class CreateCausesTable extends Migration
             $table->string("title")->unique();
             $table->integer("points");
             $table->text("access");
+            $table->string("category");
         });
     }
 

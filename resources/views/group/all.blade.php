@@ -27,7 +27,7 @@
     <script>
         @foreach ($pars as $par)
             $('#{{$par}}-par').on('click', function() {
-                $('.one-class').hide();
+                $('.one-group').hide();
                 $('.{{$par}}-par').show();
                 $('.par').removeClass("active-par");
                 $('#all').removeClass("active-par");
@@ -35,9 +35,10 @@
             });
         @endforeach
         $('#all').on('click', function() {
-            $('.one-class').show();
+            $('.one-group').show();
             $('.par').removeClass("active-par");
             $('#all').addClass("active-par");
         });
+
     </script>
 @endpush

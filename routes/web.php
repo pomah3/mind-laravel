@@ -82,6 +82,9 @@ Route::middleware("auth")->group(function() {
         return "";
     });
 
+    Route::get("/marks", "MarksController@index")
+         ->middleware("role:student");
+
     Route::prefix("/email")->group(function() {
         Route::get("", "EmailController@index");
         Route::post("send", "EmailController@send");

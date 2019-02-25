@@ -15,10 +15,10 @@
             <div class="button-filter active-button" id="new-polls">Доступные</div>
             <div class="button-filter" id="old-polls">Прошедшие</div>
         </div>
-        
+
         <div class="flex">
             @forelse ($polls as $poll)
-                <div class="poll-elem">
+                <div class="poll-elem {{ $poll->till_date <= now() ? "old-poll" : "new-poll"}}">
                     @can("delete", $poll)
                         <button poll-id="{{ $poll->id }}" class="poll-delete">&times;</button>
                     @endcan

@@ -26,9 +26,6 @@ class Transaction extends Model {
     }
 
     public static function get_balance(User $user) {
-        if ($user->type !== "student")
-            return null;
-
         $plus = Transaction::where("to_id", $user->id)->sum("points");
         $minus = Transaction::where("from_id", $user->id)->sum("points");
 

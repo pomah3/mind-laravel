@@ -14,4 +14,8 @@ return array (
   array (
     'title' => 'Add points',
   ),
+  'give' => 
+  array (
+    'title' => 'Give points',
+  ),
 );

@@ -3,7 +3,7 @@
 return array (
   'add' => 
   array (
-    'title' => 'Балларны өстәргә',
+    'title' => 'Балларны бирү',
   ),
   'show' => 
   array (
@@ -13,5 +13,9 @@ return array (
     'time' => 'Вакыт',
     'title' => 'Минем баллларым',
     'to' => 'Алучы',
+  ),
+  'give' => 
+  array (
+    'title' => 'Балларны бирү',
   ),
 );

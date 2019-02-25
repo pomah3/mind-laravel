@@ -11,22 +11,26 @@
         @can('create', App\Poll::class)
             <a href="/polls/create" class="add-poll">+</a>
         @endcan
-
-        <ol class="ol">
+        <div class="buttons">
+            <div class="button-filter active-button" id="new-polls">Доступные</div>
+            <div class="button-filter" id="old-polls">Прошедшие</div>
+        </div>
+        
+        <div class="flex">
             @forelse ($polls as $poll)
-                <li class="not-list-style poll-elem">
+                <div class="poll-elem">
                     @can("delete", $poll)
                         <button poll-id="{{ $poll->id }}" class="poll-delete">&times;</button>
                     @endcan
                     <a href="/polls/{{ $poll->id }}">{{ $poll->title }}</a>
                     <div class="banner-label">Доступно до: <span>{{ $poll->till_date->format("d.m.Y") }}</span></div>
-                </li>
+                </div>
             @empty
                 <div class="not-found">
                     Нет доступных голосований
                 </div>
             @endforelse
-        </ol>
+        </div>
 
         @push('scripts')
             <script>
@@ -42,6 +46,18 @@
                     .fail(function(err) {
                         console.log(err);
                     });
+                });
+                $('#new-polls').on('click', function() {
+                    $('.old-poll').hide();
+                    $('.new-poll').show();
+                    $('.button-filter').removeClass("active-button");
+                    $(this).addClass("active-button");
+                });
+                $('#old-polls').on('click', function() {
+                    $('.new-poll').hide();
+                    $('.old-poll').show();
+                    $('.button-filter').removeClass("active-button");
+                    $(this).addClass("active-button");
                 });
             </script>
         @endpush

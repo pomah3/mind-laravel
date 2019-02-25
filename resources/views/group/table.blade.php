@@ -16,9 +16,11 @@
                     {{ $user->student()->get_balance() }}
                 </td>
 
-                <td>
-                    <a href="/points/{{ $user->id }}" class="a-designed a-small">Подробнее</a>
-                </td>
+                @can('see-points', $user)
+                    <td>
+                        <a href="/points/{{ $user->id }}" class="a-designed a-small">Подробнее</a>
+                    </td>
+                @endcan
             </tr>
         @endforeach
     </table>

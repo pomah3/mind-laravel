@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\Cache;
 use App\Events\TransactionMade;
 
 class Transaction extends Model {
@@ -26,10 +26,12 @@ class Transaction extends Model {
     }
 
     public static function get_balance(User $user) {
-        $plus = Transaction::where("to_id", $user->id)->sum("points");
-        $minus = Transaction::where("from_id", $user->id)->sum("points");
+        return Cache::remember("balance.".$user->id, 1, function() use ($user) {
+            $plus = Transaction::where("to_id", $user->id)->sum("points");
+            $minus = Transaction::where("from_id", $user->id)->sum("points");
 
-        return $plus - $minus;
+            return $plus - $minus;
+        });
     }
 
     public static function add(?User $from, User $to, Cause $cause, int $points=null, bool $need_event=true): Transaction {

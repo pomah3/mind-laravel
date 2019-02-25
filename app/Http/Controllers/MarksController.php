@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\EduTatar\EduTatarAuth;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class MarksController extends Controller {
     function get_number_of_5($a) {
@@ -52,18 +53,20 @@ class MarksController extends Controller {
     }
 
     private function get_marks_($login, $password) {
-        $m = $this->get_marks($login, $password);
+        return Cache::remember("edu.marks.$login", 10, function() use($login, $password) {
+            $m = $this->get_marks($login, $password);
 
-        $ret = [];
-        foreach ($m as $name => $marks) {
-            $ret[] = [
-                "marks" => $marks,
-                "name" => $name,
-                "need" => $this->get_number_of_5($marks),
-            ];
-        }
+            $ret = [];
+            foreach ($m as $name => $marks) {
+                $ret[] = [
+                    "marks" => $marks,
+                    "name" => $name,
+                    "need" => $this->get_number_of_5($marks),
+                ];
+            }
 
-        return $ret;
+            return $ret;
+        });
     }
 
     public function index() {

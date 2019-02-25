@@ -33,9 +33,6 @@ h3 {
 }
 ol.ol {
 	font-size: 20px;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
 }
 .not-found {
 	font-size: 20px;
@@ -67,8 +64,13 @@ a.a-small {
 .button-filter:hover {
 	background: rgba(0,75,126,.7);
 }
-.active-par {
+.active-button {
 	background: rgba(0,75,126,.6);
+}
+.flex {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 /* containers */
 .container-menu,

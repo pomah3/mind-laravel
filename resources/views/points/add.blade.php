@@ -28,10 +28,8 @@
         <form action="/points/add" method="POST" class="form-50">
             @csrf
 
-            <input type="text" v-model="input" class="form-control" placeholder="Начать поиск">
-            <select required name="student_id" id="select-student" class="form-control">
-                <option v-for="student in students_list | filterBy input" :value="student.id">@{{ student.family_name }} @{{ student.given_name }} @{{ student.father_name }}, @{{ student.group }}</option>
-            </select>
+            <input type="text" class="form-control" placeholder="Начать поиск">
+            <select required name="student_id" id="select-student" class="form-control"></select>
             <select required name="cause_id" id="select-cause" class="form-control"></select>
             <input type="submit" class="submit">
 
@@ -42,32 +40,25 @@
             var students = @json($students);
             var causes = @json($causes);
             console.log(students);
-            var filter = new Vue ({
-                el: '.form-50',
-                data: {
-                    input: '',
-                    students_list: students
-                }
-            });
-            // (function() {
-            //     const student_name = function(student) {
-            //         return `${student.family_name} ${student.given_name} ${student.father_name}, ${student.group}`;
-            //     };
+            (function() {
+                const student_name = function(student) {
+                    return `${student.family_name} ${student.given_name} ${student.father_name}, ${student.group}`;
+                };
 
-            //     students.forEach(function(student) {
-            //         $("#select-student").append(
-            //             `<option value="${student.id}">${student_name(student)}</option>`
-            //         );
-            //     });
+                students.forEach(function(student) {
+                    $("#select-student").append(
+                        `<option value="${student.id}">${student_name(student)}</option>`
+                    );
+                });
 
-            //     causes.forEach(function(cause) {
-            //         let ct = cause.title + ' (' + (cause.points > 0 ? '+' : '') + cause.points + ')';
+                causes.forEach(function(cause) {
+                    let ct = cause.title + ' (' + (cause.points > 0 ? '+' : '') + cause.points + ')';
 
-            //         $("#select-cause").append(
-            //             `<option value="${cause.id}">${ct}</option>`
-            //         );
-            //     });
-            // })();
+                    $("#select-cause").append(
+                        `<option value="${cause.id}">${ct}</option>`
+                    );
+                });
+            })();
         </script>
     @endpush
 

@@ -28,7 +28,7 @@
         <form action="/points/add" method="POST" class="form-50">
             @csrf
 
-            {{-- <input type="text" v-model="input" class="form-control" placeholder="Начать поиск"> --}}
+            <input type="text" class="form-control" placeholder="Начать поиск">
             <select required name="student_id" id="select-student" class="form-control"></select>
             <select required name="cause_id" id="select-cause" class="form-control"></select>
             <input type="submit" class="submit">
@@ -39,7 +39,7 @@
         <script>
             var students = @json($students);
             var causes = @json($causes);
-
+            console.log(students);
             (function() {
                 const student_name = function(student) {
                     return `${student.family_name} ${student.given_name} ${student.father_name}, ${student.group}`;

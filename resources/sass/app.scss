@@ -33,6 +33,9 @@ h3 {
 }
 ol.ol {
 	font-size: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 .not-found {
 	font-size: 20px;
@@ -68,6 +71,9 @@ a.a-small {
 	margin-right: 10px;
 }
 .button-filter:hover {
+	background: rgba(0,75,126,.7);
+}
+.active-par {
 	background: rgba(0,75,126,.6);
 }
 /* containers */
@@ -510,6 +516,10 @@ textarea.form-control {
 	flex-basis: 60%;
 	width: 60%;
 }
+.form-80 {
+	flex-basis: 80%;
+	width: 80%;
+}
 .form-50 {
 	flex-basis: 50%;
 	width: 50%;
@@ -523,6 +533,7 @@ textarea.form-control {
 	width: 40%;
 }
 .form-40-marg-all {
+	width: 40%;
 	margin-right: 60%;
 	margin-bottom: 20px;
 }
@@ -542,7 +553,7 @@ textarea.form-control {
 	color: #bed5ff;
 }
 .poll-elem {
-	width: 40%;
+	width: 45%;
 	padding: 10px;
 	box-shadow: 2px 2px 4px #777;
 	margin-bottom: 20px;
@@ -933,7 +944,9 @@ textarea.form-control {
 }
 .question-text {
 	font-size: 24px;
-	margin-bottom: 10px;
+}
+.question-text p {
+	margin-bottom: 0;
 }
 .question-remove {
 	margin-right: 5px;
@@ -959,7 +972,7 @@ textarea.form-control {
 	margin-top: -10px;
 	padding-top: 0;
 }
-.question .userlink {
+.userlink {
 	font-size: 16px;
 	color: #4d4d4d;
 }
@@ -974,6 +987,13 @@ textarea.form-control {
 	transition: .5s;
 	cursor: pointer;
 }
+.question-answer-field {
+	position: relative;
+	margin: 15px 0;
+}
+.answer-text {
+	margin-left: 20px;
+}
 .question-answer-send-text {
 	width: 80%;
 	margin-right: 20%;
@@ -981,10 +1001,15 @@ textarea.form-control {
 	resize: vertical;
 	padding: 5px 10px;
 }
-.question-answer {
-	margin-top: 10px;
-	position: relative;
+img.answer {
+	width: 15px;
+	position: absolute;
+	top: 5px;
 }
 .table-sm td {
 	padding-left: 0;
+}
+/* settings */
+.change {
+	width: 50%;
 }

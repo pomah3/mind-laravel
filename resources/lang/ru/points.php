@@ -14,4 +14,8 @@ return array (
   array (
     'title' => 'Начислить баллы',
   ),
+  'give' => 
+  array (
+    'title' => 'Передать баллы',
+  ),
 );

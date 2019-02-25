@@ -7,4 +7,5 @@ return array (
   'Tuesday' => 'Tuesday',
   'Wednesday' => 'Wednesday',
   'Thursday' => 'Thursday',
+  'Sunday' => 'Sunday',
 );

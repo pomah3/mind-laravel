@@ -14,14 +14,14 @@ class MenuComposer {
             ["menu.points.mine", "/points", ["can", "receive-points"]],
             ["menu.points.give", "/points/give", ["can", "give-points-index"]],
             ["menu.points.add", "/points/add", ["can", "add-points-index"]],
-            ["menu.points.group", "/groups/mine", ["or", "classruk", "student"]]
+            ["menu.groups", "/groups", ["can", "view-all-groups"]],
+            ["menu.points.group", "/groups/mine", ["or", "classruk", "student"]],
         ],
         [
             "menu.admin",
             ["menu.data", "/data", ["can", "view-data"]],
             ["menu.users", "/users", ["can", "view", \App\User::class]],
-            ["menu.banners", "/banners", ["can", "view", \App\Banner::class]],
-            ["menu.groups", "/groups", ["can", "view-all-groups"]],
+            ["menu.banners", "/banners", ["can", "view", \App\Banner::class]]
         ],
         ["menu.polls", "/polls", "all"],
         ["menu.events", "/events", "all"],

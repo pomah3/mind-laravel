@@ -48,15 +48,6 @@ a.a-designed {
 a.a-small {
 	font-size: 16px;
 }
-.w-45 {
-	width: 45%;
-}
-.b-10 {
-	margin-bottom: 10px;
-}
-.pl-10 {
-	padding-left: 10px;
-}
 .table td {
 	border: 0;
 }
@@ -133,9 +124,6 @@ input[type="checkbox"] {
 .signin-card i {
 	color: #2a3955;
 }
-.fa {
-	line-height: 1.5;
-}
 .signin-card .submit {
 	margin-bottom: 0;
 }
@@ -211,31 +199,31 @@ nav > ul > li.menu-drop {
 	padding: 0;
 	cursor: pointer;
 }
-nav > ul > li .btn-group {
-	transition: .5s;
-}
-nav > ul > li .btn-group:hover { 
-	background: rgba(0, 55, 106, .9);
-	color: #ccc;
-	text-decoration: none;
-}
 nav > ul > li .btn-group.show {
 	background: rgba(0, 55, 106, .9);
-	color: #ccc;
+	color: #ddd;
 }
 nav > ul > li.active { 
 	background: #002C4A;
 }
 nav > ul > li a { 
 	padding: 10px;
-	transition: 0.5s;
 	cursor: pointer;
+	transition: .5s;
 }
 nav > ul > li > a:hover {
 	background: rgba(0, 55, 106, .9);
-	color: #ccc;
+	color: #ddd;
 	text-shadow: 0 0 3px #555;
 	text-decoration: none;
+}
+nav > ul > li .btn-group {
+	transition: .5s;
+}
+nav > ul > li .btn-group:hover { 
+	background: rgba(0, 55, 106, .9);
+	text-decoration: none;
+	color: #ddd;
 }
 ul.dropdown-menu {
 	border-radius: 0;
@@ -1022,4 +1010,14 @@ img.answer {
 /* user */
 .role_select {
 	height: auto;
+}
+/* main */
+.w-45 {
+	width: 45%;
+}
+.b-10 {
+	margin-bottom: 10px;
+}
+.pl-10 {
+	padding-left: 10px !important;
 }

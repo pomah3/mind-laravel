@@ -29,12 +29,10 @@ class GroupRepositoryImpl implements GroupRepository {
     }
 
     public function get_all() {
-        $groups = [];
-
-        foreach ($this->get_names() as $group)
-            $groups[] = $this->get($group);
-
-        return $groups;
+        return $this->get_names()
+                    ->map(function($u) {
+                        return $this->get($u);
+                    });
     }
 
     public function get($group) {

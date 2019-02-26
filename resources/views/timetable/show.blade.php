@@ -8,7 +8,6 @@
 @endsection
 
 @section('content')
-    {{ $group }}
     @foreach($days as $day)
         <table>
             <tr>

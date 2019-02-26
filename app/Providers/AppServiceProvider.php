@@ -14,6 +14,7 @@ class AppServiceProvider extends ServiceProvider {
     public $singletons = [
         ReaderProvider::class => ReaderProvider::class,
         \App\Repositories\GroupRepository::class => \App\Repositories\GroupRepositoryImpl::class,
+        \App\Repositories\TimetableRepository::class => \App\Repositories\TimetableRepositoryImpl::class,
     ];
 
     /**

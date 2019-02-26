@@ -3,11 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Lesson;
 use Illuminate\Support\Facades\Auth;
+
+use App\Lesson;
+use App\Repositories\TimetableRepository;
 
 class ProfileController extends Controller
 {
+    private $ttr;
+
+    public function __construct(TimetableRepository $ttr) {
+        $this->ttr = $ttr;
+    }
+
     private function get_daytime() {
         $h = (new \DateTime())->format("H");
         $h = intval($h);
@@ -43,9 +51,9 @@ class ProfileController extends Controller
         if (Auth::user()->type != "student")
             return null;
 
-        return Lesson::where("weekday", $this->get_timetable_date()->format('l'))
-                     ->where("group", Auth::user()->student()->get_group())
-                     ->get();
+        return $this->ttr->get_lessons(Auth::user())[
+            $this->get_timetable_date()->format('l')
+        ];
     }
 
     public function index() {

@@ -16,7 +16,8 @@ class GroupRepositoryImpl implements GroupRepository {
             ->orderBy('role_arg')
             ->get()
             ->map(function($a) {return $a->role_arg;})
-            ->sort(\App\Utils::get_group_cmp());
+            ->sort(\App\Utils::get_group_cmp())
+            ->values();
     }
 
     public function get_pars() {

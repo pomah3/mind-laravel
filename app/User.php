@@ -79,4 +79,10 @@ class User extends Authenticatable
     public function events() {
         return $this->belongsToMany(Event::class);
     }
+
+    public function status() {
+        return $this->hasOne(Status::class)->withDefault([
+            "title" => "unknown"
+        ]);
+    }
 }

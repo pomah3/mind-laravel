@@ -89,4 +89,9 @@ Route::middleware("auth")->group(function() {
         Route::get("", "EmailController@index");
         Route::post("send", "EmailController@send");
     });
+
+    Route::prefix("/status")->group(function() {
+        Route::get("", "StatusController@index");
+        Route::post("{user}/{status}", "StatusController@set");
+    });
 });

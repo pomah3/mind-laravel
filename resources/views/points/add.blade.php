@@ -28,8 +28,8 @@
         <form action="/points/add" method="POST" class="form-50">
             @csrf
 
-            <input type="text" class="form-control" placeholder="Начать поиск">
             <select required name="student_id" id="select-student" class="form-control"></select>
+            <select required id="select-category" class="form-control"></select>
             <select required name="cause_id" id="select-cause" class="form-control"></select>
             <input type="submit" class="submit">
 
@@ -37,10 +37,15 @@
     </div>
     @push('scripts')
         <script>
-            var students = @json($students);
-            var causes = @json($causes);
-            console.log(students);
             (function() {
+                let students = @json($students);
+                let causes = {};
+                (@json($causes)).forEach(function(a) {
+                    causes[a.category] = causes[a.category] || [];
+                    causes[a.category].push(a);
+                });
+                let categories = Object.keys(causes);
+
                 const student_name = function(student) {
                     return `${student.family_name} ${student.given_name} ${student.father_name}, ${student.group}`;
                 };
@@ -51,13 +56,26 @@
                     );
                 });
 
-                causes.forEach(function(cause) {
-                    let ct = cause.title + ' (' + (cause.points > 0 ? '+' : '') + cause.points + ')';
-
-                    $("#select-cause").append(
-                        `<option value="${cause.id}">${ct}</option>`
+                categories.forEach(function(a) {
+                    $("#select-category").append(
+                        `<option>${a}</option>`
                     );
                 });
+
+                const fill_causes = function() {
+                    let v = $("#select-category").val();
+                    $("#select-cause").empty();
+                    causes[v].forEach(function(cause) {
+                        let ct = cause.title + ' (' + (cause.points > 0 ? '+' : '') + cause.points + ')';
+
+                        $("#select-cause").append(
+                            `<option value="${cause.id}">${ct}</option>`
+                        );
+                    });
+                };
+
+                fill_causes();
+                $("#select-category").change(fill_causes);
             })();
         </script>
     @endpush

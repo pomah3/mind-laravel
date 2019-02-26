@@ -31,11 +31,18 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define("upload-data", "App\Policies\DataPolicy@uploadData");
     }
 
+    private function statusPolicies() {
+        Gate::define("see-status", "App\Policies\StatusPolicy@see");
+        Gate::define("see-status-index", "App\Policies\StatusPolicy@seeIndex");
+        Gate::define("set-status", "App\Policies\StatusPolicy@set");
+    }
+
     public function boot()
     {
         $this->registerPolicies();
         $this->pointsPolicies();
         $this->dataPolicies();
+        $this->statusPolicies();
 
         Gate::before(function ($user, $ability) {
             if ($user->has_role("admin"))

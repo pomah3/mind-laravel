@@ -4,7 +4,6 @@
 
 <div class="w-45 b-10 one-group {{ $par }}-par">
     <h2>Класс: <strong>{{ $group }}</strong></h2>
-    <h3>Баланс: <strong>{{ $balance }}</strong> баллов</h3>
     <table class="table table-sm">
         @foreach($users as $user)
             <tr>
@@ -13,14 +12,13 @@
                 </td>
 
                 <td>
-                    {{ $user->student()->get_balance() }}
+                    @can('set-status', $user)
+                        <textarea class="status-set-area">{{ $user->status->title }}</textarea>
+                        <button class="status-set-button" user-id="{{ $user->id }}">set</button>
+                    @else
+                        {{ $user->status->title }}
+                    @endcan
                 </td>
-
-                @can('see-points', $user)
-                    <td>
-                        <a href="/points/{{ $user->id }}" class="a-designed a-small">Подробнее</a>
-                    </td>
-                @endcan
             </tr>
         @endforeach
     </table>

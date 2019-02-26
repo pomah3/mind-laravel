@@ -22,4 +22,9 @@ return array (
   'questions' => 'Questions',
   'users' => 'All users',
   'admin' => 'Adminning',
+  'email' => 'Email',
+  'group' => 
+  array (
+    'points' => 'Points of group',
+  ),
 );

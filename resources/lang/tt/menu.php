@@ -22,4 +22,9 @@ return array (
   'questions' => 'Сораулар',
   'admin' => 'Идарә',
   'users' => 'Бар пользователләр',
+  'email' => 'Хат язу',
+  'group' => 
+  array (
+    'points' => 'Сыйныф балллары',
+  ),
 );

@@ -22,4 +22,9 @@ return array (
   'documents' => 'Документы',
   'banners' => 'Баннеры',
   'admin' => 'Администрирование',
+  'email' => 'Отправить письмо',
+  'group' => 
+  array (
+    'points' => 'Мой класс',
+  ),
 );

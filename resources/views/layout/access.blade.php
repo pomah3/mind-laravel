@@ -1,4 +1,4 @@
-<select {!! $attr !!}>
+<select {!! $attr !!} class="form-control">
     <option value='["all"]'>Все</option>
     <option value='["student"]'>Только ученики</option>
     <option value='["teacher"]'>Только учителя</option>

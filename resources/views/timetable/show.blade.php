@@ -8,29 +8,29 @@
 @endsection
 
 @section('content')
-    @foreach($days as $day)
-        <table>
-            <tr>
-                <th>
-                    {{ __("days.".$day) }}
-                </th>
-            </tr>
-            @foreach($lessons[$day] as $lesson)
-                <tr>
-                    <td>
-                        {{ $lesson->number }}
-                    </td>
-                    <td>
-                        {{ $lesson->lesson }}
-                    </td>
-                    <td>
-                        {{ $lesson->time_from }}
-                    </td>
-                    <td>
-                        {{ $lesson->time_until }}
-                    </td>
-                </tr>
-            @endforeach
-        </table>
-    @endforeach
+    <div class="container">
+        @foreach($days as $day)
+            <div class="one-day">
+                <h3>{{ __("days.".$day) }}</h3>
+                <table class="timetable-table">
+                    @foreach($lessons[$day] as $lesson)
+                        <tr>
+                            <td>
+                                {{ $lesson->number }}
+                            </td>
+                            <td>
+                                {{ $lesson->lesson }}
+                            </td>
+                            <td>
+                                {{ $lesson->time_from }}
+                            </td>
+                            <td>
+                                {{ $lesson->time_until }}
+                            </td>
+                        </tr>
+                    @endforeach
+                </table>
+            </div>
+        @endforeach
+    </div>
 @endsection

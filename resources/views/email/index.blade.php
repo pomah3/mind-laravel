@@ -5,15 +5,17 @@
 @endsection
 
 @section('content')
+	<div class="container container-points">
+		<h2>Отправить письмо</h2>
+	    <form action="/email/send" method="POST" class="form-50">
+	        @csrf
 
-    <form action="/email/send" method="POST">
-        @csrf
+	        <input type="text" name="title" placeholder="Тема" class="form-control">
+	        <textarea name="text" class="form-control" placeholder="Сообщение"></textarea>
+	        <label for="">Кто получит:</label>
+	        @access(["attr"=>"name=\"access\""])
 
-        <input type="text" name="title" placeholder="Тема"><br>
-        <textarea name="text"></textarea> <br>
-        Кому: @access(["attr"=>"name=\"access\""]) <br>
-
-        <input type="submit">
-    </form>
-
+	        <input type="submit" class="submit">
+	    </form>
+	</div>
 @endsection

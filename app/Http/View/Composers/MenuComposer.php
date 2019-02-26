@@ -21,7 +21,8 @@ class MenuComposer {
             "menu.admin",
             ["menu.data", "/data", ["can", "view-data"]],
             ["menu.users", "/users", ["can", "view", \App\User::class]],
-            ["menu.banners", "/banners", ["can", "view", \App\Banner::class]]
+            ["menu.banners", "/banners", ["can", "view", \App\Banner::class]],
+            ["menu.email", "/email", ["can", "send-email"]]
         ],
         ["menu.polls", "/polls", "all"],
         ["menu.events", "/events", "all"],

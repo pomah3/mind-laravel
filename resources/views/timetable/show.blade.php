@@ -22,10 +22,10 @@
                                 {{ $lesson->lesson }}
                             </td>
                             <td>
-                                {{ $lesson->time_from }}
+                                {{ $lesson->time_from->format("H:i") }}
                             </td>
                             <td>
-                                {{ $lesson->time_until }}
+                                {{ $lesson->time_until->format("H:i") }}
                             </td>
                         </tr>
                     @endforeach

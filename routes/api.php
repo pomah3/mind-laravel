@@ -90,13 +90,8 @@ Route::middleware("api_token")->group(function() {
     });
 
     Route::prefix("/groups")->group(function() {
-        Route::get("", function() {
-            return DB::table("roles")
-                ->select('role_arg as name')
-                ->where('role', 'student')
-                ->groupBy('role_arg')
-                ->orderBy('role_arg')
-                ->get();
+        Route::get("", function(\App\Repositories\GroupRepository $gr) {
+            return $gr->get_names();
         });
     });
 

@@ -47,11 +47,21 @@
 
     <script>
         $(".status-set-button").click(function() {
-            let status = $(this).parent().find(".status-set-area").val();
-            let user = $(this).attr("user-id");
+            let that = this;
+            let user = $(that).attr("user-id");
+            let status = $(that).attr("status");
+
             $.ajax({
                 method: "POST",
                 url: "/status/" + user + "/" + status
+            }).done(function() {
+                $(that).parent().parent().find(".status-set-button").removeClass("status-set-has");
+                $(that).parent().parent().find(".status-set-button").addClass("status-set-hasnt");
+                $(that).parent().parent().find(".status-set-button").html("-");
+
+                $(that).removeClass("status-set-hasnt");
+                $(that).addClass("status-set-has");
+                $(that).html("+");
             });
         });
     </script>

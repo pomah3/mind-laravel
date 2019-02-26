@@ -4,49 +4,33 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\User;
 use Illuminate\Support\Facades\Auth;
+
+use App\Repositories\GroupRepository;
+use App\User;
 
 class StatusController extends Controller
 {
-    public function index() {
+    public function index(GroupRepository $gr) {
         $this->authorize("see-status-index");
 
-        $groups_ret = [];
+        $groups = $gr->get_all();
 
-        $groups = DB::table("roles")
-            ->select('role_arg')
-            ->where('role', 'student')
-            ->groupBy('role_arg')
-            ->orderBy('role_arg')
-            ->get()
-            ->map(function($a) {return $a->role_arg;})
-            ->sort(\App\Utils::get_group_cmp());
-
-        foreach ($groups as $group) {
-            $users = collect(User::of_group($group))
-                ->sort(\App\Utils::get_student_cmp())
-                ->filter(function($u) {
-                    return Auth::user()->can("see-status", $u) ||
-                           Auth::user()->can("set-status", $u);
-                })
-                ->values();
-
-            if (filled($users))
-                $groups_ret[] = [
-                    "users" => $users,
-                    "group" => $group
-                ];
+        foreach ($groups as &$group) {
+            $group["users"] = $group["users"]->filter(function($u) {
+                return Auth::user()->can("see-status", $u) ||
+                       Auth::user()->can("set-status", $u);
+            })->values();
         }
 
-        $pars = $groups
-              ->map(function($a) {
-                  return explode('-', $a)[0];
-              })
-              ->unique()->values();
+        $groups = $groups->filter(function($g) {
+            return filled($g["users"]);
+        });
+
+        $pars = $gr->get_pars();
 
         return view("status.index", [
-            "groups" => $groups_ret,
+            "groups" => $groups,
             "pars" => $pars
         ]);
     }

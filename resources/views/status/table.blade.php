@@ -1,5 +1,8 @@
 @php
     $par = explode('-', $group)[0];
+    $statuses = [
+        "П", "БД", "БИ", "УП", "В"
+    ];
 @endphp
 
 <div class="b-10 group-status {{ $par }}-par">
@@ -7,11 +10,9 @@
     <table class="group-students">
         <tr>
             <td><strong>Ученик</strong></td>
-            <td><strong>П</strong></td>
-            <td><strong>БД</strong></td>
-            <td><strong>БИ</strong></td>
-            <td><strong>УП</strong></td>
-            <td><strong>В</strong></td>
+            @foreach ($statuses as $s)
+                <td><strong>{{ $s }}</strong></td>
+            @endforeach
         </tr>
         @foreach($users as $user)
             <tr>
@@ -19,42 +20,24 @@
                     @user(["user" => $user])
                 </td>
 
-                <td>
-                    @can('set-status', $user)
-                        <button class="status-set-button status-set-hasnt" user-id="{{ $user->id }}">+</button>
-                    @else
-                        {{ $user->status->title }}
-                    @endcan
-                </td>
-                <td>
-                    @can('set-status', $user)
-                        <button class="status-set-button status-set-hasnt" user-id="{{ $user->id }}">+</button>
-                    @else
-                        {{ $user->status->title }}
-                    @endcan
-                </td>
-                <td>
-                    @can('set-status', $user)
-                        <button class="status-set-button status-set-hasnt" user-id="{{ $user->id }}">+</button>
-                    @else
-                        {{ $user->status->title }}
-                    @endcan
-                </td>
-                <td>
-                    @can('set-status', $user)
-                        <button class="status-set-button status-set-hasnt" user-id="{{ $user->id }}">+</button>
-                    @else
-                        {{ $user->status->title }}
-                    @endcan
-                </td>
-                <td>
-                    @can('set-status', $user)
-                        <button class="status-set-button status-set-hasnt" user-id="{{ $user->id }}">+</button>
-                    @else
-                        {{ $user->status->title }}
-                    @endcan
-                </td>
-
+                @foreach ($statuses as $s)
+                    @php
+                        $has = $user->status->title == $s;
+                    @endphp
+                    <td>
+                        @can('set-status', $user)
+                            <button
+                                class="status-set-button {{ $has ? "status-set-has" : "status-set-hasnt"}}"
+                                user-id="{{ $user->id }}"
+                                status="{{ $s }}"
+                            >
+                                {{ $has ? "+" : "-"}}
+                            </button>
+                        @else
+                            {{ $has ? "+" : "-"}}
+                        @endcan
+                    </td>
+                @endforeach
             </tr>
         @endforeach
     </table>

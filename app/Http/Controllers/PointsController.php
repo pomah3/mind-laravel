@@ -11,16 +11,20 @@ use App\{
     Cause
 };
 
+use App\ViewModels\TransactionViewModel;
 use App\Http\Resources\StudentResource;
 
 class PointsController extends Controller {
     public function of_student(User $student) {
         $this->authorize("see-points", $student);
 
-        return view("points.show", [
-            "student" => $student,
-            "transactions" => Transaction::of_student($student)->orderBy("created_at", "desc")->get()
-        ]);
+        return view(
+            "points.show",
+            new TransactionViewModel(
+                $student,
+                Transaction::of_student($student)->get()
+            )
+        );
     }
 
     public function mine() {

@@ -9,16 +9,14 @@ use Illuminate\Support\Facades\Cache;
 
 class GroupRepositoryImpl implements GroupRepository {
     public function get_names() {
-        // return Cache::remember("group_names", now()->addSeconds(1), function() {
-            return DB::table("roles")
-                ->select('role_arg')
-                ->where('role', 'student')
-                ->groupBy('role_arg')
-                ->orderBy('role_arg')
-                ->get()
-                ->map(function($a) {return $a->role_arg;})
-                ->sort(\App\Utils::get_group_cmp());
-        // });
+        return DB::table("roles")
+            ->select('role_arg')
+            ->where('role', 'student')
+            ->groupBy('role_arg')
+            ->orderBy('role_arg')
+            ->get()
+            ->map(function($a) {return $a->role_arg;})
+            ->sort(\App\Utils::get_group_cmp());
     }
 
     public function get_pars() {

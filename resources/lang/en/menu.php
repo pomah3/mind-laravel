@@ -8,6 +8,7 @@ return array (
     'give' => 'Give points',
     'main' => 'Points',
     'add' => 'Add points',
+    'group' => 'My group',
   ),
   'info' => 'Info',
   'logout' => 'Logout',
@@ -23,8 +24,4 @@ return array (
   'users' => 'All users',
   'admin' => 'Adminning',
   'email' => 'Email',
-  'group' => 
-  array (
-    'points' => 'Points of group',
-  ),
 );

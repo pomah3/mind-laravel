@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ App::getLocale() }}" class="signin-html">
 <head>
-    <title>@yield('title')</title>
+    <title>{{ __('signin.title') }}</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,10 +47,10 @@
                     placeholder="Пароль"
                 >
             </div>
-            <input type="submit" class="submit" value="Войти">
+            <input type="submit" class="submit" value="{{ __('signin.enter') }}">
             <div class="check">
                 <input type="checkbox" class="form-check-input" name="is_edu">
-                <label class="form-check-label" for="exampleCheck1">Вход через edu.tatar</label>
+                <label class="form-check-label" for="exampleCheck1">{{ __('signin.enter_edu_tatar') }}</label>
             </div>
         </form>
     </div>

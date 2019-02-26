@@ -22,15 +22,25 @@ class TimetableRepositoryImpl implements TimetableRepository {
 
     public function get_lessons(User $user) {
         $group = $user->student()->get_group();
-        $lessons = [];
+        return $this->get_lessons_($group);
+    }
 
-        foreach ($this->get_days() as $day) {
-            $lessons[$day] = Lesson::where("weekday", $day)
-                                   ->where("group", $group)
-                                   ->orderBy("number")
-                                   ->get();
-        }
+    private function get_lessons_($group) {
+        return Cache::remember("lessons.group.$group", 5, function() use ($group) {
+            $lessons = [];
 
-        return $lessons;
+            foreach ($this->get_days() as $day) {
+                $lessons[$day] = Lesson
+                    ::where("weekday", $day)
+                    ->where("group", $group)
+                    ->orderBy("number")
+                    ->get()
+                    ->filter(function($a) {
+                        return $a->number <= 7;
+                    });
+            }
+
+            return $lessons;
+        });
     }
 }

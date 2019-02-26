@@ -4,7 +4,7 @@
 @php($days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
 
 @section('title')
-    Timetable
+    Status
 @endsection
 
 @section('content')
@@ -31,7 +31,7 @@
     <script>
         @foreach ($pars as $par)
             $('#{{$par}}-par').on('click', function() {
-                $('.one-group').hide();
+                $('.group-status').hide();
                 $('.{{$par}}-par').show();
                 $('.par').removeClass("active-button");
                 $('#all').removeClass("active-button");
@@ -39,7 +39,7 @@
             });
         @endforeach
         $('#all').on('click', function() {
-            $('.one-group').show();
+            $('.group-status').show();
             $('.par').removeClass("active-button");
             $('#all').addClass("active-button");
         });

@@ -3,6 +3,10 @@
 namespace App;
 
 class Utils {
+    public static function sep_group($group) {
+        return explode('-', $group);
+    }
+
     public static function get_group_cmp(): \Closure {
         return function(string $gr1, string $gr2): int {
             [$par1, $lit1] = explode('-', $gr1);

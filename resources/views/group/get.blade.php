@@ -1,15 +1,15 @@
 @extends('layout.logined')
 
 @section('title')
-    Группа {{ $group }}
+    Группа {{ $group["group"] }}
 @endsection
 
 @section('content')
 	<div class="container">
 	    @component('group.table', [
-	        "balance" => $balance,
-	        "group" => $group,
-	        "users" => $users
+	        "balance" => $group["balance"],
+	        "group" => $group["group"],
+	        "users" => $group["users"]
 	    ])
 	    @endcomponent
 	</div>

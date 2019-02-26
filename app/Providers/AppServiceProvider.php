@@ -12,7 +12,8 @@ use App\Excel\ReaderProvider;
 
 class AppServiceProvider extends ServiceProvider {
     public $singletons = [
-        ReaderProvider::class => ReaderProvider::class
+        ReaderProvider::class => ReaderProvider::class,
+        \App\Repositories\GroupRepository::class => \App\Repositories\GroupRepositoryImpl::class,
     ];
 
     /**

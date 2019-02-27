@@ -41,8 +41,7 @@ class PointsController extends Controller {
             ->sort(\App\Utils::get_student_cmp())
         );
 
-        $causes = Cause::orderBy("points")
-            ->get()
+        $causes = Cause::all()
             ->filter(function($cause) {
                 return \App\Role::has_complex_role(Auth::user(), $cause->access);
             })

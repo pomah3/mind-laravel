@@ -33,7 +33,7 @@ class PointsController extends Controller {
     }
 
     public function add_index() {
-        $this->authorize("add-points-index");
+        $this->authorize("add-index-points");
 
         $students = StudentResource::collection(
             User::where("type", "student")
@@ -71,7 +71,7 @@ class PointsController extends Controller {
     }
 
     public function give_index() {
-        $this->authorize("give-points-index");
+        $this->authorize("give-index-points");
 
         return view("points.give", [
             "students" => StudentResource::collection(

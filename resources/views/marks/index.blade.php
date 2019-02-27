@@ -13,7 +13,7 @@
                 <tbody>
                     <tr>
                         <td><strong>Предмет</strong></td>
-                        <td><strong>Количество оценок до 4,50</strong></td>
+                        <td><strong>Количество пятёрок до 4,50</strong></td>
                         <td><strong>Оценки</strong></td>
                     </tr>
                     @foreach ($lessons as $lesson)

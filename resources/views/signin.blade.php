@@ -47,8 +47,12 @@
                     placeholder="Пароль"
                 >
             </div>
+            <div class="check hidden-lg">
+                <input type="checkbox" class="form-check-input" name="is_edu">
+                <label class="form-check-label" for="exampleCheck1">{{ __('signin.enter_edu_tatar') }}</label>
+            </div>
             <input type="submit" class="submit" value="{{ __('signin.enter') }}">
-            <div class="check">
+            <div class="check hidden-sm">
                 <input type="checkbox" class="form-check-input" name="is_edu">
                 <label class="form-check-label" for="exampleCheck1">{{ __('signin.enter_edu_tatar') }}</label>
             </div>

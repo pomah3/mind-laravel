@@ -157,6 +157,14 @@ body.signin-body {
 	margin-left: 30px;
 	font-size: 15px;
 	color: #8095bb;
+    float: right;
+    vertical-align: middle;
+}
+.hidden-lg {
+    display: none;
+}
+.fa {
+    line-height: 26px;
 }
 /* header */
 .top-menu {

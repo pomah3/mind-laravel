@@ -28,6 +28,7 @@
         <form action="/points/add" method="POST" class="form-50">
             @csrf
 
+            <select id="select-group" class="form-control"></select>
             <select required name="student_id" id="select-student" class="form-control"></select>
             <select id="select-category" class="form-control"></select>
             <select required name="cause_id" id="select-cause" class="form-control"></select>
@@ -39,24 +40,45 @@
         <script>
             (function() {
                 let _causes = @json($causes);
+                let _students = @json($students);
 
-                let students = @json($students);
                 let causes = {};
                 _causes.forEach(function(a) {
                     causes[a.category] = causes[a.category] || [];
                     causes[a.category].push(a);
                 });
                 let categories = _causes.map(a=>a.category).unique();
+                let groups = _students.map(a=>a.group).unique();
+
+                students = {};
+                _students.forEach(function(a) {
+                    students[a.group] = students[a.group] || [];
+                    students[a.group].push(a);
+                });
 
                 const student_name = function(student) {
-                    return `${student.family_name} ${student.given_name} ${student.father_name}, ${student.group}`;
+                    return `${student.family_name} ${student.given_name} ${student.father_name}`;
                 };
 
-                students.forEach(function(student) {
-                    $("#select-student").append(
-                        `<option value="${student.id}">${student_name(student)}</option>`
+                groups.forEach(function(group) {
+                    $("#select-group").append(
+                        `<option>${group}</option>`
                     );
                 });
+
+                const fill_students = function() {
+                    let v = $("#select-group").val();
+                    $("#select-student").empty();
+
+                    students[v].forEach(function(student) {
+                        $("#select-student").append(
+                            `<option value="${student.id}">${student_name(student)}</option>`
+                        );
+                    });
+                }
+
+                fill_students();
+                $("#select-group").change(fill_students);
 
                 categories.forEach(function(a) {
                     $("#select-category").append(

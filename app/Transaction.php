@@ -26,12 +26,12 @@ class Transaction extends Model {
     }
 
     public static function get_balance(User $user) {
-        return Cache::remember("balance.".$user->id, 1, function() use ($user) {
+        // return Cache::remember("balance.".$user->id, now()->addSeconds(5), function() use ($user) {
             $plus = Transaction::where("to_id", $user->id)->sum("points");
             $minus = Transaction::where("from_id", $user->id)->sum("points");
 
             return $plus - $minus;
-        });
+        // });
     }
 
     public static function add(?User $from, User $to, Cause $cause, int $points=null, bool $need_event=true): Transaction {

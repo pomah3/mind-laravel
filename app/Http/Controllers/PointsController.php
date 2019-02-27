@@ -33,7 +33,7 @@ class PointsController extends Controller {
     }
 
     public function add_index() {
-        $this->authorize("add-points-index");
+        $this->authorize("add-index-points");
 
         $students = StudentResource::collection(
             User::where("type", "student")
@@ -41,8 +41,7 @@ class PointsController extends Controller {
             ->sort(\App\Utils::get_student_cmp())
         );
 
-        $causes = Cause::orderBy("points")
-            ->get()
+        $causes = Cause::all()
             ->filter(function($cause) {
                 return \App\Role::has_complex_role(Auth::user(), $cause->access);
             })
@@ -71,7 +70,7 @@ class PointsController extends Controller {
     }
 
     public function give_index() {
-        $this->authorize("give-points-index");
+        $this->authorize("give-index-points");
 
         return view("points.give", [
             "students" => StudentResource::collection(

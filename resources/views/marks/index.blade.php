@@ -13,16 +13,16 @@
                 <tbody>
                     <tr>
                         <td><strong>Предмет</strong></td>
-                        <td><strong>Оценки</strong></td>
                         <td><strong>Количество оценок до 4,50</strong></td>
+                        <td><strong>Оценки</strong></td>
                     </tr>
                     @foreach ($lessons as $lesson)
                         <tr>
                             <td>{{ $lesson["name"] }}</td>
+                            <td>{{ $lesson["need"] }}</td>
                             @foreach ($lesson["marks"] as $mark)
                                 <td>{{ $mark }}</td>
                             @endforeach
-                            <td>{{ $lesson["need"] }}</td>
                         </tr>
                     @endforeach
                 </tbody>

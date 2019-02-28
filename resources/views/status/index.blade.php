@@ -14,6 +14,16 @@
             @foreach ($pars as $par)
                 <div class="button-filter par" id="{{$par}}-par">{{$par}} классы</div>
             @endforeach
+            <div class="help-block">
+                <div class="help">?</div>
+                <span class="tip">
+                    <strong>П</strong> - присутствует<br>
+                    <strong>БД</strong> - болеет дома<br>
+                    <strong>БИ</strong> - болеет в интернате<br>
+                    <strong>УП</strong> - уважительная причина<br>
+                    <strong>В</strong> - выезд
+                </span>
+            </div>
         </div>
         @foreach ($groups as $group)
             @component("status.table", [

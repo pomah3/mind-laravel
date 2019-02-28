@@ -1,0 +1,39 @@
+.help-block {
+    position: relative;
+}
+.help {
+    border-radius: 50%;
+    background: rgba(0,0,0,.5);
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    vertical-align: middle;
+    margin-top: 2px;
+    transition: .3s;
+    cursor: pointer;
+}
+.help:hover {
+    background: rgba(0,0,0,.7);
+}
+span.tip {
+    /* Required */
+    position: absolute;
+    z-index: 2;
+    opacity: 0;
+
+    /* Optional */
+    font-size: 15px;
+    height: auto;
+    width: 200px;
+    top: 40px;
+    padding: 10px;
+    border-radius: 3px;
+    background: #fff;
+    color: #000;
+    transition: .3s;
+}
+.help:hover + span.tip {
+    opacity: 1;
+}

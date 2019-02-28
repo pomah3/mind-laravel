@@ -6,6 +6,7 @@
 
 @section('content')
     <div class="container container-points">
+        <h2>{{ __('data.index.title') }}</h2>
         @if (session("status"))
             @if (session("status") == "ok")
                 Успешно!
@@ -33,7 +34,7 @@
 
             <input type="file" name="file" class="form-control">
 
-            <input type="submit" class="submit">
+            <input type="submit" class="submit" value="{{ __('main.submit.send') }}">
 
         </form>
     </div>

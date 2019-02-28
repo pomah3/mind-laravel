@@ -10,20 +10,10 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name', 'email', 'password',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token', "created_at", "updated_at", "edu_tatar_login", "edu_tatar_password"
     ];
@@ -74,5 +64,13 @@ class User extends Authenticatable
         return $this->hasOne(Status::class)->withDefault([
             "title" => "unknown"
         ]);
+    }
+
+    public function scopeStudents($query) {
+        return $query->where("type", "student");
+    }
+
+    public function scopeTeachers($query) {
+        return $query->where("type", "teacher");
     }
 }

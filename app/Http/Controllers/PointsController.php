@@ -43,7 +43,7 @@ class PointsController extends Controller {
         $this->authorize("add-index-points");
 
         $students = StudentResource::collection(
-            User::where("type", "student")
+            User::students()
             ->get()
             ->sort(\App\Utils::get_student_cmp())
         );
@@ -81,7 +81,7 @@ class PointsController extends Controller {
 
         return view("points.give", [
             "students" => StudentResource::collection(
-                User::where("type", "student")
+                User::students()
                 ->get()
                 ->sort(\App\Utils::get_student_cmp())
             )

@@ -14,7 +14,7 @@ class EduTatarProcessMarks extends Command
     protected $description = 'Handle marks of all students who has login and password of edu tatar';
 
     public function handle() {
-        $students = User::where("type", "student")
+        $students = User::students()
                         ->whereNotNull("edu_tatar_login")
                         ->whereNotNull("edu_tatar_password")
                         ->get();

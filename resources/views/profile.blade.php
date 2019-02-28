@@ -16,6 +16,12 @@
                 $name = $user->get_name($name);
             @endphp
             <h2>{{ $daytime }}, {{ $name }}</h2>
+            <h3>
+                Логин: <strong>{{ $user->id }}</strong>
+                @if ($user->edu_tatar_login)
+                    <h3>Логин edu.tatar.ru: <strong>{{ $user->edu_tatar_login }}</strong></h3>
+                @endif
+            </h3>
             @if ($user->has_role("student"))
                 <h2>
                     Баланс: <strong>
@@ -23,20 +29,16 @@
                     </strong>
                 </h2>
                 <h3>
-                    Логин: <strong>{{ $user->id }}</strong>
-                    @if ($user->edu_tatar_login)
-                        <h3>Логин edu.tatar.ru: <strong>{{ $user->edu_tatar_login }}</strong></h3>
-                    @endif
-                </h3>
-                <h3>
                     Класс: <strong>
                         {{ $user->student()->get_group() }}
                     </strong>
                 </h3>
                 <h3>
-                    Классный руководитель: <strong>
-                        @user(["user" => $user->student()->get_classruk()])
-                    </strong>
+                    @if ($user->student()->get_classruk())
+                        Классный руководитель: <strong>
+                            @user(["user" => $user->student()->get_classruk()])
+                        </strong>
+                    @endif
                 </h3>
             @endif
         </div>

@@ -12,8 +12,7 @@ class PointsPolicy
     use HandlesAuthorization;
 
     public function seePoints(User $user, User $user1) {
-        return $user->id == $user1->id ||
-               $user->type == "teacher";
+        return true;
     }
 
     public function receivePoints(User $user) {

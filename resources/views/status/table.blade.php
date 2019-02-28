@@ -9,7 +9,7 @@
     <h2>Класс: <strong>{{ $group }}</strong></h2>
     <table class="group-students">
         <tr>
-            <td><strong>Ученик</strong></td>
+            <td class="pl-10"><strong>Ученик</strong></td>
             @foreach ($statuses as $s)
                 <td><strong>{{ $s }}</strong></td>
             @endforeach

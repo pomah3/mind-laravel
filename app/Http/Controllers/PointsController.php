@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Services\TransactionService as Trans;
 
 use App\{
     Transaction,
@@ -15,6 +16,12 @@ use App\ViewModels\TransactionViewModel;
 use App\Http\Resources\StudentResource;
 
 class PointsController extends Controller {
+    private $trs;
+
+    public function __construct(Trans $trs) {
+        $this->trs = $trs;
+    }
+
     public function of_student(User $student) {
         $this->authorize("see-points", $student);
 
@@ -64,7 +71,7 @@ class PointsController extends Controller {
 
         $this->authorize("add-points", $student, $cause);
 
-        Transaction::add(Auth::user(), $student, $cause);
+        $this->trs->add(Auth::user(), $student, $cause);
 
         return redirect("/points/add")->with("status", "ok");
     }
@@ -96,7 +103,12 @@ class PointsController extends Controller {
         if ($points >= Auth::user()->student()->get_balance())
             return redirect("/points/give")->withErrors("У вас нет стольки баллов");
 
-        Transaction::add(Auth::user(), $student, Cause::where("title", "Передача баллов")->first(), $points);
+        $this->trs->add(
+            Auth::user(),
+            $student,
+            Cause::where("title", "Передача баллов")->first(),
+            $points
+        );
 
         return redirect("/points/give")->with("status", "ok");
     }

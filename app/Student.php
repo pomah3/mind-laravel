@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Services\TransactionService;
+
 class Student {
     private $user;
 
@@ -10,7 +12,7 @@ class Student {
     }
 
     public function get_balance() {
-        return Transaction::get_balance($this->user);
+        return resolve(TransactionService::class)->get_balance($this->user);
     }
 
     public function get_classruk() {

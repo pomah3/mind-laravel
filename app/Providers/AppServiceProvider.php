@@ -15,7 +15,8 @@ class AppServiceProvider extends ServiceProvider {
         ReaderProvider::class => ReaderProvider::class,
         \App\Repositories\GroupRepository::class => \App\Repositories\GroupRepositoryImpl::class,
         \App\Repositories\TimetableRepository::class => \App\Repositories\TimetableRepositoryImpl::class,
-        \App\EduTatar\EduTatarAuth::class => \App\EduTatar\EduTatarAuthImpl::class
+        \App\EduTatar\EduTatarAuth::class => \App\EduTatar\EduTatarAuthImpl::class,
+        \App\Services\TransactionService::class => \App\Services\TransactionServiceImpl::class
     ];
 
     /**

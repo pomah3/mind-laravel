@@ -6,16 +6,18 @@ use Illuminate\Console\Command;
 use App\Transaction;
 use App\User;
 
+use App\Services\TransactionService;
+
 class PointsReset extends Command
 {
     protected $signature = 'mind:reset-points';
     protected $description = 'Remove all transactions and add starting points';
 
-    public function handle() {
+    public function handle(TransactionService $trans) {
         Transaction::query()->delete();
 
         foreach (User::where("type", "student")->get() as $student) {
-            \App\Transaction::add(null, $student, \App\Cause::find(1), null, false);
+            $trans->add(null, $student, \App\Cause::find(1));
         }
     }
 }

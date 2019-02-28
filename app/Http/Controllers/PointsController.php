@@ -13,6 +13,7 @@ use App\{
 
 use App\ViewModels\TransactionViewModel;
 use App\Http\Resources\StudentResource;
+use App\Repositories\GroupRepository as Groups;
 
 class PointsController extends Controller {
     public function of_student(User $student) {
@@ -32,7 +33,7 @@ class PointsController extends Controller {
         return $this->of_student(Auth::user());
     }
 
-    public function add_index() {
+    public function add_index(Groups $groups) {
         $this->authorize("add-index-points");
 
         $students = StudentResource::collection(
@@ -49,7 +50,9 @@ class PointsController extends Controller {
 
         return view("points.add", [
             "causes" => $causes,
-            "students" => $students
+            "students" => $students,
+            "pars" => $groups->get_pars(),
+            "groups" => $groups->get_names()
         ]);
     }
 

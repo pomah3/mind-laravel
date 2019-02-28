@@ -25,19 +25,83 @@
             @endalert
         @endif
 
-        <form action="/points/add" method="POST" class="form-50">
-            @csrf
+        <div class="selectors">
+            <div class="one-selector">
+                <h3>Параллель</h3>
+                <div class="wrapper" id="pars">
+                    @foreach ($pars as $par)
+                        <div class="button-filter">{{ $par }}</div>
+                    @endforeach
+                </div>
+            </div>
+            <div class="one-selector">
+                <h3>Класс</h3>
+                <div class="wrapper" id="groups">
+                    <p class="placeholder">Выберите параллель</p>
+                </div>
+            </div>
+            <div class="one-selector">
+                <h3>Ученик</h3>
+                <div class="wrapper" id="students">
+                    <div class="button-filter">Рома</div>
+                    <div class="button-filter">Ринат</div>
+                    <div class="button-filter">Данис</div>
+                    <div class="button-filter">Наташа</div>
+                    <div class="button-filter">Руслан</div>
+                    <div class="button-filter">Тимур</div>
+                    <p class="placeholder">Выберите класс</p>
+                </div>
+            </div>
 
-            <select id="select-group" class="form-control"></select>
-            <select required name="student_id" id="select-student" class="form-control"></select>
-            <select id="select-category" class="form-control"></select>
-            <select required name="cause_id" id="select-cause" class="form-control"></select>
-            <input type="submit" class="submit">
 
-        </form>
+        </div>
     </div>
+    {{-- <form action="/points/add" method="POST" class="form-50">
+        @csrf
+
+        <select id="select-group" class="form-control"></select>
+        <select required name="student_id" id="select-student" class="form-control"></select>
+        <select id="select-category" class="form-control"></select>
+        <select required name="cause_id" id="select-cause" class="form-control"></select>
+        <input type="submit" class="submit">
+
+    </form> --}}
+
     @push('scripts')
         <script>
+            (function() {
+                let _groups = @json($groups);
+                let pars = @json($pars);
+
+                let groups = {};
+                _groups.forEach(function(a) {
+                    let [par, b] = a.split('-');
+                    groups[par] = groups[par] || [];
+                    groups[par].push(a);
+                });
+
+                const fill_groups = function() {
+                    let par = $("#pars").find(".active-button").html().trim();
+
+                    $("#groups").empty();
+                    groups[par].forEach(function(a) {
+                        $("#groups").append(
+                            `<div class="button-filter">${a}</div>`
+                        );
+                    });
+                }
+
+                $("#pars .button-filter").click(function() {
+                    $("#pars .button-filter").removeClass("active-button");
+                    $(this).addClass("active-button");
+                    fill_groups();
+                });
+            })();
+        </script>
+    @endpush
+
+    @push('scripts')
+        {{-- <script>
             (function() {
                 let _causes = @json($causes);
                 let _students = @json($students);
@@ -101,7 +165,7 @@
                 fill_causes();
                 $("#select-category").change(fill_causes);
             })();
-        </script>
+        </script> --}}
     @endpush
 
 @endsection

@@ -1089,6 +1089,44 @@ img.answer {
     width: 60%;
     margin-bottom: 30px;
 }
+/* selectors */
+.selectors {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.one-selector {
+    width: 30%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.one-selector:first-child {
+    width: 20%;
+}
+.one-selector .button-filter {
+    margin-bottom: 10px;
+    width: 20%;
+    margin-right: 0;
+}
+.one-selector h3 {
+    color: #fff;
+    background: rgba(0,75,126);
+    padding: 5px 10px;
+    text-align: center;
+}
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+}
+.wrapper .button-filter {
+    width: 100%;
+}
+.placeholder {
+    color: #888;
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+}
 /* main */
 .w-45 {
 	width: 45%;

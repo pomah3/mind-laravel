@@ -11,6 +11,10 @@ use App\Transaction;
 use App\Cause;
 use App\Http\Resources\{UserResource, StudentResource, TransactionResource, LessonResource};
 
+use App\Services\TransactionService;
+use App\Repositories\TimetableRepository;
+use App\Repositories\GroupRepository;
+
 Route::middleware("api_token")->group(function() {
 
     Route::prefix("/users")->group(function() {
@@ -69,7 +73,7 @@ Route::middleware("api_token")->group(function() {
         });
 
         Route::post("/add/{from}/{to}/{cause}/{points?}",
-            function(User $from, User $to, Cause $cause, ?int $points=null) {
+            function(TransactionService $tr, User $from, User $to, Cause $cause, ?int $points=null) {
                 if ($points === null) {
                     if (!Gate::forUser($from)->allows("add-points", $to, $cause))
                         return response()->json(['error'=>"not allowed"], 403);
@@ -78,41 +82,24 @@ Route::middleware("api_token")->group(function() {
                         return response()->json(['error'=>"not allowed"], 403);
                 }
 
-                return Transaction::add($from, $to, $cause, $points);
+                return $tr->add($from, $to, $cause, $points);
             }
         );
     });
 
-    Route::prefix("/causes")->group(function() {
-        Route::get('', function() {
-            return Cause::all();
-        });
+    Route::get("/causes", function() {
+        return Cause::all();
     });
 
-    Route::prefix("/groups")->group(function() {
-        Route::get("", function(\App\Repositories\GroupRepository $gr) {
-            return $gr->get_names();
-        });
+    Route::get("/groups", function(GroupRepository $gr) {
+        return $gr->get_names();
     });
 
-    Route::prefix("/timetable")->group(function() {
-        Route::get("{user}", function(User $user) {
-            $group = $user->student()->get_group();
-            $lessons = [];
-            $days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-            foreach($days as $day) {
-                $lessons[$day] = App\Lesson::where("weekday", $day)
-                                           ->where("group", $group)
-                                           ->orderBy("number")
-                                           ->get();
-
-                $lessons[$day] = LessonResource::collection($lessons[$day]);
-            }
-
-            return $lessons;
-        });
-    });
+    Route::get("/timetable/{user}",
+        function(TimetableRepository $ttr, User $user) {
+            return $ttr->get_lessons($user);
+        }
+    );
 });
 
 

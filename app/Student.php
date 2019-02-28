@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Services\TransactionService;
+
 class Student {
     private $user;
 
@@ -10,17 +12,19 @@ class Student {
     }
 
     public function get_balance() {
-        return Transaction::get_balance($this->user);
+        return resolve(TransactionService::class)->get_balance($this->user);
     }
 
     public function get_classruk() {
-        return User::find(
-            Role
-                ::where("role", "classruk")
-                ->where("role_arg", $this->get_group())
-                ->first()
-                ->user_id
-        );
+        $role = Role
+            ::where("role", "classruk")
+            ->where("role_arg", $this->get_group())
+            ->first();
+
+        if (!$role)
+            return null;
+
+        return User::find($role->user_id);
     }
 
     public function get_group() {

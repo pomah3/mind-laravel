@@ -66,11 +66,7 @@ class BannerController extends Controller {
 
     public function destroy(Banner $banner) {
         $this->authorize('delete', Banner::class);
-
-        Storage::disk("public")->delete("banners/".$banner->img_path);
-
         $banner->delete();
-
         return "";
     }
 }

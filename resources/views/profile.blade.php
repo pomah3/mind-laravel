@@ -34,9 +34,11 @@
                     </strong>
                 </h3>
                 <h3>
-                    {{ __('profile.info.group_teacher') }}: <strong>
-                        @user(["user" => $user->student()->get_classruk()])
-                    </strong>
+                    @if ($user->student()->get_classruk())
+                        {{ __('profile.info.group_teacher') }}: <strong>
+                            @user(["user" => $user->student()->get_classruk()])
+                        </strong>
+                    @endif
                 </h3>
             @endif
         </div>

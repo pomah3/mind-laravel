@@ -5,41 +5,35 @@ use App\User;
 use App\Role;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Cache;
 
 class GroupRepositoryImpl implements GroupRepository {
     public function get_names() {
-        return Cache::remember("group_names", 5, function() {
-            return DB::table("roles")
-                ->select('role_arg')
-                ->where('role', 'student')
-                ->groupBy('role_arg')
-                ->orderBy('role_arg')
-                ->get()
-                ->map(function($a) {return $a->role_arg;})
-                ->sort(\App\Utils::get_group_cmp())
-                ->values();
-        });
+        return DB::table("roles")
+            ->select('role_arg')
+            ->where('role', 'student')
+            ->groupBy('role_arg')
+            ->orderBy('role_arg')
+            ->get()
+            ->map(function($a) {return $a->role_arg;})
+            ->sort(\App\Utils::get_group_cmp())
+            ->values();
     }
 
     public function get_pars() {
-        return Cache::remember("group_pars", 5, function() {
-            return $this->get_names()
-                        ->map(function($a) {
-                            return \App\Utils::sep_group($a)[0];
-                        })
-                        ->unique()
-                        ->values();
-        });
+        return $this
+            ->get_names()
+            ->map(function($a) {
+                return \App\Utils::sep_group($a)[0];
+            })
+            ->unique()
+            ->values();
     }
 
     public function get_all() {
-        return Cache::remember("group_all", 5, function() {
-            return $this->get_names()
-                        ->map(function($u) {
-                            return $this->get($u);
-                        });
-        });
+        return $this->get_names()
+                    ->map(function($u) {
+                        return $this->get($u);
+                    });
     }
 
     public function get($group) {

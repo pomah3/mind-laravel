@@ -9,8 +9,13 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class SigninController extends Controller
-{
+class SigninController extends Controller {
+    private $eta;
+
+    public function __construct(EduTatarAuth $eta) {
+        $this->eta = $eta;
+    }
+
     public function index() {
         return view("signin");
     }
@@ -42,7 +47,7 @@ class SigninController extends Controller
             "password" => "required"
         ]);
 
-        $user = (new EduTatarAuth)->login($data['login'], $data['password']);
+        $user = $this->eta->get_user($data['login'], $data['password']);
 
         if (!$user)
             return redirect()->back()

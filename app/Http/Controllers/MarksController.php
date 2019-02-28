@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
 class MarksController extends Controller {
+    private $eta;
+
+    public function __construct(EduTatarAuth $eta) {
+        $this->eta = $eta;
+    }
+
     function get_number_of_5($a) {
         $arr = [];
         $arr[2] = 0;
@@ -27,11 +33,14 @@ class MarksController extends Controller {
     }
 
     private function get_marks($login, $password) {
-        $page = (new EduTatarAuth)->get_page(
-            "https://edu.tatar.ru/user/diary/term",
-            $login,
-            $password
+        $page = $this->eta->get_page(
+            "/user/diary/term",
+            $this->eta->get_key(
+                $login,
+                $password
+            )
         );
+
         $body = preg_match("#<tbody>.+</tbody>#s", $page, $lessons);
         $lessons = $lessons[0];
 

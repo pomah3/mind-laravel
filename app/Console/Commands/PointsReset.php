@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use App\Transaction;
 use App\User;
 use App\Cause;
+use Illuminate\Support\Facades\DB;
 
 use App\Services\TransactionService;
 
@@ -15,14 +16,19 @@ class PointsReset extends Command
     protected $description = 'Remove all transactions and add starting points';
 
     public function handle(TransactionService $trans) {
+        DB::table("notifications")->truncate();
+
         $trans->deleteAll();
 
         $cause = Cause::find(1);
         if ($cause->points == 0)
             return;
 
-        foreach (User::where("type", "student")->get() as $student) {
-            $trans->add(null, $student, $cause);
-        }
+        DB::insert('
+            insert into transactions (
+                to_id, cause_id, points
+            ) select id, ?, ? from users
+            where type = "student"
+        ', [$cause->id, $cause->points]);
     }
 }

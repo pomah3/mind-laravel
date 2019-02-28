@@ -13,10 +13,10 @@ use App\Excel\ReaderProvider;
 class AppServiceProvider extends ServiceProvider {
     public $singletons = [
         ReaderProvider::class => ReaderProvider::class,
-        \App\Repositories\GroupRepository::class => \App\Repositories\GroupRepositoryImpl::class,
+        \App\Repositories\GroupRepository::class => \App\Repositories\GroupRepositoryImplCached::class,
         \App\Repositories\TimetableRepository::class => \App\Repositories\TimetableRepositoryImpl::class,
-        \App\EduTatar\EduTatarAuth::class => \App\EduTatar\EduTatarAuthImpl::class,
-        \App\Services\TransactionService::class => \App\Services\TransactionServiceImpl::class
+        \App\EduTatar\EduTatarAuth::class => \App\EduTatar\EduTatarAuthImplCached::class,
+        \App\Services\TransactionService::class => \App\Services\TransactionServiceImplCached::class
     ];
 
     /**

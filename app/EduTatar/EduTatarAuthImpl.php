@@ -51,15 +51,13 @@ class EduTatarAuthImpl implements EduTatarAuth {
     }
 
     public function get_key($login, $password) {
-        return Cache::remember("edu.$login.dnsid", 30, function() use ($login, $password) {
-            $page = $this->get_post("/logon", [
-                "main_login" => $login,
-                "main_password" => $password
-            ]);
+        $page = $this->get_post("/logon", [
+            "main_login" => $login,
+            "main_password" => $password
+        ]);
 
-            $cookies = $this->get_cookies($page);
-            return $cookies["DNSID"];
-        });
+        $cookies = $this->get_cookies($page);
+        return $cookies["DNSID"];
     }
 
     public function get_page($url, $key) {

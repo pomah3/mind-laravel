@@ -2,50 +2,40 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Facades\Cache;
+use App\User;
+use App\Cause;
+use App\Transaction;
 
-use App\{Cause, Transaction, User};
-use App\Events\TransactionMade;
-
-class TransactionServiceImpl extends TransactionServiceBasicImpl {
-    private $pref = "user_balance.";
-    private $time = 5;
-
+class TransactionServiceImpl implements TransactionService {
     public function get_balance(User $user): int {
-        return Cache::remember($this->pref.$user->id, $this->time, function() use ($user) {
-            return parent::get_balance($user);
-        });
+        $plus = Transaction::where("to_id", $user->id)->sum("points");
+        $minus = Transaction::where("from_id", $user->id)->sum("points");
+
+        return $plus - $minus;
     }
 
     public function add(?User $from, User $to, Cause $cause, int $points=null): Transaction {
-        $tr = parent::add($from, $to, $cause, $points);
+        if ($points == null) {
+            $points = $cause->points;
+        }
 
-        if ($from)
-            $this->recache($from);
-        $this->recache($to);
+        $tr = new Transaction;
 
-        event(new TransactionMade($tr));
+        $tr->from_id  = $from ? $from->id : null;
+        $tr->to_id    = $to->id;
+        $tr->points   = $points;
+        $tr->cause_id = $cause->id;
+
+        $tr->save();
+
         return $tr;
     }
 
     public function delete(Transaction $tr) {
-        parent::delete($tr);
-        if ($tr->from)
-            $this->recache($tr->from);
-        $this->recache($tr->to);
+        $tr->delete();
     }
 
     public function deleteAll() {
-        parent::deleteAll();
-        Cache::flush();
-    }
-
-    private function recache(User $user) {
-        $balance = parent::get_balance($user);
-        Cache::put(
-            $this->pref.$user->id,
-            $balance,
-            $this->time
-        );
+        Transaction::query()->delete();
     }
 }

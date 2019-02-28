@@ -20,10 +20,10 @@ class ProfileController extends Controller
         $h = (new \DateTime())->format("H");
         $h = intval($h);
 
-        $night   = "Доброй ночи" ;
-        $morning = "Доброе утро" ;
-        $day     = "Добрый день" ;
-        $evening = "Добрый вечер";
+        $night   = "profile.greeting.night" ;
+        $morning = "profile.greeting.morning" ;
+        $day     = "profile.greeting.day" ;
+        $evening = "profile.greeting.evening";
 
         if ($h < 5)
             return $night;

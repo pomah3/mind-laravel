@@ -26,9 +26,9 @@ class PointsReset extends Command
 
         DB::insert('
             insert into transactions (
-                to_id, cause_id, points
-            ) select id, ?, ? from users
+                to_id, cause_id, points, created_at, updated_at
+            ) select id, ?, ?, ?, ? from users
             where type = "student"
-        ', [$cause->id, $cause->points]);
+        ', [$cause->id, $cause->points, now(), now()]);
     }
 }

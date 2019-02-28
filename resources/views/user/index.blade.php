@@ -1,7 +1,7 @@
 @extends('layout.logined')
 
 @section('title')
-    title
+    {{ __('user.index.title') }}
 @endsection
 
 @section('content')

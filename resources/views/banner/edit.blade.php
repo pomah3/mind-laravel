@@ -1,7 +1,7 @@
 @extends('layout.logined')
 
 @section('title')
-    Редактировать баннер
+    {{ __('banner.edit.title') }}
 @endsection
 
 @section('content')

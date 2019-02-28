@@ -1,7 +1,7 @@
 @extends('layout.logined')
 
 @section('title')
-    Создать мероприятие
+    {{ __('event.create.title') }}
 @endsection
 
 @section('content')

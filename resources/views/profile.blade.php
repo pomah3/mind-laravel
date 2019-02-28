@@ -5,7 +5,7 @@
 @endphp
 
 @section('title')
-    Профиль
+    {{ __('main.profile.title') }}
 @endsection
 
 @section('content')

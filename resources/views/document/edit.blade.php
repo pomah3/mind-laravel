@@ -1,7 +1,7 @@
 @extends('layout.logined')
 
 @section('title')
-    Редактировать документ
+    {{ __('document.edit.title') }}
 @endsection
 
 @section('content')

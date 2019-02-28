@@ -1,7 +1,7 @@
 @extends('layout.logined')
 
 @section('title')
-    Документы
+    {{ __('document.index.title') }}
 @endsection
 
 @section('content')

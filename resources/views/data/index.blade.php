@@ -1,7 +1,7 @@
 @extends('layout.logined')
 
 @section('title')
-    Загрузить данные
+    {{ __('data.index.title') }}
 @endsection
 
 @section('content')

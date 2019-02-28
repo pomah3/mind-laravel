@@ -1,7 +1,7 @@
 @extends('layout.logined')
 
 @section('title')
-    title
+    {{ __('poll.create.title') }}
 @endsection
 
 @section('content')

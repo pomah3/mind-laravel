@@ -10,4 +10,12 @@ return array (
     'login' => 'Логин',
     'password' => 'Пароль',
   ),
+  'create' => 
+  array (
+    'title' => 'Добавить пользователя',
+  ),
+  'index' => 
+  array (
+    'title' => 'Все пользователи',
+  ),
 );

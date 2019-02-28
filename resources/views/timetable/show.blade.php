@@ -4,7 +4,7 @@
 @php($days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
 
 @section('title')
-    Timetable
+    {{ __('timetable.show.title') }}
 @endsection
 
 @section('content')

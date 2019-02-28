@@ -1,7 +1,7 @@
 @extends('layout.logined')
 
 @section('title')
-    Документация
+    {{ __('main.doc_base.title') }}
 @endsection
 
 @section('content')

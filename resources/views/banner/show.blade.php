@@ -1,7 +1,7 @@
 @extends('layout.logined')
 
 @section('title')
-    Баннеры
+    {{ __('banner.show.title') }}
 @endsection
 
 @section('content')

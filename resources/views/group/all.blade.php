@@ -1,7 +1,7 @@
 @extends('layout.logined')
 
 @section('title')
-    Все группы
+    {{ __('group.all.title') }}
 @endsection
 
 @section('content')

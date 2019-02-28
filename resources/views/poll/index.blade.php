@@ -1,7 +1,7 @@
 @extends('layout.logined')
 
 @section('title')
-    Голосования
+    {{ __('poll.index.title') }}
 @endsection
 
 @section('content')

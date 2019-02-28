@@ -9,4 +9,9 @@ return array (
   array (
     'title' => 'Documentation',
   ),
+  'submit' => 
+  array (
+    'save' => 'Save',
+    'send' => 'Send',
+  ),
 );

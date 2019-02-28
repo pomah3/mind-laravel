@@ -9,4 +9,9 @@ return array (
   array (
     'title' => 'Профиль',
   ),
+  'submit' => 
+  array (
+    'send' => 'Отправить',
+    'save' => 'Сохранить',
+  ),
 );

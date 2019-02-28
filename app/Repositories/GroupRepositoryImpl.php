@@ -1,66 +1,25 @@
 <?php
 
 namespace App\Repositories;
-use App\User;
-use App\Role;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 
-class GroupRepositoryImpl implements GroupRepository {
+class GroupRepositoryImpl extends GroupRepositoryBasicImpl {
     public function get_names() {
         return Cache::remember("group_names", 5, function() {
-            return DB::table("roles")
-                ->select('role_arg')
-                ->where('role', 'student')
-                ->groupBy('role_arg')
-                ->orderBy('role_arg')
-                ->get()
-                ->map(function($a) {return $a->role_arg;})
-                ->sort(\App\Utils::get_group_cmp())
-                ->values();
+            return parent::get_names();
         });
     }
 
     public function get_pars() {
         return Cache::remember("group_pars", 5, function() {
-            return $this->get_names()
-                        ->map(function($a) {
-                            return \App\Utils::sep_group($a)[0];
-                        })
-                        ->unique()
-                        ->values();
+            return parent::get_pars();
         });
     }
 
     public function get_all() {
         return Cache::remember("group_all", 5, function() {
-            return $this->get_names()
-                        ->map(function($u) {
-                            return $this->get($u);
-                        });
+            return parent::get_all();
         });
-    }
-
-    public function get($group) {
-        $roles = Role::where("role", "student")->where("role_arg", $group)->get();
-        $users = [];
-        foreach($roles as $role) {
-            $users[] = User::find($role->user_id);
-        }
-
-        $users = collect($users)
-                ->sort(\App\Utils::get_student_cmp());
-
-        $balance = 0;
-        foreach($users as $user) {
-            $balance += $user->student()->get_balance();
-        }
-
-        return [
-            "users" => $users,
-            "group" => $group,
-            "balance" => $balance
-        ];
     }
 }

@@ -30,4 +30,12 @@ class TransactionServiceBasicImpl implements TransactionService {
 
         return $tr;
     }
+
+    public function delete(Transaction $tr) {
+        $tr->delete();
+    }
+
+    public function deleteAll() {
+        Transaction::query()->delete();
+    }
 }

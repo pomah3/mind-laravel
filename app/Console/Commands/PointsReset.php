@@ -14,7 +14,7 @@ class PointsReset extends Command
     protected $description = 'Remove all transactions and add starting points';
 
     public function handle(TransactionService $trans) {
-        Transaction::query()->delete();
+        $trans->deleteAll();
 
         foreach (User::where("type", "student")->get() as $student) {
             $trans->add(null, $student, \App\Cause::find(1));

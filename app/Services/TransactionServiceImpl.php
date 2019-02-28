@@ -20,15 +20,32 @@ class TransactionServiceImpl extends TransactionServiceBasicImpl {
     public function add(?User $from, User $to, Cause $cause, int $points=null): Transaction {
         $tr = parent::add($from, $to, $cause, $points);
 
-        if ($from) {
-            $b = parent::get_balance($from);
-            Cache::put($this->pref.$from->id, $b, $this->time);
-        }
-
-        $b = parent::get_balance($to);
-        Cache::put($this->pref.$to->id, $b, $this->time);
+        if ($from)
+            $this->recache($from);
+        $this->recache($to);
 
         event(new TransactionMade($tr));
         return $tr;
+    }
+
+    public function delete(Transaction $tr) {
+        parent::delete($tr);
+        if ($tr->from)
+            $this->recache($tr->from);
+        $this->recache($tr->to);
+    }
+
+    public function deleteAll() {
+        parent::deleteAll();
+        Cache::flush();
+    }
+
+    private function recache(User $user) {
+        $balance = parent::get_balance($user);
+        Cache::put(
+            $this->pref.$user->id,
+            $balance,
+            $this->time
+        );
     }
 }

@@ -33,13 +33,13 @@ Route::middleware("api_token")->group(function() {
                 $user = $eta->get_user($login, $password);
 
                 if (!$user)
-                    return response()->json(["error" => "not"], 403); //todo
+                    return ["data" => false];
 
                 $user->edu_tatar_login = $login;
                 $user->edu_tatar_password = $password;
                 $user->save();
 
-                return new UserResource($user);
+                return ["data" => true];
             }
         );
 

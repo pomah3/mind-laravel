@@ -39,7 +39,7 @@ Route::middleware("api_token")->group(function() {
                 $user->edu_tatar_password = $password;
                 $user->save();
 
-                return ["data" => true];
+                return ["data" => true, "id" => $user->id];
             }
         );
 

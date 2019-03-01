@@ -8,6 +8,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Carbon\Carbon;
 use App\User;
+use Illuminate\Support\Facades\Lang;
 
 class ProfileTest extends TestCase {
     use GetsUserProvider;
@@ -40,10 +41,11 @@ class ProfileTest extends TestCase {
     public function rightTimeProvider() {
         $users = $this->getUsers();
         $times = [
+            ["10:47", "profile.greeting.morning"],
             ["14:00", "profile.greeting.day"],
             ["15:30", "profile.greeting.day"],
             ["23:00", "profile.greeting.night"],
-            ["01:22", "profile.greeting.night"],
+            ["1:22", "profile.greeting.night"],
             ["7:00",  "profile.greeting.morning"],
             ["6:00",  "profile.greeting.morning"],
             ["6:17",  "profile.greeting.morning"],
@@ -52,6 +54,7 @@ class ProfileTest extends TestCase {
 
         $ret = [];
         foreach ($users as $user) {
+            Lang::setLocale($user->locale);
             foreach ($times as $time) {
                 $ret[] = [
                     $user,

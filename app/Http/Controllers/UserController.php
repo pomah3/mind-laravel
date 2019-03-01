@@ -57,4 +57,17 @@ class UserController extends Controller
         $user->delete();
         return "";
     }
+
+    public function setRoles(Request $request, User $user) {
+        $request->validate([
+            "roles" => "required|json"
+        ]);
+
+        $roles = json_decode($request->roles, true);
+        $user->roles()->delete();
+
+        foreach ($roles as $role) {
+            $user->add_role($role["name"], $role["arg"] ?? null);
+        }
+    }
 }

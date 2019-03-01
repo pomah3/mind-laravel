@@ -28,14 +28,20 @@ Route::middleware("api_token")->group(function() {
             return new UserResource($user);
         });
 
-        Route::get("check/edu/{login}/{password}", function ($login, $password) {
-            $user = (new EduTatarAuth)->login($login, $password);
+        Route::get("check/edu/{login}/{password}",
+            function (App\EduTatar\EduTatarAuth $eta, $login, $password) {
+                $user = $eta->get_user($login, $password);
 
-            if (!$user)
-                return ["error" => "not"]; //todo
+                if (!$user)
+                    return ["data" => false];
 
-            return new UserResource($user);
-        });
+                $user->edu_tatar_login = $login;
+                $user->edu_tatar_password = $password;
+                $user->save();
+
+                return ["data" => true, "id" => $user->id];
+            }
+        );
 
         Route::get("check/{user}/{password}", function (User $user, $password) {
             return [

@@ -17,7 +17,7 @@ class ProfileController extends Controller
     }
 
     private function get_daytime() {
-        $h = (new \DateTime())->format("H");
+        $h = now()->format("H");
         $h = intval($h);
 
         $night   = "profile.greeting.night" ;

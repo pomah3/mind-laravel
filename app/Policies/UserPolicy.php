@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\User;
+use App\{User, Roles};
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy
@@ -15,5 +15,14 @@ class UserPolicy
 
     public function view(User $user) {
         return $user->has_role("admin");
+    }
+
+    public function see_roles(User $user, User $user1) {
+        return true;
+    }
+
+    public function set_roles(User $user, User $user1) {
+        return $this->see_roles($user, $user1) &&
+               $user->has_role(Roles::ADMIN);
     }
 }

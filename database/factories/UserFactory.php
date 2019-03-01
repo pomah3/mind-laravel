@@ -10,6 +10,7 @@ $factory->define(App\User::class, function($faker) {
         "father_name" => $faker->middleName($g),
 
         "type" => $faker->randomElement(["teacher", "student"]),
-        "password" => "123"
+        "password" => "123",
+        "locale" => $faker->randomElement(["en", "ru", "tt"]),
     ];
 });

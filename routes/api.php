@@ -35,6 +35,10 @@ Route::middleware("api_token")->group(function() {
                 if (!$user)
                     return response()->json(["error" => "not"], 403); //todo
 
+                $user->edu_tatar_login = $login;
+                $user->edu_tatar_password = $password;
+                $user->save();
+
                 return new UserResource($user);
             }
         );

@@ -54,6 +54,8 @@ Route::middleware("auth")->group(function() {
         "show"
     ]);
 
+    Route::post("/users/{user}/set_roles", "UserController@setRoles");
+
     Route::resource("users", "UserController");
     Route::resource("polls", "PollController");
     Route::resource("events", "EventController");

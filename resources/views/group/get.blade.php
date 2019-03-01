@@ -1,7 +1,7 @@
 @extends('layout.logined')
 
 @section('title')
-    Группа {{ $group["group"] }}
+    {{ __('group.get.title') }} {{ $group["group"] }}
 @endsection
 
 @section('content')

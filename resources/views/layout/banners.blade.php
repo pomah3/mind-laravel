@@ -2,7 +2,7 @@
     <div id="rotator" class="banner-img">
         <ul>
             @foreach ($banners as $banner)
-                <li style="opacity: 0.0;">
+                <li>
                     <a href="{{ $banner->link }}">
                         <img src="{{ asset("storage/banners/".$banner->img_path) }}" alt="{{ $banner->alt }}" class="banner">
                     </a>

@@ -13,10 +13,10 @@
         @endcan
     </div>
     <div class="banner-description">
-        <div class="banner-label">Ссылка: <a href="{{ $banner->link}}">{{ $banner->link}}</a> </div>
-        <div class="banner-label">Описание: <span>{{ $banner->alt}}</span> </div>
-        <div class="banner-label">Начало показа: <span>{{ $banner->from_date}}</span> </div>
-        <div class="banner-label">Конец показа: <span>{{ $banner->till_date}}</span> </div>
+        <div class="banner-label">{{ __('banner.info.link') }}: <a href="{{ $banner->link}}">{{ $banner->link}}</a> </div>
+        <div class="banner-label">{{ __('banner.info.alt') }}: <span>{{ $banner->alt}}</span> </div>
+        <div class="banner-label">{{ __('banner.info.from_date') }}: <span>{{ $banner->from_date}}</span> </div>
+        <div class="banner-label">{{ __('banner.info.till_date') }}: <span>{{ $banner->till_date}}</span> </div>
     </div>
 
 </div>

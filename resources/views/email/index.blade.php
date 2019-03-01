@@ -1,7 +1,7 @@
 @extends('layout.logined')
 
 @section('title')
-    Профиль
+    {{ __('email.index.title') }}
 @endsection
 
 @section('content')

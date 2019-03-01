@@ -18,6 +18,7 @@
                 </ul>
             </div>
         @endif
+        <h3 id="selected_student"></h3>
 
         @if (session('status'))
             @alert(["type"=>"success"])
@@ -52,7 +53,31 @@
                     <p class="placeholder">Выберите класс</p>
                 </div>
             </div>
-
+            <div class="one-selector dis-none">
+                <h3>Категория</h3>
+                <div class="wrapper" id="categories">
+                    <div class="button-filter">Олимпиадное движение</div>
+                    <div class="button-filter">Проектная деятельность</div>
+                    <div class="button-filter">Успеваемость</div>
+                    <div class="button-filter">Культурно-масссовые мероприятия</div>
+                    <div class="button-filter">Спортивные мероприятия</div>
+                    <div class="button-filter">Внеурочная деятельность</div>
+                    <div class="button-filter">Деятельность класса</div>
+                    <div class="button-filter">Интернат</div>
+                </div>
+            </div>
+            <div class="one-selector dis-none">
+                <h3>Основание</h3>
+                <div class="wrapper" id="causes">
+                    <div class="button-filter">Машина межнара</div>
+                    <div class="button-filter">Машина всероса</div>
+                    <div class="button-filter">Машина респы</div>
+                    <div class="button-filter">Мозг муниципа</div>
+                    <div class="button-filter">Насасов школьного</div>
+                    <div class="button-filter">Есть дневник олимпиадника</div>
+                    <p class="placeholder">Выберите категорию</p>
+                </div>
+            </div>
 
         </div>
     </div>
@@ -95,6 +120,15 @@
                     $("#pars .button-filter").removeClass("active-button");
                     $(this).addClass("active-button");
                     fill_groups();
+                });
+
+                $("#students .button-filter").click(function() {
+                    $("#pars").parent().hide();
+                    $("#groups").parent().hide();
+                    $("#students").parent().hide();
+                    $("#categories").parent().show();
+                    $("#causes").parent().show();
+                    $("#selected_student").html("Пробная фамилия имя и отчество");
                 });
             })();
         </script>

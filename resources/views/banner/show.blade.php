@@ -1,13 +1,13 @@
 @extends('layout.logined')
 
 @section('title')
-    Баннеры
+    {{ __('banner.show.title') }}
 @endsection
 
 @section('content')
 
     <div class="container container-points">
-        <h2>Баннеры</h2>
+        <h2>{{ __('banner.show.title') }}</h2>
 
         @can('create', App\Banner::class)
             <a href="/banners/create" class="add-banner">+</a>
@@ -18,7 +18,7 @@
             @endcomponent
         @empty
             <div class="not-found">
-                Нет загруженных баннеров
+                {{ __('banner.not_found') }}
             </div>
         @endforelse
 

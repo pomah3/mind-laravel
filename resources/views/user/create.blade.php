@@ -1,7 +1,7 @@
 @extends('layout.logined')
 
 @section('title')
-    Create user
+    {{ __('user.create.title') }}
 @endsection
 
 @section('content')
@@ -16,7 +16,7 @@
             <input type="text" name="given_name" id="given_name"  placeholder="Введите имя" class="form-control">
             <label for="father_name">Отчество</label>
             <input type="text" name="father_name" id="father_name" placeholder="Введите отчество" class="form-control">
-            
+
             <label for="type">Роль пользователя</label>
             <select class="type_select form-control" name="type" id="type">
                 <option value="student">Ученик</option>

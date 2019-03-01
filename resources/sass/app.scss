@@ -62,10 +62,10 @@ a.a-small {
 	margin-right: 10px;
 }
 .button-filter:hover {
-	background: rgba(0,75,126,.7);
+	background: rgba(0,75,126,.6);
 }
 .active-button {
-	background: rgba(0,75,126,.6);
+	background: rgba(0,75,126,.8);
 }
 .flex {
 	display: flex;
@@ -1067,11 +1067,13 @@ img.answer {
     background: rgb(0,75,126);
     color: #fff;
     border: 1px solid #999;
+    margin-top: 3px;
 }
 .status-set-hasnt {
     color: rgb(0,75,126);
     background: #fff;
     border: 1px solid #999;
+    margin-top: 3px;
 }
 .group-students {
     width: 100%;

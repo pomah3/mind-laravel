@@ -4,7 +4,7 @@
 @php($days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
 
 @section('title')
-    Status
+    {{ __('status.index.title') }}
 @endsection
 
 @section('content')

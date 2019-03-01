@@ -5,7 +5,7 @@
 @endphp
 
 @section('title')
-    Профиль
+    {{ __('main.profile.title') }}
 @endsection
 
 @section('content')
@@ -15,27 +15,27 @@
                 $name = $user->type === "student" ? "gi" : "gi ft";
                 $name = $user->get_name($name);
             @endphp
-            <h2>{{ $daytime }}, {{ $name }}</h2>
-            <h3>
-                Логин: <strong>{{ $user->id }}</strong>
-                @if ($user->edu_tatar_login)
-                    <h3>Логин edu.tatar.ru: <strong>{{ $user->edu_tatar_login }}</strong></h3>
-                @endif
-            </h3>
+            <h2>{{ __($daytime) }}, {{ $name }}</h2>
             @if ($user->has_role("student"))
                 <h2>
-                    Баланс: <strong>
+                    {{ __('profile.info.balance') }}: <strong>
                         {{ $user->student()->get_balance() }}
                     </strong>
                 </h2>
                 <h3>
-                    Класс: <strong>
+                    {{ __('profile.info.login') }}: <strong>{{ $user->id }}</strong>
+                    @if ($user->edu_tatar_login)
+                        <h3>{{ __('profile.info.lodin_edu') }}: <strong>{{ $user->edu_tatar_login }}</strong></h3>
+                    @endif
+                </h3>
+                <h3>
+                    {{ __('profile.info.group') }}: <strong>
                         {{ $user->student()->get_group() }}
                     </strong>
                 </h3>
                 <h3>
                     @if ($user->student()->get_classruk())
-                        Классный руководитель: <strong>
+                        {{ __('profile.info.group_teacher') }}: <strong>
                             @user(["user" => $user->student()->get_classruk()])
                         </strong>
                     @endif
@@ -44,7 +44,7 @@
         </div>
         <div class="block-information timetable">
             <h2>
-                {{ Carbon\Carbon::now()->format("l") == $date->format("l") ? "Сегодня" : "Завтра"}}:
+                {{ Carbon\Carbon::now()->format("l") == $date->format("l") ? __('profile.info.today') : __('profile.info.tomorrow') }}:
                 <strong>{{ __("days.".$date->format('l')) }}</strong>
             </h2>
             @if (filled($timetable))

@@ -1,7 +1,7 @@
 @extends('layout.logined')
 
 @section('title')
-    Мероприятия
+    {{ __('event.index.title') }}
 @endsection
 
 @section('content')

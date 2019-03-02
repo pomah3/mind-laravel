@@ -22,15 +22,15 @@
             @endif
         @endcan
 
+        @php
+            $roles = $user->roles->map(function ($a) {
+                return [
+                    "name" => $a->role,
+                    "arg" => $a->role_arg
+                ];
+            });
+        @endphp
         @can("set_roles", $user)
-            @php
-                $roles = $user->roles->map(function ($a) {
-                    return [
-                        "name" => $a->role,
-                        "arg" => $a->role_arg
-                    ];
-                });
-            @endphp
 
             roles: <textarea id="roles">{{ $roles }}</textarea>
             <button id="submit-roles">submit</button>

@@ -1,12 +1,13 @@
 language: php
 
 php:
-  - 7.2
+  - 7.3
 
 services:
   - mysql
 
-before_script:
+
+install:
   - cp .env.travis .env
   - mysql -e 'create database mind;'
   - composer self-update
@@ -14,7 +15,13 @@ before_script:
   - npm i
   - php artisan key:generate
   - php artisan migrate
+
+before_script:
   - php artisan serve &
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+
+addons:
+  chrome: stable
 
 script:
   - vendor/bin/phpunit

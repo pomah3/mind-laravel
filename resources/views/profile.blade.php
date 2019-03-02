@@ -16,18 +16,18 @@
                 $name = $user->get_name($name);
             @endphp
             <h2>{{ __($daytime) }}, {{ $name }}</h2>
+            <h3>
+                {{ __('profile.info.login') }}: <strong>{{ $user->id }}</strong>
+                @if ($user->edu_tatar_login)
+                    <h3>{{ __('profile.info.lodin_edu') }}: <strong>{{ $user->edu_tatar_login }}</strong></h3>
+                @endif
+            </h3>
             @if ($user->has_role("student"))
                 <h2>
                     {{ __('profile.info.balance') }}: <strong>
                         {{ $user->student()->get_balance() }}
                     </strong>
                 </h2>
-                <h3>
-                    {{ __('profile.info.login') }}: <strong>{{ $user->id }}</strong>
-                    @if ($user->edu_tatar_login)
-                        <h3>{{ __('profile.info.lodin_edu') }}: <strong>{{ $user->edu_tatar_login }}</strong></h3>
-                    @endif
-                </h3>
                 <h3>
                     {{ __('profile.info.group') }}: <strong>
                         {{ $user->student()->get_group() }}

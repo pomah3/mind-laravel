@@ -22,6 +22,12 @@
                             <strong>до</strong>
                             <span id="mid_text">4.50</span>
                                 <input type="text" id="mid" class="dis-none mid-change">
+                            <div class="help-block">
+                                <div class="help">?</div>
+                                <span class="tip">
+                                    Кликни 2 раза на оценку и средний балл
+                                </span>
+                            </div>
                         </td>
                         <td colspan="100">
                             <strong>Оценки</strong>
@@ -29,7 +35,7 @@
                     </tr>
                     @foreach ($lessons as $lesson)
                         <tr>
-                            <td>{{ $lesson["name"] }}</td>
+                            <td class="w-40">{{ $lesson["name"] }}</td>
                             <td>{{ $lesson["need"] }}</td>
                             @foreach ($lesson["marks"] as $mark)
                                 <td>{{ $mark }}</td>

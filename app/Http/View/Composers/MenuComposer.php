@@ -27,6 +27,7 @@ class MenuComposer {
         ["menu.polls", "/polls", "all"],
         ["menu.events", "/events", "all"],
         ["menu.timetable", '/timetable', "student"],
+        ["menu.marks", '/marks', "student"],
         ["menu.questions", '/questions', "all"],
         ["menu.documents", "/documents", "all"],
     ];

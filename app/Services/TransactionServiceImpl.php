@@ -15,7 +15,7 @@ class TransactionServiceImpl implements TransactionService {
     }
 
     public function add(?User $from, User $to, Cause $cause, int $points=null): Transaction {
-        if ($points == null) {
+        if ($points === null) {
             $points = $cause->points;
         }
 

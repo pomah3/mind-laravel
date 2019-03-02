@@ -7,11 +7,22 @@ use App\User;
 use App\Cause;
 use App\Transaction;
 use App\EduTatar\EduTatarAuth;
+use App\Services\TransactionService;
 
 class EduTatarProcessMarks extends Command
 {
     protected $signature = 'edutatar:marks';
     protected $description = 'Handle marks of all students who has login and password of edu tatar';
+
+    private $eta;
+    private $trs;
+
+    public function __construct(EduTatarAuth $eta, TransactionService $trs) {
+        parent::__construct();
+
+        $this->trs = $trs;
+        $this->eta = $eta;
+    }
 
     public function handle() {
         $students = User::students()
@@ -31,10 +42,12 @@ class EduTatarProcessMarks extends Command
     }
 
     public function get_marks(string $login, string $password) {
-        $page = (new EduTatarAuth)->get_page(
-            "https://edu.tatar.ru/user/diary/term",
-            $login,
-            $password
+        $page = $this->eta->get_page(
+            "/user/diary/term",
+            $this->eta->get_key(
+                $login,
+                $password
+            )
         );
 
         preg_match_all("#<td>(\d)</td>#", $page, $marks);
@@ -63,11 +76,12 @@ class EduTatarProcessMarks extends Command
                    ->where("cause_id", $cause->id)
                    ->delete();
 
-        if ($cause->points == 0)
+        if ($cause->points == 0 || $cnt == 0) {
             return;
+        }
 
         $points = $cause->points * $cnt;
-        Transaction::add(null, $student, $cause, $points, false);
+        $this->trs->add(null, $student, $cause, $points);
     }
 
 }

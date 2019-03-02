@@ -18,7 +18,7 @@ class UserPolicy
     }
 
     public function see_roles(User $user, User $user1) {
-        return true;
+        return $user->has_role(Roles::ADMIN);
     }
 
     public function set_roles(User $user, User $user1) {

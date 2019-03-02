@@ -39,7 +39,7 @@ class EduTatarProcessMarks extends Command
     }
 
     public function get_marks(string $login, string $password) {
-        $page = $eta->get_page(
+        $page = $this->eta->get_page(
             "https://edu.tatar.ru/user/diary/term",
             $login,
             $password

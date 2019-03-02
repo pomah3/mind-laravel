@@ -13,6 +13,14 @@ class EduTatarProcessMarks extends Command
     protected $signature = 'edutatar:marks';
     protected $description = 'Handle marks of all students who has login and password of edu tatar';
 
+    private $eta;
+
+    public function __construct(EduTatarAuth $eta) {
+        parent::__construct();
+
+        $this->eta = $eta;
+    }
+
     public function handle() {
         $students = User::students()
                         ->whereNotNull("edu_tatar_login")
@@ -31,7 +39,7 @@ class EduTatarProcessMarks extends Command
     }
 
     public function get_marks(string $login, string $password) {
-        $page = (new EduTatarAuth)->get_page(
+        $page = $eta->get_page(
             "https://edu.tatar.ru/user/diary/term",
             $login,
             $password

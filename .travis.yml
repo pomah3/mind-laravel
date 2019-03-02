@@ -14,6 +14,8 @@ before_script:
   - npm i
   - php artisan key:generate
   - php artisan migrate
+  - php artisan serve &
 
 script:
   - vendor/bin/phpunit
+  - php artisan dusk

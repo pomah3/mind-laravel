@@ -43,9 +43,11 @@ class EduTatarProcessMarks extends Command
 
     public function get_marks(string $login, string $password) {
         $page = $this->eta->get_page(
-            "https://edu.tatar.ru/user/diary/term",
-            $login,
-            $password
+            "/user/diary/term",
+            $this->eta->get_key(
+                $login,
+                $password
+            )
         );
 
         preg_match_all("#<td>(\d)</td>#", $page, $marks);
@@ -74,11 +76,12 @@ class EduTatarProcessMarks extends Command
                    ->where("cause_id", $cause->id)
                    ->delete();
 
-        if ($cause->points == 0)
+        if ($cause->points == 0 || $cnt == 0) {
             return;
+        }
 
         $points = $cause->points * $cnt;
-        $this->trs->add(null, $student, $cause, $points, false);
+        $this->trs->add(null, $student, $cause, $points);
     }
 
 }

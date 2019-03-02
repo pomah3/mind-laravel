@@ -13,15 +13,15 @@
 
         <ul>
             @forelse ($documents as $document)
-                <li>
-                    <a href="/documents/{{ $document->id }}">
+                <li class="not-list-style">
+                    <a href="/documents/{{ $document->id }}" class="a-designed">
                         {{ $document->title }}
                     </a>
                     @can('update', $document)
-                        (<a href="/documents/{{ $document->id }}/edit">edit</a>)
+                        <a href="/documents/{{ $document->id }}/edit" class="edit-document">&#9998;</a>
                     @endcan
                     @can('delete', $document)
-                        <button class="remove-doc" doc-id="{{ $document->id }}">&times;</button>
+                        <button class="delete-document" doc-id="{{ $document->id }}">&times;</button>
                     @endcan
                 </li>
             @empty
@@ -34,7 +34,7 @@
 
     @push('scripts')
         <script>
-            $(".remove-doc").click(function() {
+            $(".delete-document").click(function() {
                 let that = this;
                 let id = $(that).attr("doc-id");
                 $.ajax({

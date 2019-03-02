@@ -2,7 +2,7 @@
 
 return array (
   'profile' => 'Профиль',
-  'points' => 
+  'points' =>
   array (
     'main' => 'Баллы',
     'mine' => 'Мои баллы',
@@ -23,5 +23,6 @@ return array (
   'documents' => 'Документы',
   'banners' => 'Баннеры',
   'admin' => 'Администрирование',
-  'email' => 'Отправить письмо',
+  'email' => 'Рассылка',
+  'marks' => 'Оценки',
 );

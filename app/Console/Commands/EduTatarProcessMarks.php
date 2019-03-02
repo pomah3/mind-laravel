@@ -7,6 +7,7 @@ use App\User;
 use App\Cause;
 use App\Transaction;
 use App\EduTatar\EduTatarAuth;
+use App\Services\TransactionService;
 
 class EduTatarProcessMarks extends Command
 {
@@ -14,10 +15,12 @@ class EduTatarProcessMarks extends Command
     protected $description = 'Handle marks of all students who has login and password of edu tatar';
 
     private $eta;
+    private $trs;
 
-    public function __construct(EduTatarAuth $eta) {
+    public function __construct(EduTatarAuth $eta, TransactionService $trs) {
         parent::__construct();
 
+        $this->trs = $trs;
         $this->eta = $eta;
     }
 
@@ -75,7 +78,7 @@ class EduTatarProcessMarks extends Command
             return;
 
         $points = $cause->points * $cnt;
-        Transaction::add(null, $student, $cause, $points, false);
+        $this->trs->add(null, $student, $cause, $points, false);
     }
 
 }

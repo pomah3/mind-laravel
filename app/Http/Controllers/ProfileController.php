@@ -48,12 +48,19 @@ class ProfileController extends Controller
     }
 
     private function get_timetable() {
+        $day = $this->get_timetable_date()->format('l');
+
+        if ($day == "Sunday")
+            return null;
+
         if (Auth::user()->type != "student")
             return null;
 
-        return $this->ttr->get_lessons(Auth::user())[
-            $this->get_timetable_date()->format('l')
-        ];
+        return $this
+            ->ttr
+            ->get_lessons(
+                Auth::user()
+            )[$day];
     }
 
     public function index() {

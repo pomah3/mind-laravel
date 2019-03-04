@@ -35,7 +35,6 @@ class SigninTest extends DuskTestCase {
     public function testWrongPassword() {
         $user = factory(User::class)->create([
             "password" => 1234,
-            "locale" => "ru"
         ]);
 
 

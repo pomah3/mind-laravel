@@ -28,10 +28,10 @@ class TransactionViewModel extends ViewModel {
         foreach ($d as $day => $trs) {
             $dd[] = [
                 "date" => $trs[0]->created_at,
-                "transactions" => $trs
+                "transactions" => collect($trs)->sortByDesc("created_at")
             ];
         }
 
-        $this->days = $dd;
+        $this->days = collect($dd)->sortByDesc("date");
     }
 }

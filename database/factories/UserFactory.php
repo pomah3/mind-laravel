@@ -11,6 +11,5 @@ $factory->define(App\User::class, function($faker) {
 
         "type" => $faker->randomElement(["teacher", "student"]),
         "password" => "123",
-        "locale" => $faker->randomElement(["en", "ru", "tt"]),
     ];
 });

@@ -846,11 +846,19 @@ textarea.form-control {
 	font-weight: 500;
 }
 /* events */
+.one-event {
+    margin-bottom: 20px;
+    box-shadow: 2px 2px 4px #777;
+    background: #B3C8E6;
+}
+.one-event h2 {
+    margin-left: 10px;
+}
 .add-event {
 	font-size: 25px;
 	padding: 0 10px;
+    background: #466cb2;
 	// background: linear-gradient(rgba(56, 223, 100, 0.6), rgba(100, 223, 133, 0.6));
-	background: #466cb2;
 	color: #bed5ff;
 	margin-left: 15px;
 	transition: .5s;
@@ -859,6 +867,25 @@ textarea.form-control {
 .add-event:hover {
 	background: #77a5f8;
 	color: #bed5ff;
+}
+ol.event-partisipants {
+    padding-inline-start: 40px;
+}
+.event-delete {
+    border: 0;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    transition: .5s;
+    text-align: center;
+    cursor: pointer;
+    color: #7F2200;
+    background: #E26638;
+}
+.event-description {
+    margin-bottom: 5px;
 }
 .users-block {
 	margin-top: 20px;
@@ -1187,8 +1214,17 @@ img.answer {
 .w-30 {
     width: 30%;
 }
+.w-100 {
+    width: 100px;
+}
 .b-10 {
 	margin-bottom: 10px;
+}
+.l-10 {
+    margin-left: 10px;
+}
+.r-5 {
+    margin-right: 5px;
 }
 .pl-10 {
 	padding-left: 10px !important;

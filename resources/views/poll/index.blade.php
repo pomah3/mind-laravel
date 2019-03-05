@@ -49,14 +49,14 @@
                     });
                 });
                 $('#new-polls').click(function() {
-                    $('.old-poll').hide();
-                    $('.new-poll').show();
+                    $('.old-poll').hide(100);
+                    $('.new-poll').show(100);
                     $('.button-filter').removeClass("active-button");
                     $(this).addClass("active-button");
                 }).click();
                 $('#old-polls').click(function() {
-                    $('.new-poll').hide();
-                    $('.old-poll').show();
+                    $('.new-poll').hide(100);
+                    $('.old-poll').show(100);
                     $('.button-filter').removeClass("active-button");
                     $(this).addClass("active-button");
                 });

@@ -9,7 +9,9 @@
         <h2>{{ __('data.index.title') }}</h2>
         @if (session("status"))
             @if (session("status") == "ok")
-                Успешно!
+                <div class="alert alert-success">
+                    {{ __('alert.ok') }}!
+                </div>
             @endif
         @endif
 

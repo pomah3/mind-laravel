@@ -19,13 +19,13 @@
         <form action="/documents" method="POST" enctype="multipart/form-data" class="form-50">
             @csrf
 
+            <label for="title">{{ __('document.create.form.title') }}</label>
+            <input type="text" name="title" placeholder="{{ __('document.create.placeholder.title') }}" class="form-control" id="title">
 
-            <input type="text" name="title" placeholder="title" class="form-control">
+            <label for="">{{ __('document.create.form.access') }}</label>: @access(["attr"=>"name=\"access\""])
 
-            Имеют доступ: @access(["attr"=>"name=\"access\""])
-
-            <input type="file" name="file" class="form-control">
-            <input type="submit" class="submit">
+            <input type="file" name="file" class="form-control" value="{{ __('main.submit.send') }}">
+            <input type="submit" class="submit" value="{{ __('main.submit.send') }}">
 
         </form>
     </div>

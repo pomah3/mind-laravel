@@ -95,5 +95,7 @@ Route::middleware("auth")->group(function() {
     Route::prefix("/status")->group(function() {
         Route::get("", "StatusController@index");
         Route::post("{user}/{status}", "StatusController@set");
+
+        Route::get("statistic", "StatusController@statistic");
     });
 });

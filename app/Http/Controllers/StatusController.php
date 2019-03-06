@@ -42,4 +42,14 @@ class StatusController extends Controller
         $user->status->save();
         return "";
     }
+
+    public function statistic() {
+        return collect([
+            "П", "БД", "БИ", "УП", "В"
+        ])->map(function($a) {
+            return DB::table("statuses")->where("title", $a)->count();
+        });
+
+
+    }
 }

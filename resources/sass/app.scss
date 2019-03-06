@@ -50,6 +50,7 @@ a.a-small {
 }
 .buttons {
 	display: flex;
+    flex-wrap: wrap;
 	margin-bottom: 10px;
 }
 .button-filter {
@@ -1227,8 +1228,8 @@ img.answer {
     margin-right: 5px;
 }
 .pl-10 {
-	padding-left: 10px !important;
+	padding-left: 10px;
 }
-@import 'media-queries.scss';
 @import 'tooltip.scss';
 @import 'notes.scss';
+@import 'media-queries.scss';

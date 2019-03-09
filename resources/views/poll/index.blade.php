@@ -18,7 +18,7 @@
 
         <div class="flex">
             @forelse ($polls as $poll)
-                <div class="poll-elem {{ $poll->till_date <= now() ? "old-poll" : "new-poll"}}">
+                <div class="poll-elem {{ $poll->till_date <= now() ? "old-poll" : "new-poll"}} dis-none">
                     @can("delete", $poll)
                         <button poll-id="{{ $poll->id }}" class="poll-delete">&times;</button>
                     @endcan
@@ -34,6 +34,7 @@
 
         @push('scripts')
             <script>
+
                 $(".poll-delete").click(function() {
                     let poll_id = $(this).attr("poll-id");
                     $.ajax({
@@ -47,15 +48,15 @@
                         console.log(err);
                     });
                 });
-                $('#new-polls').on('click', function() {
-                    $('.old-poll').hide();
-                    $('.new-poll').show();
+                $('#new-polls').click(function() {
+                    $('.old-poll').hide(100);
+                    $('.new-poll').show(100);
                     $('.button-filter').removeClass("active-button");
                     $(this).addClass("active-button");
-                });
-                $('#old-polls').on('click', function() {
-                    $('.new-poll').hide();
-                    $('.old-poll').show();
+                }).click();
+                $('#old-polls').click(function() {
+                    $('.new-poll').hide(100);
+                    $('.old-poll').show(100);
                     $('.button-filter').removeClass("active-button");
                     $(this).addClass("active-button");
                 });

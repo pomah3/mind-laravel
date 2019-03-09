@@ -24,4 +24,6 @@ return array (
   'users' => 'All users',
   'admin' => 'Adminning',
   'email' => 'Email',
+  'status' => 'Students',
+  'marks' => 'Marks',
 );

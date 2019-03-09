@@ -1,15 +1,22 @@
 <?php
 
 return array (
-  'create' => 
+  'create' =>
   array (
     'title' => 'Добавить документ',
+    'form' => array (
+      'title' => 'Название',
+      'access' => 'Имеют доступ',
+    ),
+    'placeholder' => array (
+      'title' => 'Введите название'
+    ),
   ),
-  'edit' => 
+  'edit' =>
   array (
     'title' => 'Редактировать документ',
   ),
-  'index' => 
+  'index' =>
   array (
     'title' => 'Документы',
   ),

@@ -8,28 +8,13 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Events\TransactionMade;
 use App\Notifications\PointsGot;
 
-class SendPointsGotListener
-{
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
+class SendPointsGotListener {
+    public function handle(TransactionMade $event) {
+        $tr = $event->transaction;
 
-    /**
-     * Handle the event.
-     *
-     * @param  TransactionMade  $event
-     * @return void
-     */
-    public function handle(TransactionMade $event)
-    {
-        if ($event->transaction->title=="Передача баллов" && $event->transaction->points < 0)
+        if ($tr->from_user == null)
             return;
-        $event->transaction->to_user->notify(new PointsGot($event->transaction));
+
+        $tr->to_user->notify(new PointsGot($event->transaction));
     }
 }

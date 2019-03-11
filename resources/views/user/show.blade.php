@@ -10,6 +10,30 @@
 
         @can("delete", $user)
             <button class="delete-user" user-id="{{ $user->id }}">&times;</button>
+            @push('scripts')
+                <script>
+                    $(".delete-user").click(function() {
+                        let id = $(this).attr("user-id");
+
+                        $.ajax({
+                            method: "DELETE",
+                            url: "/users/" + id
+                        }).done(function() {
+                            window.location = "/users";
+                        });
+                    });
+                </script>
+            @endpush
+        @endcan
+
+        @can('see-status', $user)
+            @inject('statuses', 'App\Repositories\StatusRepository')
+            <h3>
+                Статус:
+                <strong>
+                    {{ __('status.types.'.$statuses->get_status($user)->title) }}
+                </strong>
+            </h3>
         @endcan
 
         @can("view_password", $user)
@@ -57,18 +81,4 @@
             </div>
         @endcan
     </div>
-        @push('scripts')
-            <script>
-                $(".delete-user").click(function() {
-                    let id = $(this).attr("user-id");
-
-                    $.ajax({
-                        method: "DELETE",
-                        url: "/users/" + id
-                    }).done(function() {
-                        window.location = "/users";
-                    });
-                });
-            </script>
-        @endpush
 @endsection

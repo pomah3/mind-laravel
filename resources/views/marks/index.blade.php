@@ -29,6 +29,7 @@
                                 </span>
                             </div>-->
                         </td>
+                        <td>Средний балл</td>
                         <td colspan="100">
                             <strong>Оценки</strong>
                         </td>
@@ -37,6 +38,7 @@
                         <tr class="marks_row">
                             <td class="w-40">{{ $lesson["name"] }}</td>
                             <td class="need_marks">0</td>
+                            <td class="sred">0</td>
                             @foreach ($lesson["marks"] as $mark)
                                 <td class="one-mark">{{ $mark }}</td>
                             @endforeach
@@ -102,7 +104,7 @@
                 while (true) {
                     count++;
 
-                    if ((marks.length * mean + 5 * count) / (count + marks.length) >= need)
+                    if ((marks.length * mean + mark * count) / (count + marks.length) >= need)
                         break;
 
                     if (count > 50) {
@@ -126,6 +128,10 @@
                         return parseFloat($(this).html());
                     }).toArray();
 
+                    let sum = marks.reduce((a,b) => a+b);
+                    let mean = sum / marks.length;
+
+                    $(this).find(".sred").html(Math.round((mean*100))/100);
                     $(this).find(".need_marks").html(get_need_marks(mark, points, marks));
                 });
             };

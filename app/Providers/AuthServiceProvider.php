@@ -33,7 +33,7 @@ class AuthServiceProvider extends ServiceProvider
 
     private function statusPolicies() {
         Gate::define("see-status", "App\Policies\StatusPolicy@see");
-        Gate::define("see-status-index", "App\Policies\StatusPolicy@seeIndex");
+        Gate::define("see-index-status", "App\Policies\StatusPolicy@seeIndex");
         Gate::define("set-status", "App\Policies\StatusPolicy@set");
     }
 

@@ -22,23 +22,23 @@
                             <strong>до</strong>
                             <span id="mid_text">4.50</span>
                                 <input type="text" id="mid" class="dis-none mid-change">
-                            <div class="help-block">
+                            <!--<div class="help-block">
                                 <div class="help">?</div>
                                 <span class="tip">
                                     Кликни 2 раза на оценку и средний балл
                                 </span>
-                            </div>
+                            </div>-->
                         </td>
                         <td colspan="100">
                             <strong>Оценки</strong>
                         </td>
                     </tr>
                     @foreach ($lessons as $lesson)
-                        <tr>
+                        <tr class="marks_row">
                             <td class="w-40">{{ $lesson["name"] }}</td>
-                            <td>{{ $lesson["need"] }}</td>
+                            <td class="need_marks">0</td>
                             @foreach ($lesson["marks"] as $mark)
-                                <td>{{ $mark }}</td>
+                                <td class="one-mark">{{ $mark }}</td>
                             @endforeach
                         </tr>
                     @endforeach
@@ -51,6 +51,14 @@
 
     @push('scripts')
         <script>
+            (function() {
+                let mid_text = $("#mid_text").html();
+                $("#mid").val(mid_text);
+
+                let mark_text = $("#mark_text").html();
+                $("#mark").val(mark_text);
+            })();
+
             $("#mid_text").dblclick(function () {
                 let mid_text = $("#mid_text").html();
                 $("#mid").val(mid_text);
@@ -77,6 +85,54 @@
                 $("#mark_text").html(mid_text);
                 $("#mark_text").show();
             });
+
+            const get_need_marks = function(mark, need, marks) {
+                console.log({mark, need});
+
+                let sum = marks.reduce((a,b) => a+b);
+                let mean = sum / marks.length;
+
+                if (mean >= need)
+                    return 0;
+
+                if (mark < need)
+                    return Infinity;
+
+                let count = 0;
+                while (true) {
+                    count++;
+
+                    if ((marks.length * mean + 5 * count) / (count + marks.length) >= need)
+                        break;
+
+                    if (count > 50) {
+                        count = Infinity;
+                        break;
+                    }
+                }
+
+                return count;
+            };
+
+            const recount = function() {
+                let mark = parseFloat($("#mark").val());
+                let points = parseFloat($("#mid").val());
+
+                if (isNaN(mark) || isNaN(points))
+                    return;
+
+                $(".marks_row").each(function(a) {
+                    let marks = $(this).find(".one-mark").map(function() {
+                        return parseFloat($(this).html());
+                    }).toArray();
+
+                    $(this).find(".need_marks").html(get_need_marks(mark, points, marks));
+                });
+            };
+
+            recount();
+            $("#mark, #mid").keyup(recount);
+
         </script>
     @endpush
 @endsection

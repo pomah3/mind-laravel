@@ -14,24 +14,6 @@ class MarksController extends Controller {
         $this->eta = $eta;
     }
 
-    function get_number_of_5($a) {
-        $arr = [];
-        $arr[2] = 0;
-        $arr[3] = 0;
-        $arr[4] = 0;
-        $arr[5] = 0;
-        foreach ($a as $i) {
-            $arr[$i]++;
-        }
-        $v = 0;
-        $sum = $arr[5] / 2 - $arr[4] / 2 - (3 * $arr[3]) / 2 - (5 * $arr[2]) / 2;
-        while ($sum < 0) {
-            $sum += 0.5;
-            $v++;
-        }
-        return $v;
-    }
-
     private function get_marks($login, $password) {
         $page = $this->eta->get_page(
             "/user/diary/term",
@@ -62,7 +44,7 @@ class MarksController extends Controller {
     }
 
     private function get_marks_($login, $password) {
-        return Cache::remember("edu.marks.$login", 10, function() use($login, $password) {
+        // return Cache::remember("edu.marks.$login", 10, function() use($login, $password) {
             $m = $this->get_marks($login, $password);
 
             $ret = [];
@@ -70,12 +52,11 @@ class MarksController extends Controller {
                 $ret[] = [
                     "marks" => $marks,
                     "name" => $name,
-                    "need" => $this->get_number_of_5($marks),
                 ];
             }
 
             return $ret;
-        });
+        // });
     }
 
     public function index() {

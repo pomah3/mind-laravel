@@ -17,25 +17,22 @@
             <div class="help-block">
                 <div class="help">?</div>
                 <span class="tip">
-                    <strong>П</strong> - присутствует<br>
-                    <strong>БД</strong> - болеет дома<br>
-                    <strong>БИ</strong> - болеет в интернате<br>
-                    <strong>УП</strong> - уважительная причина<br>
-                    <strong>В</strong> - выезд
+                    @foreach ($status_r->get_all_statuses() as $status)
+                        <strong>{{ $status }}</strong> - {{ __('status.types.'.$status) }}<br>
+                    @endforeach
                 </span>
             </div>
         </div>
         @foreach ($groups as $group)
             @component("status.table", [
                 "users" => $group["users"],
-                "group" => $group["group"]
+                "group" => $group["group"],
+                "status_r" => $status_r
             ])
             @endcomponent
         @endforeach
     </div>
 @endsection
-
-
 
 @push("scripts")
     <script>

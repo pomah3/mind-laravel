@@ -1,8 +1,5 @@
 @php
     $par = explode('-', $group)[0];
-    $statuses = [
-        "П", "БД", "БИ", "УП", "В"
-    ];
 @endphp
 
 <div class="b-10 group-status {{ $par }}-par">
@@ -10,7 +7,7 @@
     <table class="group-students">
         <tr>
             <td class="pl-10"><strong>Ученик</strong></td>
-            @foreach ($statuses as $s)
+            @foreach ($status_r->get_all_statuses() as $s)
                 <td><strong>{{ $s }}</strong></td>
             @endforeach
         </tr>
@@ -20,9 +17,10 @@
                     @user(["user" => $user])
                 </td>
 
-                @foreach ($statuses as $s)
+
+                @foreach ($status_r->get_all_statuses() as $s)
                     @php
-                        $has = $user->status->title == $s;
+                        $has = $status_r->get_status($user)->title == $s;
                     @endphp
                     <td>
                         @can('set-status', $user)

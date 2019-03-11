@@ -7,10 +7,16 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 use App\Repositories\GroupRepository;
+use App\Repositories\StatusRepository;
 use App\User;
 
-class StatusController extends Controller
-{
+class StatusController extends Controller {
+    private $status_r;
+
+    public function __construct(StatusRepository $status_r) {
+        $this->status_r = $status_r;
+    }
+
     public function index(GroupRepository $gr) {
         $this->authorize("see-status-index");
 
@@ -25,21 +31,21 @@ class StatusController extends Controller
 
         $groups = $groups->filter(function($g) {
             return filled($g["users"]);
-        });
+        })->values();
 
         $pars = $gr->get_pars();
 
         return view("status.index", [
             "groups" => $groups,
-            "pars" => $pars
+            "pars" => $pars,
+            "status_r" => $this->status_r
         ]);
     }
 
     public function set(User $user, string $status) {
         $this->authorize("set-status", $user);
 
-        $user->status->title = $status;
-        $user->status->save();
+        $this->status_r->set_status($user, $status);
         return "";
     }
 
@@ -47,8 +53,8 @@ class StatusController extends Controller
         return collect([
             "П", "БД", "БИ", "УП", "В"
         ])->map(function($a) {
-            return DB::table("statuses")->where("title", $a)->count();
-        });
+            return [$a, DB::table("statuses")->where("title", $a)->count()];
+        })->merge(DB::select("select id from users where not exists (select user_id from statuses)"));
 
 
     }

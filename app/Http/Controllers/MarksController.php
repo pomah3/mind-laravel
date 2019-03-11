@@ -44,7 +44,7 @@ class MarksController extends Controller {
     }
 
     private function get_marks_($login, $password) {
-        // return Cache::remember("edu.marks.$login", 10, function() use($login, $password) {
+        return Cache::remember("edu.marks.$login", 10, function() use($login, $password) {
             $m = $this->get_marks($login, $password);
 
             $ret = [];
@@ -56,7 +56,7 @@ class MarksController extends Controller {
             }
 
             return $ret;
-        // });
+        });
     }
 
     public function index() {

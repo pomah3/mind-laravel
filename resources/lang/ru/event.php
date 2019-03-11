@@ -1,12 +1,29 @@
 <?php
 
 return array (
-  'create' => 
+  'create' =>
   array (
     'title' => 'Добавить мероприятие',
   ),
-  'index' => 
+  'index' =>
   array (
     'title' => 'Мероприятия',
+    'not-found' => 'Нет активных мероприятий'
   ),
+  'about' =>
+  array (
+    'author' => 'Автор',
+    'from_date' => 'Начало мероприятия',
+    'till_date' => 'Окончание мероприятия',
+    'partisipants' => 'Участники',
+    'name' => 'Название',
+    'description' => 'Описание',
+    'one_day' => 'Однодневное',
+  ),
+  'placeholder' =>
+  array (
+    'partisipant' => 'Введите участника',
+    'name' => 'Введите название',
+    'description' => 'Введите описание',
+  )
 );

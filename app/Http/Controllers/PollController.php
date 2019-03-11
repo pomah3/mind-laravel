@@ -13,7 +13,7 @@ class PollController extends Controller
     {
         // $this->authorize('view_index', Poll::class);
         return view("poll.index", [
-            "polls" => Poll::all()->filter(function($poll) {
+            "polls" => Poll::orderBy("created_at", "desc")->get()->filter(function($poll) {
                 return Auth::user()->can("view", $poll);
             })
         ]);

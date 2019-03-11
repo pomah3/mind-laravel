@@ -1,8 +1,9 @@
 <?php
 
 use Faker\Generator as Faker;
+use App\User;
 
-$factory->define(App\User::class, function($faker) {
+$factory->define(User::class, function($faker) {
     $g = $faker->randomElement(["male", "female"]);
     return [
         "given_name" => $faker->firstName($g),

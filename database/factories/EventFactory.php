@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use App\User;
 
 $factory->define(App\Event::class, function($faker) {
     $from_date = new \Carbon\Carbon(

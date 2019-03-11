@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use App\User;
 
 $factory->define(App\Question::class, function($faker) {
     if ($faker->boolean()) {

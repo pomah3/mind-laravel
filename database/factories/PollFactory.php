@@ -1,10 +1,11 @@
 <?php
 
 use Faker\Generator as Faker;
+use App\User;
 
 $factory->define(App\Poll::class, function($faker) {
     return [
-        "creator_id" => 1,
+        "creator_id" => User::all()->random()->id,
         "title" => $faker->sentence,
         "content" => $faker->text,
         "variants" => $faker->sentences,

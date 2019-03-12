@@ -228,7 +228,7 @@ return [
     ],
 
     "password" => [
-        "is_default" => env('APP_DEBUG', false),
+        "is_default" => env('PASSWORD_DEFAULT', false) || env("APP_DEBUG", false),
         "default"    => env("APP_DEFAULT_PASSWORD", "123"),
         "length"     => env("APP_PASSWORD_LENGTH", 4)
     ],

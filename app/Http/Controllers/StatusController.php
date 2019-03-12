@@ -18,7 +18,7 @@ class StatusController extends Controller {
     }
 
     public function index(GroupRepository $gr) {
-        $this->authorize("see-status-index");
+        $this->authorize("see-index-status");
 
         $groups = $gr->get_all();
 

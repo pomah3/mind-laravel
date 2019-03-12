@@ -7,7 +7,7 @@
 @section('content')
     <div class="container container-points">
         <h2>Добавить пользователя</h2>
-        <form action="/users/" method="POST" class="form-50">
+        <form action="/users" method="POST" class="form-50">
             @csrf
 
             <label for="family_name">Фамилия</label>
@@ -37,7 +37,7 @@
 
 
             <input type="text" name="group" class="group form-control" placeholder="Введите класс обучения">
-            <input type="submit" class="submit">
+            <input type="submit" class="submit" value="Создать">
         </form>
     </div>
     @push('scripts')

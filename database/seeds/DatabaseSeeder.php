@@ -14,7 +14,10 @@ class DatabaseSeeder extends Seeder
         $cnt = 50;
 
         App\User::query()->delete();
-        factory(App\User::class, $cnt)->create();
+        factory(App\User::class, $cnt)->create(["type"=>"teacher"]);
+        factory(App\User::class, $cnt)->create(["type"=>"student"])->each(function($a) {
+            $a->add_role("student", "10-4");
+        });
 
         App\Question::query()->delete();
         factory(App\Question::class, $cnt)->create();

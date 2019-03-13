@@ -32,10 +32,10 @@
 
     @yield('content')
 
-    </div>
+        <script src="{{ URL::asset("js/app.js") }}"></script>
+        @stack("scripts")
 
-    <script src="{{ URL::asset("js/app.js") }}"></script>
-    @stack("scripts")
+    </div>
 
 </body>
 </html>

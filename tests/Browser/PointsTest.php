@@ -19,8 +19,6 @@ class PointsTest extends DuskTestCase {
                 "type" => "student"
             ]);
 
-            factory(Cause::class, 50)->create();
-
             $group = "10-4";
 
             $student->add_role("student", $group);
@@ -39,14 +37,11 @@ class PointsTest extends DuskTestCase {
                 ->visit('/points/add')
                 ->select("#select-group", $group)
                 ->pause(1000)
-                ->select("#select-student", $student->id);
-
-            dd($browser_t->element('#select-category')
-                    ->getAttribute('innerHTML'));
-                // ->select("#select-category")
-                // ->pause(1000)
-                // ->select("#select-cause")
-                // ;
+                ->select("#select-student", $student->id)
+                ->select("#select-category")
+                ->pause(1000)
+                ->select("#select-cause")
+                ;
 
 
             $cause = $browser_t->value("#select-cause");

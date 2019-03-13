@@ -13,6 +13,9 @@ class DatabaseSeeder extends Seeder
     {
         $cnt = 50;
 
+        App\User::query()->delete();
+        factory(App\User::class, $cnt)->create();
+
         App\Question::query()->delete();
         factory(App\Question::class, $cnt)->create();
 
@@ -24,5 +27,8 @@ class DatabaseSeeder extends Seeder
 
         App\Event::query()->delete();
         factory(App\Event::class, $cnt)->create();
+
+        App\Cause::query()->delete();
+        factory(App\Cause::class, $cnt)->create();
     }
 }

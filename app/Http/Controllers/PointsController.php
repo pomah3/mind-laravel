@@ -72,7 +72,7 @@ class PointsController extends Controller {
         $student = User::find($data["student_id"]);
         $cause   = Cause::find($data["cause_id"]);
 
-        $this->authorize("add-points", $student, $cause);
+        $this->authorize("add-points", [$student, $cause]);
 
         $this->trs->add(Auth::user(), $student, $cause);
 

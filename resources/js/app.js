@@ -12,7 +12,7 @@ require('./notes');
 if (window.userId) {
     Echo.private(`App.User.${userId}`)
         .notification((notification) => {
-            alert(JSON.stringify(notification));
+            // alert(JSON.stringify(notification));
         });
 }
 

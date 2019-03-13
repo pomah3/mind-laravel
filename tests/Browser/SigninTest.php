@@ -19,7 +19,8 @@ class SigninTest extends DuskTestCase {
 
     public function testRightPassword() {
         $user = factory(User::class)->create([
-            "password" => 123
+            "password" => 123,
+            "type" => "teacher"
         ]);
 
         $this->browse(function ($browser) use ($user) {
@@ -35,6 +36,7 @@ class SigninTest extends DuskTestCase {
     public function testWrongPassword() {
         $user = factory(User::class)->create([
             "password" => 1234,
+            "type" => "teacher"
         ]);
 
 

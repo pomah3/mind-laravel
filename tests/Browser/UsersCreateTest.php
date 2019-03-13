@@ -8,7 +8,9 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class UsersCreateTest extends DuskTestCase {
     public function testPage() {
-        $user = factory(\App\User::class)->create();
+        $user = factory(\App\User::class)->create([
+            "type" => "teacher"
+        ]);
         $user->add_role("admin");
 
         $this->browse(function (Browser $browser) use ($user) {
@@ -21,7 +23,9 @@ class UsersCreateTest extends DuskTestCase {
     }
 
     public function testUserCreate() {
-        $user = factory(\App\User::class)->create();
+        $user = factory(\App\User::class)->create([
+            "type" => "teacher"
+        ]);
         $user->add_role("admin");
 
         $this->browse(function (Browser $browser) use ($user) {

@@ -55,6 +55,8 @@ class PointsController extends Controller {
             })
             ->values();
 
+        dd($causes);
+
         return view("points.add", [
             "causes" => $causes,
             "students" => $students,

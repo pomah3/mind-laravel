@@ -34,7 +34,8 @@ class PointsTest extends DuskTestCase {
 
             $browser_t
                 ->loginAs($teacher)
-                ->visit('/points/add');
+                ->visit('/points/add')
+                ->pause(1000);
 
             dd($browser_t->element("form")->getAttribute('innerHTML'));
 

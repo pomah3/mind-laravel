@@ -39,11 +39,15 @@ class PointsTest extends DuskTestCase {
                 ->visit('/points/add')
                 ->select("#select-group", $group)
                 ->pause(1000)
-                ->select("#select-student", $student->id)
-                ->select("#select-category")
-                ->pause(1000)
-                ->select("#select-cause")
-                ;
+                ->select("#select-student", $student->id);
+
+            dd($browser_t->element('div.content')
+                    ->getAttribute('innerHTML'));
+                // ->select("#select-category")
+                // ->pause(1000)
+                // ->select("#select-cause")
+                // ;
+
 
             $cause = $browser_t->value("#select-cause");
             $cause = Cause::find($cause);

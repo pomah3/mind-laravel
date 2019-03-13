@@ -35,17 +35,14 @@ class PointsTest extends DuskTestCase {
             $browser_t
                 ->loginAs($teacher)
                 ->visit('/points/add')
-                ->pause(1000);
-
-            dd($browser_t->element(".main_container")->getAttribute('innerHTML'));
-
-                // ->select("#select-group", $group)
-                // ->pause(1000)
-                // ->select("#select-student", $student->id)
-                // ->select("#select-category")
-                // ->pause(1000)
-                // ->select("#select-cause")
-                // ;
+                ->pause(1000)
+                ->select("#select-group", $group)
+                ->pause(1000)
+                ->select("#select-student", $student->id)
+                ->select("#select-category")
+                ->pause(1000)
+                ->select("#select-cause")
+                ;
 
 
             $cause = $browser_t->value("#select-cause");

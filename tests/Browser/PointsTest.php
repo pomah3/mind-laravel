@@ -41,7 +41,7 @@ class PointsTest extends DuskTestCase {
                 ->pause(1000)
                 ->select("#select-student", $student->id);
 
-            dd($browser_t->element('div.content')
+            dd($browser_t->element('#select-category')
                     ->getAttribute('innerHTML'));
                 // ->select("#select-category")
                 // ->pause(1000)

@@ -19,7 +19,7 @@ class PointsTest extends DuskTestCase {
                 "type" => "student"
             ]);
 
-            $cause = factory(Cause::class)->create();
+            factory(Cause::class)->create(10);
 
             $group = "10-4";
 

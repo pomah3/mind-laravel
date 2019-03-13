@@ -37,7 +37,7 @@ class PointsTest extends DuskTestCase {
                 ->visit('/points/add')
                 ->pause(1000);
 
-            dd($browser_t->element("form")->getAttribute('innerHTML'));
+            dd($browser_t->element("body")->getAttribute('innerHTML'));
 
                 // ->select("#select-group", $group)
                 // ->pause(1000)

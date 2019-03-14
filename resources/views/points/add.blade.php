@@ -7,6 +7,8 @@
 @endsection
 
 @section('content')
+    <script>console.log("asd");</script>
+
     <div class="container container-points">
         <h2>Начислить баллы:</h2>
          @if ($errors->any())

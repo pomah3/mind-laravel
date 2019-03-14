@@ -9,12 +9,12 @@
     // require('./banner');
     // require('./notes');
 
-if (window.userId) {
-    Echo.private(`App.User.${userId}`)
-        .notification((notification) => {
-            // alert(JSON.stringify(notification));
-        });
-}
+// if (window.userId) {
+//     Echo.private(`App.User.${userId}`)
+//         .notification((notification) => {
+//             // alert(JSON.stringify(notification));
+//         });
+// }
 
 // window.Vue = require('vue');
 

@@ -10,7 +10,7 @@ try {
     require('./banner');
     require('./notes');
 } catch (e) {
-    alert(e.message);
+     alert('Error ' + e.name + ":" + e.message + "\n" + e.stack);
 }
 
 if (window.userId) {

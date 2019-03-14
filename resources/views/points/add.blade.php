@@ -52,6 +52,7 @@
                 try {
                     let categories = _causes.map(a=>a.category).unique();
                 } catch (e) {
+                    alert(_causes.map(a=>a.category));
                     alert(e.message);
                 }
                 let groups = _students.map(a=>a.group).unique();

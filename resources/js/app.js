@@ -5,13 +5,9 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-try {
     require('./bootstrap');
-    require('./banner');
-    require('./notes');
-} catch (e) {
-     alert('Error ' + e.name + ":" + e.message + "\n" + e.stack);
-}
+    // require('./banner');
+    // require('./notes');
 
 if (window.userId) {
     Echo.private(`App.User.${userId}`)

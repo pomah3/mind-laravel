@@ -11,19 +11,10 @@ use App\Cause;
 class PointsTest extends DuskTestCase {
     public function testAddPoints() {
         $this->browse(function (Browser $browser_s, Browser $browser_t) {
-            $teacher = factory(User::class)->create([
-                "type" => "teacher"
-            ]);
+            $teacher = User::teachers()->get()->random();
+            $student = User::students()->get()->random();
 
-            $student = factory(User::class)->create([
-                "type" => "student"
-            ]);
-
-            $group = "10-4";
-
-            $student->add_role("student", $group);
-
-            $this->assertEquals($student->student()->get_group(), $group);
+            $old_balance = $student->student()->get_balance();
 
             $browser_s
                     ->loginAs($student)
@@ -36,7 +27,7 @@ class PointsTest extends DuskTestCase {
                 ->loginAs($teacher)
                 ->visit('/points/add')
                 ->pause(1000)
-                ->select("#select-group", $group)
+                ->select("#select-group", $student->student()->get_group())
                 ->pause(1000)
                 ->select("#select-student", $student->id)
                 ->select("#select-category")
@@ -51,7 +42,10 @@ class PointsTest extends DuskTestCase {
             $browser_t->click(".submit");
             $this->assertNotNull($browser_t->element('.alert-success'));
 
-            $this->assertEquals($student->student()->get_balance(), $cause->points);
+            $this->assertEquals(
+                $student->student()->get_balance(),
+                $cause->points + $old_balance
+            );
 
             $browser_s
                 ->visit("/points")

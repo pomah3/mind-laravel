@@ -18,10 +18,7 @@ class SigninTest extends DuskTestCase {
     }
 
     public function testRightPassword() {
-        $user = factory(User::class)->create([
-            "password" => 123,
-            "type" => "teacher"
-        ]);
+        $user = User::all()->random();
 
         $this->browse(function ($browser) use ($user) {
             $browser->visit(new SigninPage)
@@ -34,11 +31,7 @@ class SigninTest extends DuskTestCase {
     }
 
     public function testWrongPassword() {
-        $user = factory(User::class)->create([
-            "password" => 1234,
-            "type" => "teacher"
-        ]);
-
+        $user = User::all()->random();
 
         $this->browse(function ($browser) use ($user) {
             $browser->visit(new SigninPage)

@@ -6,7 +6,6 @@
  */
 
     require('./bootstrap');
-alert("asdf");
 
 
     // require('./banner');

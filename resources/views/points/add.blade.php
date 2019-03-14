@@ -39,6 +39,7 @@
     @push('scripts')
         <script>
             (function() {
+                console.log("asd");
                 let _causes = @json($causes);
                 let _students = @json($students);
 

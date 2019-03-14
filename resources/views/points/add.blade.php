@@ -52,6 +52,7 @@
                 let categories = _causes.map(a=>a.category).unique();
                 let groups = _students.map(a=>a.group).unique();
 
+                alert(categories);
                 let students = {};
                 _students.forEach(function(a) {
                     students[a.group] = students[a.group] || [];

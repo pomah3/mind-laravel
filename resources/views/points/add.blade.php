@@ -41,7 +41,6 @@
         <script>
             (function() {
                 let _causes = @json($causes);
-                alert(_causes);
                 let _students = @json($students);
 
                 let causes = {};
@@ -50,6 +49,7 @@
                     causes[a.category].push(a);
                 });
                 let categories = _causes.map(a=>a.category).unique();
+                alert(categories);
                 let groups = _students.map(a=>a.group).unique();
 
                 students = {};

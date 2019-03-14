@@ -49,16 +49,8 @@
                     causes[a.category] = causes[a.category] || [];
                     causes[a.category].push(a);
                 });
-                try {
-                    let categories = _causes.map(a=>a.category).unique();
-                } catch (e) {
-                    // alert(_causes.map(a=>a.category));
-                    alert(e.message);
-                }
-                alert("lol");
-
+                let categories = _causes.map(a=>a.category).unique();
                 let groups = _students.map(a=>a.group).unique();
-                alert(categories);
 
                 let students = {};
                 _students.forEach(function(a) {
@@ -89,8 +81,6 @@
 
                 fill_students();
                 $("#select-group").change(fill_students);
-
-                alert(JSON.stringify(categories));
 
                 categories.forEach(function(a) {
                     $("#select-category").append(

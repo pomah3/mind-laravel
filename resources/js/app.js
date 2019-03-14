@@ -8,8 +8,8 @@
     require('./bootstrap');
 
 
-    // require('./banner');
-    // require('./notes');
+    require('./banner');
+    require('./notes');
 
 // if (window.userId) {
 //     Echo.private(`App.User.${userId}`)

@@ -4,12 +4,12 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+alert("asd func");
 
 require('./bootstrap');
 require('./banner');
 require('./notes');
 
-alert("asd func");
 if (window.userId) {
     Echo.private(`App.User.${userId}`)
         .notification((notification) => {

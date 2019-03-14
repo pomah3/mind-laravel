@@ -47,6 +47,7 @@ $.ajaxSetup({
     }
 });
 
+alert("asd func");
 Array.prototype.unique = function() {
     var o = {}, a = [], i, e;
     for (i = 0; e = this[i]; i++) {o[e] = 1};
@@ -54,4 +55,3 @@ Array.prototype.unique = function() {
     return a;
 }
 
-alert("asd func");

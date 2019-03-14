@@ -40,6 +40,7 @@
     @push('scripts')
         <script>
             (function() {
+                'use strict';
                 let _causes = @json($causes);
                 let _students = @json($students);
 
@@ -49,10 +50,9 @@
                     causes[a.category].push(a);
                 });
                 let categories = _causes.map(a=>a.category).unique();
-                alert(categories);
                 let groups = _students.map(a=>a.group).unique();
 
-                students = {};
+                let students = {};
                 _students.forEach(function(a) {
                     students[a.group] = students[a.group] || [];
                     students[a.group].push(a);

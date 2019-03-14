@@ -35,7 +35,7 @@ class PointsTest extends DuskTestCase {
             $browser_t
                 ->loginAs($teacher)
                 ->visit('/points/add')
-                ->pause(5000)
+                ->pause(1000)
                 ->select("#select-group", $group)
                 ->pause(1000)
                 ->select("#select-student", $student->id)

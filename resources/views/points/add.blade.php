@@ -41,6 +41,7 @@
         <script>
             (function() {
                 let _causes = @json($causes);
+                alert(_causes);
                 let _students = @json($students);
 
                 let causes = {};

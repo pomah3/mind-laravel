@@ -91,14 +91,18 @@
             const get_need_marks = function(mark, need, marks) {
                 console.log({mark, need});
 
-                let sum = marks.reduce((a,b) => a+b);
+                let sum = marks.reduce((a,b) => a+b, 0);
                 let mean = sum / marks.length;
+
+                if (isNaN(mean))
+                    mean = 0;
 
                 if (mean >= need)
                     return 0;
 
-                if (mark < need)
+                if (mark < need) {
                     return Infinity;
+                }
 
                 let count = 0;
                 while (true) {
@@ -128,7 +132,7 @@
                         return parseFloat($(this).html());
                     }).toArray();
 
-                    let sum = marks.reduce((a,b) => a+b);
+                    let sum = marks.reduce((a,b) => a+b, 0);
                     let mean = sum / marks.length;
 
                     $(this).find(".sred").html(Math.round((mean*100))/100);

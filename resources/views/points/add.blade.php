@@ -7,7 +7,6 @@
 @endsection
 
 @section('content')
-    <script>alert("asd");</script>
 
     <div class="container container-points">
         <h2>Начислить баллы:</h2>
@@ -41,7 +40,6 @@
     @push('scripts')
         <script>
             (function() {
-                console.log("asd");
                 let _causes = @json($causes);
                 let _students = @json($students);
 
@@ -83,11 +81,14 @@
                 fill_students();
                 $("#select-group").change(fill_students);
 
+                alert(JSON.stringify(categories));
+
                 categories.forEach(function(a) {
                     $("#select-category").append(
                         `<option>${a}</option>`
                     );
                 });
+
 
                 const fill_causes = function() {
                     let v = $("#select-category").val();

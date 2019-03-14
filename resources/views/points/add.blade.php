@@ -49,8 +49,11 @@
                     causes[a.category] = causes[a.category] || [];
                     causes[a.category].push(a);
                 });
-                let categories = _causes.map(a=>a.category).unique();
-                alert(causes);
+                try {
+                    let categories = _causes.map(a=>a.category).unique();
+                } catch (e) {
+                    alert(JSON.stringify(e));
+                }
                 let groups = _students.map(a=>a.group).unique();
                 alert(categories);
 

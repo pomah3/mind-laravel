@@ -15,22 +15,22 @@
 <body>
 
     <div class="main_container">
-    <script>window.userId = {{ Auth::user()->id }}</script>
+        <script>window.userId = {{ Auth::user()->id }}</script>
 
-    <header>
-        <div class="top-menu">
-            <div class="container-menu">
-                <img src="/img/logo_full.png" class="logo-img">
+        <header>
+            <div class="top-menu">
+                <div class="container-menu">
+                    <img src="/img/logo_full.png" class="logo-img">
+                </div>
             </div>
-        </div>
 
-        @include('layout.banners')
+            @include('layout.banners')
 
-        @include("layout.menu")
+            @include("layout.menu")
 
-    </header>
+        </header>
 
-    @yield('content')
+        @yield('content')
 
     </div>
 

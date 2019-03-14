@@ -12,18 +12,18 @@
      <script>window.userId = null</script>
 </head>
 <body>
-    
+
     <div class="main_container">
         <header>
-            
+
         </header>
-        
+
         @yield('body')
 
-    </div>
 
-    <script src="{{ URL::asset("js/app.js") }}"></script>
-    @stack("scripts")
+        <script src="{{ URL::asset("js/app.js") }}"></script>
+        @stack("scripts")
+    </div>
 
 </body>
 </html>

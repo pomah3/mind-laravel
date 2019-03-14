@@ -13,8 +13,10 @@ install:
   - composer self-update
   - composer install --no-interaction
   - npm i
+  - npm run dev
   - php artisan key:generate
   - php artisan migrate
+  - php artisan db:seed
 
 before_script:
   - php artisan serve &

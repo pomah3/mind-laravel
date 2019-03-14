@@ -7,6 +7,7 @@
 @endsection
 
 @section('content')
+
     <div class="container container-points">
         <h2>Начислить баллы:</h2>
          @if ($errors->any())
@@ -39,6 +40,7 @@
     @push('scripts')
         <script>
             (function() {
+                'use strict';
                 let _causes = @json($causes);
                 let _students = @json($students);
 
@@ -50,7 +52,7 @@
                 let categories = _causes.map(a=>a.category).unique();
                 let groups = _students.map(a=>a.group).unique();
 
-                students = {};
+                let students = {};
                 _students.forEach(function(a) {
                     students[a.group] = students[a.group] || [];
                     students[a.group].push(a);
@@ -85,6 +87,7 @@
                         `<option>${a}</option>`
                     );
                 });
+
 
                 const fill_causes = function() {
                     let v = $("#select-category").val();

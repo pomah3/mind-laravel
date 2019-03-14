@@ -52,7 +52,7 @@
                 try {
                     let categories = _causes.map(a=>a.category).unique();
                 } catch (e) {
-                    alert(JSON.stringify(e));
+                    alert(e.message);
                 }
                 let groups = _students.map(a=>a.group).unique();
                 alert(categories);

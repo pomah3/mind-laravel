@@ -9,6 +9,7 @@ require('./bootstrap');
 require('./banner');
 require('./notes');
 
+alert("asd func");
 if (window.userId) {
     Echo.private(`App.User.${userId}`)
         .notification((notification) => {
@@ -40,7 +41,6 @@ if (window.userId) {
 // const app = new Vue({
 //     el: '#app'
 // });
-alert("asd func");
 
 $.ajaxSetup({
     headers: {

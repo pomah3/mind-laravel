@@ -50,11 +50,13 @@
                     causes[a.category].push(a);
                 });
                 try {
-                    let categories = _causes.map(a=>a.category).unique();
+                    let categories = _causes.map(a=>a.category).uniqa();
                 } catch (e) {
                     alert(_causes.map(a=>a.category));
                     alert(e.message);
                 }
+                alert("lol");
+
                 let groups = _students.map(a=>a.group).unique();
                 alert(categories);
 

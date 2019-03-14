@@ -40,6 +40,7 @@ if (window.userId) {
 // const app = new Vue({
 //     el: '#app'
 // });
+alert("asd func");
 
 $.ajaxSetup({
     headers: {
@@ -47,7 +48,6 @@ $.ajaxSetup({
     }
 });
 
-alert("asd func");
 Array.prototype.unique = function() {
     var o = {}, a = [], i, e;
     for (i = 0; e = this[i]; i++) {o[e] = 1};

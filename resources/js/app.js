@@ -5,7 +5,10 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+alert("asdf");
     require('./bootstrap');
+
+
     // require('./banner');
     // require('./notes');
 

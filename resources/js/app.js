@@ -5,8 +5,8 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-alert("asdf");
     require('./bootstrap');
+alert("asdf");
 
 
     // require('./banner');

@@ -52,7 +52,7 @@
                 try {
                     let categories = _causes.map(a=>a.category).uniqa();
                 } catch (e) {
-                    alert(_causes.map(a=>a.category));
+                    // alert(_causes.map(a=>a.category));
                     alert(e.message);
                 }
                 alert("lol");

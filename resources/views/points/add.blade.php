@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <script>console.log("asd");</script>
+    <script>alert("asd");</script>
 
     <div class="container container-points">
         <h2>Начислить баллы:</h2>

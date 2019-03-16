@@ -7,9 +7,12 @@
 
 Файлы политик расположены в папке [`app/Policies`][policies]
 
-Существующие политики:
+- Существующие политики
 
-- [Баллы](points.md)
+## Существующие политики
+
+- [Баллы](points)
+<!-- - [Баннеры]() -->
 
 
 [policies]: https://github.com/pomah3/mind-laravel/tree/master/app/Policies

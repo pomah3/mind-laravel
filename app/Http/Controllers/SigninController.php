@@ -20,50 +20,52 @@ class SigninController extends Controller {
         return view("signin");
     }
 
-    public function enter(Request $request) {
-        if ($request->is_edu)
-            return $this->eduEnter($request);
-
-        $data = $request->validate([
-            "login" => "required",
-            "password" => "required"
-        ]);
-
-        $user = User::find($data["login"]);
-
-        if (!$user || $data["password"] !== $user->password)
-            return redirect()->back()
-                             ->withErrors(trans("signin.wrong"))
-                             ->withInput();
-
-        Auth::login($user);
-
-        return redirect()->route("profile");
-    }
-
-    public function eduEnter(Request $request) {
-        $data = $request->validate([
-            "login" => "required",
-            "password" => "required"
-        ]);
-
-        $user = $this->eta->get_user($data['login'], $data['password']);
-
-        if (!$user)
-            return redirect()->back()
-                             ->withErrors(trans("signin.wrong"))
-                             ->withInput();
-
-        Auth::login($user);
-        $user->edu_tatar_login = $data['login'];
-        $user->edu_tatar_password = $data['password'];
-        $user->save();
-
-        return redirect()->route("profile");
-    }
-
     public function logout() {
         Auth::logout();
         return redirect()->route('signin');
+    }
+
+    public function enter(Request $request) {
+        extract($request->validate([
+            "login" => "required",
+            "password" => "required"
+        ]));
+
+        $user = null;
+        $user = $user ?? $this->enter_base($login, $password);
+        $user = $user ?? $this->enter_email($login, $password);
+        $user = $user ?? $this->enter_edu($login, $password);
+
+        if ($user) {
+            Auth::login($user);
+            return redirect()->route("profile");
+        }
+
+        return redirect()->back()
+            ->withErrors(trans("signin.wrong"))
+            ->withInput();
+    }
+
+    private function enter_base($login, $password) {
+        $user = User::find($login);
+        if (!$user || $password != $user->password)
+            return null;
+
+        return $user;
+    }
+
+    private function enter_email($login, $password) {
+        $user = User::where("email", $login)->first();
+
+        if (!$user || $password != $user->password)
+            return null;
+
+        return $user;
+    }
+
+    private function enter_edu($login, $password) {
+        if (config("app.edu_tatar_auth", false))
+            return $this->eta->get_user($login, $password);
+        return null;
     }
 }

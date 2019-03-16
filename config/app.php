@@ -233,4 +233,6 @@ return [
         "default"    => env("APP_DEFAULT_PASSWORD", "123"),
         "length"     => env("APP_PASSWORD_LENGTH", 4)
     ],
+
+    "edu_tatar_auth" => env("EDU_TATAR_AUTH", false),
 ];

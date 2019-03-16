@@ -1,0 +1,4 @@
+- ## Mind
+    - [Обзор](/doc/{{version}}/overview)
+    - [Техн. документация](/doc/{{version}}/tech)
+    - [Справка юзера](/doc/{{version}}/user)

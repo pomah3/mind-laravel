@@ -9,7 +9,7 @@ Route::get('/signin', "SigninController@index")
 Route::post("/signin", "SigninController@enter")
     ->middleware("guest");
 
-Route::get("/doc/{page?}", "DocController")->where("page",".*");
+// Route::get("/doc/{page?}", "DocController")->where("page",".*");
 
 Route::middleware("auth")->group(function() {
     Route::get("/out", "SigninController@logout");

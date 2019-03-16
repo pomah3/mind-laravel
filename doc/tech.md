@@ -1,5 +1,9 @@
 # Техническая документация
 
-Mind работает на [Laravel][laravel].
+Mind написан на фреймворке [Laravel][laravel].
+
+Компоненты **Mind**:
+
+- [Политики](policies/index.md)
 
 [laravel]: https://laravel.com

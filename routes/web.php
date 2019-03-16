@@ -12,7 +12,7 @@ Route::post("/signin", "SigninController@enter")
 // Route::get("/doc/{page?}", "DocController")->where("page",".*");
 
 Route::middleware("auth")->group(function() {
-    Route::get("/out", "SigninController@logout");
+    Route::match(["GET", "POST"], "/logout", "SigninController@logout");
 
     Route::get('/', "ProfileController@index")
         ->name("profile");

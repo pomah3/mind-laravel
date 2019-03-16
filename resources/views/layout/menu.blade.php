@@ -36,7 +36,7 @@
             <li class="menu"><a href="/doc/user">{{ __("menu.info") }}</a></li>
             <li class="menu"><a href="/settings">{{ __("menu.settings") }}</a></li>
             <hr>
-            <li class="menu"><a href="/out">{{ __("menu.logout") }}</a></li>
+            <li class="menu"><a href="/logout">{{ __("menu.logout") }}</a></li>
         </ul>
     </div></li>
 </ul>

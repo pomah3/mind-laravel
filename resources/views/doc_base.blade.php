@@ -1,11 +1,12 @@
-@extends('layout.logined')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Документация</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@3.0.1/github-markdown.min.css">
 
-@section('title')
-    {{ __('main.doc_base.title') }}
-@endsection
-
-@section('content')
-    <div class="container">
-        {!! $text !!}
-    </div>
-@endsection
+</head>
+<body class="markdown-body">
+    {!! $text !!}
+</body>
+</html>

@@ -45,9 +45,9 @@ class SigninTest extends DuskTestCase {
     }
 
     public function testViaEmailRight() {
-        $user = User::all()->random();
-        $user->email = "example@example.com";
-        $user->save();
+        $user = factory(User::class)->create([
+            "email" => "exampleRight@example.com"
+        ]);
 
         $this->browse(function ($browser) use ($user) {
             $browser->visit(new SigninPage)
@@ -60,9 +60,9 @@ class SigninTest extends DuskTestCase {
     }
 
     public function testViaEmailWrong() {
-        $user = User::all()->random();
-        $user->email = "example@example.com";
-        $user->save();
+        $user = factory(User::class)->create([
+            "email" => "exampleWrong@example.com"
+        ]);
 
         $this->browse(function ($browser) use ($user) {
             $browser->visit(new SigninPage)

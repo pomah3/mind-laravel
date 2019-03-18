@@ -26,7 +26,7 @@ class MenuComposer {
         ],
         ["menu.polls", "/polls", "all"],
         ["menu.events", "/events", "all"],
-        ["menu.timetable", '/timetable', "student"],
+        ["menu.timetable", '/timetable', ["can", "see-timetable"]],
         ["menu.marks", '/marks', "student"],
         ["menu.status", '/status', ["can", "see-index-status"]],
         ["menu.questions", '/questions', "all"],

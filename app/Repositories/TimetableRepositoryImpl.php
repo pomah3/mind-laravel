@@ -64,4 +64,8 @@ class TimetableRepositoryImpl implements TimetableRepository {
 
         return $lessons;
     }
+
+    public function has_lessons(User $user) {
+        return collect($this->get_lessons($user))->flatten()->count() > 0;
+    }
 }

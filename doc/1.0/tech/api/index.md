@@ -24,7 +24,6 @@ http://mind-itl-kfu.ru/api/{метод}?token={токен}
 Группы методов:
 
 - [users](users)
-- [students](students)
 - [transactions](transactions)
 - [causes](causes)
 - [groups](groups)

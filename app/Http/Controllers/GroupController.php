@@ -28,8 +28,8 @@ class GroupController extends Controller {
     public function get($group) {
         $group = $this->groups->get($group);
         $group["users"] = $group["users"]->sort(function ($a, $b) {
-            $pa = $a->student()->balance();
-            $pb = $b->student()->balance();
+            $pa = $a->student()->get_balance();
+            $pb = $b->student()->get_balance();
 
             if ($pa != $pb)
                 return $pa <=> $pb;

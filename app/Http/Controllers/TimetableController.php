@@ -10,7 +10,12 @@ use App\Repositories\TimetableRepository;
 class TimetableController extends Controller
 {
     public function show(TimetableRepository $tt) {
-        return view("timetable.show", [
+        if (Auth::user()->type == "teacher")
+            $view = "timetable.teacher";
+        else
+            $view = "timetable.student";
+
+        return view($view, [
             "lessons" => $tt->get_lessons(Auth::user())
         ]);
     }

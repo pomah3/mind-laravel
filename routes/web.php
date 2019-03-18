@@ -32,8 +32,8 @@ Route::middleware("auth")->group(function() {
 
     });
 
-    Route::get("/timetable", "TimetableController@show")
-        ->middleware("role:student");
+    Route::get("/timetable", "TimetableController@show");
+        // ->middleware("role:student");
 
     Route::prefix("/groups")->group(function() {
         Route::get("mine", "GroupController@get_default");

@@ -21,11 +21,15 @@ class TimetableRepositoryImpl implements TimetableRepository {
     }
 
     public function get_lessons(User $user) {
-        $group = $user->student()->get_group();
-        return $this->get_lessons_($group);
+        if ($user->type == "student") {
+            $group = $user->student()->get_group();
+            return $this->get_lessons_group($group);
+        } else {
+            return $this->get_lessons_teacher($user);
+        }
     }
 
-    private function get_lessons_($group) {
+    private function get_lessons_group($group) {
         return Cache::remember("lessons.group.$group", 5, function() use ($group) {
             $lessons = [];
 
@@ -42,5 +46,22 @@ class TimetableRepositoryImpl implements TimetableRepository {
 
             return $lessons;
         });
+    }
+
+    private function get_lessons_teacher($teacher) {
+        $lessons = [];
+
+        foreach ($this->get_days() as $day) {
+            $lessons[$day] = Lesson
+                ::where("weekday", $day)
+                ->where("teacher_id", $teacher->id)
+                ->orderBy("number")
+                ->get()
+                ->filter(function($a) {
+                    return $a->number <= 7;
+                });
+        }
+
+        return $lessons;
     }
 }

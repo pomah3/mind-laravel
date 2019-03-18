@@ -9,6 +9,14 @@
         - [База данных][db]
         - [Политики][policies]
         - [Роли][roles]
+    - ### [API][api]
+        - [users](/doc/{{version}}/tech/api/users)
+        - [students](/doc/{{version}}/tech/api/students)
+        - [transactions](/doc/{{version}}/tech/api/transactions)
+        - [causes](/doc/{{version}}/tech/api/causes)
+        - [groups](/doc/{{version}}/tech/api/groups)
+        - [timetable](/doc/{{version}}/tech/api/timetable)
+
 
 
 [controllers]: /doc/{{version}}/tech/controllers/index
@@ -17,3 +25,4 @@
 [db]: /doc/{{version}}/tech/db/index
 [routes]: /doc/{{version}}/tech/routes
 [roles]:  /doc/{{version}}/tech/roles
+[api]:  /doc/{{version}}/tech/api/index

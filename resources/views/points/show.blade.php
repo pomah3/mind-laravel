@@ -27,6 +27,12 @@
                                 {{ $tr->created_at->format("H:i") }}
                             </span>
                         </div>
+
+                        @php
+                            if ($tr->from_id == Auth::user()->id)
+                                $tr->points *= -1;
+                        @endphp
+
                         @if ($tr->points > 0)
                             <span class="points good-points">
                                 +{{ $tr->points }}

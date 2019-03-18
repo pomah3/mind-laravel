@@ -32,7 +32,7 @@ class GroupController extends Controller {
             $pb = $b->student()->get_balance();
 
             if ($pa != $pb)
-                return $pa <=> $pb;
+                return -1 * ($pa <=> $pb);
 
             return \App\Utils::get_student_cmp()($a, $b);
         });

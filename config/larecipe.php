@@ -141,7 +141,7 @@ return [
 
     'ui'                 => [
         'show_app_name'  => false,
-        'logo'           => 'img/logo_animation.gif',
+        'logo'           => 'no-image',
         'fav'            => 'img/favicon.ico',
         'theme'          => 'light',
         'code'           => 'dark',

@@ -22,7 +22,7 @@ class Utils {
     }
 
     public static function get_student_cmp(): \Closure {
-        return function(User $st1, $st2): int {
+        $lex_student_cmp = function(User $st1, User $st2): int {
             $gr1 = $st1->student()->get_group();
             $gr2 = $st2->student()->get_group();
 
@@ -41,6 +41,18 @@ class Utils {
 
             return 0;
         };
+
+        $points_student_cmp = function(User $st1, User $st2) use($lex_student_cmp): int {
+            $p1 = $st1->student()->get_balance();
+            $p2 = $st2->student()->get_balance();
+
+            if ($p1 == $p2)
+                return $lex_student_cmp($st1, $st2);
+
+            return -1 * ($p1 <=> $p2);
+        };
+
+        return $points_student_cmp;
     }
 
     public static function get_today_date(\DateTime $date) {

@@ -39,9 +39,9 @@ class TimetableRepositoryImpl implements TimetableRepository {
                     ->where("group", $group)
                     ->orderBy("number")
                     ->get()
-                    ->filter(function($a) {
+                    /*->filter(function($a) {
                         return $a->number <= 7;
-                    });
+                    })*/;
             }
 
             return $lessons;
@@ -57,9 +57,9 @@ class TimetableRepositoryImpl implements TimetableRepository {
                 ->where("teacher_id", $teacher->id)
                 ->orderBy("number")
                 ->get()
-                ->filter(function($a) {
+                /*->filter(function($a) {
                     return $a->number <= 7;
-                });
+                })*/;
         }
 
         return $lessons;

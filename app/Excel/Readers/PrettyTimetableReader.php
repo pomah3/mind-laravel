@@ -107,7 +107,7 @@
             preg_match("/([А-Яа-я]{2,})/u", $lesson["teacher"], $family);
             $family = $family[0];
 
-            $teacher = \App\User::where("family_name", $family)->first();
+            $teacher = \App\User::teachers()->where("family_name", $family)->first();
             if ($teacher) {
                 $lesson_->teacher_id = $teacher->id;
             }

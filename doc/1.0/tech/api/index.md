@@ -4,6 +4,7 @@
 
 - [Общий вид запроса](#request)
 - [Доступные методы](#methods)
+- [Типы объектов](#resources)
 
 <a name="request"></a>
 ## Общий вид запроса
@@ -30,3 +31,10 @@ http://mind-itl-kfu.ru/api/{метод}?token={токен}
 - [timetable](timetable)
 
 [android]: https://github.com/habur331/mind
+
+<a name="resources"></a>
+## Типы объектов
+
+- [User](resources/user)
+- [Transaction](resources/transaction)
+- [Cause](resources/cause)

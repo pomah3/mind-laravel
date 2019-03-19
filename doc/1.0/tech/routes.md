@@ -18,7 +18,7 @@
 - [Почта](#email)
 - [Статус учеников](#status)
 
-<a name="#signin"></a>
+<a name="signin"></a>
 ## Вход
 
 Контроллер - [`App\Http\Controllers\SigninController`](controllers/SigninController)
@@ -28,7 +28,7 @@
 GET  | /signin | index | Отображает страницу входа
 POST | /signin | enter | Заходит на сайт под данным логином и паролем
 
-<a name="#locale"></a>
+<a name="locale"></a>
 ## Локаль
 
 Контроллер - [`App\Http\Controllers\LocaleController`](controllers/LocaleController)
@@ -37,7 +37,7 @@ POST | /signin | enter | Заходит на сайт под данным лог
 -|-|-
 GET  | /setlocale/{locale} | set | Меняет локаль пользователя
 
-<a name="#points"></a>
+<a name="points"></a>
 ## Баллы
 
 Контроллер - [`App\Http\Controllers\PointsController`](controllers/PointsController)
@@ -52,7 +52,7 @@ GET  | /points/give | give_index | Показывает страницу пер�
 POST  | /points/give | give | Переводит баллы
 GET  | /points/{student} | of_student | Показывает баллы ученика
 
-<a name="#timetable"></a>
+<a name="timetable"></a>
 ## Расписание
 
 Контроллер - [`App\Http\Controllers\TimetableController`](controllers/TimetableController)
@@ -61,7 +61,7 @@ GET  | /points/{student} | of_student | Показывает баллы учен
 -|-|-
 GET  | /timetable | show | Показывает расписание текущего ученика
 
-<a name="#groups"></a>
+<a name="groups"></a>
 ## Группы
 
 Контроллер - [`App\Http\Controllers\GroupController`](controllers/GroupController)
@@ -73,7 +73,7 @@ GET  | /groups/{group} | get | Показывает данную группу
 GET  | /groups/mine | get_default | Показывает группу текущего пользователя
 
 
-<a name="#questions"></a>
+<a name="questions"></a>
 ## Вопросы
 
 Контроллер - [`App\Http\Controllers\QuestionController`](controllers/QuestionController)
@@ -86,49 +86,49 @@ POST  | /questions/answer/{question} | answer | Отправляет ответ 
 DELETE  | /questions/{question} | delete | Удаляет вопрос
 
 
-<a name="#banners"></a>
+<a name="banners"></a>
 ## Баннеры
 
 Контроллер - [`App\Http\Controllers\BannerController`](controllers/BannerController)
 
 Использует resource роутинг.
 
-<a name="#users"></a>
+<a name="users"></a>
 ## Пользователи
 
-<a name="#events"></a>
+<a name="events"></a>
 ## Мероприятия
 
 
-<a name="#documents"></a>
+<a name="documents"></a>
 ## Документы
 
 
-<a name="#polls"></a>
+<a name="polls"></a>
 ## Голосования
 
 
-<a name="#settings"></a>
+<a name="settings"></a>
 ## Настройки
 
 
-<a name="#data"></a>
+<a name="data"></a>
 ## Данные
 
 
-<a name="#notifications"></a>
+<a name="notifications"></a>
 ## Уведомления
 
 
-<a name="#marks"></a>
+<a name="marks"></a>
 ## Оценки
 
 
-<a name="#email"></a>
+<a name="email"></a>
 ## Почта
 
 
-<a name="#status"></a>
+<a name="status"></a>
 ## Статус учеников
 
 

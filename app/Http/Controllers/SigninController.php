@@ -64,8 +64,17 @@ class SigninController extends Controller {
     }
 
     private function enter_edu($login, $password) {
-        if (config("app.edu_tatar_auth", false))
-            return $this->eta->get_user($login, $password);
-        return null;
+        if (!config("app.edu_tatar_auth", false))
+            return null;
+
+        $user = $this->eta->get_user($login, $password);
+        if ($user == null)
+            return null;
+
+        $user->edu_tatar_login = $login;
+        $user->edu_tatar_password = $password;
+        $user->save();
+
+        return $user;
     }
 }

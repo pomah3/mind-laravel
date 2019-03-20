@@ -22,14 +22,8 @@
                             <strong>до</strong>
                             <span id="mid_text">4.50</span>
                                 <input type="text" id="mid" class="dis-none mid-change">
-                            <!--<div class="help-block">
-                                <div class="help">?</div>
-                                <span class="tip">
-                                    Кликни 2 раза на оценку и средний балл
-                                </span>
-                            </div>-->
                         </td>
-                        <td>Средний балл</td>
+                        <td><strong>Средний балл</strong></td>
                         <td colspan="100">
                             <strong>Оценки</strong>
                         </td>

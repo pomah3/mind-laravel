@@ -50,18 +50,8 @@ class StatusController extends Controller {
     }
 
     public function statistic() {
-        $data = [];
-
-        foreach ($this->status_r->get_all_statuses() as $status) {
-            $data[$status] = DB::table("statuses")->where("title", $status)->count();
-        }
-
-        $a = DB::select("select count(id) as count from users where id not in (select user_id from statuses)");
-
-        $data["ХЗ"] = $a[0]->count;
-
         return view("status.statistic", [
-            "data" => $data
+            "data" => $this->status_r->get_statistics()
         ]);
     }
 }

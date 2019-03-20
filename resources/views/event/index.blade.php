@@ -33,7 +33,7 @@
             </div>
         @empty
             <div class="not-found">
-                {{ __('event.not-found') }}
+                {{ __('event.index.not-found') }}
             </div>
         @endforelse
     </div>

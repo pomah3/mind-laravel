@@ -1,4 +1,4 @@
-@media (max-width: 425px) {
+@media (max-width: 585px) {
     .signin-card {
         width: 80%;
         margin: 50px auto;
@@ -56,8 +56,47 @@
         font-size: 12px;
         width: 120px;
     }
+    .notifications .one-notif {
+        flex-basis: 100%;
+    }
+    .notifications .cause {
+        font-size: 16px;
+    }
+    .notifications .from-name,
+    .notifications .from-name .userlink {
+        font-size: 14px;
+    }
+    .notifications .points {
+        margin-top: 0;
+    }
+    .right-dropdown-menu {
+        left: 0 !important;
+        right: auto !important;
+        // top: 18px !important;
+    }
+    .day .transaction {
+        width: 100%;
+    }
+    .container h3 {
+        font-size: 18px;
+    }
+    .day .cause {
+        font-size: 16px;
+    }
+    .day .from-name,
+    .day .from-name .userlink {
+        font-size: 14px;
+    }
+    .form-40,
+    .form-50,
+    .form-60 {
+        width: 100%;
+    }
+    .w-45 {
+        width: 100%;
+    }
 }
-@media (min-width: 426px) and (max-width: 768px) {
+@media (min-width: 586px) and (max-width: 768px) {
     .signin-card {
         width: 60%;
         margin: 75px auto;
@@ -99,6 +138,9 @@
     span.tip {
         right: -20px;
     }
+    .notifications .one-notif {
+        flex-basis: 75%;
+    }
 }
 @media (min-width: 595px) and (max-width: 725px) {
     span.tip {
@@ -125,6 +167,9 @@
     }
     .hidden-lg {
         display: block;
+    }
+    .notifications .one-notif {
+        flex-basis: 60%;
     }
 }
 @media (min-width: 1025px) and (max-width: 1440px) {

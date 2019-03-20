@@ -45,7 +45,7 @@ class StatusController extends Controller {
     public function set(User $user, string $status) {
         $this->authorize("set-status", $user);
 
-        $this->status_r->set_status($user, $status);
+        $this->status_r->set_status_title($user, $status);
         return "";
     }
 

@@ -9,5 +9,5 @@ interface StatusRepository {
     public function get_statistics();
 
     public function get_status(User $user): Status;
-    public function set_status(User $user, string $status);
+    public function set_status_title(User $user, string $status);
 }

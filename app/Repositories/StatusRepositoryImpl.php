@@ -30,11 +30,21 @@ class StatusRepositoryImpl implements StatusRepository {
     }
 
     public function get_status(User $user): Status {
-        return $user->status;
+        $status = Status::where("user_id", $user->id)
+                        ->first();
+
+        if ($status)
+            return $status;
+
+        $status = new Status;
+        $status->title = $this->get_unknown_status();
+
+        return $status;
     }
 
-    public function set_status(User $user, string $status) {
-        $user->status->title = $status;
-        $user->status->save();
+    public function set_status_title(User $user, string $title) {
+        $status = $this->get_status($user);
+        $status->title = $title;
+        $status->save();
     }
 }

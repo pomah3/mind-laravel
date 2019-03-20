@@ -21,6 +21,11 @@
             <div class="top-menu">
                 <div class="container-menu">
                     <img src="/img/logo_full.png" class="logo-img">
+                    <div class="profile-thing">
+                        <a href="/setlocale/ru" class="lang-set">RU</a> |
+                        <a href="/setlocale/tt" class="lang-set">TT</a> |
+                        <a href="/setlocale/en" class="lang-set">EN</a>
+                    </div>
                 </div>
             </div>
 

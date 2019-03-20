@@ -180,9 +180,14 @@ body.signin-body {
 	height: auto;
 	margin: 5px 0;
 }
-/*.profile-thing {  это нужно для фотки человека
+.profile-thing {
+    width: 30%;
 	float: right;
 }
+.lang-set {
+    color: #fff;
+}
+/*
 .profile-photo img {
 	width: 10%;
 	height: auto;

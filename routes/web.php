@@ -32,8 +32,8 @@ Route::middleware("auth")->group(function() {
 
     });
 
-    Route::get("/timetable", "TimetableController@show")
-        ->middleware("role:student");
+    Route::get("/timetable", "TimetableController@show");
+        // ->middleware("role:student");
 
     Route::prefix("/groups")->group(function() {
         Route::get("mine", "GroupController@get_default");
@@ -55,12 +55,13 @@ Route::middleware("auth")->group(function() {
     ]);
 
     Route::post("/users/{user}/set_roles", "UserController@setRoles");
-
     Route::resource("users", "UserController");
-    Route::resource("polls", "PollController");
+
     Route::resource("events", "EventController");
+
     Route::resource("documents", "DocumentController");
 
+    Route::resource("polls", "PollController");
     Route::prefix("/polls")->group(function() {
         Route::post("{poll}/vote/{variant_id}", "PollController@vote");
     });

@@ -1,6 +1,8 @@
 @extends('layout.logined')
 
-@php($user = Auth::user())
+@php
+    $user = Auth::user();
+@endphp
 
 @section('title')
     {{ __("points.show.title") }}
@@ -29,7 +31,7 @@
                         </div>
 
                         @php
-                            if ($tr->from_id == Auth::user()->id)
+                            if ($tr->from_id == $user->id)
                                 $tr->points *= -1;
                         @endphp
 

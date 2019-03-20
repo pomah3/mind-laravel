@@ -52,7 +52,7 @@ class Utils {
             return -1 * ($p1 <=> $p2);
         };
 
-        return $points_student_cmp;
+        return $lex_student_cmp;
     }
 
     public static function get_today_date(\DateTime $date) {

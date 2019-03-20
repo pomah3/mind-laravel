@@ -39,9 +39,11 @@
                             <td class="w-40">{{ $lesson["name"] }}</td>
                             <td class="need_marks">0</td>
                             <td class="sred">0</td>
-                            @foreach ($lesson["marks"] as $mark)
-                                <td class="one-mark">{{ $mark }}</td>
-                            @endforeach
+                            <td class="mark-list">
+                                @foreach ($lesson["marks"] as $mark)
+                                    {{ $mark }}
+                                @endforeach
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -128,9 +130,7 @@
                     return;
 
                 $(".marks_row").each(function(a) {
-                    let marks = $(this).find(".one-mark").map(function() {
-                        return parseFloat($(this).html());
-                    }).toArray();
+                    let marks = $(this).find(".mark-list").html().split(" ").map(a => parseInt(a)).filter(a => !isNaN(a));
 
                     let sum = marks.reduce((a,b) => a+b, 0);
                     let mean = sum / marks.length;

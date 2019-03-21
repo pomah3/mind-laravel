@@ -61,7 +61,8 @@
             $.ajax({
                 method: "POST",
                 url: "/status/" + user + "/" + status
-            }).done(function() {
+            })
+            // .done(function() {
                 $(that).parent().parent().find(".status-set-button").removeClass("status-set-has");
                 $(that).parent().parent().find(".status-set-button").addClass("status-set-hasnt");
                 $(that).parent().parent().find(".status-set-button").html("-");
@@ -69,7 +70,7 @@
                 $(that).removeClass("status-set-hasnt");
                 $(that).addClass("status-set-has");
                 $(that).html("+");
-            });
+            // });
         });
     </script>
 @endpush

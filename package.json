@@ -27,6 +27,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.6.3",
+        "chart.js": "^2.8.0",
         "font-awesome": "^4.7.0",
         "laravel-echo": "^1.5.2",
         "pusher-js": "^4.3.1"

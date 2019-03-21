@@ -5,11 +5,13 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-    require('./bootstrap');
+require('./bootstrap');
 
 
-    require('./banner');
-    require('./notes');
+require('./banner');
+require('./notes');
+
+window.Chart = require("chart.js");
 
 // if (window.userId) {
 //     Echo.private(`App.User.${userId}`)
@@ -55,4 +57,5 @@ Array.prototype.unique = function() {
     for (e in o) {a.push (e)};
     return a;
 }
+
 

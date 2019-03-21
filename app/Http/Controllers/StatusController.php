@@ -51,7 +51,7 @@ class StatusController extends Controller {
 
     public function statistic() {
         return view("status.statistic", [
-            "data" => $this->status_r->get_statistics()
+            "days" => $this->status_r->get_statistics()
         ]);
     }
 }

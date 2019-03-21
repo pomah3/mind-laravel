@@ -6,13 +6,16 @@
 
 @section('content')
     <div class="container">
-        <table>
-            @foreach ($data as $key => $value)
-                <tr>
-                    <td>{{ __("status.types.$key") }}</td>
-                    <td>{{ $value }}</td>
-                </tr>
-            @endforeach
-        </table>
+        @foreach ($days as $day)
+            <p>{{ $day["date"] }}</p>
+            <table>
+                @foreach ($day["statistics"] as $title => $count)
+                    <tr>
+                        <td>{{ $title }}</td>
+                        <td>{{ $count }}</td>
+                    </tr>
+                @endforeach
+            </table>
+        @endforeach
     </div>
 @endsection

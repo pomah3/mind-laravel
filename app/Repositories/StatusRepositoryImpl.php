@@ -17,18 +17,48 @@ class StatusRepositoryImpl implements StatusRepository {
     }
 
     public function get_statistics() {
-        $data = [];
+        $titles = $this->get_all_statuses();
 
-        foreach ($this->get_all_statuses() as $status) {
-            $data[$status] = DB::table("statuses")
-                               ->where("title", $status)
-                               ->count();
+        $days = [];
+        foreach (Status::all() as $status) {
+            $date = (string)$status->updated_at->startOfDay();
+            $days[$date] = $days[$date] ?? [];
+            $days[$date][] = $status;
         }
 
-        $a = DB::select("select count(id) as count from users where id not in (select user_id from statuses)");
-        $data[$this->get_unknown_status()] = $a[0]->count;
+        $user_count = DB::table("users")->count();
 
-        return $data;
+        $days = collect($days)->map(function($statuses) use ($user_count) {
+            $grouped = [];
+
+            $sum = 0;
+
+            foreach ($statuses as $status) {
+                $title = $status->title;
+                $grouped[$title] = $grouped[$title] ?? 0;
+
+                $grouped[$title]++;
+                $sum++;
+            }
+
+            $grouped[$this->get_unknown_status()] = $user_count - $sum;
+
+            foreach ($this->get_all_statuses() as $tit) {
+                $grouped[$tit] = $grouped[$tit] ?? 0;
+            }
+
+            return $grouped;
+        });
+
+        $data = [];
+        foreach ($days as $date => $titles) {
+            $data[] = [
+                "date" => new \Carbon\Carbon($date),
+                "statistics" => $titles
+            ];
+        }
+
+        return collect($data)->sortByDesc("date");
     }
 
     public function get_status(User $user): Status {

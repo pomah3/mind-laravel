@@ -26,8 +26,8 @@ class StatusRepositoryImpl implements StatusRepository {
             $count = DB::table("statuses")
                        ->where("title", $title)
                        ->whereBetween("updated_at", [
-                           $date->startOfDay(),
-                           $date->endOfDay()
+                           $date->copy()->startOfDay(),
+                           $date->copy()->endOfDay()
                        ])
                        ->count();
 
@@ -63,8 +63,8 @@ class StatusRepositoryImpl implements StatusRepository {
         $date = new \Carbon\Carbon($date->format('c'));
 
         $status = Status::where("user_id", $user->id)
-                        ->where("updated_at", ">=", $date->startOfDay())
-                        ->where("updated_at", "<=", $date->endOfDay())
+                        ->where("updated_at", ">=", $date->copy()->startOfDay())
+                        ->where("updated_at", "<=", $date->copy()->endOfDay())
                         ->first();
 
         if ($status)

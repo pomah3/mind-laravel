@@ -16,55 +16,55 @@ class StatusRepositoryImpl implements StatusRepository {
         return "ХЗ";
     }
 
-    public function get_statistics() {
-        $titles = $this->get_all_statuses();
-
-        $days = [];
-        foreach (Status::all() as $status) {
-            $date = (string)$status->updated_at->startOfDay();
-            $days[$date] = $days[$date] ?? [];
-            $days[$date][] = $status;
-        }
-
-        $user_count = DB::table("users")->count();
-
-        $days = collect($days)->map(function($statuses) use ($user_count) {
-            $grouped = [];
-
-            $sum = 0;
-
-            foreach ($statuses as $status) {
-                $title = $status->title;
-                $grouped[$title] = $grouped[$title] ?? 0;
-
-                $grouped[$title]++;
-                $sum++;
-            }
-
-            $grouped[$this->get_unknown_status()] = $user_count - $sum;
-
-            foreach ($this->get_all_statuses() as $tit) {
-                $grouped[$tit] = $grouped[$tit] ?? 0;
-            }
-
-            return $grouped;
-        });
+    public function get_statistics_by_day(\DateTime $date) {
+        $date = new \Carbon\Carbon($date->format("c"));
 
         $data = [];
-        foreach ($days as $date => $titles) {
-            $data[] = [
-                "date" => new \Carbon\Carbon($date),
-                "statistics" => $titles
-            ];
+
+        $titles = $this->get_all_statuses();
+        foreach ($titles as $title) {
+            $count = DB::table("statuses")
+                       ->where("title", $title)
+                       ->whereBetween("updated_at", [
+                           $date->startOfDay(),
+                           $date->endOfDay()
+                       ])
+                       ->count();
+
+            $data[$title] = $count;
         }
 
-        return collect($data)->sortByDesc("date");
+        return $data;
+    }
+
+    public function get_statistics_between(\DateTime $start, \DateTime $end) {
+        $start = new \Carbon\Carbon($start->format("c"));
+        $end = new \Carbon\Carbon($end->format("c"));
+
+        $stats = [];
+        while ($start <= $end) {
+            $stat = $this->get_statistics_by_day($start);
+
+            $stats[] = [
+                "date" => $start->copy()->startOfDay(),
+                "statistics" => $stat
+            ];
+
+            $start->addDays(1);
+        }
+        return $stats;
     }
 
     public function get_status(User $user): Status {
+        return $this->get_status_by_day($user, now());
+    }
+
+    public function get_status_by_day(User $user, \DateTime $date): Status {
+        $date = new \Carbon\Carbon($date->format('c'));
+
         $status = Status::where("user_id", $user->id)
-                        ->where("updated_at", ">=", now()->startOfDay())
-                        ->where("updated_at", "<=", now()->endOfDay())
+                        ->where("updated_at", ">=", $date->startOfDay())
+                        ->where("updated_at", "<=", $date->endOfDay())
                         ->first();
 
         if ($status)

@@ -49,9 +49,21 @@ class StatusController extends Controller {
         return "";
     }
 
+    private function get_study_year_start() {
+        $start = now()->startOfDay();
+        if ($start->month >= 1)
+            $start->subYear(1);
+
+        $start->month(9)->day(1);
+        return $start;
+    }
+
     public function statistic() {
+        $start = $this->get_study_year_start();
+        $end = now();
+
         return view("status.statistic", [
-            "days" => $this->status_r->get_statistics()
+            "days" => $this->status_r->get_statistics_between($start, $end)
         ]);
     }
 }

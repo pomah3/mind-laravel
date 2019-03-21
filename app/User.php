@@ -60,12 +60,6 @@ class User extends Authenticatable
         return $this->belongsToMany(Event::class);
     }
 
-    public function status() {
-        return $this->hasOne(Status::class)->withDefault([
-            "title" => "unknown"
-        ]);
-    }
-
     public function scopeStudents($query) {
         return $query->where("type", "student");
     }

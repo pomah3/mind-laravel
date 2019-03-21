@@ -45,23 +45,26 @@ class StatusController extends Controller {
     public function set(User $user, string $status) {
         $this->authorize("set-status", $user);
 
-        $this->status_r->set_status($user, $status);
+        $this->status_r->set_status_title($user, $status);
         return "";
     }
 
-    public function statistic() {
-        $data = [];
+    private function get_def_start() {
+        return now()->day(1);
+    }
 
-        foreach ($this->status_r->get_all_statuses() as $status) {
-            $data[$status] = DB::table("statuses")->where("title", $status)->count();
-        }
+    public function statistic(Request $request) {
+        if ($request->start)
+            $start = new \Carbon\Carbon($request->start);
 
-        $a = DB::select("select count(id) as count from users where id not in (select user_id from statuses)");
+        if ($request->end)
+            $end = new \Carbon\Carbon($request->end);
 
-        $data["ХЗ"] = $a[0]->count;
+        $start = $start ?? $this->get_def_start();
+        $end = $end ?? now();
 
         return view("status.statistic", [
-            "data" => $data
+            "days" => $this->status_r->get_statistics_between($start, $end)
         ]);
     }
 }

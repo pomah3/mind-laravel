@@ -1088,8 +1088,14 @@ img.answer {
 /* group */
 .table-sm {
 	border-radius: 5px;
-	background: rgba(0, 75, 126, .1);
-	box-shadow: 2px 2px 4px #777;
+	background: linear-gradient(to right, rgba(0, 75, 126, .1), rgba(0, 75, 126, .3));
+}
+.table-sm td:first-child {
+    padding-left: 10px;
+}
+.table-sm td:nth-child(2),
+.table-sm td:nth-child(3) {
+    text-align: center;
 }
 /* user */
 .role_select {

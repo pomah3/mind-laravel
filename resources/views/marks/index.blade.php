@@ -30,7 +30,7 @@
                     </tr>
                     @foreach ($lessons as $lesson)
                         <tr class="marks_row">
-                            <td class="w-40">{{ $lesson["name"] }}</td>
+                            <td class="w-40 pl-10">{{ $lesson["name"] }}</td>
                             <td class="need_marks">0</td>
                             <td class="sred">0</td>
                             <td class="mark-list">

@@ -49,9 +49,22 @@ class StatusController extends Controller {
         return "";
     }
 
-    public function statistic() {
+    private function get_def_start() {
+        return now()->day(1);
+    }
+
+    public function statistic(Request $request) {
+        if ($request->start)
+            $start = new \Carbon\Carbon($request->start);
+
+        if ($request->end)
+            $end = new \Carbon\Carbon($request->end);
+
+        $start = $start ?? $this->get_def_start();
+        $end = $end ?? now();
+
         return view("status.statistic", [
-            "days" => $this->status_r->get_statistics()
+            "days" => $this->status_r->get_statistics_between($start, $end)
         ]);
     }
 }

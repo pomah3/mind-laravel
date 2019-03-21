@@ -24,7 +24,7 @@
     @push('scripts')
         <script>
             (function() {
-                let days = @json($days->values());
+                let days = @json($days);
                 console.log(days);
 
                 let datasets = {};

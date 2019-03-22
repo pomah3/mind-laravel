@@ -1088,14 +1088,8 @@ img.answer {
 /* group */
 .table-sm {
 	border-radius: 5px;
-	background: linear-gradient(to right, rgba(0, 75, 126, .1), rgba(0, 75, 126, .3));
-}
-.table-sm td:first-child {
-    padding-left: 10px;
-}
-.table-sm td:nth-child(2),
-.table-sm td:nth-child(3) {
-    text-align: center;
+	background: rgba(0, 75, 126, 0.1);
+    box-shadow: 2px 2px 4px #777;
 }
 /* user */
 .role_select {
@@ -1109,6 +1103,17 @@ img.answer {
 .mid-change {
     width: 40px;
     height: 20px;
+}
+.container-marks .table-sm {
+    border-radius: 5px;
+    background: linear-gradient(to right, rgba(0, 75, 126, .1), rgba(0, 75, 126, .3));
+}
+.container-marks .table-sm td:first-child {
+    padding-left: 10px;
+}
+.container-marks .table-sm td:nth-child(2),
+.container-marks .table-sm td:nth-child(3) {
+    text-align: center;
 }
 /* timetable */
 .one-day {

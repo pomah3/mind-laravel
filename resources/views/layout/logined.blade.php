@@ -27,7 +27,7 @@
                             <a href="/setlocale/tt">TT</a> |
                             <a href="/setlocale/en">EN</a>
                         </div>
-                        <div class="btn-group">
+                        {{-- <div class="btn-group">
                             <a class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-cog" aria-hidden="true"></i>
                                 <span class="caret"></span>
@@ -38,7 +38,7 @@
                                 <hr>
                                 <li class="menu"><a href="/logout">{{ __("menu.logout") }}</a></li>
                             </ul>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

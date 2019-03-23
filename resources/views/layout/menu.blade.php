@@ -27,18 +27,20 @@
             @endif
         </li>
     @endforeach
-    <li class="right-menu menu-drop"><div class="btn-group">
-        <a class="dropdown-toggle" data-toggle="dropdown">
-            <i class="fa fa-cog" aria-hidden="true"></i>
-            <span class="caret"></span>
-        </a>
-        <ul class="right-dropdown-menu dropdown-menu" role="menu">
-            <li class="menu"><a href="/doc/user">{{ __("menu.info") }}</a></li>
-            <li class="menu"><a href="/settings">{{ __("menu.settings") }}</a></li>
-            <hr>
-            <li class="menu"><a href="/logout">{{ __("menu.logout") }}</a></li>
-        </ul>
-    </div></li>
+    <li class="right-menu menu-drop">
+        <div class="btn-group">
+            <a class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-cog" aria-hidden="true"></i>
+                <span class="caret"></span>
+            </a>
+            <ul class="right-dropdown-menu dropdown-menu" role="menu">
+                <li class="menu"><a href="/doc/user">{{ __("menu.info") }}</a></li>
+                <li class="menu"><a href="/settings">{{ __("menu.settings") }}</a></li>
+                <hr>
+                <li class="menu"><a href="/logout">{{ __("menu.logout") }}</a></li>
+            </ul>
+        </div>
+    </li>
 </ul>
 </nav>
 </div>

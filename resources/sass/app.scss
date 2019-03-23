@@ -78,6 +78,7 @@ a.a-small {
 .container-banner {
 	width: 100%;
 	max-width: 1080px;
+    height: auto;
 	padding: 0;
 	margin: auto;
 }
@@ -105,6 +106,14 @@ header > .container-menu {
 }
 .container-internat {
 	align-items: flex-start;
+}
+.top-menu-cont {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1080px;
+    margin: auto;
+    height: 40px;
 }
 /* signin */
 .signin-card {
@@ -181,11 +190,18 @@ body.signin-body {
 	margin: 5px 0;
 }
 .profile-thing {
-    width: 30%;
 	float: right;
+    text-align: right;
+}
+.top-menu-cont img {
+    height: 25px;
+    width: auto;
 }
 .lang-set {
     color: #fff;
+}
+.right-top-menu .btn-group {
+    margin-right: 20px;
 }
 /*
 .profile-photo img {

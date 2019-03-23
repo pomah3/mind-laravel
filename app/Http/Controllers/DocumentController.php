@@ -34,7 +34,7 @@ class DocumentController extends Controller {
         $data = $request->validate([
             "title" => "required",
             "access" => "required|json",
-            "file" => "required|mimes:docx,pdf,txt,md"
+            "file" => "required|mimes:docx,pdf,txt,md,doc,xls,xlsx,ppt,pptx"
         ]);
 
         $doc = new Document;

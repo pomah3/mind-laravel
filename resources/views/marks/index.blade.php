@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <div class="container container-points">
+    <div class="container container-points container-marks">
         @if ($has_login)
             <table class="table table-sm">
                 <tbody>

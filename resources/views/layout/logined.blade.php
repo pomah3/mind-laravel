@@ -18,13 +18,27 @@
         <script>window.userId = {{ Auth::user()->id }}</script>
 
         <header>
-            <div class="top-menu">
-                <div class="container-menu">
+            <div class="top-menu lang-set">
+                <div class="top-menu-cont">
                     <img src="/img/logo_full.png" class="logo-img">
-                    <div class="profile-thing">
-                        <a href="/setlocale/ru" class="lang-set">RU</a> |
-                        <a href="/setlocale/tt" class="lang-set">TT</a> |
-                        <a href="/setlocale/en" class="lang-set">EN</a>
+                    <div class="right-top-menu">
+                        <div class="profile-thing">
+                            <a href="/setlocale/ru">RU</a> |
+                            <a href="/setlocale/tt">TT</a> |
+                            <a href="/setlocale/en">EN</a>
+                        </div>
+                        {{-- <div class="btn-group">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-cog" aria-hidden="true"></i>
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="right-dropdown-menu dropdown-menu" role="menu">
+                                <li class="menu"><a href="/doc/user">{{ __("menu.info") }}</a></li>
+                                <li class="menu"><a href="/settings">{{ __("menu.settings") }}</a></li>
+                                <hr>
+                                <li class="menu"><a href="/logout">{{ __("menu.logout") }}</a></li>
+                            </ul>
+                        </div> --}}
                     </div>
                 </div>
             </div>

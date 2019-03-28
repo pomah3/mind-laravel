@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Scenarios;
+
 use App\User;
 
 interface ScenarioRepository {

@@ -3,6 +3,7 @@
 namespace App\Scenarios;
 
 abstract class Scenario {
+	public $id = null;
 	private $stage;
 	private $data;
 	private $user;

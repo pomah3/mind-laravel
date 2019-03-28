@@ -2,6 +2,7 @@
 
 namespace App\Scenarios;
 
+use App\User;
 use Illuminate\Support\Facades\DB;
 
 class ScenarioRepositoryImpl implements ScenarioRepository {
@@ -44,7 +45,7 @@ class ScenarioRepositoryImpl implements ScenarioRepository {
 		DB::table("scenarios")->where("id", $scenario->id)->delete();
 	}
 
-	private function parse_collection($col) {
+	private function parse_collection($collection) {
 		return $collection->map(function($std) {
 			return $this->parse($std);
 		});
@@ -53,17 +54,18 @@ class ScenarioRepositoryImpl implements ScenarioRepository {
 	private function deparse($sc) {
 		return [
 			"stage" => $sc->get_stage(),
-			"data" => json_encode($sc->get_data()),
-			"user" => $sc->get_user()
+			"data" => json_encode($sc->get_all_data()),
+			"user_id" => $sc->get_user(),
+            "type" => $sc->get_name()
 		];
 	}
 
 	private function parse($std) {
-		$s = new Scenario();
+		$s = (new \ReflectionClass($std->type))->newInstance();
 		$s->id = $std->id;
 		$s->set_stage($std->stage);
-		$s->set_data(json_decode($std->data));
-		$s->set_user($std->user);
+		$s->set_all_data(json_decode($std->data, true));
+		$s->set_user($std->user_id);
 
 		return $s;
 	}

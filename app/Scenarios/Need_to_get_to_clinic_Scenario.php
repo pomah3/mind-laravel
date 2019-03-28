@@ -6,6 +6,10 @@ use App\Scenarios\Fields\InputField\TextInputField;
 use App\User;
 
 class Need_to_get_to_clinic_Scenario extends Scenario {
+    public function get_title() {
+        return "Нужно в поликлинику";
+    }
+
 	public function get_stages() {
 		return [
 			"init" => $this->init_stage(),

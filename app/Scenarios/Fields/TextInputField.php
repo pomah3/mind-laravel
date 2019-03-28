@@ -15,7 +15,7 @@ class TextInputField {
 	}
 
 	public function get_html() {
-		return $this->label . ': <input type="text" required name="'.$this->get_name().'">';
+		return $this->label . ': <input type="text" required name="'.$this->name.'">';
 	}
 
 	public function set_value(Request $r) {
@@ -23,6 +23,6 @@ class TextInputField {
 	}
 
 	public function get_text() {
-		return $this->text();
+		return $this->text;
 	}
 }

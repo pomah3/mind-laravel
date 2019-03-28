@@ -103,12 +103,12 @@ Route::middleware("auth")->group(function() {
     Route::prefix("/scenarios")->group(function() {
         Route::get("available", "ScenarioController@available");
         Route::get("mine", "ScenarioController@mine");
-        
-        Route::get("{id}", "ScenarioController@show");
-        Route::post("{id}", "ScenarioController@answer");
 
         Route::post("", "ScenarioController@create");
         Route::get("create", "ScenarioController@create_index");
+
+        Route::get("{id}", "ScenarioController@show");
+        Route::post("{id}/answer", "ScenarioController@answer");
     });
 
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')

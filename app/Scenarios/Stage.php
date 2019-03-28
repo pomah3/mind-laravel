@@ -11,7 +11,6 @@ class Stage {
 		$this->handle = $handle;
 		$this->input = $input;
 		$this->output = $output;
-		$this->finally = $finally;
 	}
 
 	public function is_final() {

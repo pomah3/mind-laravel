@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Scenarios\ScenarioProvider;
 use App\Scenarios\ScenarioRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ScenarioController extends Controller {
 	private $provider;
@@ -27,8 +28,12 @@ class ScenarioController extends Controller {
     	]);
     }
 
-    public function create_index() {
-    	return view("scenario.create");
+    public function create_index(Request $request) {
+        $scenario = $this->provider->get_scenario($request->scenario);
+
+    	return view("scenario.create", [
+            "scenario" => $scenario
+        ]);
     }
 
     public function create(Request $request) {
@@ -38,15 +43,31 @@ class ScenarioController extends Controller {
         $input = collect($input)->map(function($in) use ($request) {
             $in->set_value($request);
             return $in;
-        });
+        })->all();
 
-        $scenario->create(Auth::user()->id, $input);
+        $scenario = $scenario->create(Auth::user()->id, $input);
         $this->repo->save($scenario);
-        return redirect("/scenarios/create")->with("status", "ok");
+        return redirect("/scenarios/create?scenario=".$scenario->get_name())->with("status", "ok");
     }
 
-    // public function answer(Request $request) {
-    //     $scenario = $this->repo->get($request->scenario_id);
-    //     $scenario = $this
-    // }
+    public function show(Request $request, $id) {
+        $scenario = $this->repo->get($id);
+        return view("scenario.show", [
+            "scenario" => $scenario
+        ]);
+    }
+
+    public function answer(Request $request, $id) {
+        $scenario = $this->repo->get($id);
+        $input = $scenario->get_input();
+        $input = collect($input)->map(function($in) use ($request) {
+            $in->set_value($request);
+            return $in;
+        })->all();
+
+        $scenario->handle(Auth::user()->id, $input);
+        $this->repo->save($scenario);
+
+        return redirect("/scenarios/mine");
+    }
 }

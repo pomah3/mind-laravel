@@ -55,5 +55,9 @@ abstract class Scenario {
 		return $this->get_stages()[$stage]->output();
 	}
 
+	public function get_name() {
+		return (new \ReflectionClass($this))->getName();
+	}
+
 	abstract public function get_stages();
 }

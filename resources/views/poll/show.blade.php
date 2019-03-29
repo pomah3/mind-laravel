@@ -15,17 +15,17 @@
         @php($var_voted = $poll->get_user_vote(Auth::user()))
         <div class="one-poll">
             @foreach ($poll->get_variants() as $id => $v)
-                <li>
+                <div class="one-poll-elem {{ $id === $var_voted ? "vote-this" : "vote-not-this" }}">
                     {{ $v["value"] }}
-                    @can("see_result", $poll)
-                        : {{ $v["count"] }}
-                    @endcan
                     @can("vote", $poll)
                         <button variant-id="{{$id}}" poll-id="{{$poll->id}}" class="poll-vote">
-                            {{ $id === $var_voted ? "-" : '+'}}
+                            {!! $id === $var_voted ? "&times;" : '+' !!}
                         </button>
                     @endcan
-                </li>
+                    @can("see_result", $poll)
+                        <span class="vote-count">{{ $v["count"] }}</span>
+                    @endcan
+                </div>
             @endforeach
         </div>
     </div>

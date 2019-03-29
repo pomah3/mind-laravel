@@ -2,7 +2,7 @@
 
 namespace App\Scenarios;
 
-use App\Scenarios\Fields\InputField\TextInputField;
+use App\Scenarios\Fields\TextInputField;
 use App\User;
 
 class Need_to_get_to_clinic_Scenario extends Scenario {

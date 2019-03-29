@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Scenarios\Fields\InputField;
+namespace App\Scenarios\Fields;
 
 use Illuminate\Http\Request;
 

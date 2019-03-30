@@ -24,12 +24,12 @@ class Need_to_get_to_clinic_Scenario extends Scenario {
 				new TextInputField("when", "Когда тебе в поликлинику")
 			],
 			function($sc, $input, $user) {
-				$sc->set_data("student", $user);
+				$sc->set_data("student", $user->id);
 				$sc->set_data("when", $input[0]->get_text());
-				$sc->set_user("1");
+				$sc->set_users([User::find(1)]);
 				$sc->set_stage("find_vospit");
 			},
-			function($sc) {
+			function($sc, $user) {
 				return "";
 			}
 		);
@@ -42,10 +42,10 @@ class Need_to_get_to_clinic_Scenario extends Scenario {
 			],
 			function($sc, $input, $user) {
 				$sc->set_data("vospit", $input[0]->get_text());
-				$sc->set_user($sc->get_data("student"));
+				$sc->set_users([User::find($sc->get_data("student"))]);
 				$sc->set_stage("show_to_student");
 			},
-			function($sc) {
+			function($sc, $user) {
 				$s = User::find($sc->get_data("student"));
 				return "Ученик ". $s->get_name() . " хочет в поликлинику";
 			}
@@ -54,7 +54,7 @@ class Need_to_get_to_clinic_Scenario extends Scenario {
 
 	public function show_to_student_stage() {
 		return new FinalStage(
-			function($sc) {
+			function($sc, $user) {
 				return "Тебе нашли воспета: " . $sc->get_data("vospit");
 			}
 		);

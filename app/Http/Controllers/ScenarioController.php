@@ -45,7 +45,7 @@ class ScenarioController extends Controller {
             return $in;
         })->all();
 
-        $scenario = $scenario->create(Auth::user()->id, $input);
+        $scenario = $scenario->create(Auth::user(), $input);
         $this->repo->save($scenario);
         return redirect("/scenarios/create?scenario=".$scenario->get_name())->with("status", "ok");
     }
@@ -65,7 +65,7 @@ class ScenarioController extends Controller {
             return $in;
         })->all();
 
-        $scenario->handle(Auth::user()->id, $input);
+        $scenario->handle(Auth::user(), $input);
         $this->repo->save($scenario);
 
         return redirect("/scenarios/mine");

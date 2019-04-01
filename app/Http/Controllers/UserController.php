@@ -52,6 +52,32 @@ class UserController extends Controller
         return redirect("/users/" . $user->id);
     }
 
+    public function edit(User $user) {
+        $this->authorize("update", $user);
+        return view("user.edit", ["user" => $user]);
+    }
+
+    public function update(Request $request, User $user) {
+        $this->authorize("update", $user);
+
+        $data = $request->validate([
+            "given_name"  => "required",
+            "father_name" => "required",
+            "family_name" => "required",
+            "password"    => "required",
+        ]);
+
+        $user->given_name  = Formatter::name($data["given_name"] );
+        $user->father_name = Formatter::name($data["father_name"]);
+        $user->family_name = Formatter::name($data["family_name"]);
+
+        $user->password = $data["password"];
+
+        $user->save();
+
+        return redirect("/users/" . $user->id);
+    }
+
     public function destroy(User $user) {
         $user->roles()->delete();
         $user->delete();

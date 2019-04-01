@@ -29,7 +29,13 @@ class ScenarioController extends Controller {
     }
 
     public function create_index(Request $request) {
+        if ($request->scenario == null)
+            return redirect("/scenarios/available");
+
         $scenario = $this->provider->get_scenario($request->scenario);
+
+        if ($scenario == null)
+            abort(404);
 
     	return view("scenario.create", [
             "scenario" => $scenario
@@ -38,6 +44,9 @@ class ScenarioController extends Controller {
 
     public function create(Request $request) {
         $scenario = $this->provider->get_scenario($request->scenario);
+
+        if ($scenario == null)
+            abort(404);
 
         $input = $scenario->get_stages()["init"]->input;
         $input = collect($input)->map(function($in) use ($request) {
@@ -52,6 +61,10 @@ class ScenarioController extends Controller {
 
     public function show(Request $request, $id) {
         $scenario = $this->repo->get($id);
+
+        if ($scenario == null)
+            abort(404);
+
         return view("scenario.show", [
             "scenario" => $scenario
         ]);
@@ -59,6 +72,10 @@ class ScenarioController extends Controller {
 
     public function answer(Request $request, $id) {
         $scenario = $this->repo->get($id);
+
+        if ($scenario == null)
+            abort(404);
+
         $input = $scenario->get_input();
         $input = collect($input)->map(function($in) use ($request) {
             $in->set_value($request);

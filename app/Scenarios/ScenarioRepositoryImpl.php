@@ -30,6 +30,9 @@ class ScenarioRepositoryImpl implements ScenarioRepository {
                 ->where("id", $id)
                 ->first();
 
+        if ($sc == null)
+            return null;
+
         $scenario = $this->parse($sc);
 
         $users_a = [];

@@ -45,6 +45,8 @@ class ScenarioController extends Controller {
     public function create(Request $request) {
         $scenario = $this->provider->get_scenario($request->scenario);
 
+        $this->authorize("create-scenario", $scenario);
+
         if ($scenario == null)
             abort(404);
 
@@ -65,6 +67,8 @@ class ScenarioController extends Controller {
         if ($scenario == null)
             abort(404);
 
+        $this->authorize("answer-scenario", $scenario);
+
         return view("scenario.show", [
             "scenario" => $scenario
         ]);
@@ -78,6 +82,8 @@ class ScenarioController extends Controller {
 
         if ($request->stage == null || $request->stage != $scenario->get_stage())
             return redirect("/scenarios/mine")->with("status", "expired");
+
+        $this->authorize("answer-scenario", $scenario);
 
         $input = $scenario->get_input();
         $input = collect($input)->map(function($in) use ($request) {

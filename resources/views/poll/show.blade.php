@@ -9,6 +9,9 @@
     <div class="container container-points">
         <h2><strong>{{ $poll->title }}</strong></h2>
         <p>
+            Автор: @user(["user" => $poll->creator])
+        </p>
+        <p>
             {{ $poll->content }}
         </p>
 

@@ -23,7 +23,12 @@
                         <button poll-id="{{ $poll->id }}" class="poll-delete">&times;</button>
                     @endcan
                     <a href="/polls/{{ $poll->id }}">{{ $poll->title }}</a>
-                    <div class="banner-label">Доступно до: <span>{{ $poll->till_date->format("d.m.Y") }}</span></div>
+                    <div class="banner-label">
+                        Доступно до: <span>{{ $poll->till_date->format("d.m.Y") }}</span>
+                    </div>
+                    <div class="banner-label">
+                        Автор голосования: <span>@user(["user" => $poll->creator])</span>
+                    </div>
                 </div>
             @empty
                 <div class="not-found">

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Poll extends Model
@@ -18,6 +19,10 @@ class Poll extends Model
 
     public function votes() {
         return $this->hasMany(Vote::class);
+    }
+
+    public function creator() {
+        return $this->belongsTo(User::class, "creator_id");
     }
 
     public function get_variants() {

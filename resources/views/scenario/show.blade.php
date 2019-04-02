@@ -14,7 +14,7 @@
                 {!! $input->get_html() !!} <br>
             @endforeach
 
-            <input type="hidden" name="scenario" value="{{ $scenario->get_name() }}">
+            <input type="hidden" name="stage" value="{{ $scenario->get_stage() }}">
 
             @if (!$scenario->is_finished())
                 <input type="submit">

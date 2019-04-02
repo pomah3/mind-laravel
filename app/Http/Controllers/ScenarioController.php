@@ -76,6 +76,9 @@ class ScenarioController extends Controller {
         if ($scenario == null)
             abort(404);
 
+        if ($request->stage == null || $request->stage != $scenario->get_stage())
+            return redirect("/scenarios/mine")->with("status", "expired");
+
         $input = $scenario->get_input();
         $input = collect($input)->map(function($in) use ($request) {
             $in->set_value($request);

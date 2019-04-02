@@ -35,7 +35,8 @@ class PollController extends Controller
             "variants"          => "required|array",
             "date"              => "required|date",
             "access_vote"       => "required|json",
-            "access_see_result" => "required|json"
+            "access_see_result" => "required|json",
+            "can_revote"        => "required"
         ]);
 
         $poll = new Poll;
@@ -43,6 +44,7 @@ class PollController extends Controller
         $poll->title = $data["title"];
         $poll->content = $data["content"];
         $poll->till_date = $data["date"];
+        $poll->can_revote = $data["can_revote"];
 
         $poll->access_vote = json_decode($data["access_vote"]);
         $poll->access_see_result = json_decode($data["access_see_result"]);

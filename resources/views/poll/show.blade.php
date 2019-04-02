@@ -15,7 +15,9 @@
             {{ $poll->content }}
         </p>
 
-        @php($var_voted = $poll->get_user_vote(Auth::user()))
+        @php
+            $var_voted = $poll->get_user_vote(Auth::user());
+        @endphp
         <div class="one-poll">
             @foreach ($poll->get_variants() as $id => $v)
                 <div class="one-poll-elem {{ $id === $var_voted ? "vote-this" : "vote-not-this" }}">

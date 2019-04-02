@@ -23,11 +23,32 @@
 		        @csrf
 
 				<label for="title">Заголовок голосования:</label>
-				<input type="text" class="form-control" placeholder="Введите заголовок голосования" name="title" required>
+				<input
+                    type="text"
+                    class="form-control"
+                    placeholder="Введите заголовок голосования"
+                    name="title"
+                    required
+                    value={{ old("title" )}}
+                >
 		        <label for="content">Описание голосования:</label>
-		        <input type="text" class="form-control" placeholder="Введите описание голосования" name="content" required>
+		        <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Введите описание голосования"
+                    name="content"
+                    required
+                    value={{ old("content") }}
+                >
 				<label for="date">Доступно до:</label>
-		        <input type="date" class="form-control" placeholder="Введите описание голосования" name="date" required>
+		        <input
+                    type="date"
+                    class="form-control"
+                    placeholder="Введите описание голосования"
+                    name="date"
+                    required
+                    value={{ old("date") }}
+                >
 		        <label class="variants-label">Варианты ответов:</label>
 		        <div class="vars_container">
 					<div class="vars">
@@ -40,9 +61,15 @@
 					</div>
 					<div class="add-var">+ Добавить вариант</div>
 				</div>
-
+                <hr>
                 Кто может голосовать: @access(["attr"=>"name=\"access_vote\""])
                 Кто может смотреть результаты: @access(["attr"=>"name=\"access_see_result\""])
+                Можно менять голос:
+                <select class="form-control" name="can_revote">
+                    <option value='1'>Да</option>
+                    <option value='0'>Нет</option>
+                </select>
+
 
 		        <button type="submit" class="submit">Отправить</button>
 		    </form>

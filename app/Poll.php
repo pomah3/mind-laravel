@@ -15,6 +15,7 @@ class Poll extends Model
         "variants" => "array",
         "access_vote" => "array",
         "access_see_result" => "array",
+        "can_revote" => "boolean",
     ];
 
     public function votes() {

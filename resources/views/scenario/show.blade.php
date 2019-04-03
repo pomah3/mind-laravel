@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="container">
-        <p> {{ $scenario->get_output(Auth::user()) }} </p>
+        <p> {!! $scenario->get_output(Auth::user()) !!} </p>
 
         <form action="/scenarios/{{ $scenario->id }}/answer" method="POST">
             @csrf

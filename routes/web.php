@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 
 Route::get('/signin', "SigninController@index")
     ->middleware("guest")
@@ -113,4 +114,8 @@ Route::middleware("auth")->group(function() {
 
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')
          ->middleware("role:admin");
+
+    Route::get("asd", function() {
+        return URL::signedRoute("documents.show", ["document" => App\Document::find(1)]);
+    });
 });

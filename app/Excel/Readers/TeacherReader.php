@@ -22,7 +22,7 @@ class TeacherReader extends RowReader {
 
     public function save(array $arr): void {
         $old_user = User::where("given_name", $arr["given_name"])
-                        ->where("family_name", $arr["famil_name"])
+                        ->where("family_name", $arr["family_name"])
                         ->where("father_name", $arr["father_name"])
                         ->first();
 

@@ -31,7 +31,11 @@ class Document extends Model {
     }
 
     public function set_ext(string $ext) {
-        $this->link = $this->id + ".$ext";
+        $this->link = $this->id . ".$ext";
         $this->save();
+    }
+
+    public function get_full_path() {
+        return storage_path("app/documents/" . $this->link);
     }
 }

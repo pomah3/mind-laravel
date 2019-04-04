@@ -27,7 +27,14 @@ class DocumentController extends Controller {
         if (!$request->hasValidSignature())
             $this->authorize("view", $document);
 
-        return response()->file(storage_path("app/documents/".$document->link));
+        $headers = [];
+        if (pathinfo($document->link)['extension'] == "docx")
+            $headers["Content-type"] = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+
+        return response()->file(
+            storage_path("app/documents/".$document->link),
+            $headers
+        );
     }
 
     public function store(Request $request) {

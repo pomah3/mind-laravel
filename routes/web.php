@@ -111,6 +111,8 @@ Route::middleware("auth")->group(function() {
         Route::post("{id}/answer", "ScenarioController@answer");
     });
 
+    Route::get("/first", "FirstVisitController");
+
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')
          ->middleware("role:admin");
 });

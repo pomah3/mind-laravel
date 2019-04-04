@@ -113,4 +113,6 @@ Route::middleware("auth")->group(function() {
 
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')
          ->middleware("role:admin");
+
+    Route::get("students", "StudentController@index");
 });

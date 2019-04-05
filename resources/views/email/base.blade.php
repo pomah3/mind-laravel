@@ -1,5 +1,5 @@
 <div>
-    {{ $text }}
+    @yield("content")
 </div>
 
 <hr>

@@ -114,8 +114,4 @@ Route::middleware("auth")->group(function() {
 
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')
          ->middleware("role:admin");
-
-    Route::get("asd", function() {
-        return URL::signedRoute("documents.show", ["document" => App\Document::find(1)]);
-    });
 });

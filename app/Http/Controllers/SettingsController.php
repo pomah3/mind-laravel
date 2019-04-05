@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\VerifyMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class SettingsController extends Controller
 {
@@ -35,7 +37,12 @@ class SettingsController extends Controller
         $user = Auth::user();
 
         $user->email = $data["email"];
+        $user->email_verified_at = null;
         $user->save();
+
+        Mail::to($user)->send(
+            new VerifyMail($user)
+        );
 
         return redirect("/settings")->with("status", "ok");
     }

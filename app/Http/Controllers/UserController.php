@@ -96,4 +96,17 @@ class UserController extends Controller
             $user->add_role($role["name"], $role["arg"] ?? null);
         }
     }
+
+    public function verify_email(Request $request, User $user) {
+        if (!$request->hasValidSignature())
+            abort(403);
+
+        if ($user->email == null)
+            abort(500);
+
+        $user->email_verified_at = now();
+        $user->save();
+
+        return redirect("/")->with('status', "email_verified");
+    }
 }

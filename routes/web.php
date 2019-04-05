@@ -115,4 +115,6 @@ Route::middleware("auth")->group(function() {
 
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')
          ->middleware("role:admin");
+
+    Route::get('verify_email/{user}', "UserController@verify_email")->name("verify_email");
 });

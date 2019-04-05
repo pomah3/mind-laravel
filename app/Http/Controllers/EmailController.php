@@ -27,6 +27,7 @@ class EmailController extends Controller
         $role = json_decode($data["access"]);
 
         $users = User::whereNotNull("email")
+                     ->whereNotNull("email_verified_at")
                      ->get()
                      ->filter(function($a) use ($role) {
                          return Role::has_complex_role($a, $role);

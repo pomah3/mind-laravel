@@ -6,7 +6,7 @@
 
 @section('content')
 	<div class="container container-points">
-		<h2>Создать голосование</h2>
+		<h2>{{ __('poll.create.title') }}</h2>
 
        @if ($errors->any())
             <div class="alert alert-danger">
@@ -22,29 +22,29 @@
 		    <form action="/polls" method="POST" class="form-50">
 		        @csrf
 
-				<label for="title">Заголовок голосования:</label>
-				<input type="text" class="form-control" placeholder="Введите заголовок голосования" name="title" required>
-		        <label for="content">Описание голосования:</label>
-		        <input type="text" class="form-control" placeholder="Введите описание голосования" name="content" required>
-				<label for="date">Доступно до:</label>
-		        <input type="date" class="form-control" placeholder="Введите описание голосования" name="date" required>
-		        <label class="variants-label">Варианты ответов:</label>
+				<label for="title">{{ __('poll.create.poll-title') }}:</label>
+				<input type="text" class="form-control" placeholder="{{ __('poll.create.placeholder.poll-title') }}" name="title" required>
+		        <label for="content">{{ __('poll.create.description') }}:</label>
+		        <input type="text" class="form-control" placeholder="{{ __('poll.create.placeholder.description') }}" name="content" required>
+				<label for="date">{{ __('poll.create.date') }}:</label>
+		        <input type="date" class="form-control" name="date" required>
+		        <label class="variants-label">{{ __('poll.create.variants') }}:</label>
 		        <div class="vars_container">
 					<div class="vars">
 						<div class="variant">
-                            <input type="text" placeholder="Введите вариант" required class="variants wout-remove" name="variants[]">
+                            <input type="text" placeholder="{{ __('poll.create.placeholder.variants') }}" required class="variants wout-remove" name="variants[]">
                         </div>
                         <div class="variant">
-                            <input type="text" placeholder="Введите вариант" required class="variants wout-remove" name="variants[]">
+                            <input type="text" placeholder="{{ __('poll.create.placeholder.variants') }}" required class="variants wout-remove" name="variants[]">
                         </div>
 					</div>
-					<div class="add-var">+ Добавить вариант</div>
+					<div class="add-var">+ {{ __('poll.create.add-var') }}</div>
 				</div>
 
-                Кто может голосовать: @access(["attr"=>"name=\"access_vote\""])
-                Кто может смотреть результаты: @access(["attr"=>"name=\"access_see_result\""])
+                {{ __('poll.create.vote') }}: @access(["attr"=>"name=\"access_vote\""])
+                {{ __('poll.create.see') }}: @access(["attr"=>"name=\"access_see_result\""])
 
-		        <button type="submit" class="submit">Отправить</button>
+		        <button type="submit" class="submit">{{ __('main.submit.send') }}</button>
 		    </form>
 		</div>
 	</div>
@@ -54,7 +54,7 @@
             $(".add-var").click(function() {
                 let el = $(
                     `<div class="variant">
-                        <input type="text" placeholder="Введите вариант" required class="variants" name="variants[]">
+                        <input type="text" placeholder="{{ __('poll.create.placeholder.variants') }}" required class="variants" name="variants[]">
                     </div>`
                 );
 

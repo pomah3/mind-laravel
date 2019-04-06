@@ -5,4 +5,9 @@ return array (
   array (
     'title' => 'Students',
   ),
+  'table' => 
+  array (
+    'group' => 'Group',
+    'student' => 'Student',
+  ),
 );

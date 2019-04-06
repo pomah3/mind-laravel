@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="container container-points">
-        <h2>Баланс: <strong>{{ $student->student()->get_balance() }}</strong> баллов</h2>
+        <h2>{{ __('points.give.balance') }}: <strong>{{ $student->student()->get_balance() }}</strong> {{ trans_choice('group.table.points', $student->student()->get_balance()) }}</h2>
 
         @foreach ($days as $day)
             <h3>{{ $day["date"]->format("d.m.Y") }}</h3>

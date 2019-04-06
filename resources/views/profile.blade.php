@@ -44,15 +44,15 @@
         </div>
         <div class="block-information timetable">
             <h2>
-                {{ Carbon\Carbon::now()->format("l") == $date->format("l") ? __('profile.info.today') : __('profile.info.tomorrow') }}:
+                {{ Carbon\Carbon::now()->format("l") == $date->format("l") ? __('profile.timetable.today') : __('profile.timetable.tomorrow') }}:
                 <strong>{{ __("days.".$date->format('l')) }}</strong>
             </h2>
             @if (filled($timetable))
                 <table class="timetable-table">
                     <tr>
                         <th></th>
-                        <th>Предмет</th>
-                        <th>Время</th>
+                        <th>{{ __('profile.timetable.subject') }}</th>
+                        <th>{{ __('profile.timetable.time') }}</th>
                     </tr>
                     @php
                         $last = -1;

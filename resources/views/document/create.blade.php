@@ -6,6 +6,7 @@
 
 @section('content')
     <div class="container container-points">
+        <h2>{{ __('document.create.title') }}</h2>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>

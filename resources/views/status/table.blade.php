@@ -3,10 +3,10 @@
 @endphp
 
 <div class="b-10 group-status {{ $par }}-par">
-    <h2>Класс: <strong>{{ $group }}</strong></h2>
+    <h2>{{ __('status.table.group') }}: <strong>{{ $group }}</strong></h2>
     <table class="group-students">
         <tr>
-            <td class="pl-10"><strong>Ученик</strong></td>
+            <td class="pl-10"><strong>{{ __('status.table.student') }}</strong></td>
             @foreach ($status_r->get_all_statuses() as $s)
                 <td><strong>{{ $s }}</strong></td>
             @endforeach

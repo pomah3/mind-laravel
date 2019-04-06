@@ -6,7 +6,7 @@
 
 @section('content')
 	<div class="container container-points">
-		<h2>Пользователи Mind</h2>
+		<h2>{{ __('user.index.title') }}</h2>
 		<a href="/users/create" class="add-poll">+</a>
 	    <ul>
 	        @foreach ($users as $user)

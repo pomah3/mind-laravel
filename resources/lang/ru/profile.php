@@ -15,8 +15,13 @@ return array (
     'login' => 'Логин',
     'group' => 'Класс',
     'group_teacher' => 'Классный руководитель',
+    'lodin_edu' => 'Логин edu.tatar.ru',
+  ),
+  'timetable' => 
+  array (
     'today' => 'Сегодня',
     'tomorrow' => 'Завтра',
-    'lodin_edu' => 'Логин edu.tatar.ru',
+    'subject' => 'Предмет',
+    'time' => 'Время',
   ),
 );

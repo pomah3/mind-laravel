@@ -1,3 +1,3 @@
 <div class="cause">
-    На ваш вопрос ответили
+    {{ __('notifications.answer') }} <a href="/questions/" class="userlink">{{ __('notifications.question') }}</a>
 </div>

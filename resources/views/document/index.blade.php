@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="container container-points">
-        <h2>Документы</h2>
+        <h2>{{ __('document.index.title') }}</h2>
         @can('create', App\Document::class)
             <a href="/documents/create" class="add-banner">+</a>
         @endcan
@@ -26,7 +26,7 @@
                 </li>
             @empty
                 <div class="not-found">
-                    Нет доступных документов
+                    {{ __('document.index.not-found') }}
                 </div>
             @endforelse
         </ul>

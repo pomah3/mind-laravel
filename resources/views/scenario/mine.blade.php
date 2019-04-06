@@ -18,7 +18,9 @@
             @foreach ($scenarios as $scenario)
                 <li>
                     @php
-                        $url = action("ScenarioController@show", ["id"=> $scenario->id]);
+                        $url = action("ScenarioController@answer_index", [
+                            "id"=> $scenario->id
+                        ]);
                     @endphp
 
                     <a href="{{ $url }}">

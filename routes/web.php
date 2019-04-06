@@ -108,7 +108,7 @@ Route::middleware("auth")->group(function() {
         Route::post("", "ScenarioController@create");
         Route::get("create", "ScenarioController@create_index");
 
-        Route::get("{id}", "ScenarioController@show");
+        Route::get("{id}/answer", "ScenarioController@answer_index");
         Route::post("{id}/answer", "ScenarioController@answer");
     });
 

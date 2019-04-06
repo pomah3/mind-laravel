@@ -64,7 +64,7 @@ class ScenarioController extends Controller {
         ])->with("status", "ok");
     }
 
-    public function show(Request $request, $id) {
+    public function answer_index(Request $request, $id) {
         $scenario = $this->repo->get($id);
 
         if ($scenario == null)

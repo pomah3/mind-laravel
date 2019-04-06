@@ -2,6 +2,10 @@
 
 namespace App;
 
+use App\Document;
+use App\User;
+use PhpOffice\PhpWord\TemplateProcessor;
+
 class Utils {
     public static function sep_group($group) {
         return explode('-', $group);
@@ -71,5 +75,19 @@ class Utils {
             return config("app.password.default", "123");
 
         return str_random(config("app.password.length", 4));
+    }
+
+    public static function word_template(string $file, array $fields) {
+        $template = new TemplateProcessor(resource_path($file));
+
+        foreach ($fields as $key => $value)
+            $template->setValue($key, $value);
+
+        $doc = Document::create("Распоряжение", ["not", "all"], User::find(1));
+        $doc->set_ext("docx");
+
+        $template->saveAs($doc->get_full_path());
+
+        return $doc;
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 
 Route::get('/signin', "SigninController@index")
     ->middleware("guest")

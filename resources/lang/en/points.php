@@ -17,5 +17,7 @@ return array (
   'give' => 
   array (
     'title' => 'Give points',
+    'balance' => 'Balance',
+    'number' => 'Enter number of points',
   ),
 );

@@ -10,9 +10,9 @@
 @section('content')
     <div class="container">
         <div class="buttons">
-            <div class="button-filter active-button par" id="all">Все классы</div>
+            <div class="button-filter active-button par" id="all">{{ __('group.all.title') }}</div>
             @foreach ($pars as $par)
-                <div class="button-filter par" id="{{$par}}-par">{{$par}} классы</div>
+                <div class="button-filter par" id="{{$par}}-par">{{$par}} {{ __('group.all.groups') }}</div>
             @endforeach
             <div class="help-block">
                 <div class="help">?</div>

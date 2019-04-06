@@ -13,19 +13,19 @@
                 <tbody>
                     <tr>
                         <td>
-                            <strong>Предмет</strong>
+                            <strong>{{ __('marks.subject') }}</strong>
                         </td>
                         <td>
-                            <strong>Количество</strong>
+                            <strong>{{ __('marks.number') }}</strong>
                             <span id="mark_text">5</span>
                                 <input type="text" id="mark" class="dis-none mark-change"></input>
-                            <strong>до</strong>
+                            <strong>{{ __('marks.for') }}</strong>
                             <span id="mid_text">4.50</span>
                                 <input type="text" id="mid" class="dis-none mid-change">
                         </td>
-                        <td><strong>Средний балл</strong></td>
+                        <td><strong>{{ __('marks.middle') }}</strong></td>
                         <td colspan="100">
-                            <strong>Оценки</strong>
+                            <strong>{{ __('marks.title') }}</strong>
                         </td>
                     </tr>
                     @foreach ($lessons as $lesson)
@@ -43,7 +43,7 @@
                 </tbody>
             </table>
         @else
-            Сорри, у тебя нет логина еду татар
+            {{ __('marks.not-found') }}
         @endif
     </div>
 

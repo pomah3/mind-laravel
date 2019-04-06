@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="container container-points">
-        <h2>Баланс: <strong>{{ Auth::user()->student()->get_balance() }}</strong> баллов</h2>
+        <h2>{{ __('points.give.balance') }}: <strong>{{ Auth::user()->student()->get_balance() }}</strong> {{ trans_choice('group.table.points', Auth::user()->student()->get_balance()) }}</h2>
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -34,9 +34,9 @@
             @csrf
 
             <select required name="student_id" id="select-student" class="form-control"></select>
-            <input required name="points" type="number" min="1" placeholder="Введите количество баллов" class="form-control">
+            <input required name="points" type="number" min="1" placeholder="{{ __('points.give.number') }}" class="form-control">
 
-            <input type="submit" class="submit">
+            <input type="submit" class="submit" value="{{ __('main.submit.send') }}">
 
         </form>
 

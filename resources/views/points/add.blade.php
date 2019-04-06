@@ -9,7 +9,7 @@
 @section('content')
 
     <div class="container container-points">
-        <h2>Начислить баллы:</h2>
+        <h2>{{ __("points.add.title") }}:</h2>
          @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -33,7 +33,7 @@
             <select required name="student_id" id="select-student" class="form-control"></select>
             <select id="select-category" class="form-control"></select>
             <select required name="cause_id" id="select-cause" class="form-control"></select>
-            <input type="submit" class="submit">
+            <input type="submit" class="submit" value="{{ __('main.submit.send') }}">
 
         </form>
     </div>

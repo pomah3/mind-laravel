@@ -1,6 +1,6 @@
 <select {!! $attr !!} class="form-control">
-    <option value='["all"]'>Все</option>
-    <option value='["student"]'>Только ученики</option>
-    <option value='["teacher"]'>Только учителя</option>
-    <option value='["zam"]'>Только замы</option>
+    <option value='["all"]'>{{ __('layout.select.all') }}</option>
+    <option value='["student"]'>{{ __('layout.select.student') }}</option>
+    <option value='["teacher"]'>{{ __('layout.select.teacher') }}</option>
+    <option value='["zam"]'>{{ __('layout.select.zam') }}</option>
 </select>

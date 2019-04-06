@@ -176,6 +176,19 @@ body.signin-body {
 .fa {
     line-height: 26px;
 }
+/* first meet */
+.first-visit .container,
+.first-visit .jumbotron {
+    background: none;
+}
+.first-visit ul,
+.first-visit ol {
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
 /* header */
 .top-menu {
 	background: #004B7E;
@@ -372,6 +385,20 @@ ul.dropdown-menu li:hover {
 	75% {
 		transform: translate(0, 160%)
 	}
+}
+/* footer */
+.footer {
+    background: #E6EFF6;
+    color: #808080;
+    width: 100%;
+    max-width: 1080px;
+    padding: 10px 20px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+.right-footer {
+    text-align: right;
 }
 /* profile */
 .block-information {
@@ -1250,7 +1277,12 @@ img.answer {
 }
 .one-selector {
     width: 40%;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35);
+    margin-bottom: 20px;
+    transition: .3s;
+}
+.one-selector:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
 }
 .one-selector:first-child {
     width: 20%;
@@ -1260,6 +1292,9 @@ img.answer {
 }
 .one-selector:last-child {
     width: 50%;
+}
+.one-selector {
+    overflow: auto;
 }
 .one-selector .button-filter {
     margin-bottom: 10px;

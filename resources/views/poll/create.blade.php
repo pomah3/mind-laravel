@@ -40,9 +40,14 @@
 					</div>
 					<div class="add-var">+ {{ __('poll.create.add-var') }}</div>
 				</div>
-
+                <hr>
                 {{ __('poll.create.vote') }}: @access(["attr"=>"name=\"access_vote\""])
                 {{ __('poll.create.see') }}: @access(["attr"=>"name=\"access_see_result\""])
+                {{ __('poll.create.revote') }}:
+                <select class="form-control" name="can_revote">
+                    <option value='1'>{{ __('poll.create.yes') }}</option>
+                    <option value='0'>{{ __('poll.create.no') }}</option>
+                </select>
 
 		        <button type="submit" class="submit">{{ __('main.submit.send') }}</button>
 		    </form>

@@ -52,6 +52,32 @@ class UserController extends Controller
         return redirect("/users/" . $user->id);
     }
 
+    public function edit(User $user) {
+        $this->authorize("update", $user);
+        return view("user.edit", ["user" => $user]);
+    }
+
+    public function update(Request $request, User $user) {
+        $this->authorize("update", $user);
+
+        $data = $request->validate([
+            "given_name"  => "required",
+            "father_name" => "required",
+            "family_name" => "required",
+            "password"    => "required",
+        ]);
+
+        $user->given_name  = Formatter::name($data["given_name"] );
+        $user->father_name = Formatter::name($data["father_name"]);
+        $user->family_name = Formatter::name($data["family_name"]);
+
+        $user->password = $data["password"];
+
+        $user->save();
+
+        return redirect("/users/" . $user->id);
+    }
+
     public function destroy(User $user) {
         $user->roles()->delete();
         $user->delete();
@@ -69,5 +95,18 @@ class UserController extends Controller
         foreach ($roles as $role) {
             $user->add_role($role["name"], $role["arg"] ?? null);
         }
+    }
+
+    public function verify_email(Request $request, User $user) {
+        if (!$request->hasValidSignature())
+            abort(403);
+
+        if ($user->email == null)
+            abort(500);
+
+        $user->email_verified_at = now();
+        $user->save();
+
+        return redirect("/")->with('status', "email_verified");
     }
 }

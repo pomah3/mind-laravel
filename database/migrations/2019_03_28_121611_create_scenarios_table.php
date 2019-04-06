@@ -13,7 +13,6 @@ class CreateScenariosTable extends Migration {
             $table->string("stage");
             $table->string("type");
             $table->text("data");
-            $table->integer("user_id");
         });
     }
 

@@ -25,4 +25,8 @@ class UserPolicy
         return $this->see_roles($user, $user1) &&
                $user->has_role(Roles::ADMIN);
     }
+
+    public function update(User $user, User $user1) {
+        return $user->has_role(Roles::ADMIN);
+    }
 }

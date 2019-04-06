@@ -52,6 +52,10 @@ class User extends Authenticatable
         $role->save();
     }
 
+    public function delete_role(string $role_name) {
+        $this->roles->where("role", $role_name)->delete();
+    }
+
     public function student() {
         return new Student($this);
     }

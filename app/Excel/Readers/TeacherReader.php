@@ -14,7 +14,6 @@ class TeacherReader extends RowReader {
 
     public function getColumns(): array {
         return [
-            "num",
             "family_name:name",
             "given_name:name",
             "father_name:name",
@@ -22,6 +21,14 @@ class TeacherReader extends RowReader {
     }
 
     public function save(array $arr): void {
+        $old_user = User::where("given_name", $arr["given_name"])
+                        ->where("family_name", $arr["family_name"])
+                        ->where("father_name", $arr["father_name"])
+                        ->first();
+
+        if ($old_user != null)
+            return;
+
         $teacher = new User;
 
         $teacher->given_name = $arr["given_name"];

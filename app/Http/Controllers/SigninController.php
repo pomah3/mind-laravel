@@ -38,7 +38,15 @@ class SigninController extends Controller {
 
         if ($user) {
             Auth::login($user);
-            return redirect()->route("profile");
+
+            $route = "profile";
+            if ($user->last_visit == null)
+                $route = "first_visit";
+
+            $user->last_visit = now();
+            $user->save();
+
+            return redirect()->route($route);
         }
 
         return redirect()->back()

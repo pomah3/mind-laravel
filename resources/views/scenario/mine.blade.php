@@ -17,7 +17,11 @@
         <ul>
             @foreach ($scenarios as $scenario)
                 <li>
-                    <a href="/scenarios/{{ $scenario->id }}">
+                    @php
+                        $url = action("ScenarioController@show", ["id"=> $scenario->id]);
+                    @endphp
+
+                    <a href="{{ $url }}">
                         {{ $scenario->get_title() }} #{{ $scenario->id }}
                     </a>
                 </li>

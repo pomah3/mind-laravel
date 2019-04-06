@@ -8,7 +8,10 @@
     <div class="container">
         <p> {!! $scenario->get_output(Auth::user()) !!} </p>
 
-        <form action="/scenarios/{{ $scenario->id }}/answer" method="POST">
+        @php
+            $url = action("ScenarioController@answer", ["id" => $scenario->id]);
+        @endphp
+        <form action="{{ $url }}" method="POST">
             @csrf
             @foreach ($scenario->get_input() as $input)
                 {!! $input->get_html() !!} <br>

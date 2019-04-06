@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="container">
-        <form action="/scenarios" method="POST">
+        <form action="{{ action("ScenarioController@create") }}" method="POST">
             @csrf
             @foreach ($scenario->get_input() as $input)
                 {!! $input->get_html() !!} <br>

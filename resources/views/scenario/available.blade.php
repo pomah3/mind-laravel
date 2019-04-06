@@ -9,7 +9,13 @@
         <ul>
             @foreach ($scenarios as $scenario)
                 <li>
-                    <a href="/scenarios/create?scenario={{ $scenario->get_name() }}">
+                    @php
+                        $url = action("ScenarioController@create_index", [
+                            "scenario" => $scenario->get_name()
+                        ]);
+                    @endphp
+
+                    <a href="{{ $url }}">
                         {{ $scenario->get_title() }}
                     </a>
                 </li>

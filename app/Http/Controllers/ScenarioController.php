@@ -30,7 +30,7 @@ class ScenarioController extends Controller {
 
     public function create_index(Request $request) {
         if ($request->scenario == null)
-            return redirect("/scenarios/available");
+            return redirect()->action("ScenarioController@available");
 
         $scenario = $this->provider->get_scenario($request->scenario);
 
@@ -58,7 +58,10 @@ class ScenarioController extends Controller {
 
         $scenario = $scenario->create(Auth::user(), $input);
         $this->repo->save($scenario);
-        return redirect("/scenarios/create?scenario=".$scenario->get_name())->with("status", "ok");
+
+        return redirect()->action("ScenarioController@create_index", [
+            "scenario" => $scenario->get_name()
+        ])->with("status", "ok");
     }
 
     public function show(Request $request, $id) {
@@ -81,7 +84,7 @@ class ScenarioController extends Controller {
             abort(404);
 
         if ($request->stage == null || $request->stage != $scenario->get_stage())
-            return redirect("/scenarios/mine")->with("status", "expired");
+            return redirect()->action("ScenarioController@mine")->with("status", "expired");
 
         $this->authorize("answer-scenario", $scenario);
 
@@ -94,6 +97,6 @@ class ScenarioController extends Controller {
         $scenario->handle(Auth::user(), $input);
         $this->repo->save($scenario);
 
-        return redirect("/scenarios/mine");
+        return redirect()->action("ScenarioController@mine");
     }
 }

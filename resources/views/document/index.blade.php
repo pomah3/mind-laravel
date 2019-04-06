@@ -14,7 +14,7 @@
         <ul>
             @forelse ($documents as $document)
                 <li class="not-list-style">
-                    <a href="/documents/{{ $document->id }}" class="a-designed">
+                    <a href="/documents/{{ $document->id }}" class="a-designed" target="_blank">
                         {{ $document->title }}
                     </a>
                     @can('update', $document)

@@ -2,6 +2,7 @@
 
 namespace App\Scenarios;
 
+use App\Scenarios\Scenario;
 use App\User;
 use Illuminate\Support\Facades\DB;
 
@@ -46,7 +47,7 @@ class ScenarioRepositoryImpl implements ScenarioRepository {
         return $scenario;
     }
 
-    public function save($scenario) {
+    public function save(Scenario $scenario) {
         if ($scenario->id) {
             DB::table("scenarios")
               ->where("id", $scenario->id)
@@ -72,7 +73,7 @@ class ScenarioRepositoryImpl implements ScenarioRepository {
         }
     }
 
-    public function delete($scenario) {
+    public function delete(Scenario $scenario) {
         DB::table("scenarios")->where("id", $scenario->id)->delete();
         DB::table("scenario_user")->where("scenario_id", $scenario->id)->delete();
     }

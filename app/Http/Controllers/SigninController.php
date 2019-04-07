@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use App\EduTatar\EduTatarAuth;
+use App\User;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class SigninController extends Controller {
+    use ThrottlesLogins;
+
     private $eta;
 
     public function __construct(EduTatarAuth $eta) {
@@ -25,11 +28,19 @@ class SigninController extends Controller {
         return redirect()->route('signin');
     }
 
+
     public function enter(Request $request) {
         extract($request->validate([
             "login" => "required",
             "password" => "required"
         ]));
+
+        $this->incrementLoginAttempts($request);
+
+        if ($this->hasTooManyLoginAttempts($request))
+            return redirect()->back()
+                             ->withErrors(trans("signin.toomany"))
+                             ->withInput();
 
         $user = null;
         $user = $user ?? $this->enter_base($login, $password);
@@ -37,6 +48,8 @@ class SigninController extends Controller {
         $user = $user ?? $this->enter_edu($login, $password);
 
         if ($user) {
+            $this->clearLoginAttempts($request);
+
             Auth::login($user);
 
             $route = "profile";
@@ -84,5 +97,9 @@ class SigninController extends Controller {
         $user->save();
 
         return $user;
+    }
+
+    protected function username() {
+        return "login";
     }
 }

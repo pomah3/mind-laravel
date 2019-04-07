@@ -46,37 +46,17 @@
             <div class="one-selector">
                 <h3>Ученик</h3>
                 <div class="wrapper" id="students">
-                    <div class="button-filter">Рома</div>
-                    <div class="button-filter">Ринат</div>
-                    <div class="button-filter">Данис</div>
-                    <div class="button-filter">Наташа</div>
-                    <div class="button-filter">Руслан</div>
-                    <div class="button-filter">Тимур</div>
                     <p class="placeholder">Выберите класс</p>
                 </div>
             </div>
             <div class="one-selector dis-none">
                 <h3>Категория</h3>
                 <div class="wrapper" id="categories">
-                    <div class="button-filter">Олимпиадное движение</div>
-                    <div class="button-filter">Проектная деятельность</div>
-                    <div class="button-filter">Успеваемость</div>
-                    <div class="button-filter">Культурно-масссовые мероприятия</div>
-                    <div class="button-filter">Спортивные мероприятия</div>
-                    <div class="button-filter">Внеурочная деятельность</div>
-                    <div class="button-filter">Деятельность класса</div>
-                    <div class="button-filter">Интернат</div>
                 </div>
             </div>
             <div class="one-selector dis-none">
                 <h3>Основание</h3>
                 <div class="wrapper" id="causes">
-                    <div class="button-filter">Машина межнара</div>
-                    <div class="button-filter">Машина всероса</div>
-                    <div class="button-filter">Машина респы</div>
-                    <div class="button-filter">Мозг муниципа</div>
-                    <div class="button-filter">Насасов школьного</div>
-                    <div class="button-filter">Есть дневник олимпиадника</div>
                     <p class="placeholder">Выберите категорию</p>
                 </div>
             </div>
@@ -97,8 +77,18 @@
     @push('scripts')
         <script>
             (function() {
-                let _groups = @json($groups);
                 let pars = @json($pars);
+                let _groups = @json($groups);
+                let _students = @json($students);
+                let _causes = @json($causes);
+
+                let causes = {};
+                _causes.forEach(function(a) {
+                    let cat = a.category;
+                    causes[cat] = causes[cat] || [];
+                    causes[cat].push(a);
+                })
+                let categories = Object.keys(causes);
 
                 let groups = {};
                 _groups.forEach(function(a) {
@@ -106,6 +96,15 @@
                     groups[par] = groups[par] || [];
                     groups[par].push(a);
                 });
+
+                let students = {};
+                _students.forEach(function(a) {
+                    let group = a.group;
+                    students[group] = students[group] || [];
+                    students[group].push(a);
+                });
+
+                const name = st => st.family_name + ' ' + st.given_name;
 
                 const fill_groups = function() {
                     let par = $("#pars").find(".active-button").html().trim();
@@ -120,6 +119,55 @@
                     $("#groups .button-filter").click(function() {
                         $("#groups .button-filter").removeClass("active-button");
                         $(this).addClass("active-button");
+                        fill_students();
+                    });
+                }
+
+                const fill_students = function() {
+                    let group = $("#groups").find(".active-button").html().trim();
+                    $("#students").empty();
+
+                    students[group].forEach(function(a) {
+                        $("#students").append(
+                            `<div class="button-filter" student-id="${a.id}">${name(a)}</div>`
+                        );
+                    });
+                    $("#students .button-filter").click(function() {
+                        let name = $(this).html();
+
+                        $("#pars").parent().hide();
+                        $("#groups").parent().hide();
+                        $("#students").parent().hide();
+                        $("#categories").parent().show();
+                        $("#causes").parent().show();
+                        $("#selected_student").html(name);
+                    });
+                }
+
+                const fill_categories = function() {
+                    $("#categories").empty();
+                    categories.forEach(function(a) {
+                        $("#categories").append(
+                            `<div class="button-filter">${a}</div>`
+                        );
+                    });
+
+                    $("#categories .button-filter").click(function() {
+                        $("#categories .button-filter").removeClass("active-button");
+                        $(this).addClass("active-button");
+
+                        fill_causes();
+                    });
+                }
+                fill_categories();
+
+                const fill_causes = function() {
+                    let cat = $("#categories").find(".active-button").html().trim();
+                    $("#causes").empty();
+                    causes[cat].forEach(function(a) {
+                        $("#causes").append(
+                            `<div class="button-filter" cause_id="${a.id}">${a.title}</div>`
+                        );
                     });
                 }
 
@@ -127,15 +175,6 @@
                     $("#pars .button-filter").removeClass("active-button");
                     $(this).addClass("active-button");
                     fill_groups();
-                });
-
-                $("#students .button-filter").click(function() {
-                    $("#pars").parent().hide();
-                    $("#groups").parent().hide();
-                    $("#students").parent().hide();
-                    $("#categories").parent().show();
-                    $("#causes").parent().show();
-                    $("#selected_student").html("Пробная фамилия имя и отчество");
                 });
             })();
         </script>

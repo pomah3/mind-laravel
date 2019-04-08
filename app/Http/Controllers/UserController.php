@@ -97,13 +97,11 @@ class UserController extends Controller
         }
     }
 
-    public function verify_email(Request $request, User $user) {
+    public function verify_email(Request $request, User $user, string $email) {
         if (!$request->hasValidSignature())
             abort(403);
 
-        if ($user->email == null)
-            abort(500);
-
+        $user->email = $email;
         $user->email_verified_at = now();
         $user->save();
 

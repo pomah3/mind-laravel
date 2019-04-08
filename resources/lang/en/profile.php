@@ -2,22 +2,23 @@
 
 return array (
   'title' => 'Profile',
-  'greeting' => 
+  'greeting' =>
   array (
     'day' => 'Good afternoon',
     'evening' => 'Good evening',
     'morning' => 'Good morning',
     'night' => 'Good nignt',
   ),
-  'info' => 
+  'info' =>
   array (
     'balance' => 'Balance',
     'group' => 'Group',
     'group_teacher' => 'Group teacher',
+    'group_teacher' => 'Group mentor',
     'login' => 'Login',
     'lodin_edu' => 'Login from edu.tatar.ru',
   ),
-  'timetable' => 
+  'timetable' =>
   array (
     'subject' => 'Subject',
     'time' => 'Time',

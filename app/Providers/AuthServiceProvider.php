@@ -17,6 +17,10 @@ class AuthServiceProvider extends ServiceProvider
         'App\Document' => 'App\Policies\DocumentPolicy',
     ];
 
+    private function studentPolicies() {
+        Gate::define("see-student-list", "App\Policies\StudentPolicy@seeList");
+    }
+
     private function pointsPolicies() {
         Gate::define("receive-points", "App\Policies\PointsPolicy@receivePoints");
         Gate::define("see-points", "App\Policies\PointsPolicy@seePoints");

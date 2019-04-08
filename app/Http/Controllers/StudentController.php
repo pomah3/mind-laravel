@@ -15,6 +15,12 @@ class StudentController extends Controller {
 
     ];
 
+    public function student_list_prepare() {
+        return view("student.prepare", [
+            "fields" => $this->allowed_fields
+        ]);
+    }
+
     public function index(Request $request) {
         $fields = $this->get_fields($request->fields);
         $users = $this->get_users($request, $fields);

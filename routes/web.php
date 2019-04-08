@@ -34,6 +34,7 @@ Route::middleware("auth")->group(function() {
     });
 
     Route::get("students", "StudentController@index");
+    Route::get("students/prepare", "StudentController@student_list_prepare");
 
     Route::get("/timetable", "TimetableController@show");
         // ->middleware("role:student");

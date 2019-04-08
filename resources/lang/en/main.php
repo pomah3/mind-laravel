@@ -13,5 +13,10 @@ return array (
   array (
     'save' => 'Save',
     'send' => 'Send',
+    'ask' => 'Ask question',
+  ),
+  'link' => 
+  array (
+    'more' => 'More',
   ),
 );

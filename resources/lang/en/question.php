@@ -8,5 +8,7 @@ return array (
   'show' => 
   array (
     'title' => 'Questions',
+    'answer' => 'Enter answer',
+    'ask' => 'Enter question',
   ),
 );

@@ -23,9 +23,18 @@ class DocumentController extends Controller {
         return view("document.create");
     }
 
-    public function show(Document $document) {
-        $this->authorize("view", $document);
-        return response()->file(storage_path("app/documents/".$document->link));
+    public function show(Request $request, Document $document) {
+        if (!$request->hasValidSignature())
+            $this->authorize("view", $document);
+
+        $headers = [];
+        if (pathinfo($document->link)['extension'] == "docx")
+            $headers["Content-type"] = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+
+        return response()->file(
+            storage_path("app/documents/".$document->link),
+            $headers
+        );
     }
 
     public function store(Request $request) {
@@ -37,20 +46,13 @@ class DocumentController extends Controller {
             "file" => "required|mimes:docx,pdf,txt,md,doc,xls,xlsx,ppt,pptx"
         ]);
 
-        $doc = new Document;
+        $doc = Document::create(
+            $data["title"],
+            json_decode($data["access"], true),
+            Auth::user()
+        );
 
-        $doc->title = $data["title"];
-        $doc->access = json_decode($data["access"]);
-        $doc->link = "";
-        $doc->author_id = Auth::user()->id;
-
-        $doc->save();
-        $doc->refresh();
-
-        $ext = $request->file("file")->extension();
-        $doc->link = $doc->id . ".$ext";
-
-        $doc->save();
+        $doc->set_ext($request->file("file")->extension());
 
         $request->file('file')->storeAs(
             "documents", $doc->link

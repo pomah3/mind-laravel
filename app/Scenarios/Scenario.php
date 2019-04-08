@@ -2,11 +2,13 @@
 
 namespace App\Scenarios;
 
+use App\User;
+
 abstract class Scenario {
     public $id = null;
     private $stage;
     private $data;
-    private $user;
+    private $users;
 
     public function get_stage() {
         return $this->stage;
@@ -32,35 +34,35 @@ abstract class Scenario {
         $this->data[$key] = $value;
     }
 
-    public function get_user(): ?string {
-        return $this->user;
+    public function get_users(): array {
+        return $this->users;
     }
 
-    public function set_user(?string $user) {
-        $this->user = $user;
+    public function set_users(array $users) {
+        $this->users = $users;
     }
 
-    public function __construct(string $stage = "init", array $data = [], ?string $user = null) {
+    public function __construct(string $stage = "init", array $data = [], array $users = []) {
         $this->stage = $stage;
         $this->data = $data;
-        $this->user = $user;
+        $this->users = $users;
     }
 
-    public function create(string $user, array $input) {
+    public function create(User $user, array $input) {
         $obj = (new \ReflectionClass($this))->newInstance();
         $obj->handle($user, $input);
         return $obj;
     }
 
-    public function handle(string $user, $input) {
+    public function handle(User $user, $input) {
         $stage = $this->get_stage();
         $stage = $this->get_stages()[$stage];
         ($stage->handle)($this, $input, $user);
     }
 
-    public function get_output() {
+    public function get_output(User $user) {
         $stage = $this->get_stage();
-        return ($this->get_stages()[$stage]->output)($this);
+        return ($this->get_stages()[$stage]->output)($this, $user);
     }
 
     public function get_input() {

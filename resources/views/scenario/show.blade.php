@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="container">
-        <p> {{ $scenario->get_output() }} </p>
+        <p> {!! $scenario->get_output(Auth::user()) !!} </p>
 
         <form action="/scenarios/{{ $scenario->id }}/answer" method="POST">
             @csrf
@@ -14,7 +14,7 @@
                 {!! $input->get_html() !!} <br>
             @endforeach
 
-            <input type="hidden" name="scenario" value="{{ $scenario->get_name() }}">
+            <input type="hidden" name="stage" value="{{ $scenario->get_stage() }}">
 
             @if (!$scenario->is_finished())
                 <input type="submit">

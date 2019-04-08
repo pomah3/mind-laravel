@@ -7,13 +7,13 @@
 @section('content')
 
     <div class="container container-points">
-        <h2>Голосования</h2>
+        <h2>{{ __('poll.index.title') }}</h2>
         @can('create', App\Poll::class)
             <a href="/polls/create" class="add-poll">+</a>
         @endcan
         <div class="buttons">
-            <div class="button-filter active-button" id="new-polls">Доступные</div>
-            <div class="button-filter" id="old-polls">Прошедшие</div>
+            <div class="button-filter active-button" id="new-polls">{{ __('poll.index.actual') }}</div>
+            <div class="button-filter" id="old-polls">{{ __('poll.index.history') }}</div>
         </div>
 
         <div class="flex">
@@ -23,16 +23,18 @@
                         <button poll-id="{{ $poll->id }}" class="poll-delete">&times;</button>
                     @endcan
                     <a href="/polls/{{ $poll->id }}">{{ $poll->title }}</a>
+
                     <div class="banner-label">
-                        Доступно до: <span>{{ $poll->till_date->format("d.m.Y") }}</span>
+                        {{ __('poll.index.date') }}: <span>{{ $poll->till_date->format("d.m.Y") }}</span>
                     </div>
+
                     <div class="banner-label">
-                        Автор голосования: <span>@user(["user" => $poll->creator])</span>
+                        {{ __('poll.index.author') }}: <span>@user(["user" => $poll->creator])</span>
                     </div>
                 </div>
             @empty
                 <div class="not-found">
-                    Нет доступных голосований
+                    {{ __('poll.not-found') }}
                 </div>
             @endforelse
         </div>

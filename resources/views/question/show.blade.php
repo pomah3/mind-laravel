@@ -10,8 +10,8 @@
     <div class="container">
         <form action="questions/store" method="POST" class="form-40-marg-all">
             @csrf
-            <textarea name="question" class="form-control" placeholder="Введите вопрос"></textarea>
-            <input type="submit" value="{{ __('question.ask') }}" class="submit">
+            <textarea name="question" class="form-control" placeholder="{{ __('question.show.ask') }}"></textarea>
+            <input type="submit" value="{{ __('main.submit.ask') }}" class="submit">
         </form>
 
         @foreach ($questions as $question)

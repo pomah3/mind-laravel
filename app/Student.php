@@ -27,6 +27,17 @@ class Student {
         return User::find($role->user_id);
     }
 
+    public function get_vospit() {
+        $role = Role::where("role", "vospit")
+                    ->where("role_arg", $this->get_group())
+                    ->first();
+
+        if (!$role)
+            return null;
+
+        return User::find($role->user_id);
+    }
+
     public function get_group() {
         return $this->user->get_role_arg("student");
     }

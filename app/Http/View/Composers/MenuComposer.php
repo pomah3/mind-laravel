@@ -15,7 +15,7 @@ class MenuComposer {
             ["menu.points.give", "/points/give", ["student"]],
             ["menu.points.add", "/points/add", ["can", "add-index-points"]],
             ["menu.groups", "/groups", ["can", "view-all-groups"]],
-            ["menu.points.group", "/groups/mine", ["or", "classruk", "student"]],
+            ["menu.points.group", "/groups/mine", ["or", "classruk", "student", "vospit"]],
         ],
         [
             "menu.admin",

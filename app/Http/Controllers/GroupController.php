@@ -16,11 +16,16 @@ class GroupController extends Controller {
     }
 
     public function get_default() {
-        if (Auth::user()->has_role("classruk"))
-            return $this->get(Auth::user()->get_role_arg("classruk"));
+        $user = Auth::user();
 
-        if (Auth::user()->has_role("student"))
-            return $this->get(Auth::user()->get_role_arg("student"));
+        if ($user->has_role("classruk"))
+            return $this->get($user->get_role_arg("classruk"));
+
+        if ($user->has_role("student"))
+            return $this->get($user->get_role_arg("student"));
+
+        if ($user->has_role("vospit"))
+            return $this->get($user->get_role_arg("vospit"));
 
         abort(403);
     }

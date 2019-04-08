@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Scenarios\Fields\InputField;
+namespace App\Scenarios\Fields;
 
 use Illuminate\Http\Request;
 
-class TextInputField {
+class TextInputField implements InputField {
 	private $name;
 	private $label;
 	private $text = null;
@@ -15,7 +15,10 @@ class TextInputField {
 	}
 
 	public function get_html() {
-		return $this->label . ': <input type="text" required name="'.$this->name.'">';
+		return view("scenario.fields.text", [
+            "label" => $this->label,
+            "name" => $this->name
+        ]);
 	}
 
 	public function set_value(Request $r) {

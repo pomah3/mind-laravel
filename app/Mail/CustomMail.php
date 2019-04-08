@@ -20,7 +20,7 @@ class CustomMail extends Mailable
     }
 
     public function build() {
-        return $this->view('email.base')
+        return $this->view('email.custom')
                     ->subject($this->subject);
     }
 }

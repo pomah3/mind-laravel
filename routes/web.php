@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 
 Route::get('/signin', "SigninController@index")
     ->middleware("guest")
@@ -31,6 +32,8 @@ Route::middleware("auth")->group(function() {
         Route::get("{student}", "PointsController@of_student");
 
     });
+
+    Route::get("students", "StudentController@index");
 
     Route::get("/timetable", "TimetableController@show");
         // ->middleware("role:student");
@@ -111,8 +114,10 @@ Route::middleware("auth")->group(function() {
         Route::post("{id}/answer", "ScenarioController@answer");
     });
 
+    Route::get("/first_visit", "FirstVisitController")->name("first_visit");
+
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')
          ->middleware("role:admin");
 
-    Route::get("students", "StudentController@index");
+    Route::get('verify_email/{user}/{email}', "UserController@verify_email")->name("verify_email");
 });

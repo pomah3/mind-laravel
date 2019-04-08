@@ -50,7 +50,16 @@
         </header>
 
         @yield('content')
-
+        <div class="footer">
+            <div class="left-footer">
+                <a href="/doc" class="userlink">Справка</a><br>
+                <p>Mind © 2018-{{ date('Y') }}</p>
+            </div>
+            <div class="right-footer">
+                <a href="mailto:info@mind-itl-kfu.ru" class="userlink">info@mind-itl-kfu.ru</a><br>
+                <a href="https://vk.com/mind_itl" class="userlink">Группа ВК</a>
+            </div>
+        </div>
     </div>
 
     <script src="{{ URL::asset("js/app.js") }}"></script>

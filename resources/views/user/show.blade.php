@@ -26,15 +26,17 @@
             @endpush
         @endcan
 
-        @can('see-status', $user)
-            @inject('statuses', 'App\Repositories\StatusRepository')
-            <h3>
-                Статус:
-                <strong>
-                    {{ __('status.types.'.$statuses->get_status($user)->title) }}
-                </strong>
-            </h3>
-        @endcan
+        @if ($user->type == "student")
+            @can('see-status', $user)
+                @inject('statuses', 'App\Repositories\StatusRepository')
+                <h3>
+                    Статус:
+                    <strong>
+                        {{ __('status.types.'.$statuses->get_status($user)->title) }}
+                    </strong>
+                </h3>
+            @endcan
+        @endif
 
         @can("view_password", $user)
             <h3>{{ __('user.show.login') }}: <strong>{{ $user->id }}</strong></h3>

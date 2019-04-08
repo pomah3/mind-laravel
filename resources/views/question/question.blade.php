@@ -16,7 +16,7 @@
     @endif
 
     @can("answer", $question)
-        <textarea class="question-answer-send-text" placeholder="Введите ответ"></textarea>
+        <textarea class="question-answer-send-text" placeholder="{{ __('question.show.answer') }}"></textarea>
         <button class="question-answer" question-id="{{ $question->id }}">{{ __('question.answer') }}</button>
     @endcan
 </div>

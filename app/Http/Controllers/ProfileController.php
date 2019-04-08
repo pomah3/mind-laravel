@@ -53,9 +53,6 @@ class ProfileController extends Controller
         if ($day == "Sunday")
             return null;
 
-        if (Auth::user()->type != "student")
-            return null;
-
         return $this
             ->ttr
             ->get_lessons(

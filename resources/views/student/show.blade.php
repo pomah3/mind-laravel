@@ -6,10 +6,11 @@
 
 @section('content')
     <div class="container">
+        <a href="/students/excel?fields={{ $fields_raw }}">Скачать</a>
         <table>
             <tr>
                 @foreach ($fields as $field)
-                    <td>{{ $field }}</td>
+                    <td>{{ __('student.fields.'.$field) }}</td>
                 @endforeach
             </tr>
 

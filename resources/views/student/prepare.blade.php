@@ -7,7 +7,10 @@
 @section('content')
     <div class="container">
         @foreach ($fields as $field)
-            <input type="checkbox" class="fields" field-name="{{ $field }}"> {{ $field }} <br>
+            <div class="form-control">
+                <input type="checkbox" class="fields" field-name="{{ $field }}">
+                {{ __('student.fields.'.$field) }}
+            </div>
         @endforeach
 
         <a id="student-link" href="/students">Перейти</a>

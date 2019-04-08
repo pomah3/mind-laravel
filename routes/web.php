@@ -33,8 +33,11 @@ Route::middleware("auth")->group(function() {
 
     });
 
-    Route::get("students", "StudentController@index");
-    Route::get("students/prepare", "StudentController@student_list_prepare");
+    Route::prefix("/students")->group(function() {
+        Route::get("", "StudentController@index");
+        Route::get("prepare", "StudentController@student_list_prepare");
+        Route::get("excel", "StudentController@excel");
+    });
 
     Route::get("/timetable", "TimetableController@show");
         // ->middleware("role:student");

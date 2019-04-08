@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Excel\Writers\StudentWriter;
 use App\User;
 use App\Utils;
-use App\ViewModels\StudentViewModel;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller {
@@ -29,9 +29,21 @@ class StudentController extends Controller {
         $fields = $this->get_fields($request->fields);
         $users = $this->get_users($request, $fields);
 
-        return view(
-            "student.show", new StudentViewModel($users, $fields)
-        );
+        return view("student.show", [
+            "students" => $users,
+            "fields" => $fields,
+            'fields_raw' => $request->fields
+        ]);
+    }
+
+    public function excel(Request $request) {
+        $fields = $this->get_fields($request->fields);
+        $users = $this->get_users($request, $fields);
+
+        $writer = new StudentWriter($users, $fields);
+        $file = $writer->write();
+
+        return response()->download($file, "student.xlsx")->deleteFileAfterSend();
     }
 
     private function get_users(Request $request, $fields) {

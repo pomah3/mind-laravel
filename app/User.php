@@ -71,4 +71,8 @@ class User extends Authenticatable
     public function scopeTeachers($query) {
         return $query->where("type", "teacher");
     }
+
+    public function studentInfo() {
+        return $this->hasOne(StudentInfo::class, "student_id")->withDefault();
+    }
 }

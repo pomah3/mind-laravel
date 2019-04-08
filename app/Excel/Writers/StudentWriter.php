@@ -33,6 +33,9 @@ class StudentWriter {
         $list->fromArray($students->all(), null, 'A2');
 
         $list->setAutoFilter($list->calculateWorksheetDimension());
+        foreach (range('A', 'Z') as $column) {
+            $list->getColumnDimension($column)->setAutoSize(true);
+        }
 
         $file = tempnam(sys_get_temp_dir(), "FOO");
         $writer = IOFactory::createWriter($sheet, 'Xlsx');

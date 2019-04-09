@@ -8,20 +8,16 @@
 
 @section('content')
     <div class="container container-points container-marks">
-        <lessons-component v-bind:lessons="lessons">
+        @if ($has_login)
+            <lessons-component v-bind:lessons="lessons">
+        @else
+            Сорян, у тебя нет логина еду татара.
+        @endif
     </div>
 
     @push('scripts')
         <script>
-            data.lessons = [
-                {
-                    name: "Русский",
-                    marks: [2,3,4,5]
-                },{
-                    name: "Математика",
-                    marks: [2,3,4, 1]
-                }
-            ]
+            data.lessons = @json($marks);
         </script>
     @endpush
 @endsection

@@ -17,7 +17,7 @@
 
     @push('scripts')
         <script>
-            data.lessons = @json($marks);
+            data.lessons = @json($lessons);
         </script>
     @endpush
 @endsection

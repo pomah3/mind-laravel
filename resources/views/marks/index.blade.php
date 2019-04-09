@@ -8,32 +8,8 @@
 
 @section('content')
     <div class="container container-points container-marks">
-
-        {{-- <table class="table table-sm">
-            <tbody>
-                <tr>
-                    <td>
-                        <strong>{{ __('marks.subject') }}</strong>
-                    </td>
-                    <td>
-                        <strong>{{ __('marks.number') }}</strong>
-                        <span id="mark_text">5</span>
-                            <input type="text" id="mark" class="dis-none mark-change"></input>
-                        <strong>{{ __('marks.for') }}</strong>
-                        <span id="mid_text">4.50</span>
-                            <input type="text" id="mid" class="dis-none mid-change">
-                    </td>
-                    <td><strong>{{ __('marks.middle') }}</strong></td>
-                    <td colspan="100">
-                        <strong>{{ __('marks.title') }}</strong>
-                    </td>
-                </tr> --}}
-
-                <lessons-component v-bind:lessons="lessons">
-
-{{--             </tbody>
-        </table>
- --}}    </div>
+        <lessons-component v-bind:lessons="lessons">
+    </div>
 
     @push('scripts')
         <script>

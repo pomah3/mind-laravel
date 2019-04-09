@@ -11,11 +11,10 @@
     <link rel="stylesheet" href="{{ mix("css/lib.css") }}">
     <link rel="stylesheet" href="{{ mix("css/app.css") }}">
     <script>window.userId = null</script>
+    <script>window.userId = {{ Auth::user()->id }}</script>
 </head>
 <body>
-
-    <div class="main_container">
-        <script>window.userId = {{ Auth::user()->id }}</script>
+    <div class="main_container" id="app">
 
         <header>
             <div class="top-menu lang-set">
@@ -62,8 +61,19 @@
         </div>
     </div>
 
+    <script>
+        window.data = {};
+    </script>
+
     <script src="{{ URL::asset("js/app.js") }}"></script>
     @stack("scripts")
+
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: window.data || {}
+        });
+    </script>
 
 </body>
 </html>

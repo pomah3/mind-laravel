@@ -26,6 +26,9 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('edutatar:marks')
                  ->daily()->at("21:00");
+
+        $schedule->command('mind:copy-statuses')
+                 ->daily()->at('22:00');
     }
 
     /**

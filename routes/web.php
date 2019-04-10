@@ -39,8 +39,10 @@ Route::middleware("auth")->group(function() {
         Route::get("excel", "StudentController@excel");
     });
 
-    Route::get("/timetable", "TimetableController@show");
-        // ->middleware("role:student");
+    Route::prefix("/timetable")->group(function() {
+        Route::get("", "TimetableController@show");
+        Route::get("{user}", "TimetableController@show_for_user");
+    });
 
     Route::prefix("/groups")->group(function() {
         Route::get("mine", "GroupController@get_default");

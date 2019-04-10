@@ -29,4 +29,14 @@ class UserPolicy
     public function update(User $user, User $user1) {
         return $user->has_role(Roles::ADMIN);
     }
+
+    public function see_timetable(User $user, User $user1) {
+        return $user->has_role(Roles::ZAM)
+            || $user->has_role(Roles::DIRIC)
+            || (
+                $user->has_role(Roles::CLASSRUK) &&
+                $user1->type == "student" &&
+                $user1->student()->get_group() == $user->get_role_arg(Roles::CLASSRUK)
+            );
+    }
 }

@@ -61,12 +61,7 @@
         </div>
     </div>
 
-    <script>
-        window.data = {};
-    </script>
-
     <script src="{{ URL::asset("js/app.js") }}"></script>
-    @stack("scripts")
 
     <script>
         const app = new Vue({
@@ -74,6 +69,8 @@
             data: window.data || {}
         });
     </script>
+
+    @stack("scripts")
 
 </body>
 </html>

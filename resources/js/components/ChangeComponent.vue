@@ -7,6 +7,7 @@
             v-on:input="$emit('input', $event.target.value)"
             v-on:blur="set_not_active()"
             ref="input"
+            v-bind:style="{width: width + 'px'}"
         >
         <span v-if="!is_active">{{ value }}</span>
     </span>
@@ -31,6 +32,15 @@
             set_not_active: function() {
                 this.is_active = false;
             }
+        },
+        computed: {
+            width: function() {
+                return 8*((''+this.value).length + 1);
+            }
         }
     }
 </script>
+
+<style>
+
+</style>

@@ -1,5 +1,11 @@
-@extends("email.base")
+@extends("email.components.base")
 
 @section("content")
-    {{ $text }}
+    @component("email.components.h1")
+        {{ $subject }}
+    @endcomponent
+
+    @component("email.components.p")
+        {{ $text }}
+    @endcomponent
 @endsection

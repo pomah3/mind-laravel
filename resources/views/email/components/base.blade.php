@@ -52,12 +52,12 @@
                     </tr>
                     <tr>
                         <td>
-                            <a style="color: #ffffff; font: 12px Arial, sans-serif; line-height: 15px; -webkit-text-size-adjust:none; display: block;" href="https://vk.com/mind_itl">Группа Вконтакте</a>
+                            <a style="color: #ffffff; font: 12px Arial, sans-serif; line-height: 15px; -webkit-text-size-adjust:none; display: block;" href="http://mind-itl-kfu.ru/doc">Справка</a>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <a style="color: #ffffff; font: 12px Arial, sans-serif; line-height: 15px; -webkit-text-size-adjust:none; display: block;" href="https://github.com/pomah3/mind-laravel">Github</a>
+                            <a style="color: #ffffff; font: 12px Arial, sans-serif; line-height: 15px; -webkit-text-size-adjust:none; display: block;" href="https://vk.com/mind_itl">Группа Вконтакте</a>
                         </td>
                     </tr>
                 </table>

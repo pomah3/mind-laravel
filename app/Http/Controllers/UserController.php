@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
+use App\Excel\Formatter;
+use App\Mail\VerifiedMail;
 use App\User;
 use App\Utils;
-use App\Excel\Formatter;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -104,6 +106,8 @@ class UserController extends Controller
         $user->email = $email;
         $user->email_verified_at = now();
         $user->save();
+
+        Mail::to($user)->send(new VerifiedMail($user));
 
         return redirect("/")->with('status', "email_verified");
     }

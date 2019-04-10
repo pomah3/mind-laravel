@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class StatusRepositoryImpl implements StatusRepository {
     public function get_all_statuses() {
         return [
-            "П", "БД", "БИ", "УП", "В"
+            "П", "БД", "БИ", "УП", "В", "Д"
         ];
     }
 

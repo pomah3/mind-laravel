@@ -43,25 +43,26 @@
                     <img src="http://mind-itl-kfu.ru/img/logo_full.png" alt="MIND" border="0" width="" height="30" style="display:block; left: 0px" align="left">
                 </a>
             </td>
-            <td>
+            <td align="right">
                 <table>
                     <tr>
-                        <td>
+                        <td style="text-align: right;">
                             <a style="color: #ffffff; font: 12px Arial, sans-serif; line-height: 15px; -webkit-text-size-adjust:none; display: block;" href="http://mind-itl-kfu.ru">Сайт</a>
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="text-align: right;">
                             <a style="color: #ffffff; font: 12px Arial, sans-serif; line-height: 15px; -webkit-text-size-adjust:none; display: block;" href="http://mind-itl-kfu.ru/doc">Справка</a>
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="text-align: right;">
                             <a style="color: #ffffff; font: 12px Arial, sans-serif; line-height: 15px; -webkit-text-size-adjust:none; display: block;" href="https://vk.com/mind_itl">Группа Вконтакте</a>
                         </td>
                     </tr>
                 </table>
             </td>
+            <td></td>
         </tr>
 
     </table>

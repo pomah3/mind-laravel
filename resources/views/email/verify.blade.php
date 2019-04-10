@@ -22,7 +22,7 @@
             <table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                     <td align="left" style="font-size: 20px;">
-                        {{ $user->get_name() }}, подтвердите свою почту по <a href="{{ URL::signedRoute("verify_email", ["user"=>$user]) }}">ссылке</a>
+                        {{ $user->get_name() }}, подтвердите свою почту по <a href="{{ URL::signedRoute("verify_email", ["user"=>$user]) }}">ссылке</a> и дождитесь ответного письма!
                     </td>
                 </tr>
             </table>

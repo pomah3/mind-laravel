@@ -20,6 +20,20 @@
 
 @yield('content')
 
+<table align="center" width="100%" cellpadding="20" cellspacing="0" style="margin: 0 auto; text-align: center; width: 100%; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%; background-color: #ffffff; color: #000000; max-width: 600px;">
+    <tr>
+        <td align="center">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="left" style="font-size: 25px;">
+                        @yield('ending')
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
 <table align="center" width="100%" cellpadding="5" cellspacing="0" style="margin: 0 auto; text-align: center; width: 100%; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%; background-color: #004b7e; color: #ffffff; max-width: 600px;">
     <tr>
         <td align="center">

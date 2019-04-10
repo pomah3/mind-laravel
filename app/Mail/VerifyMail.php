@@ -9,17 +9,17 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
 class VerifyMail extends Mailable {
-    private $user;
+    public $user;
+    public $email;
 
     use Queueable, SerializesModels;
 
     public function __construct(User $user) {
         $this->user = $user;
+        $this->email = $user->email;
     }
 
     public function build() {
-        return $this->view('email.verify', [
-            "user" => $this->user
-        ])->subject("Подтвердите email");
+        return $this->view('email.verify')->subject("Подтвердите email");
     }
 }

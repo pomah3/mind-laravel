@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
                  ->daily()->at("21:00");
 
         $schedule->command('mind:copy-statuses')
-                 ->daily()->at('22:00');
+                 ->daily()->at('01:00');
     }
 
     /**

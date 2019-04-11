@@ -6,6 +6,8 @@ use App\User;
 use Spatie\ViewModels\ViewModel;
 
 class TimetableViewModel extends ViewModel {
+    use ViewModelUtils;
+
     public $lessons;
     public $user;
     public $lessons_by_day;

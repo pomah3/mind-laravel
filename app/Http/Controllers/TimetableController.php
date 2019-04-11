@@ -21,14 +21,15 @@ class TimetableController extends Controller {
     }
 
     public function show_for_user(User $user) {
-        $view = "timetable.student";
-
         $lessons = $this->lessons_repo->get_lessons(
             $user,
             now()->startOfWeek(),
             now()->endOfWeek()
         );
 
-        return view($view, new TimetableViewModel($lessons, $user));
+        return view(
+            "timetable.show",
+            new TimetableViewModel($lessons, $user)
+        );
     }
 }

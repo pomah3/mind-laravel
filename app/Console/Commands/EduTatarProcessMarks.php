@@ -2,12 +2,13 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use App\User;
 use App\Cause;
-use App\Transaction;
 use App\EduTatar\EduTatarAuth;
 use App\Services\TransactionService;
+use App\Transaction;
+use App\User;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class EduTatarProcessMarks extends Command
 {
@@ -39,6 +40,10 @@ class EduTatarProcessMarks extends Command
             $marks = $this->get_marks($login, $password);
             $this->add_points($student, $marks);
         }
+
+        Log::info("Executed 'edutatar:marks' command", [
+            "students" => $students
+        ]);
     }
 
     public function get_marks(string $login, string $password) {

@@ -6,6 +6,7 @@ use App\Repositories\StatusRepository;
 use App\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class CopyYesterdayStatus extends Command {
     private $status_repo;
@@ -21,11 +22,19 @@ class CopyYesterdayStatus extends Command {
     public function handle() {
         $day = Carbon::yesterday();
 
+        $_count = 0;
+
         foreach (User::students()->get() as $student) {
             $status = $this->status_repo->get_status_by_day($student, $day);
 
-            if ($status->title != $this->status_repo->get_unknown_status())
+            if ($status->title != $this->status_repo->get_unknown_status()) {
+
                 $this->status_repo->set_status_title($student, $status->title);
+            }
         }
+
+        Log::info("Executed 'mind:copy-statuses' command", [
+            "count" => $_count
+        ]);
     }
 }

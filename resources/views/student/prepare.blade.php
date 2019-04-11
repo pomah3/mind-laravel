@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container container-points">
         @foreach ($fields as $field)
             <div class="form-control">
                 <input type="checkbox" class="fields" field-name="{{ $field }}">
@@ -13,7 +13,7 @@
             </div>
         @endforeach
 
-        <a id="student-link" href="/students">Перейти</a>
+        <a id="student-link" href="/students" class="submit">Перейти</a>
     </div>
 
     @push('scripts')

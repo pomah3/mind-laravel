@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-    <div class="container">
-        <a href="/students/excel?fields={{ $fields_raw }}">Скачать</a>
+    <div class="container container-points">
+        <a href="/students/excel?fields={{ $fields_raw }}" class="submit">Скачать</a>
         <table>
             <tr>
                 @foreach ($fields as $field)

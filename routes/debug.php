@@ -1,6 +1,8 @@
 <?php
 
+use App\Event;
 use App\User;
+use Faker\Generator as Faker;
 
 Route::prefix("debug")->group(function() {
     Route::prefix("mails")->group(function() {
@@ -29,10 +31,16 @@ Route::prefix("debug")->group(function() {
             ]);
         });
 
-        Route::get("custom", function() {
+        Route::get("custom", function(Faker $faker) {
             return view("email.custom", [
-                "subject" => "Поздравляем!",
-                "text" => "Дорогие учителя и ученики! Команда Mind поздравляет вас с НГ и желает счастья-здоровья"
+                "subject" => $faker->sentence,
+                "text" => $faker->text
+            ]);
+        });
+
+        Route::get("digest", function() {
+            return view("email.digest", [
+                "events" => factory(Event::class, 10)->make()
             ]);
         });
 

@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Event;
 use App\Lesson;
 use App\Role;
 use App\User;
@@ -17,10 +18,21 @@ class TimetableRepositoryImpl implements TimetableRepository {
     }
 
     public function get_items(User $user, Carbon $start, Carbon $end) {
-        return $this->lessons_repo->get_lessons($user, $start, $end);
+        $events = $this->lessons_repo->get_lessons($user, $start, $end);
+        $events = $events->merge($this->get_events($user, $start, $end));
+
+        return $events;
     }
 
     public function has_items(User $user, Carbon $start, Carbon $end) {
-        return $this->lessons_repo->get_lessons($user, $start, $end);
+        $events = $this->get_items($user, $start, $end);
+        return filled($events);
+    }
+
+    private function get_events(User $user, Carbon $start, Carbon $end) {
+        return $user->events()
+                    ->whereBetween("from_date", [$start, $end])
+                    ->orWhere("till_date", [$start, $end])
+                    ->get();
     }
 }

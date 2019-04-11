@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Event;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Events\EventMade;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -45,8 +46,8 @@ class EventController extends Controller
         $event->author_id   = Auth::user()->id;
         $event->title       = $data["title"];
         $event->description = $data["description"];
-        $event->from_date   = $data["from_date"];
-        $event->till_date   = $data["till_date"];
+        $event->from_date   = new Carbon($data["from_date"]);
+        $event->till_date   = new Carbon($data["till_date"]);
 
         $event->save();
 

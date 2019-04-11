@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Lesson;
-use App\Repositories\LessonRepository;
+use App\Repositories\TimetableRepository;
 use App\User;
 use App\ViewModels\TimetableViewModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class TimetableController extends Controller {
-    private $lessons_repo;
+    private $ttr;
 
-    public function __construct(LessonRepository $lessons_repo) {
-        $this->lessons_repo = $lessons_repo;
+    public function __construct(TimetableRepository $ttr) {
+        $this->ttr = $ttr;
     }
 
     public function show() {
@@ -21,7 +21,7 @@ class TimetableController extends Controller {
     }
 
     public function show_for_user(User $user) {
-        $lessons = $this->lessons_repo->get_lessons(
+        $lessons = $this->ttr->get_items(
             $user,
             now()->startOfWeek(),
             now()->endOfWeek()

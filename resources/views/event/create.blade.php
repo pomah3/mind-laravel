@@ -24,12 +24,9 @@
             <label for="description">{{ __('event.about.description') }}:</label>
             <input type="text" name="description" class="form-control" placeholder="{{ __('event.placeholder.description') }}">
             <label for="from_date">{{ __('event.about.from_date') }}:</label>
-            <label for="is_one_day">
-                <input type="checkbox" id="is_one_day" class="l-10 r-5">{{ __('event.about.one_day') }}
-            </label>
-            <input type="date" name="from_date" class="form-control">
+            <input type="datetime-local" name="from_date" class="form-control">
             <label for="till_date" id="for_is">{{ __('event.about.till_date') }}:</label>
-            <input type="date" id="till_date" name="till_date" class="form-control">
+            <input type="datetime-local" id="till_date" name="till_date" class="form-control">
 
             <div class="users-block">
                 <label for="title">{{ __('event.about.partisipants') }}:</label>
@@ -61,19 +58,6 @@
             $(".removalArea").click(function() {
                 $(this).parent().remove();
             });
-        </script>
-        <script>
-            $("#is_one_day").click(function() {
-                if($(this).is(":checked")) {
-                    $("#till_date").hide(100);
-                    $("#for_is").hide(100);
-                    $('[name="till_date"]').val() = $('[name="from_date"]').val();
-                }
-                else {
-                    $("#till_date").show(100);
-                    $("#for_is").show(100);
-                }
-            }).click();
         </script>
     @endpush
 

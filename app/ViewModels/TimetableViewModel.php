@@ -13,7 +13,10 @@ class TimetableViewModel extends ViewModel {
     public $lessons_by_day;
 
     public function __construct($lessons, User $user) {
-        $this->lessons = $lessons;
+        $this->lessons = collect($lessons)->sortBy(function($l) {
+            return $l->get_start();
+        });
+
         $this->user = $user;
 
         $this->dayize_lessons();

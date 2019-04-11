@@ -9,11 +9,13 @@ class Lesson implements TimetableItem {
     private $title;
     private $start;
     private $end;
+    private $number;
 
-    public function __construct(string $title, Carbon $start, Carbon $end) {
+    public function __construct(string $title, Carbon $start, Carbon $end, int $number) {
         $this->title = $title;
         $this->start = $start;
         $this->end = $end;
+        $this->number = $number;
     }
 
     public function get_start() {
@@ -30,5 +32,9 @@ class Lesson implements TimetableItem {
 
     public function get_url() {
         return null;
+    }
+
+    public function get_number() {
+        return $this->number;
     }
 }

@@ -6,16 +6,14 @@ use App\User;
 use Spatie\ViewModels\ViewModel;
 
 class TimetableViewModel extends ViewModel {
-    use ViewModelUtils;
+    use ViewModelUtils, TimetableUtils;
 
     public $lessons;
     public $user;
     public $lessons_by_day;
 
     public function __construct($lessons, User $user) {
-        $this->lessons = collect($lessons)->sortBy(function($l) {
-            return $l->get_start();
-        });
+        $this->lessons = $this->sort_events($lessons);
 
         $this->user = $user;
 

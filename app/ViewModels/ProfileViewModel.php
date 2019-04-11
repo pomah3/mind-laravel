@@ -4,11 +4,14 @@ namespace App\ViewModels;
 
 use App\Lesson;
 use App\Repositories\TimetableRepository;
+use App\TimetableItem;
 use App\User;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Spatie\ViewModels\ViewModel;
 
 class ProfileViewModel extends ViewModel {
+    use TimetableUtils;
+
     private $ttr;
     public $user;
 
@@ -25,14 +28,20 @@ class ProfileViewModel extends ViewModel {
     }
 
     public function timetable() {
-        $day = $this->date()->format('l');
-        return $this->ttr->get_lessons($this->user)[$day];
+        $day = $this->date()->copy();
+        $items = $this->ttr->get_items(
+            $this->user,
+            $day->copy()->startOfDay(),
+            $day->copy()->endOfDay()
+        );
+
+        return $this->sort_events($items);
     }
 
-    public function is_now(Lesson $lesson) {
+    public function is_now(TimetableItem $item) {
         return
-            $lesson->time_from < now() &&
-            now() < $lesson->time_until;
+            $item->get_start() < now() &&
+            now() < $item->get_end();
     }
 
     public function show_tommorow() {
@@ -44,9 +53,9 @@ class ProfileViewModel extends ViewModel {
 
     public function date() {
         if ($this->show_tommorow())
-            return new \Carbon\Carbon("tomorrow");
+            return new Carbon("tomorrow");
         else
-            return \Carbon\Carbon::now();
+            return Carbon::today();
     }
 
     public function today_or_tommorow() {

@@ -53,14 +53,15 @@
                         <th>{{ __('profile.timetable.subject') }}</th>
                         <th>{{ __('profile.timetable.time') }}</th>
                     </tr>
-                    @php
-                        $last = -1;
-                    @endphp
-                    @foreach ($timetable as $lesson)
-                        <tr class="{{ $is_now($lesson) ? "lesson-now" : ""}}">
-                            <td>{{ $lesson->number }}</td>
-                            <td>{{ $lesson->lesson  }}</td>
-                            <td>{{ $lesson->time_from->format("H:i") }} - {{ $lesson->time_until->format("H:i") }}</td>
+                    @foreach ($timetable as $item)
+                        <tr class="{{ $is_now($item) ? "item-now" : ""}}">
+                            <td>{{ $number($item) }}</td>
+                            <td>{{ $item->get_title()  }}</td>
+                            <td>
+                                {{ $item->get_start()->format("H:i") }}
+                                -
+                                {{ $item->get_end()->format("H:i") }}
+                            </td>
                         </tr>
                     @endforeach
                 </table>

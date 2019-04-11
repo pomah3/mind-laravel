@@ -13,6 +13,9 @@
                     @foreach($lessons_by_day[$day] as $lesson)
                         <tr>
                             <td>
+                                {{ $number($lesson) }}
+                            </td>
+                            <td>
                                 {{ $lesson->get_title() }}
                             </td>
                             <td>

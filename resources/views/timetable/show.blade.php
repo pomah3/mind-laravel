@@ -16,7 +16,13 @@
                                 {{ $number($lesson) }}
                             </td>
                             <td>
-                                {{ $lesson->get_title() }}
+                                @if ($lesson->get_url())
+                                    <a href="{{ $lesson->get_url() }}">
+                                        {{ $lesson->get_title() }}
+                                    </a>
+                                @else
+                                    {{ $lesson->get_title() }}
+                                @endif
                             </td>
                             <td>
                                 {{ $lesson->get_start()->format("H:i") }}

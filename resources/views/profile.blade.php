@@ -56,7 +56,15 @@
                     @foreach ($timetable as $item)
                         <tr class="{{ $is_now($item) ? "item-now" : ""}}">
                             <td>{{ $number($item) }}</td>
-                            <td>{{ $item->get_title()  }}</td>
+                            <td>
+                                @if ($item->get_url())
+                                    <a href="{{ $item->get_url() }}">
+                                        {{ $item->get_title() }}
+                                    </a>
+                                @else
+                                    {{ $item->get_title() }}
+                                @endif
+                            </td>
                             <td>
                                 {{ $item->get_start()->format("H:i") }}
                                 -

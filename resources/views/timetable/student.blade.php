@@ -1,8 +1,5 @@
 @extends('layout.logined')
 
-@php($user = Auth::user())
-@php($days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
-
 @section('title')
     {{ __('timetable.show.title') }}
 @endsection
@@ -13,19 +10,16 @@
             <div class="one-day">
                 <h3>{{ __("days.".$day) }}</h3>
                 <table class="timetable-table">
-                    @foreach($lessons[$day] as $lesson)
+                    @foreach($lessons_by_day[$day] as $lesson)
                         <tr>
                             <td>
-                                {{ $lesson->number }}
+                                {{ $lesson->get_title() }}
                             </td>
                             <td>
-                                {{ $lesson->lesson }}
+                                {{ $lesson->get_start()->format("H:i") }}
                             </td>
                             <td>
-                                {{ $lesson->time_from->format("H:i") }}
-                            </td>
-                            <td>
-                                {{ $lesson->time_until->format("H:i") }}
+                                {{ $lesson->get_end()->format("H:i") }}
                             </td>
                         </tr>
                     @endforeach

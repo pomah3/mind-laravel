@@ -2,43 +2,48 @@
 
 namespace App\Http\View\Composers;
 
-use Illuminate\View\View;
-use Illuminate\Support\Facades\Auth;
+use App\Repositories\TimetableRepository;
 use App\Role;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class MenuComposer {
-    private $buttons = [
-        ["menu.profile", "/", "logined"],
-        [
-            "menu.points.main",
-            ["menu.points.mine", "/points", ["student"]],
-            ["menu.points.give", "/points/give", ["student"]],
-            ["menu.points.add", "/points/add", ["can", "add-index-points"]],
-            ["menu.groups", "/groups", ["can", "view-all-groups"]],
-            ["menu.points.group", "/groups/mine", ["or", "classruk", "student", "vospit"]],
-        ],
-        [
-            "menu.admin",
-            ["menu.data", "/data", ["can", "view-data"]],
-            ["menu.users", "/users", ["can", "view", \App\User::class]],
-            ["menu.banners", "/banners", ["can", "view", \App\Banner::class]],
-            ["menu.email", "/email", ["can", "send-email"]]
-        ],
-        ["menu.polls", "/polls", "all"],
-        ["menu.events", "/events", "all"],
-        [
-            "menu.timetable",
-            '/timetable', [
-                "and",
-                ["can", "see-timetable"],
-                ["not", "admin"]
-            ]
-        ],
-        ["menu.marks", '/marks', "student"],
-        ["menu.status", '/status', ["can", "see-index-status"]],
-        ["menu.questions", '/questions', "all"],
-        ["menu.documents", "/documents", "all"],
-    ];
+    private function get_buttons() {
+        return [
+            ["menu.profile", "/", "logined"],
+            [
+                "menu.points.main",
+                ["menu.points.mine", "/points", ["student"]],
+                ["menu.points.give", "/points/give", ["student"]],
+                ["menu.points.add", "/points/add", ["can", "add-index-points"]],
+                ["menu.groups", "/groups", ["can", "view-all-groups"]],
+                ["menu.points.group", "/groups/mine", ["or", "classruk", "student", "vospit"]],
+            ],
+            [
+                "menu.admin",
+                ["menu.data", "/data", ["can", "view-data"]],
+                ["menu.users", "/users", ["can", "view", \App\User::class]],
+                ["menu.banners", "/banners", ["can", "view", \App\Banner::class]],
+                ["menu.email", "/email", ["can", "send-email"]]
+            ],
+            ["menu.polls", "/polls", "all"],
+            ["menu.events", "/events", "all"],
+            [
+                "menu.timetable",
+                '/timetable', [function($user) {
+                    return resolve(TimetableRepository::class)->has_items(
+                        $user,
+                        now()->startOfWeek(),
+                        now()->endOfWeek()
+                    );
+                }]
+            ],
+            ["menu.marks", '/marks', "student"],
+            ["menu.status", '/status', ["can", "see-index-status"]],
+            ["menu.questions", '/questions', "all"],
+            ["menu.documents", "/documents", "all"],
+        ];
+    }
 
     public function compose(View $view) {
         $view->with('menu_items', $this->flat_buttons());
@@ -48,7 +53,7 @@ class MenuComposer {
         $ret = [];
         $user = Auth::user();
 
-        foreach ($this->buttons as $button) {
+        foreach ($this->get_buttons() as $button) {
             if (is_array($button[1])) {
                 $title = $button[0];
 

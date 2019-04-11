@@ -2,20 +2,33 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\URL;
 
-class Lesson extends Model
-{
-	protected $casts = [
-		"number" => "integer"
-	];
+class Lesson implements TimetableItem {
+    private $title;
+    private $start;
+    private $end;
 
-    public function getTimeFromAttribute() {
-        return \App\Utils::get_today_date(new Carbon($this->attributes["time_from"]));
+    public function __construct(string $title, Carbon $start, Carbon $end) {
+        $this->title = $title;
+        $this->start = $start;
+        $this->end = $end;
     }
 
-    public function getTimeUntilAttribute() {
-        return \App\Utils::get_today_date(new Carbon($this->attributes["time_until"]));
+    public function get_start() {
+        return $this->start->copy();
+    }
+
+    public function get_end() {
+        return $this->end->copy();
+    }
+
+    public function get_title() {
+        return $this->title;
+    }
+
+    public function get_url() {
+        return null;
     }
 }

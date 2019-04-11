@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Gate;
 
 class Role extends Model {
 	public static function has_complex_role(?User $user, $complex_role) {
+        if (is_callable($complex_role)) {
+            return $complex_role($user);
+        }
+
         if ($complex_role === "all")
             return true;
 

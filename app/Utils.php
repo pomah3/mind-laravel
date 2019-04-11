@@ -4,6 +4,7 @@ namespace App;
 
 use App\Document;
 use App\User;
+use Illuminate\Support\Carbon;
 use PhpOffice\PhpWord\TemplateProcessor;
 
 class Utils {
@@ -68,6 +69,18 @@ class Utils {
         $today->setTime($h, $m, $s);
 
         return $today;
+    }
+
+    public static function get_day_date(Carbon $date, Carbon $day) {
+        $day = $day->copy();
+
+        $h = intval($date->format("H"));
+        $m = intval($date->format("i"));
+        $s = intval($date->format("s"));
+
+        $day->setTime($h, $m, $s);
+
+        return $day;
     }
 
     public static function generate_password(): string {

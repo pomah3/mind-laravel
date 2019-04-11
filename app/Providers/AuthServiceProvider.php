@@ -48,8 +48,6 @@ class AuthServiceProvider extends ServiceProvider
         $this->dataPolicies();
         $this->statusPolicies();
 
-        Gate::define("see-timetable", "App\Policies\TimetablePolicy@see");
-
         Gate::before(function ($user, $ability) {
             if ($user->has_role("admin"))
                 return true;

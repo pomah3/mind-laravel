@@ -2,8 +2,9 @@
 
 namespace App\Repositories;
 use App\User;
+use Illuminate\Support\Carbon;
 
 interface TimetableRepository {
-    public function get_lessons(User $user);
-    public function has_lessons(User $user);
+    public function get_items(User $user, Carbon $start, Carbon $end);
+    public function has_items(User $user, Carbon $start, Carbon $end);
 }

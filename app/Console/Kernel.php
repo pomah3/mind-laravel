@@ -29,6 +29,9 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('mind:copy-statuses')
                  ->daily()->at('01:00');
+
+        $schedule->command('mind:send-digest')
+                 ->weekly()->mondays()->at('18:00');
     }
 
     /**

@@ -2,20 +2,22 @@
 
 @section("content")
 
-@component("email.components.h1")
-    <b>Mind обновился!</b>
+@component("email.components.p")
+    Наша команда разработчиков рада предоставить Вам новую версию Mind:
 @endcomponent
 
-@component("email.components.h2")
-    <b>Что в новой версии:</b>
+@component("email.components.h1")
+    {{ $version }}
 @endcomponent
 
 @component("email.components.p")
-    <ul>
-        @foreach ($news as $new)
-            <li>{{ $new }}</li>
-        @endforeach
-    </ul>
+    @php
+        $url = URL::route("larecipe.show", [
+            "version" => $version, "page" => "changelog"
+        ]);
+    @endphp
+
+    Со списком изменений вы можете ознакомится <a href="{{ $url }}">по ссылке</a>
 @endcomponent
 
 @component("email.components.p")

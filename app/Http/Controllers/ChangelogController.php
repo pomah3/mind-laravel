@@ -14,9 +14,10 @@ class ChangelogController extends Controller {
 
         if (!$show_not_published) {
             $versions = $versions->filter(function($version) use ($published) {
-                $published->contains($version["name"]);
+                return $published->contains($version["name"]);
             });
         }
+
 
         return view("changelog", [
             "versions" => $versions->all()

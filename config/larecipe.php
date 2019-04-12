@@ -32,8 +32,8 @@ return [
     */
 
     'versions'      => [
-        'default'   => last((require base_path("versions.php"))["published"]),
-        'published' => (require base_path("versions.php"))["published"]
+        'default'   => last((require config_path("versions.php"))["published"]),
+        'published' => (require config_path("versions.php"))["all"]
     ],
 
     /*

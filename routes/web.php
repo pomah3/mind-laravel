@@ -126,4 +126,6 @@ Route::middleware("auth")->group(function() {
          ->middleware("role:admin");
 
     Route::get('verify_email/{user}/{email}', "UserController@verify_email")->name("verify_email");
+
+    Route::get('changelog', "ChangelogController@index");
 });

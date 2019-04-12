@@ -17,6 +17,6 @@ class UpdateMail extends Mailable {
     }
 
     public function build() {
-        return $this->view('email.update');
+        return $this->view('email.update')->subject("Обновление!");
     }
 }

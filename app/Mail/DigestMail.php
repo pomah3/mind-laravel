@@ -15,8 +15,8 @@ class DigestMail extends Mailable {
     public $events;
 
     public function __construct(User $user) {
-        $start = now()->startOfWeek();
-        $end = now()->endOfWeek();
+        $start = now()->addWeek(1)->startOfWeek();
+        $end = now()->addWeek(1)->endOfWeek();
 
         $this->user = $user;
         $this->events = $user->events()

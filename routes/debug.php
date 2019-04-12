@@ -9,12 +9,7 @@ Route::prefix("debug")->group(function() {
 
         Route::get("update", function() {
             return view("email.update", [
-                "news" => [
-                    "Добавили почту",
-                    "Добавили баллы",
-                    "Добавили фигню",
-                    "Обновили баги"
-                ]
+                "version" => "1.0.0"
             ]);
         });
 

@@ -82,7 +82,7 @@ class FormPasswordList extends Command {
             return [
                 "title" => $a["title"],
                 "text" => collect($a["users"])->map(function($u) {
-                    return $u->get_name() . ": " . $u->password;
+                    return $u->get_name() . ": " . $u->id . ' ' .$u->password;
                 })->join("\n")
             ];
         });

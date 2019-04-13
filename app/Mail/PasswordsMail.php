@@ -17,13 +17,15 @@ class PasswordsMail extends Mailable {
     }
 
     public function build() {
-        $view = $this->view('email.passwords');
+        $view = $this->view('email.passwords')->subject("Пароли");
         foreach ($this->files as $file) {
-            $view->attachData([
-                $file["text"], $file["title"].".txt", [
+            $view->attachData(
+                $file["text"],
+                $file["title"].".txt",
+                [
                     "mime" => "text/plain"
                 ]
-            ]);
+            );
         }
 
         return $view;

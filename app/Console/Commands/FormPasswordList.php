@@ -96,7 +96,8 @@ class FormPasswordList extends Command {
     }
 
     private function send($list) {
-        if (config("app.admin_email"))
-            Mail::to(env("app.admin_email"))->send(new PasswordsMail($list));
+        if (config("app.admin_email")) {
+            Mail::to(config("app.admin_email"))->send(new PasswordsMail($list));
+        }
     }
 }

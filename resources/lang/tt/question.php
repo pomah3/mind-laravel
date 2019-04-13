@@ -8,5 +8,7 @@ return array (
   'show' => 
   array (
     'title' => 'Сораулар',
+    'answer' => 'Җавап языгыз',
+    'ask' => 'Сорау языгыз',
   ),
 );

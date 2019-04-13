@@ -1,30 +1,30 @@
 <?php
 
 return array (
-  'create' =>
+  'create' => 
   array (
     'title' => 'Добавить документ',
-    'form' =>
+    'form' => 
     array (
       'title' => 'Название',
       'access' => 'Имеют доступ',
     ),
-    'placeholder' =>
+    'placeholder' => 
     array (
       'title' => 'Введите название',
     ),
   ),
-  'edit' =>
+  'edit' => 
   array (
     'title' => 'Редактировать документ',
-    'title' => 'Заголовок документа',
     'access' => 'Имеют доступ',
-    'placeholder' => array (
-      'title' => 'Введите зоголовок',
+    'placeholder' => 
+    array (
+      'title' => 'Введите название',
       'access' => 'Введите уровень доступа',
     ),
   ),
-  'index' =>
+  'index' => 
   array (
     'title' => 'Документы',
     'not-found' => 'Нет доступных документов',

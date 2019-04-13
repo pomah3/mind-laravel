@@ -30,4 +30,8 @@ return array (
   array (
     'title' => 'All users',
   ),
+  'edit' => 
+  array (
+    'title' => 'Edit user',
+  ),
 );

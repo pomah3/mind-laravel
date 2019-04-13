@@ -23,16 +23,16 @@
                 <option value="teacher">{{ __('user.create.teacher') }}</option>
             </select>
             <select class="role_select form-control" name="role" id="role" style="display: none;" multiple>
-                <option value="predmet">Учитель-предметник</option>
-                <option value="diric">Директор</option>
-                <option value="zam">Заместитель директора</option>
-                <option value="classruk">Классный руководитель</option>
-                <option value="vospit">Воспитатель</option>
-                <option value="socped">Социальный педагог</option>
-                <option value="pedorg">Педагог-организатор</option>
-                <option value="librarian">Библиотекарь</option>
-                <option value="medic">Медицинский работник</option>
-                <option value="moderator">Модератор</option>
+                <option value="predmet">Учитель-предметник</option> //укытучы
+                <option value="diric">Директор</option> //мөдир
+                <option value="zam">Заместитель директора</option> //мөдир урынбасары
+                <option value="classruk">Классный руководитель</option> //сыйныф җитәкчесе
+                <option value="vospit">Воспитатель</option> //тәрбияче
+                <option value="socped">Социальный педагог</option> //социаль педагог
+                <option value="pedorg">Педагог-организатор</option> //оештыручы педагог
+                <option value="librarian">Библиотекарь</option> //китапханәче
+                <option value="medic">Медицинский работник</option> //медицина хезмәткәре
+                <option value="moderator">Модератор</option> //модератор
             </select>
 
 

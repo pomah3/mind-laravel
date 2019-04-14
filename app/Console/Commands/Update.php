@@ -26,6 +26,6 @@ class Update extends Command {
         Artisan::call("view:cache");
 
         system("npm i");
-        system("npm run prod");
+        system("cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js");
     }
 }

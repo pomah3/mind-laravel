@@ -35,16 +35,7 @@ class Utils {
                 return static::get_group_cmp()($gr1, $gr2);
             }
 
-            if ($st1->family_name != $st2->family_name)
-                return $st1->family_name <=> $st2->family_name;
-
-            if ($st1->given_name != $st2->given_name)
-                return $st1->given_name <=> $st2->given_name;
-
-            if ($st1->father_name != $st2->father_name)
-                return $st1->father_name <=> $st2->father_name;
-
-            return 0;
+            return static::get_user_cmp()($st1, $st2);
         };
 
         $points_student_cmp = function(User $st1, User $st2) use($lex_student_cmp): int {
@@ -58,6 +49,21 @@ class Utils {
         };
 
         return $lex_student_cmp;
+    }
+
+    public static function get_user_cmp(): \Closure {
+        return function(User $u1, User $u2) {
+            if ($u1->family_name != $u2->family_name)
+                return $u1->family_name <=> $u2->family_name;
+
+            if ($u1->given_name != $u2->given_name)
+                return $u1->given_name <=> $u2->given_name;
+
+            if ($u1->father_name != $u2->father_name)
+                return $u1->father_name <=> $u2->father_name;
+
+            return 0;
+        };
     }
 
     public static function get_today_date(\DateTime $date) {

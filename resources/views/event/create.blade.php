@@ -28,37 +28,10 @@
             <label for="till_date" id="for_is">{{ __('event.about.till_date') }}:</label>
             <input type="datetime-local" id="till_date" name="till_date" class="form-control">
 
-            <div class="users-block">
-                <label for="title">{{ __('event.about.partisipants') }}:</label>
-                <div class="add-user">+</div>
-                <div class="variant">
-                    <input type="text" name="users[]" class="variants" placeholder="{{ __('event.placeholder.partisipant') }}">
-                    <div class="removalArea"><div class="removeX"></div></div>
-                </div>
-            </div>
-
+            <multiple-select :variants='@json($users)' name="users"></multiple-select>
 
             <input type="submit" class="submit" value="{{ __('main.submit.send') }}">
 
         </form>
     </div>
-    @push('scripts')
-        <script>
-            $(".add-user").click(function() {
-                $(".users-block").append(
-                    `<div class="variant">
-                        <input type="text" name="users[]" class="variants" placeholder="Введите участника мероприятия">
-                        <div class="removalArea"><div class="removeX"></div></div>
-                    </div>`
-                );
-                $(".removalArea").click(function() {
-                    $(this).parent().remove();
-                });
-            });
-            $(".removalArea").click(function() {
-                $(this).parent().remove();
-            });
-        </script>
-    @endpush
-
 @endsection

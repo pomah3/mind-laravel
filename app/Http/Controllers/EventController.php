@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use App\Events\EventMade;
+use App\User;
+use App\Utils;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +29,20 @@ class EventController extends Controller
     public function create()
     {
         $this->authorize("create", Event::class);
-        return view("event.create");
+
+        $users = User::all()
+            ->sort(Utils::get_user_cmp())
+            ->map(function($user) {
+                return [
+                    "name" => $user->get_name(),
+                    "value" => $user->id
+                ];
+            })
+            ->values();
+
+        return view("event.create", [
+            "users" => $users
+        ]);
     }
 
     public function store(Request $request)

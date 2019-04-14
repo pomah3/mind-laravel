@@ -11,7 +11,7 @@
                 </span>
             </div>
         </div>
-        <select ref="select">
+        <select ref="select" v-on:change="add()">
             <option
                 v-for="variant in variants"
                 :value="variant.value"

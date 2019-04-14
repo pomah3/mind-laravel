@@ -14,12 +14,12 @@ require('./utils');
 
 window.Chart = require("chart.js");
 
-// if (window.userId) {
-//     Echo.private(`App.User.${userId}`)
-//         .notification((notification) => {
-//             // alert(JSON.stringify(notification));
-//         });
-// }
+if (window.userId) {
+    Echo.private(`App.User.${userId}`)
+        .notification((notification) => {
+            console.log(notification);
+        });
+}
 
 window.Vue = require('vue');
 

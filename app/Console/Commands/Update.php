@@ -26,5 +26,6 @@ class Update extends Command {
         Artisan::call("view:cache");
 
         system("npm i");
+        system("npm run prod");
     }
 }

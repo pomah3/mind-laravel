@@ -13,6 +13,6 @@ class LocaleController extends Controller
         $user->locale = $locale;
         $user->save();
 
-        return redirect()->route('profile');
+        return redirect()->back();
     }
 }

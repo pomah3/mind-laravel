@@ -20,4 +20,11 @@ trait TimetableUtils {
             return $event->get_start();
         });
     }
+
+    public function show_group(TimetableItem $item) {
+        if (!$item instanceof Lesson)
+            return false;
+
+        return $item->get_group();
+    }
 }

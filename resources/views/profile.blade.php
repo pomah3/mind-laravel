@@ -56,6 +56,11 @@
                     @foreach ($timetable as $item)
                         <tr class="{{ $is_now($item) ? "item-now" : ""}}">
                             <td>{{ $number($item) }}</td>
+                            @if ($show_group($item))
+                                <td>
+                                    {{ $show_group($item) }}
+                                </td>
+                            @endif
                             <td>
                                 @if ($item->get_url())
                                     <a href="{{ $item->get_url() }}">

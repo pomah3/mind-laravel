@@ -15,6 +15,11 @@
                             <td>
                                 {{ $number($lesson) }}
                             </td>
+                            @if ($show_group($lesson))
+                                <td>
+                                    {{ $show_group($lesson) }}
+                                </td>
+                            @endif
                             <td>
                                 @if ($lesson->get_url())
                                     <a href="{{ $lesson->get_url() }}">

@@ -57,6 +57,7 @@ class LessonRepositoryWeeklyImpl implements LessonRepository {
 
             return new Lesson(
                 $a->lesson,
+                $a->group,
                 $start,
                 $end,
                 $a->number

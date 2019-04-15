@@ -10,12 +10,14 @@ class Lesson implements TimetableItem {
     private $start;
     private $end;
     private $number;
+    private $group;
 
-    public function __construct(string $title, Carbon $start, Carbon $end, int $number) {
+    public function __construct(string $title, string $group, Carbon $start, Carbon $end, int $number) {
         $this->title = $title;
         $this->start = $start;
         $this->end = $end;
         $this->number = $number;
+        $this->group = $group;
     }
 
     public function get_start() {
@@ -36,5 +38,9 @@ class Lesson implements TimetableItem {
 
     public function get_number() {
         return $this->number;
+    }
+
+    public function get_group() {
+        return $this->group;
     }
 }

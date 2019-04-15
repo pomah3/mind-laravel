@@ -25,6 +25,9 @@ trait TimetableUtils {
         if (!$item instanceof Lesson)
             return false;
 
+        if (Auth::user()->type == "student")
+            return false;
+
         return $item->get_group();
     }
 }

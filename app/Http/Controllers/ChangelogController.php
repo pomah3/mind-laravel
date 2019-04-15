@@ -6,21 +6,17 @@ use Illuminate\Http\Request;
 
 class ChangelogController extends Controller {
     public function index(Request $query) {
-        $show_not_published = $query->show_not_published ?? false;
+        if ($query->show_not_published)
+            $versions = config("versions.all");
+        else
+            $versions = config("versions.published");
 
-        extract(require base_path("versions.php"));
         $versions = collect($versions)->reverse();
-        $published = collect($published);
-
-        if (!$show_not_published) {
-            $versions = $versions->filter(function($version) use ($published) {
-                return $published->contains($version["name"]);
-            });
-        }
-
+        $current = last(config("versions.published"));
 
         return view("changelog", [
-            "versions" => $versions->all()
+            "versions" => $versions,
+            "current" => $current
         ]);
     }
 }

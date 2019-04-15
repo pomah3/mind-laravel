@@ -236,5 +236,6 @@ return [
     ],
 
     "edu_tatar_auth" => env("EDU_TATAR_AUTH", false),
-    "admin_email" => env("ADMIN_EMAIL", "3908441@gmail.com")
+    "admin_email" => env("ADMIN_EMAIL", "3908441@gmail.com"),
+    "api_key" => env("API_KEY", "android_mind_key_2"),
 ];

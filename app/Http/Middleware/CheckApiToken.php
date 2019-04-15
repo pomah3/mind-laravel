@@ -15,7 +15,7 @@ class CheckApiToken
      */
     public function handle($request, Closure $next)
     {
-        if (!isset($request->token) || $request->token != "android_mind_key_2")
+        if (!isset($request->token) || $request->token != config("app.api_key"))
             return response()->json(['error' => 'Not authorized.'],403);
         return $next($request);
     }

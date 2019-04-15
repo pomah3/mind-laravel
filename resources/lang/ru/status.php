@@ -20,4 +20,8 @@ return array (
     'group' => 'Класс',
     'student' => 'Ученик',
   ),
+  'statistic' => 
+  array (
+    'title' => 'Статистика',
+  ),
 );

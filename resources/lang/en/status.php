@@ -10,4 +10,8 @@ return array (
     'group' => 'Group',
     'student' => 'Student',
   ),
+  'statistic' => 
+  array (
+    'title' => 'Statistic',
+  ),
 );

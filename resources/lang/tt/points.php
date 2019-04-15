@@ -3,7 +3,7 @@
 return array (
   'add' => 
   array (
-    'title' => 'Балларны бирү',
+    'title' => 'Баллларны исәпләү',
   ),
   'show' => 
   array (
@@ -16,6 +16,8 @@ return array (
   ),
   'give' => 
   array (
-    'title' => 'Балларны бирү',
+    'title' => 'Баллларны бирү',
+    'balance' => 'Баланс',
+    'number' => 'Баллларның санын языгыз',
   ),
 );

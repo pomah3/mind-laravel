@@ -14,6 +14,8 @@ return array (
     'send' => 'Отправить',
     'save' => 'Сохранить',
     'ask' => 'Задать вопрос',
+    'change_pass' => 'Поменять пароль',
+    'change_email' => 'Поменять почту',
   ),
   'link' => 
   array (

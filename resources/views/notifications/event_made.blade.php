@@ -6,8 +6,12 @@
     if ($event)
         $url = URL::action("EventController@show", ["event" => $event]);
 
+    $title = __('notifications.event', [
+        "event" => "<a href='$url'>".$data["title"]."</a>"
+    ]);
+
 @endphp
 
 <div class="cause">
-    {{ __('notifications.event') }} "<a href="{{ $url }}">{{ $data["title"] }}</a>"
+    {!! $title !!}
 </div>

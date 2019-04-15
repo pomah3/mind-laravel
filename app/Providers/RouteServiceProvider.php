@@ -31,6 +31,7 @@ class RouteServiceProvider extends ServiceProvider {
 
     protected function mapDebugRoutes() {
         Route::namespace($this->namespace)
+             ->prefix("debug")
              ->group(base_path('routes/debug.php'));
     }
 }

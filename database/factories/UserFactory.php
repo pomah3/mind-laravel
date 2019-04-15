@@ -11,7 +11,8 @@ $factory->define(User::class, function($faker) {
         "father_name" => $faker->middleName($g),
 
         "type" => $faker->randomElement(["teacher", "student"]),
-        "password" => "123",
+        "password" => $faker->password,
+        "email" => $faker->unique()->email()
     ];
 });
 

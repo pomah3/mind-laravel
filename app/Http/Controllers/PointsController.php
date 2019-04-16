@@ -103,7 +103,7 @@ class PointsController extends Controller {
 
         $points = intval($data['points']);
 
-        if ($points >= Auth::user()->student()->get_balance())
+        if ($points > Auth::user()->student()->get_balance())
             return redirect("/points/give")->withErrors("У вас нет стольки баллов");
 
         $this->trs->add(

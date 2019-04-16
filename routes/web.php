@@ -18,6 +18,8 @@ Route::middleware("auth")->group(function() {
     Route::get('/', "ProfileController@index")
         ->name("profile");
 
+    Route::delete("/transactions/{tr}", "PointsController@delete_transaction");
+
     Route::get("/setlocale/{locale}", "LocaleController@set");
 
     Route::prefix("/points")->group(function() {

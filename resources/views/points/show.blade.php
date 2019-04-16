@@ -50,9 +50,30 @@
                                 {{ $tr->cause->title }}
                             </div>
                         @endif
+
+                        @can('remove-transaction', $tr)
+                            <button class="remove-tr submit" tr-id="{{ $tr->id }}">Отменить</button>
+                        @endcan
                     </div>
                 </div>
             @endforeach
         @endforeach
     </div>
+
+@push('scripts')
+    <script>
+        $(".remove-tr").click(function() {
+            let that = this;
+            let id = $(that).attr("tr-id");
+
+            $.ajax({
+                method: "DELETE",
+                url: "/transactions/" + id,
+            })
+            .done(function() {
+                location.reload();
+            });
+        });
+    </script>
+@endpush
 @endsection

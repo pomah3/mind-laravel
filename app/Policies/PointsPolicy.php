@@ -2,9 +2,10 @@
 
 namespace App\Policies;
 
-use App\User;
 use App\Cause;
 use App\Role;
+use App\Transaction;
+use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PointsPolicy
@@ -36,5 +37,15 @@ class PointsPolicy
 
     public function givePointsIndex(User $user) {
         return $user->type == "student";
+    }
+
+    public function removeTransaction(User $user, Transaction $tr) {
+        return
+            (
+                $user->type == "teacher" &&
+                $tr->from_id == $user->id
+            ) || (
+                $user->has_role("zam")
+            );
     }
 }

@@ -2,19 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Services\TransactionService as Trans;
-
-use App\{
-    Transaction,
-    User,
-    Cause
-};
-
-use App\ViewModels\TransactionViewModel;
+use App\Cause;
 use App\Http\Resources\StudentResource;
 use App\Repositories\GroupRepository as Groups;
+use App\Services\TransactionService as Trans;
+use App\Transaction;
+use App\User;
+use App\ViewModels\TransactionViewModel;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PointsController extends Controller {
     private $trs;
@@ -114,6 +110,14 @@ class PointsController extends Controller {
         );
 
         return redirect("/points/give")->with("status", "ok");
+    }
+
+    public function delete_transaction(Transaction $tr) {
+        $this->authorize("remove-transaction", $tr);
+
+        $tr->delete();
+
+        return "";
     }
 }
 

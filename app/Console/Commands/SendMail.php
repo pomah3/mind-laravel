@@ -22,7 +22,7 @@ abstract class SendMail extends Command {
             if (!$email)
                 continue;
 
-            Mail::to($user)->send();
+            Mail::to($user)->send($email);
             $_count++;
         }
 

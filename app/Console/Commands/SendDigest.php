@@ -11,6 +11,8 @@ class SendDigest extends SendMail {
     protected $description = 'Send digest email to all users';
 
     public function get_mail(User $user) {
-        return new DigestMail($user);
+        if ($user->events->count() > 0) {
+            return new DigestMail($user);
+        return null;
     }
 }

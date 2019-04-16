@@ -18,10 +18,12 @@ abstract class SendMail extends Command {
         $_count = 0;
 
         foreach ($users as $user) {
-            if ($user->events->count() > 0) {
-                Mail::to($user)->send($this->get_mail($user));
-                $_count++;
-            }
+            $email = $this->get_mail($user);
+            if (!$email)
+                continue;
+
+            Mail::to($user)->send();
+            $_count++;
         }
 
         Log::info("Executed " . $this->signature . " command", [

@@ -124,8 +124,11 @@ Route::middleware("auth")->group(function() {
 
     Route::get("/first_visit", "FirstVisitController")->name("first_visit");
 
-    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')
-         ->middleware("role:admin");
+    Route::prefix("admin")->middleware("role:admin")->group(function() {
+        Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+        Route::get('commands', "CommandController@index");
+        Route::post('commands', "CommandController@execute");
+    });
 
     Route::get('verify_email/{user}/{email}', "UserController@verify_email")->name("verify_email");
 

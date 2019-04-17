@@ -23,7 +23,7 @@ class ScenarioRepositoryImpl implements ScenarioRepository {
                      ->first();
         });
 
-        return $this->parse_collection($scs);
+        return $this->parse_collection($scs)->unique();
     }
 
     public function get($id) {

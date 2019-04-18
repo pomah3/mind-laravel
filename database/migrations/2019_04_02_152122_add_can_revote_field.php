@@ -14,7 +14,7 @@ class AddCanRevoteField extends Migration
     public function up()
     {
         Schema::table('polls', function (Blueprint $table) {
-            $table->boolean("can_revote");
+            $table->boolean("can_revote")->default(false);
         });
     }
 

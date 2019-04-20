@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Events\UpdateEvent;
 use App\Event;
 use App\Events\EventMade;
+use App\Http\Requests\EventRequest;
 use App\Services\UserSelectService;
 use App\User;
 use App\Utils;
@@ -41,43 +43,19 @@ class EventController extends Controller {
         ]);
     }
 
-    public function store(Request $request) {
+    public function store(EventRequest $request) {
         $this->authorize("create", Event::class);
-        $data = $request->validate([
-            "title"       => "required",
-            "description" => "required",
-            "from_date"   => "required|date",
-            "till_date"   => "required|date",
-            "users.*"     => "required"
-        ]);
-
-        $event = new Event;
-
-        $event->author_id   = Auth::user()->id;
-        $event->title       = $data["title"];
-        $event->description = $data["description"];
-        $event->from_date   = new Carbon($data["from_date"]);
-        $event->till_date   = new Carbon($data["till_date"]);
-
-        $event->save();
 
         $users = collect();
 
-        foreach ($data["users"] as $user_raw) {
-            $user_raw = json_decode($user_raw, true);
-            $user_raw = $this->user_select->get_users($user_raw);
-            $users = $users->merge($user_raw);
-        }
+        $builder = new UpdateEvent();
+        $event = $builder
+            ->from_request($request)
+            ->author(Auth::user())
+            ->users($request->get_users())
+            ->update();
 
-        foreach ($users as $user) {
-            $event->users()->attach($user->id);
-        }
-
-        $event->users()->attach(Auth::user()->id);
-
-        event(new EventMade($event));
-
-        return redirect("/events");
+        return redirect()->action("EventController@show", ["event" => $event]);
     }
 
     public function show(Event $event) {

@@ -16,15 +16,17 @@ class TimetableController extends Controller {
         $this->ttr = $ttr;
     }
 
-    public function show() {
-        return $this->show_for_user(Auth::user());
+    public function show(Request $request) {
+        return $this->show_for_user($request, Auth::user());
     }
 
-    public function show_for_user(User $user) {
+    public function show_for_user(Request $request, User $user) {
+        $plus = (int)$request->plus ?? 0;
+
         $lessons = $this->ttr->get_items(
             $user,
-            now()->startOfWeek(),
-            now()->endOfWeek()
+            now()->addWeeks($plus)->startOfWeek(),
+            now()->addWeeks($plus)->endOfWeek()
         );
 
         return view(

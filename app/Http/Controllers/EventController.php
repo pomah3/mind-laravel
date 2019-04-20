@@ -27,19 +27,21 @@ class EventController extends Controller {
         ]);
     }
 
-    public function create() {
-        $this->authorize("create", Event::class);
-
-        $variants = collect($this->user_select->get_variants())
+    private function get_user_variants() {
+        return collect($this->user_select->get_variants())
             ->map(function($var) {
                 return [
                     "name" => $var["title"],
                     "value" => json_encode($var)
                 ];
             });
+    }
+
+    public function create() {
+        $this->authorize("create", Event::class);
 
         return view("event.create", [
-            "variants" => $variants
+            "variants" => $this->get_user_variants()
         ]);
     }
 
@@ -65,31 +67,22 @@ class EventController extends Controller {
 
     public function edit(Event $event) {
         $this->authorize("update", $event);
-        return view("event.edit", ["event" => $event]);
+        return view("event.edit", [
+            "event" => $event,
+            "variants" => $this->get_user_variants()
+        ]);
     }
 
-    public function update(Request $request, Event $event) {
+    public function update(EventRequest $request, Event $event) {
         $this->authorize("update", $event);
-        $data = $request->validate([
-            "title"       => "required",
-            "description" => "required",
-            "from_date"   => "required|date",
-            "till_date"   => "required|date",
-            "users.*"     => "required|exists:users,id"
-        ]);
 
-        $event->title       = $data["title"];
-        $event->description = $data["description"];
-        $event->from_date   = $data["from_date"];
-        $event->till_date   = $data["till_date"];
+        $builder = new UpdateEvent($event);
+        $builder
+            ->from_request($request)
+            ->users($request->get_users())
+            ->update();
 
-        $event->save();
-
-        foreach ($data["users"] as $user_id) {
-            $event->users->attach($user_id);
-        }
-
-        return redirect("/events");
+        return redirect()->action("EventController@show", ["event" => $event]);
     }
 
     public function destroy(Event $event) {

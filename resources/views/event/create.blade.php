@@ -20,20 +20,19 @@
         <form action="/events" method="POST" enctype="multipart/form-data" class="form-50">
             @csrf
             <label for="title">{{ __('event.about.name') }}:</label>
-            <input type="text" name="title" class="form-control" placeholder="{{ __('event.placeholder.name') }}">
+            <input type="text" name="title" class="form-control" required placeholder="{{ __('event.placeholder.name') }}">
             <label for="description">{{ __('event.about.description') }}:</label>
-            <input type="text" name="description" class="form-control" placeholder="{{ __('event.placeholder.description') }}">
+            <input type="text" name="description" class="form-control" required placeholder="{{ __('event.placeholder.description') }}">
             <label for="from_date">{{ __('event.about.from_date') }}:</label>
-            <input type="datetime-local" name="from_date" class="form-control">
+            <input type="datetime-local" name="from_date" class="form-control" required>
             <label for="till_date" id="for_is">{{ __('event.about.till_date') }}:</label>
-            <input type="datetime-local" id="till_date" name="till_date" class="form-control">
+            <input type="datetime-local" id="till_date" name="till_date" class="form-control" required>
 
             <label for="user_select">{{ __('event.about.user_select') }}:</label>
             <multiple-select
                 :variants='@json($variants)'
                 name="users"
                 placeholder="Начните вводить имя, класс или параллель"
-                id="user_select"
                 >
             </multiple-select>
 

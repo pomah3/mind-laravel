@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <input type="text" v-model="search" class="form-control">
+    <div class="user-select">
+        <input type="text" v-model="search" :placeholder="placeholder" class="form-control">
         <select ref="select" v-on:change="add()" class="form-control">
             <option
                 v-for="variant in searched_variants"

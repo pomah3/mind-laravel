@@ -45,7 +45,7 @@ class EventMade extends Notification
     public function toArray($notifiable)
     {
         return [
-            "event" => $this->event,
+            "event" => $this->event->makeHidden("users")->toArray(),
             "view" => "notifications.event_made"
         ];
     }

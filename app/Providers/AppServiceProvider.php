@@ -20,6 +20,7 @@ class AppServiceProvider extends ServiceProvider {
         \App\EduTatar\EduTatarAuth::class => \App\EduTatar\EduTatarAuthImplCached::class,
         \App\Services\TransactionService::class => \App\Services\TransactionServiceImplCached::class,
         \App\Services\MarkdownService::class => \App\Services\MarkdownServiceImpl::class,
+        \App\Services\UserSelectService::class => \App\Services\UserSelectServiceImpl::class,
     ];
 
     /**

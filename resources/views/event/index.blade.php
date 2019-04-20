@@ -14,22 +14,22 @@
         @forelse ($events as $event)
             <div class="one-event">
                 <button class="event-delete" event-id="{{ $event->id }}">&times;</button>
-                <h2><strong>{{ $event->title }}</strong></h2>
+                @php
+                    $url = URL::action("EventController@show", [
+                        "event" => $event
+                    ]);
+                @endphp
+                <h2><strong>
+                    <a href="{{ $url }}">
+                        {{ $event->title }}
+                    </a>
+                </strong></h2>
                 <div class="event-description">
                     {{ $event->description }}
                 </div>
                 <div class="banner-label">{{ __('event.about.author') }}: @user(["user" => $event->author])</div>
                 <div class="banner-label">{{ __('event.about.from_date') }}: <span>{{ $event->from_date }}</span></div>
                 <div class="banner-label">{{ __('event.about.till_date') }}: <span>{{ $event->till_date }}</span></div>
-
-                <div>{{ __('event.about.partisipants') }}:</div>
-                <ol class="event-partisipants">
-                    @foreach ($event->users as $user)
-                        <li>
-                            @user(["user"=>$user])
-                        </li>
-                    @endforeach
-                </ol>
             </div>
         @empty
             <div class="not-found">

@@ -30,21 +30,16 @@
                             </span>
                         </div>
 
-                        @php
-                            if ($tr->from_id == $user->id)
-                                $tr->points *= -1;
-                        @endphp
-
-                        @if ($tr->points > 0)
+                        @if ($good_transaction($tr))
                             <span class="points good-points">
-                                +{{ $tr->points }}
+                                {{ $tr_points($tr) }}
                             </span>
                             <div class="cause">
                                 {{ $tr->cause->title }}
                             </div>
                         @else
                             <span class="points bad-points">
-                                {{ $tr->points }}
+                                {{ $tr_points($tr) }}
                             </span>
                             <div class="cause">
                                 {{ $tr->cause->title }}

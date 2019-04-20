@@ -1,19 +1,21 @@
 <?php
 
+use App\Cause;
+use App\EduTatarAuth;
+use App\Http\Resources\LessonResource;
+use App\Http\Resources\StudentResource;
+use App\Http\Resources\TimetableItemResource;
+use App\Http\Resources\TransactionResource;
+use App\Http\Resources\UserResource;
+use App\Repositories\GroupRepository;
+use App\Repositories\TimetableRepository;
+use App\Services\TransactionService;
+use App\Transaction;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\DB;
-
-use App\User;
-use App\EduTatarAuth;
-use App\Transaction;
-use App\Cause;
-use App\Http\Resources\{UserResource, StudentResource, TransactionResource, LessonResource};
-
-use App\Services\TransactionService;
-use App\Repositories\TimetableRepository;
-use App\Repositories\GroupRepository;
+use Illuminate\Support\Facades\Gate;
 
 Route::middleware("api_token")->group(function() {
 
@@ -101,9 +103,12 @@ Route::middleware("api_token")->group(function() {
         return $gr->get_names();
     });
 
-    Route::get("/timetable/{user}",
-        function(TimetableRepository $ttr, User $user) {
-            return $ttr->get_lessons($user);
+    Route::get("/timetable/{user}/{from?}/{until?}",
+        function(TimetableRepository $ttr, User $user, $from=null, $until=null) {
+            $from = $from ?? now()->startOfWeek();
+            $until = $until ?? now()->endOfWeek();
+            $lessons = $ttr->get_items($user, $from, $until);
+            return TimetableItemResource::collection($lessons);
         }
     );
 });

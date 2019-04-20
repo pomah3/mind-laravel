@@ -21,9 +21,7 @@ class EventController extends Controller {
 
     public function index() {
         return view("event.index", [
-            "events" => Event::all()->filter(function ($e) {
-                return Auth::user()->can("view", $e);
-            })
+            "events" => Auth::user()->events
         ]);
     }
 
@@ -74,6 +72,8 @@ class EventController extends Controller {
         foreach ($users as $user) {
             $event->users()->attach($user->id);
         }
+
+        $event->users()->attach(Auth::user()->id);
 
         event(new EventMade($event));
 

@@ -1,18 +1,7 @@
 <template>
-    <div>
-        <div
-            v-for="(select, id) in selected"
-        >
-            <input type="hidden" :name="name + '[]'" :value="select.value">
-            <div>
-                {{ select.name }}
-                <span v-on:click="remove(id)">
-                    &times;
-                </span>
-            </div>
-        </div>
-        <input type="text" v-model="search">
-        <select ref="select" v-on:change="add()">
+    <div class="user-select">
+        <input type="text" v-model="search" :placeholder="placeholder" class="form-control">
+        <select ref="select" v-on:change="add()" class="form-control">
             <option
                 v-for="variant in searched_variants"
                 :value="variant.value"
@@ -20,7 +9,19 @@
                 {{ variant.name }}
             </option>
         </select>
-        <div v-on:click="add()">Добавить</div>
+        <div v-on:click="add()" class="user-select-add">Добавить</div>
+        <div
+            v-for="(select, id) in selected"
+            class="user-select-item"
+        >
+            <input type="hidden" :name="name + '[]'" :value="select.value">
+            <div class="user-select-name">
+                {{ select.name }}
+                <span v-on:click="remove(id)" class="user-select-delete">
+                    &times;
+                </span>
+            </div>
+        </div>
     </div>
 </template>
 

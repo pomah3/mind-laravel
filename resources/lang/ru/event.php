@@ -1,17 +1,18 @@
 <?php
 
 return array (
-  'create' => 
+  'create' =>
   array (
     'title' => 'Добавить мероприятие',
   ),
-  'index' => 
+  'index' =>
   array (
     'title' => 'Мероприятия',
     'not-found' => 'Нет активных мероприятий',
   ),
-  'about' => 
+  'about' =>
   array (
+    'user_select' => "Участники",
     'author' => 'Автор',
     'from_date' => 'Начало мероприятия',
     'till_date' => 'Окончание мероприятия',
@@ -20,7 +21,7 @@ return array (
     'description' => 'Описание',
     'one_day' => 'Однодневное',
   ),
-  'placeholder' => 
+  'placeholder' =>
   array (
     'partisipant' => 'Введите участника',
     'name' => 'Введите название',

@@ -28,14 +28,16 @@
             <label for="till_date" id="for_is">{{ __('event.about.till_date') }}:</label>
             <input type="datetime-local" id="till_date" name="till_date" class="form-control">
 
+            <label for="user_select">{{ __('event.about.user_select') }}:</label>
             <multiple-select
                 :variants='@json($variants)'
                 name="users"
                 placeholder="Начните вводить имя, класс или параллель"
+                id="user_select"
                 >
             </multiple-select>
 
-            <input type="submit" class="submit" value="{{ __('main.submit.send') }}">
+            <input type="submit" class="submit user-select-submit" value="{{ __('main.submit.send') }}">
 
         </form>
     </div>

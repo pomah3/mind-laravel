@@ -10,7 +10,7 @@ class UserPolicy
     use HandlesAuthorization;
 
     public function view_password(User $user, User $user1) {
-        return $user->has_role("teacher");
+        return $user->has_role("admin");
     }
 
     public function view(User $user) {

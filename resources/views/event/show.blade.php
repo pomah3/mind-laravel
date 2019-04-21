@@ -16,6 +16,9 @@
                 {{ __('event.about.author') }}: @user(["user" => $event->author])
             </div>
             <div class="banner-label">
+                {{ __('event.about.responsible') }}: @user(["user" => $event->responsible])
+            </div>
+            <div class="banner-label">
                 {{ __('event.about.from_date') }}: <span>
                     {{ $event->from_date->format("d.m.Y H:i") }}
                 </span>

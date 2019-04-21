@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Http\Controllers\EventController;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\URL;
 
@@ -39,5 +40,9 @@ class Event extends Model implements TimetableItem {
             [EventController::class, "show"],
             ["event" => $this]
         );
+    }
+
+    public function responsible() {
+        return $this->belongsTo(User::class, 'responsible_id');
     }
 }

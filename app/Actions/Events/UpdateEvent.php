@@ -27,6 +27,11 @@ class UpdateEvent {
         return $this;
     }
 
+    public function responsible(User $user) {
+        $this->event->responsible_id = $user->id;
+        return $this;
+    }
+
     public function title(string $title) {
         $this->event->title = $title;
         return $this;
@@ -57,10 +62,10 @@ class UpdateEvent {
     }
 
     public function update() {
-        $author_id = $this->event->author_id;
+        $responsible_id = $this->event->responsible_id;
 
         $first_time = !$this->event->id;
-        $users = $this->users->merge([$author_id]);
+        $users = $this->users->merge([$responsible_id]);
 
         $this->event->save();
         $this->event->users()->sync($users);
@@ -75,6 +80,7 @@ class UpdateEvent {
         $this
             ->title($request->title)
             ->description($request->description)
+            ->responsible(User::find($request->responsible))
             ->from_date(new Carbon($request->from_date))
             ->till_date(new Carbon($request->till_date));
 

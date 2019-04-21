@@ -14,6 +14,7 @@ return array (
   array (
     'user_select' => "Участники",
     'author' => 'Автор',
+    'responsible' => 'Ответственный',
     'from_date' => 'Начало мероприятия',
     'till_date' => 'Окончание мероприятия',
     'partisipants' => 'Участники',

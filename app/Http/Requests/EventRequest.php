@@ -13,7 +13,8 @@ class EventRequest extends FormRequest {
             "description" => "required",
             "from_date"   => "required|date",
             "till_date"   => "required|date",
-            "users.*"     => "required"
+            "users.*"     => "required",
+            "responsible" => "required|exists:users,id"
         ];
     }
 }

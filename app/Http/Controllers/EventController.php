@@ -40,8 +40,11 @@ class EventController extends Controller {
     public function create() {
         $this->authorize("create", Event::class);
 
+        $users = User::all()->sort(Utils::get_user_cmp());
+
         return view("event.create", [
-            "variants" => $this->get_user_variants()
+            "variants" => $this->get_user_variants(),
+            "users" => $users
         ]);
     }
 

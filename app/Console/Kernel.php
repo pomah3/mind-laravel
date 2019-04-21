@@ -31,7 +31,7 @@ class Kernel extends ConsoleKernel
                  ->daily()->at('01:00');
 
         $schedule->command('mind:send-digest')
-                 ->weekly()->mondays()->at('18:00');
+                 ->weekly()->sundays()->at('18:00');
     }
 
     /**

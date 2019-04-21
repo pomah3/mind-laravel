@@ -22,8 +22,15 @@ class EventController extends Controller {
     }
 
     public function index() {
+        $events = Auth::user()->events;
+        $events = $events->merge(
+            Event
+                ::where("author_id", Auth::user()->id)
+                ->get()
+        );
+
         return view("event.index", [
-            "events" => Auth::user()->events
+            "events" => $events
         ]);
     }
 

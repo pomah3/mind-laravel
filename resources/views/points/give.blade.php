@@ -33,11 +33,11 @@
         <form action="/points/give" method="POST" class="form-50">
             @csrf
 
-            <multiple-select
+            <single-select
                 :variants='@json($students)'
                 name="students"
                 placeholder="Начните вводить имя"
-            ></multiple-select>
+            ></single-select>
 
             <input required name="points" type="number" min="1" placeholder="{{ __('points.give.number') }}" class="form-control t-20">
 

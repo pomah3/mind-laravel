@@ -39,11 +39,15 @@ class PointsController extends Controller {
     public function add_index(Groups $groups) {
         $this->authorize("add-index-points");
 
-        $students = StudentResource::collection(
-            User::students()
-            ->get()
-            ->sort(\App\Utils::get_student_cmp())
-        );
+        $students = User::students()->get()
+        ->sort(\App\Utils::get_student_cmp())
+        ->map(function($user) {
+            return [
+                "name" => $user->get_name(),
+                "value" => $user->id
+            ];
+        })
+        ->values();
 
         $causes = Cause::all()
             ->filter(function($cause) {

@@ -1,10 +1,11 @@
 <template>
     <div class="user-select">
         <input type="text" v-model="search" :placeholder="placeholder" class="form-control">
-        <select ref="select" v-on:change="add()" :name="name" class="form-control">
+        <select ref="select" :name="name" class="form-control">
             <option
                 v-for="variant in searched_variants"
                 :value="variant.value"
+                :selected="variant.selected"
             >
                 {{ variant.name }}
             </option>
@@ -18,7 +19,6 @@
         props: ["variants", "name", "placeholder"],
         data: function() {
             return {
-                selected: [],
                 search: ""
             };
         },

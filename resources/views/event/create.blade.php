@@ -25,23 +25,29 @@
             <label for="description">{{ __('event.about.description') }}:</label>
             <input type="text" name="description" class="form-control" required placeholder="{{ __('event.placeholder.description') }}">
 
-            <label for="responsible">{{ __('event.about.responsible') }}:</label>
-            <select class="form-control" name="responsible">
-                @foreach ($users as $user)
-                    @php
-                        $s = Auth::user()->id == $user->id;
-                    @endphp
-                    <option {{ $s ? "selected" : "" }} value="{{ $user->id }}">
-                        {{ $user->get_name() }}
-                    </option>
-                @endforeach
-            </select>
-
             <label for="from_date">{{ __('event.about.from_date') }}:</label>
             <input type="datetime-local" name="from_date" class="form-control" required>
 
             <label for="till_date" id="for_is">{{ __('event.about.till_date') }}:</label>
             <input type="datetime-local" id="till_date" name="till_date" class="form-control" required>
+
+            <label for="responsible">{{ __('event.about.responsible') }}:</label>
+
+            @php
+                $users_ = $users->map(function($user) {
+                    return [
+                        "name" => $user->get_name(),
+                        "value" => $user->id,
+                        "selected" => $user->id == Auth::user()->id
+                    ];
+                })->values();
+            @endphp
+
+            <single-select
+                name="responsible"
+                :variants='@json($users_)'
+                placeholder="Начните вводить имя"
+            ></single-select>
 
             <label for="user_select">{{ __('event.about.user_select') }}:</label>
             <multiple-select

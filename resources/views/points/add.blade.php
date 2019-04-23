@@ -28,11 +28,21 @@
         <form action="/points/add" method="POST" class="form-50">
             @csrf
 
-            <select id="select-group" class="form-control"></select>
-            <select required name="student_id" id="select-student" class="form-control"></select>
-            <select id="select-category" class="form-control"></select>
-            <select required name="cause_id" id="select-cause" class="form-control"></select>
-            <input type="submit" class="submit">
+            <label for="students">{{ __('points.add.label.students') }}:</label>
+            <single-select
+                :variants='@json($students)'
+                name="student_id"
+                placeholder="Начните вводить имя или класс"
+            ></single-select>
+
+            <label for="causes" class="t-20">{{ __('points.add.label.causes') }}:</label>
+            <single-select
+                :variants='@json($causes)'
+                name="cause_id"
+                placeholder="Начните вводить причину"
+            ></single-select>
+
+            <input type="submit" class="submit t-20">
 
         </form>
     </div>

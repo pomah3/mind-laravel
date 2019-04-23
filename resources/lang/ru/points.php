@@ -1,7 +1,7 @@
 <?php
 
 return array (
-  'show' => 
+  'show' =>
   array (
     'time' => 'Время',
     'points' => 'Баллы',
@@ -10,11 +10,15 @@ return array (
     'cause' => 'Основание',
     'title' => 'Мои баллы',
   ),
-  'add' => 
+  'add' =>
   array (
     'title' => 'Начислить баллы',
+    'label' => array (
+      'students' => 'Ученики',
+      'causes' => 'Причины',
+    ),
   ),
-  'give' => 
+  'give' =>
   array (
     'title' => 'Передать баллы',
     'balance' => 'Баланс',

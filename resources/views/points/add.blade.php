@@ -29,18 +29,18 @@
             @csrf
 
             <label for="students">{{ __('points.add.label.students') }}:</label>
-            <multiple-select
+            <single-select
                 :variants='@json($students)'
-                name="students"
+                name="student_id"
                 placeholder="Начните вводить имя или класс"
-            ></multiple-select>
+            ></single-select>
 
             <label for="causes" class="t-20">{{ __('points.add.label.causes') }}:</label>
-            <multiple-select
-                :variants='@json($students)'
-                name="causes"
+            <single-select
+                :variants='@json($causes)'
+                name="cause_id"
                 placeholder="Начните вводить причину"
-            ></multiple-select>
+            ></single-select>
 
             <input type="submit" class="submit t-20">
 

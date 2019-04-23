@@ -35,7 +35,7 @@
 
             <single-select
                 :variants='@json($students)'
-                name="students"
+                name="student_id"
                 placeholder="Начните вводить имя"
             ></single-select>
 

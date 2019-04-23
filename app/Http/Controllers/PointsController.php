@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Cause;
+use App\Http\Requests\AddPointsRequest;
+use App\Http\Requests\GivePointsRequest;
 use App\Http\Resources\StudentResource;
 use App\Repositories\GroupRepository as Groups;
 use App\Services\TransactionService as Trans;
@@ -40,18 +42,24 @@ class PointsController extends Controller {
         $this->authorize("add-index-points");
 
         $students = User::students()->get()
-        ->sort(\App\Utils::get_student_cmp())
-        ->map(function($user) {
-            return [
-                "name" => $user->get_name(),
-                "value" => $user->id
-            ];
-        })
-        ->values();
+            ->sort(\App\Utils::get_student_cmp())
+            ->map(function($user) {
+                return [
+                    "name" => $user->get_name(),
+                    "value" => $user->id
+                ];
+            })
+            ->values();
 
         $causes = Cause::all()
             ->filter(function($cause) {
                 return \App\Role::has_complex_role(Auth::user(), $cause->access);
+            })
+            ->map(function($cause) {
+                return [
+                    "name" => $cause->title,
+                    "value" => $cause->id
+                ];
             })
             ->values();
 
@@ -63,57 +71,55 @@ class PointsController extends Controller {
         ]);
     }
 
-    public function add(Request $request) {
-        $data = $request->validate([
-            "student_id" => "required|exists:users,id",
-            "cause_id" => "required|exists:causes,id"
-        ]);
+    public function add(AddPointsRequest $req) {
+        $this->authorize("add-points", [$req->student(), $req->cause()]);
+        $this->trs->add(
+            Auth::user(),
+            $req->student(),
+            $req->cause()
+        );
 
-        $student = User::find($data["student_id"]);
-        $cause   = Cause::find($data["cause_id"]);
-
-        $this->authorize("add-points", [$student, $cause]);
-
-        $this->trs->add(Auth::user(), $student, $cause);
-
-        return redirect("/points/add")->with("status", "ok");
+        return redirect()
+            ->action("PointsController@add")
+            ->with("status", "ok");
     }
 
     public function give_index() {
         $this->authorize("give-index-points");
 
+        $students = User::students()->get()
+            ->sort(\App\Utils::get_student_cmp())
+            ->map(function($user) {
+                return [
+                    "name" => $user->get_name(),
+                    "value" => $user->id
+                ];
+            })
+            ->values();
+
         return view("points.give", [
-            "students" => StudentResource::collection(
-                User::students()
-                ->get()
-                ->sort(\App\Utils::get_student_cmp())
-            )
+            "students" => $students
         ]);
     }
 
-    public function give(Request $request) {
-        $data = $request->validate([
-            "student_id" => "required|exists:users,id",
-            "points" => "required|min:1"
-        ]);
+    public function give(GivePointsRequest $req) {
+        $this->authorize("give-points", $req->student());
 
-        $student = User::find($data["student_id"]);
-
-        $this->authorize("give-points", $student);
-
-        $points = intval($data['points']);
-
-        if ($points > Auth::user()->student()->get_balance())
-            return redirect("/points/give")->withErrors("У вас нет стольки баллов");
+        if ($req->points() > Auth::user()->student()->get_balance())
+            return redirect()
+                ->action("PointsController@give")
+                ->withErrors("У вас нет стольки баллов");
 
         $this->trs->add(
             Auth::user(),
-            $student,
+            $req->student(),
             Cause::where("title", "Передача баллов")->first(),
-            $points
+            $req->points()
         );
 
-        return redirect("/points/give")->with("status", "ok");
+        return redirect()
+            ->action("PointsController@give")
+            ->with("status", "ok");
     }
 
     public function delete_transaction(Transaction $tr) {

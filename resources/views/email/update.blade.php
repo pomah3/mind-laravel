@@ -3,7 +3,7 @@
 @section("content")
 
 @component("email.components.p")
-    Наша команда разработчиков рада предоставить Вам новую версию Mind:
+    Наша команда разработчиков рада представить Вам новую версию Mind:
 @endcomponent
 
 @component("email.components.h1")
@@ -18,11 +18,6 @@
     @endphp
 
     Со списком изменений вы можете ознакомится <a href="{{ $url }}">по ссылке</a>.
-@endcomponent
-
-@component("email.components.p")
-    Приятного пользования! <br>
-    <b>Команда Mind</b>
 @endcomponent
 
 @endsection

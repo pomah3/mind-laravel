@@ -19,6 +19,7 @@
 
         <form action="/events" method="POST" enctype="multipart/form-data" class="form-50">
             @csrf
+
             <label for="title">{{ __('event.about.name') }}:</label>
             <input type="text" name=    "title" class="form-control" required placeholder="{{ __('event.placeholder.name') }}">
 

@@ -27,11 +27,17 @@
 
 <script>
     export default {
-        props: ["variants", "name", "placeholder"],
+        props: ["variants", "name", "placeholder", "defaultSelect"],
         data: function() {
+            let selected = [];
+            if (this.defaultSelect)
+                selected = this.variants.filter(x =>
+                    this.defaultSelect.includes(x.value)
+                );
+
             return {
-                selected: [],
-                search: ""
+                selected,
+                search: "",
             };
         },
         computed: {

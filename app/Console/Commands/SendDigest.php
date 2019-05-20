@@ -11,7 +11,14 @@ class SendDigest extends SendMail {
     protected $description = 'Send digest email to all users';
 
     public function get_mail(User $user) {
-        if ($user->events->count() > 0)
+        $count = $user
+            ->events()
+            ->whereBetween("from_date", [$start, $end])
+            ->orWhere("till_date", [$start, $end])
+            ->get()
+            ->count();
+
+        if ($count > 0)
             return new DigestMail($user);
         return null;
     }

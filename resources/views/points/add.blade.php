@@ -32,7 +32,7 @@
             <single-select
                 :variants='@json($students)'
                 name="student_id"
-                placeholder="Начните вводить имя или класс"
+                placeholder="Начните вводить имя"
             ></single-select>
 
             <label for="causes" class="t-20">{{ __('points.add.label.causes') }}:</label>

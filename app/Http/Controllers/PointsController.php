@@ -7,6 +7,7 @@ use App\Http\Requests\AddPointsRequest;
 use App\Http\Requests\GivePointsRequest;
 use App\Http\Resources\StudentResource;
 use App\Repositories\GroupRepository as Groups;
+use App\Repositories\GroupRepository;
 use App\Services\TransactionService as Trans;
 use App\Transaction;
 use App\User;
@@ -129,5 +130,39 @@ class PointsController extends Controller {
 
         return "";
     }
-}
 
+    public function take_off_points_index(GroupRepository $group_repo) {
+        $this->authorize("take-off-points");
+        return view("points.take_off", [
+            "groups" => $group_repo->get_all(),
+        ]);
+    }
+
+    public function take_off_points(Request $request) {
+        $this->authorize("take-off-points");
+
+        $student = User::find($request->student_id);
+        $points = -abs(intval($request->points));
+
+        $cause = Cause::where("title", "Покупка на аукционе")->first();
+        if (!$cause) {
+            $cause = Cause::firstOrCreate([
+                "points" => 0,
+                "title" => "Покупка на аукционе",
+                "access" => '["not", "all"]',
+                "category" => "",
+            ]);
+        }
+
+        $this->trs->add(
+            null,
+            $student,
+            $cause,
+            $points
+        );
+
+        return redirect()
+            ->action("PointsController@take_off_points_index")
+            ->with("status", "ok");
+    }
+}

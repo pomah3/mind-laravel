@@ -23,6 +23,9 @@ Route::middleware("auth")->group(function() {
     Route::get("/setlocale/{locale}", "LocaleController@set");
 
     Route::prefix("/points")->group(function() {
+        Route::get("take_off", "PointsController@take_off_points_index");
+        Route::post("take_off", "PointsController@take_off_points");
+
         Route::get("add", "PointsController@add_index");
         Route::post("add", "PointsController@add");
 

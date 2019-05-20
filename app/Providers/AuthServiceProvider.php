@@ -24,6 +24,7 @@ class AuthServiceProvider extends ServiceProvider
     private function pointsPolicies() {
         Gate::define("receive-points", "App\Policies\PointsPolicy@receivePoints");
         Gate::define("see-points", "App\Policies\PointsPolicy@seePoints");
+        Gate::define("take-off-points", "App\Policies\PointsPolicy@takeOffPoints");
         Gate::define("add-points", "App\Policies\PointsPolicy@addPoints");
         Gate::define("add-index-points", "App\Policies\PointsPolicy@addPointsIndex");
         Gate::define("give-points", "App\Policies\PointsPolicy@givePoints");

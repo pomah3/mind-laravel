@@ -48,4 +48,8 @@ class PointsPolicy
                 $user->has_role("zam")
             );
     }
+
+    public function takeOffPoints(User $user) {
+        return $user->has_role('admin');
+    }
 }
